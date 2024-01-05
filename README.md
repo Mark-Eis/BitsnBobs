@@ -46,26 +46,28 @@ library(BitsnBobs)
 ## Use dplyr::starwars data
 starwars <- dplyr::starwars
 
-## Extract and sort unique values of a selected column from a data frame
+## Extract and sort unique values of the "homeworld" column in the starwars data
 starwars |> wizard(homeworld)
-## …and optionally paste into a character string.
-starwars |> wizard(homeworld, ", '")
+## …and paste them into a character string.
+starwars |> wizard(homeworld, ", ")
 
-## Find and modify strings containing a specified pattern in a data frame character column
+## Find strings containing the pattern "Darth" in the starwars "name" column
 starwars |> detective(name, .pattern = "Darth")
+## Modify strings containing the pattern "Darth" but not "Vader" in the starwars "name" column
 starwars |> detective(name, .pattern = "Darth", .exclude = "Vader") <- "Darth The First"
+## Find strings containing the pattern "Darth" in the revised data in descending order
 starwars |> detective(name, .pattern = "Darth", .arrange_by = desc(name))
 
-## Create a "retrieval" function for a data frame with a defined index
+## Create a "retrieval" function for the starwars data frame using "name" as index
 retrieve_starwars <- retriever(starwars, name)
-## … and retrieve selected columns for a row specified using the index
+## … and retrieve selected columns for row(s) specified using the "name" index
 retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)
 
-## Create a replacement function with a defined index
+## Create a replacement function using "name" as index
 `remplace_at_name<-` <- remplacer(name)
-## Replace the value of a selected column for a row specified using the index
+## Replace the value in the "homeworld" column for row(s) specified using the "name" index
 remplace_at_name(starwars, "Luke Skywalker", homeworld) <- "Mimiland"
-## Retrieve selected columns for a row specified using the index
+## Retrieve selected columns for a row(s) specified using the "name" index
 retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)
 ```
 
