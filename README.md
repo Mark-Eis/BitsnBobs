@@ -44,7 +44,7 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(BitsnBobs)
 ## Use dplyr::starwars data
-starwars <- (\() dplyr::starwars)()
+starwars <- dplyr::starwars
 
 ## Extract and sort unique values of a selected column from a data frame
 starwars |> wizard(homeworld)
