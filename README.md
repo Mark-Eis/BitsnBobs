@@ -18,7 +18,7 @@ devtools::install_github("Mark-Eis/BitsnBobs")
 ```
 	
 ### BitsnBobs Package Description: –
-The ** BitsnBobs R package** does this and that using functions: –
+The **BitsnBobs R package** does this and that using functions: –
 
 `boxcox3()`, `browse()`, `cat_names()`, `cc_rate()`, `cohens_kappa()`, `const()`, `cor_coef.test()`, `count_lgl()`,
 `design_effect()`, `detective(), `detective<-()`, eff_rate()`, `endstop()`, `endstop_data()`, `facet_histo()`,
