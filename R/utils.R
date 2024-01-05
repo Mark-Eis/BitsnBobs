@@ -221,7 +221,7 @@ revmat <- function(x, type = c("byrow", "bycolumn", "byboth")) {
 #' @export
 #' @examples
 #' "Mimiland" |> endstop()
-#' "Mimiland." |> endstop(F)
+#' "Mimiland." |> endstop(FALSE)
 #' "Mimiland," |> endstop()
 #' "Mimiland ." |> endstop()
 #' "Mimiland. " |> endstop()
@@ -230,23 +230,13 @@ revmat <- function(x, type = c("byrow", "bycolumn", "byboth")) {
 #' endstop(s)
 #' s <- "Mimiland . ! ? \\ ( ) { } "
 #' cat(s)
-#' endstop(s, F)
+#' endstop(s, FALSE)
 #'
 #' starwars3 |> endstop_data(name)
 #' starwars3 |> endstop_data(starts_with("sk"))
 #' starwars3 |> endstop_data()
 #' 
 #' rm(s)
-
-# endstop <- function(string, .stop = TRUE) {
-    # stopifnot(length(string) == 1)
-    # while(str_sub(string, -1L) |> (\(x) any(str_detect(x, "[:punct:]"), str_detect(x, "[:space:]")))())
-        # string <- str_sub(string, end = -2L)
-    # if (.stop)
-        # paste0(string, ".")
-    # else
-        # string
-# }
 
 endstop <- function(string, .stop = TRUE) {
     stopifnot(length(string) == 1)

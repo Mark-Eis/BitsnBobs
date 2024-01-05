@@ -41,7 +41,7 @@ all character columns in \var{.data} will be modified  by \code{endstop()}.
 }
 \examples{
 "Mimiland" |> endstop()
-"Mimiland." |> endstop(F)
+"Mimiland." |> endstop(FALSE)
 "Mimiland," |> endstop()
 "Mimiland ." |> endstop()
 "Mimiland. " |> endstop()
@@ -50,7 +50,7 @@ cat(s)
 endstop(s)
 s <- "Mimiland . ! ? \\\\ ( ) { } "
 cat(s)
-endstop(s, F)
+endstop(s, FALSE)
 
 starwars3 |> endstop_data(name)
 starwars3 |> endstop_data(starts_with("sk"))
