@@ -43,6 +43,9 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(BitsnBobs)
+## Use dplyr::starwars data
+starwars <- (\() dplyr::starwars)()
+
 ## Extract and sort unique values of a selected column from a data frame
 starwars |> wizard(homeworld)
 ## …and optionally paste into a character string.
@@ -53,14 +56,14 @@ starwars |> detective(name, .pattern = "Darth")
 starwars |> detective(name, .pattern = "Darth", .exclude = "Vader") <- "Darth The First"
 starwars |> detective(name, .pattern = "Darth", .arrange_by = desc(name))
 
-## Create a "retrieval" function
+## Create a "retrieval" function for a data frame with a defined index
 retrieve_starwars <- retriever(starwars, name)
 ## … and retrieve selected columns for a row specified using the index
 retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)
 
-## Create replacement function
+## Create a replacement function with a defined index
 `remplace_at_name<-` <- remplacer(name)
-## Replace the value of a selected column  for a row specified using the index
+## Replace the value of a selected column for a row specified using the index
 remplace_at_name(starwars, "Luke Skywalker", homeworld) <- "Mimiland"
 ## Retrieve selected columns for a row specified using the index
 retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)
