@@ -52,7 +52,8 @@ If \code{labile_data} is \code{TRUE}, \code{data} are represented in the functio
 and functions returned by \code{retriever()} will automatically refer to the current version of \code{data} in its original
 \code{\link[base:environment]{environment}}, usually the calling environment i.e., typically but not necessarily the global
 environment. If \code{labile_data} is \code{FALSE}, returned functions refer to a copy of \code{data} saved in the function
-environment at the time of execution of \code{retriever()}, and will not reflect any subsequent changes to the original \code{data}.
+environment at the time of execution of \code{retriever()}, and will not reflect any subsequent changes to the original
+\code{data}.
 }
 \note{
 The original idea was for \code{remplacer()} to create bespoke replacement functions using \code{data} captured in the function
@@ -81,10 +82,10 @@ environment(retrieve_original_starwars)$data
 retrieve_original_starwars("Luke Skywalker", ends_with("color"), homeworld)
 
 ## Create replacement function
-`remplace_at_name<-` <- remplacer(name)
+`replace_at_name<-` <- remplacer(name)
 
-## Replace the value of a selected column  for a row specified using the index
-remplace_at_name(starwars, "Luke Skywalker", homeworld) <- "Mimiland"
+## Replace the value of a selected column for a row specified using the index
+starwars |> replace_at_name("Luke Skywalker", homeworld) <- "Mimiland"
 
 ## Retrieve selected columns for a row specified using the index
 ## "retrieval" function with labile_data TRUE reflects the change
@@ -94,7 +95,7 @@ retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)
 ## "retrieval" function with labile_data FALSE shows no change
 retrieve_original_starwars("Luke Skywalker", ends_with("color"), homeworld)
 
-rm(retrieve_starwars, retrieve_original_starwars, `remplace_at_name<-`, starwars)
+rm(retrieve_starwars, retrieve_original_starwars, `replace_at_name<-`, starwars)
 
 }
 \seealso{
