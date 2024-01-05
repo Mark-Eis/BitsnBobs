@@ -39,7 +39,7 @@ and datasets: –
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to use a few of the BitsnBobs functions: –
 
 ``` r
 library(BitsnBobs)
@@ -53,7 +53,7 @@ starwars |> wizard(homeworld, ", ")
 
 ## Find strings containing the pattern "Darth" in the starwars "name" column
 starwars |> detective(name, .pattern = "Darth")
-## Modify strings containing the pattern "Darth" but not "Vader" in the starwars "name" column
+## Modify strings containing the pattern "Darth" but not "Vader" in the "name" column
 starwars |> detective(name, .pattern = "Darth", .exclude = "Vader") <- "Darth The First"
 ## Find strings containing the pattern "Darth" in the revised data in descending order
 starwars |> detective(name, .pattern = "Darth", .arrange_by = desc(name))
