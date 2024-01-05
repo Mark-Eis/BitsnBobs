@@ -64,10 +64,10 @@ retrieve_starwars <- retriever(starwars, name)
 retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)
 
 ## Create a replacement function using "name" as index
-`remplace_at_name<-` <- remplacer(name)
+`replace_at_name<-` <- remplacer(name)
 ## Replace the value in the "homeworld" column for row(s) specified using the "name" index
-remplace_at_name(starwars, "Luke Skywalker", homeworld) <- "Mimiland"
-## Retrieve selected columns for a row(s) specified using the "name" index
+starwars |> replace_at_name("Luke Skywalker", homeworld) <- "Mimiland"
+## Retrieve selected columns for row(s) specified using the "name" index
 retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)
 ```
 

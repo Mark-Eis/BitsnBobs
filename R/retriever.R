@@ -27,7 +27,8 @@
 #' and functions returned by `retriever()` will automatically refer to the current version of `data` in its original
 #' [`environment`][base::environment], usually the calling environment i.e., typically but not necessarily the global
 #' environment. If `labile_data` is `FALSE`, returned functions refer to a copy of `data` saved in the function
-#' environment at the time of execution of `retriever()`, and will not reflect any subsequent changes to the original `data`. 
+#' environment at the time of execution of `retriever()`, and will not reflect any subsequent changes to the original
+#' `data`. 
 #'
 #' @note
 #' The original idea was for `remplacer()` to create bespoke replacement functions using `data` captured in the function
@@ -86,10 +87,10 @@
 #' retrieve_original_starwars("Luke Skywalker", ends_with("color"), homeworld)
 #'
 #' ## Create replacement function
-#' `remplace_at_name<-` <- remplacer(name)
+#' `replace_at_name<-` <- remplacer(name)
 #'
-#' ## Replace the value of a selected column  for a row specified using the index
-#' remplace_at_name(starwars, "Luke Skywalker", homeworld) <- "Mimiland"
+#' ## Replace the value of a selected column for a row specified using the index
+#' starwars |> replace_at_name("Luke Skywalker", homeworld) <- "Mimiland"
 #'
 #' ## Retrieve selected columns for a row specified using the index
 #' ## "retrieval" function with labile_data TRUE reflects the change
@@ -99,7 +100,7 @@
 #' ## "retrieval" function with labile_data FALSE shows no change
 #' retrieve_original_starwars("Luke Skywalker", ends_with("color"), homeworld)
 #' 
-#' rm(retrieve_starwars, retrieve_original_starwars, `remplace_at_name<-`, starwars)
+#' rm(retrieve_starwars, retrieve_original_starwars, `replace_at_name<-`, starwars)
 #'
 
 retriever <- function(data, index, labile_data = TRUE) {
