@@ -41,7 +41,7 @@ Effective rate (er): —
 
 where \eqn{j} is the interest payment, \eqn{er} is the effective rate, \eqn{pf} is the payment frequency, and
 \eqn{bal} is the balance. See \code{\link[FinancialMath:amort.period]{amort.period()}} in package
-\pkg{\link[FinancialMath]{FinancialMath}} for further details.
+\CRANpkg{FinancialMath} for further details.
 }
 \examples{
 j(0.05915929, 12, 4000)

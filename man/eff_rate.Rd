@@ -49,7 +49,7 @@ Continuous Compounding Rate of Interest (ccr): —
 
 where \eqn{er} is the effective rate of interest, \eqn{nr} is the nominal rate of interest, and \eqn{ic} is
 the interest conversion frequency. See \code{\link[FinancialMath:amort.period]{amort.period()}} in package
-\pkg{\link[FinancialMath]{FinancialMath}} for further details.
+\CRANpkg{FinancialMath} for further details.
 }
 \examples{
 ## A lender calculates interest daily using a simple annual rate of 5.7480\%, based on a 365-day year:

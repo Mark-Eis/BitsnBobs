@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Nov 2023
+# Mark Eisler - Dec 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -37,7 +37,7 @@
 #' 
 #' where \eqn{er} is the effective rate of interest, \eqn{nr} is the nominal rate of interest, and \eqn{ic} is
 #' the interest conversion frequency. See [`amort.period()`][FinancialMath::amort.period] in package
-#' \pkg{\link[FinancialMath]{FinancialMath}} for further details.
+#' \CRANpkg{FinancialMath} for further details.
 #'
 #' @references
 #'   Investopedia: Effective Annual Interest Rate: Definition, Formula, and Example.
@@ -122,7 +122,7 @@ cc_rate <- function(eff_rate)
 #' 
 #' where \eqn{j} is the interest payment, \eqn{er} is the effective rate, \eqn{pf} is the payment frequency, and
 #' \eqn{bal} is the balance. See [`amort.period()`][FinancialMath::amort.period] in package
-#' \pkg{\link[FinancialMath]{FinancialMath}} for further details.
+#' \CRANpkg{FinancialMath} for further details.
 #'
 #' @family amort
 #' @seealso [`amort.period()`][FinancialMath::amort.period], [`amort.table()`][FinancialMath::amort.table]
@@ -168,7 +168,7 @@ j2eff_rate <- function(j, pay_fq, bal = 1) {
 #' @details
 #' `get_amortval()` returns individual values from the output of [`amort.period()`][FinancialMath::amort.period] or
 #' the `Other` list element of the output of [`amort.table()`][FinancialMath::amort.table] in package
-#' \pkg{\link[FinancialMath]{FinancialMath}}.
+#' \CRANpkg{FinancialMath}.
 #'
 #' `get_amortint()` returns the total value of interest payments from the `Schedule` list element of the output of
 #' [`amort.table()`][FinancialMath::amort.table], up to and including the period given in `until`.

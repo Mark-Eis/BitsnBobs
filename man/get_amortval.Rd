@@ -28,7 +28,7 @@ Functions to return individual values from the output of \code{amort.period()} o
 \details{
 \code{get_amortval()} returns individual values from the output of \code{\link[FinancialMath:amort.period]{amort.period()}} or
 the \code{Other} list element of the output of \code{\link[FinancialMath:amort.table]{amort.table()}} in package
-\pkg{\link[FinancialMath]{FinancialMath}}.
+\CRANpkg{FinancialMath}.
 
 \code{get_amortint()} returns the total value of interest payments from the \code{Schedule} list element of the output of
 \code{\link[FinancialMath:amort.table]{amort.table()}}, up to and including the period given in \code{until}.
