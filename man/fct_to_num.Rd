@@ -16,22 +16,32 @@ Numeric
 Transform a factor to approximately its original numeric values.
 }
 \details{
-See \sQuote{Warning} section of \code{\link[base]{factor}}: \dQuote{In particular, \code{as.numeric}
-applied to a factor is meaningless, and may happen by implicit coercion. To transform a factor
-\code{f} to approximately its original numeric values, \code{as.numeric(levels(f))[f]} is
-recommended and slightly more efficient than \code{as.numeric(as.character(f))}.} Accordingly,
-\code{fct_to_num()} implements this method.
+See \sQuote{Warning} section of \code{\link[base:factor]{factor}}: \enc{–}{-}
+
+\dQuote{In particular, \code{as.numeric} applied to a factor is meaningless, and may happen by implicit
+coercion. To transform a factor \code{f} to approximately its original numeric values,
+\code{as.numeric(levels(f))[f]} is recommended and slightly more efficient than
+\code{as.numeric(as.character(f))}.}
+
+Accordingly, \code{fct_to_num()} implements this method.
 }
 \examples{
-f <- factor(2001:2020) |> print()  ## Create sequence of numeric values as a factor
-levels(f) |> str()                 ## Seemingly numeric levels are actually character strings! 
-f |> as.numeric()               ## Returns codes for factor levels, not what was expected
-f |> fct_to_num()               ## Returns numeric values equivalent to factor levels
+ ## Create sequence of numeric values as a factor
+f <- factor(2001:2020) |> print()
+
+## Seemingly numeric levels are actually character strings!
+levels(f) |> str()
+
+## Return codes for factor levels, not what was expected
+f |> as.numeric()
+
+## Returns numeric values equivalent to factor levels
+f |> fct_to_num()
 
 rm(f)
 }
 \seealso{
-\code{\link[base]{factor}}
+\code{\link[base:factor]{factor}}
 }
 \keyword{category}
 \keyword{math}

@@ -11,7 +11,7 @@ rm_objects(basename, suffixes, envir = rlang::caller_env())
 
 \item{suffixes}{A numeric or character vector representing the suffixes of the series of objects.}
 
-\item{envir}{An environment from which to remove objects. Use \var{.GlobalEnv} for the workspace; default
+\item{envir}{An environment from which to remove objects. Use \code{.GlobalEnv} for the workspace; default
 \code{caller_env()}.}
 }
 \value{
@@ -24,9 +24,9 @@ environment. For example, conveniently remove a series of sequentially numbered 
 }
 \details{
 \code{rm_objects()} lists all objects in the workspace (or another specified environment) whose
-names start with \var{basename}, then removes any in which \var{basename} is followed by
-an element included in \var{suffixes}, and finally lists all remaining objects with names
-matching \var{basename}.
+names start with \code{basename}, then removes any in which \code{basename} is followed by
+an element included in \code{suffixes}, and finally lists all remaining objects with names
+matching \code{basename}.
 }
 \examples{
 
@@ -44,8 +44,8 @@ matching \var{basename}.
  ## Remove three of them
  rm_objects(model_, letters[1:3])
 
- ## Use within a function
- (\() {                  ## Anonymous function, but doesn't have to be
+ ## Use within a function - here it's anonymous but doesn't have to be
+ (\() {
    model1 <- model2 <- model3 <- model4 <- model5 <- lm(1~1)
    rm_objects(model, 1:5)
  })()
@@ -55,6 +55,6 @@ matching \var{basename}.
  rm_objects(model, c(4, "_d"))
 }
 \seealso{
-\code{\link[base]{ls}} and \code{\link[base]{rm}}.
+\code{\link[base:ls]{ls}} and \code{\link[base:rm]{rm}}.
 }
 \keyword{environment}

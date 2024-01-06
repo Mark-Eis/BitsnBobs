@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Nov 2023
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -12,13 +12,16 @@
 #'
 #' Transform a factor to approximately its original numeric values.
 #'
-#' See \sQuote{Warning} section of \code{\link[base]{factor}}: \dQuote{In particular, \code{as.numeric}
-#' applied to a factor is meaningless, and may happen by implicit coercion. To transform a factor
-#' \code{f} to approximately its original numeric values, \code{as.numeric(levels(f))[f]} is
-#' recommended and slightly more efficient than \code{as.numeric(as.character(f))}.} Accordingly,
-#' \code{fct_to_num()} implements this method.
+#' See \sQuote{Warning} section of [`factor`][base::factor]: \enc{–}{-}
 #'
-#' @seealso \code{\link[base]{factor}}
+#' \dQuote{In particular, `as.numeric` applied to a factor is meaningless, and may happen by implicit
+#' coercion. To transform a factor `f` to approximately its original numeric values,
+#' `as.numeric(levels(f))[f]` is recommended and slightly more efficient than
+#' `as.numeric(as.character(f))`.}
+#'
+#' Accordingly, `fct_to_num()` implements this method.
+#'
+#' @seealso  [`factor`][base::factor]
 #'
 #' @param f factor to be converted to numeric values
 #'
@@ -27,10 +30,17 @@
 #' @keywords category math
 #' @export
 #' @examples
-#' f <- factor(2001:2020) |> print()  ## Create sequence of numeric values as a factor
-#' levels(f) |> str()                 ## Seemingly numeric levels are actually character strings! 
-#' f |> as.numeric()               ## Returns codes for factor levels, not what was expected
-#' f |> fct_to_num()               ## Returns numeric values equivalent to factor levels
+#'  ## Create sequence of numeric values as a factor
+#' f <- factor(2001:2020) |> print()
+#'
+#' ## Seemingly numeric levels are actually character strings!
+#' levels(f) |> str()
+#'
+#' ## Return codes for factor levels, not what was expected
+#' f |> as.numeric()
+#'
+#' ## Returns numeric values equivalent to factor levels
+#' f |> fct_to_num()
 #'
 #' rm(f)
 
@@ -42,17 +52,17 @@ fct_to_num <- function(f) as.numeric(levels(f))[f]
 #' Remove a series of sequentially named objects from the workspace or from another specified
 #' environment. For example, conveniently remove a series of sequentially numbered models.
 #'
-#' \code{rm_objects()} lists all objects in the workspace (or another specified environment) whose
-#' names start with \var{basename}, then removes any in which \var{basename} is followed by
-#' an element included in \var{suffixes}, and finally lists all remaining objects with names
-#' matching \var{basename}.
+#' `rm_objects()` lists all objects in the workspace (or another specified environment) whose
+#' names start with `basename`, then removes any in which `basename` is followed by
+#' an element included in `suffixes`, and finally lists all remaining objects with names
+#' matching `basename`.
 #'
-#' @seealso \code{\link[base]{ls}} and \code{\link[base]{rm}}.
+#' @seealso [`ls`][base::ls] and [`rm`][base::rm].
 #'
 #' @param basename Common base name (quoted) of the series of objects.
 #' @param suffixes A numeric or character vector representing the suffixes of the series of objects.
-#' @param envir An environment from which to remove objects. Use \var{.GlobalEnv} for the workspace; default
-#'   \code{caller_env()}.
+#' @param envir An environment from which to remove objects. Use `.GlobalEnv` for the workspace; default
+#'   `caller_env()`.
 #'
 #' @return A character vector of matching names remaining in the workspace or another specified
 #'   environment, returned invisibly.
@@ -75,8 +85,8 @@ fct_to_num <- function(f) as.numeric(levels(f))[f]
 #'  ## Remove three of them
 #'  rm_objects(model_, letters[1:3])
 #'
-#'  ## Use within a function
-#'  (\() {                  ## Anonymous function, but doesn't have to be
+#'  ## Use within a function - here it's anonymous but doesn't have to be
+#'  (\() {
 #'    model1 <- model2 <- model3 <- model4 <- model5 <- lm(1~1)
 #'    rm_objects(model, 1:5)
 #'  })()
@@ -87,7 +97,7 @@ fct_to_num <- function(f) as.numeric(levels(f))[f]
 
 rm_objects <- function(basename, suffixes, envir = rlang::caller_env()) {
     basename <- enquo(basename)
-    intro <- paste0("Objects matching \"", as_name(basename), "…\"")
+    intro <- paste0("Objects matching \"", as_name(basename), "\u2026\"")
     envirname <- rlang::env_name(envir)
     envstr <- paste("in", ifelse(identical(envirname, ""), "this", envirname), "environment:\n\t")
     objs <- expr(ls(envir, pattern = as_name(basename)))
@@ -107,13 +117,16 @@ rm_objects <- function(basename, suffixes, envir = rlang::caller_env()) {
 #' 
 #' @param p A numeric vector of probabilities.
 #' 
-#' @return A character vector, length of \code{p}.
+#' @return A character vector, length of `p`.
 #' 
 #' @export
 #' @examples
-#' (test_seq <- round(10^seq(-4, 0, 0.5), 4))
+#' (test_seq <- round(10 ^ seq(-4, 0, 0.5), 4))
+#' 
 #' starsig(test_seq)
+#' 
 #' rbind(test_seq, as.character(starsig(test_seq)))
+#' 
 #' data.frame(val = test_seq, sig = starsig(test_seq))
 #' 
 #' rm(test_seq)
