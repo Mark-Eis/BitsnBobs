@@ -13,6 +13,7 @@ print_all(x, ...)
 
 \method{print_all}{data.frame}(
   x,
+  ...,
   linefeeds = NULL,
   digits = NULL,
   quote = FALSE,

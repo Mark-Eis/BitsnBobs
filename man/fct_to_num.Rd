@@ -26,7 +26,7 @@ coercion. To transform a factor \code{f} to approximately its original numeric v
 Accordingly, \code{fct_to_num()} implements this method.
 }
 \examples{
- ## Create sequence of numeric values as a factor
+## Create sequence of numeric values as a factor
 f <- factor(2001:2020) |> print()
 
 ## Seemingly numeric levels are actually character strings!

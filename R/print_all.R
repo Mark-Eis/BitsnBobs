@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler Dec 2023
+# Mark Eisler Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -63,7 +63,7 @@ print_all <- function(x, ...) {
 #' @rdname print_all
 #' @export
 
-print_all.data.frame <- function(x, linefeeds = NULL, digits = NULL, quote = FALSE, right = TRUE, 
+print_all.data.frame <- function(x, ..., linefeeds = NULL, digits = NULL, quote = FALSE, right = TRUE, 
     row.names = TRUE, max = NULL) {
 
     print(x, digits = digits, quote = quote, right = right, row.names = row.names, max = max)

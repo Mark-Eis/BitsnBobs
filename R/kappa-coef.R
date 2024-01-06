@@ -167,7 +167,7 @@ cohens_kappa <- function (x, se_method = c("Fleiss", "Cohen"), conf.level = 0.95
 #' @rdname cohens_kappa
 #' @export
 
-print_all.cohens_kappa <- function(x) {
+print_all.cohens_kappa <- function(x, ...) {
     with(NextMethod(),
     {
         cat("Observed: -\n")  

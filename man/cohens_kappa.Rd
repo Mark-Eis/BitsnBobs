@@ -7,7 +7,7 @@
 \usage{
 cohens_kappa(x, se_method = c("Fleiss", "Cohen"), conf.level = 0.95)
 
-\method{print_all}{cohens_kappa}(x)
+\method{print_all}{cohens_kappa}(x, ...)
 }
 \arguments{
 \item{x}{a square \code{matrix} containing the observations of two raters or results of two diagnostic tests.}
