@@ -58,9 +58,9 @@
 #'
 #' @param conf.level the confidence level required; default \var{0.95}.
 #'
-#' @param k a list with class \code{htest} returned by \code{cohen_kappa()}.
+#' @inheritParams base::print
 #'
-#' @return A list with class \code{c("cohens_kappa", "htest")}, containing the following components: -
+#' @return A list with classes `"cohens_kappa"` and `"htest"`, containing the following components: -
 #'
 #' \item{statistic}{\eqn{\kappa}{kappa}, the kappa coefficient.}
 #'

@@ -17,10 +17,10 @@ cohens_kappa(x, se_method = c("Fleiss", "Cohen"), conf.level = 0.95)
 
 \item{conf.level}{the confidence level required; default \var{0.95}.}
 
-\item{k}{a list with class \code{htest} returned by \code{cohen_kappa()}.}
+\item{...}{further arguments passed to or from other methods.}
 }
 \value{
-A list with class \code{c("cohens_kappa", "htest")}, containing the following components: -
+A list with classes \code{"cohens_kappa"} and \code{"htest"}, containing the following components: -
 
 \item{statistic}{\eqn{\kappa}{kappa}, the kappa coefficient.}
 

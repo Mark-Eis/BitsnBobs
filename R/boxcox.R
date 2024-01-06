@@ -31,7 +31,7 @@
 #'
 #' @family boxcox
 #'
-#' @param \var{x} a numeric vector containing the data to be transformed.
+#' @param x a `numeric vector` containing the data to be transformed.
 #'
 #' @return Returns a \code{\link[base]{function}} performing Box-Cox transformations on the data \var{x} for
 #' any given value of \eqn{\lambda}.

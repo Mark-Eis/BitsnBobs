@@ -7,7 +7,7 @@
 boxcox3(x)
 }
 \arguments{
-\item{\var{x}}{a numeric vector containing the data to be transformed.}
+\item{x}{a \verb{numeric vector} containing the data to be transformed.}
 }
 \value{
 Returns a \code{\link[base]{function}} performing Box-Cox transformations on the data \var{x} for
