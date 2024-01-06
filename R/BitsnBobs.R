@@ -30,7 +30,7 @@
 #' @keywords category math
 #' @export
 #' @examples
-#'  ## Create sequence of numeric values as a factor
+#' ## Create sequence of numeric values as a factor
 #' f <- factor(2001:2020) |> print()
 #'
 #' ## Seemingly numeric levels are actually character strings!
