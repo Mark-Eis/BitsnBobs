@@ -6,7 +6,7 @@
 #' @export all_of any_of contains ends_with everything last_col matches num_range starts_with where
 #' @export element_text theme_get theme_set theme_update
 #' @export eval_tidy set_names
-#' @export map map_chr map_dbl map2_chr map_int
+#' @export map map2_chr map_chr map_dbl map_int
 #' @export tibble
 #' @importFrom dplyr across
 #' @importFrom dplyr arrange
