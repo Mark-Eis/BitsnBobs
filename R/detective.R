@@ -143,11 +143,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #'
 #' @param data a data frame, or a data frame extension (e.g. a tibble).
 #'
-<<<<<<< HEAD
 #' @param col <[`data-masking`][rlang::args_data_masking]> quoted name of character column to extract.
-=======
-#' @param col <[`data-masking`][rlang::args_data_masking]> quoted name of character column to extract.
->>>>>>> data-masking
 #'
 #' @param .collapse an optional character string to separate the results, see [`paste`][base::paste]; default
 #'   `NULL`.
