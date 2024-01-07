@@ -9,12 +9,12 @@
 \usage{
 known_s3generics(.arrange_by = across(Generic:Namespace))
 
-s3_in_namespace(namespace, .arrange_by = .data$Method)
+s3_in_namespace(namespace, .arrange_by = Method)
 
 \method{print}{info_df}(x, ...)
 }
 \arguments{
-\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masked}}> names of columns or functions for ordering results
+\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> names of columns or functions for ordering results
 using the syntax of \pkg{\link[dplyr]{dplyr}} \code{\link[dplyr:arrange]{arrange()}}. Use \code{\link[dplyr:desc]{desc()}} to sort
 by a variable in descending order.}
 

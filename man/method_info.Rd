@@ -16,7 +16,7 @@ method_info(..., .arrange_by = across(everything()))
     \code{generic.function} is not supplied.}
   }}
 
-\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masked}}> names of columns or functions for ordering results
+\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> names of columns or functions for ordering results
 using the syntax of \pkg{\link[dplyr]{dplyr}} \code{\link[dplyr:arrange]{arrange()}}. Use \code{\link[dplyr:desc]{desc()}} to sort
 by a variable in descending order.}
 }

@@ -91,7 +91,7 @@ method_info <- function(..., .arrange_by = across(everything())) {
 #'   [`class`][base::class], [`getS3method`][utils::getS3method], [`loadNamespace`][base::loadNamespace],
 #'   [`methods`][utils::methods] and [`UseMethod`][base::UseMethod].
 #'
-#' @param .arrange_by <[`data-masked`][rlang::args_data_masking]> names of columns or functions for ordering results
+#' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> names of columns or functions for ordering results
 #'   using the syntax of \pkg{\link[dplyr]{dplyr}} [`arrange()`][dplyr::arrange]. Use [`desc()`][dplyr::desc] to sort
 #'   by a variable in descending order.
 #'
@@ -138,7 +138,8 @@ known_s3generics <- function(.arrange_by = across(Generic:Namespace)) {
 #' @rdname S3Gen_Meth
 #' @export
 
-s3_in_namespace <- function(namespace, .arrange_by = .data$Method) {
+s3_in_namespace <- function(namespace, .arrange_by = Method) {
+    Method <- NULL
     namespace_name <- deparse(substitute(namespace))
     ns_S3methods <- getNamespace(namespace_name) |> getNamespaceInfo("S3methods")
     dimnames(ns_S3methods)[2] <- list(c("Generic", "Class", "Method", "Unknown"))

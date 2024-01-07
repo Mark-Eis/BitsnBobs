@@ -78,7 +78,7 @@ The previously defined \code{n_extra} argument is soft-deprecated.}
 \item{max_footer_lines}{Maximum number of footer lines. If \code{NULL},
 the \code{max_footer_lines} \link[pillar:pillar_options]{option} is used.}
 
-\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masked}}> names of columns or functions for ordering results
+\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> names of columns or functions for ordering results
 using the syntax of \pkg{\link[dplyr]{dplyr}} \code{\link[dplyr:arrange]{arrange()}}. Use \code{\link[dplyr:desc]{desc()}} to sort
 by a variable in descending order.}
 }
