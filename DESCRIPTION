@@ -31,9 +31,10 @@ Imports:
     tibble,
     tidyr,
     tidyselect
-Suggests: 
+Suggests:
     FinancialMath,
     lobstr,
+    MASS,
     roxygen2
 Encoding: UTF-8
 LazyData: true

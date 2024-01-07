@@ -45,12 +45,13 @@ categorical variables.
 Uses the \pkg{ggplot2} package. Formatting of titles etc. is deliberately minimal so that the user can set
 their own preferences as shown in the examples. The \code{\dots} argument may be omitted to obtain a simple unfaceted
 histogram. A set of variables or expressions defining faceting groups may be quoted using \code{\link[ggplot2]{vars}}
-and injected into the \code{\dots} argument with the \pkg{rlang} \code{\link[rlang]{!!!}} splice-operator, see examples.
+and injected into the \code{\dots} argument with the \pkg{rlang} \code{\link[rlang]{!!!}} splice-operator, see
+examples.
 
 Categorical variables defining the faceting groups in the \code{\dots} argument must be \code{factor}s or character
 vectors that will be coerced to \code{factor} using \code{\link{as.factor}}. If not supplied in the argument
-\code{.bins}, the number of bins for the histograms is calculated as the square root of the total number of observations
-divided by the product of the numbers of levels of the variables defining the faceting groups.
+\code{.bins}, the number of bins for the histograms is calculated as the square root of the total number of
+observations divided by the product of the numbers of levels of the variables defining the faceting groups.
 }
 \examples{
 ## Using cabbages dataset from {MASS} package
