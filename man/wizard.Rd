@@ -9,7 +9,7 @@ wizard(data, col, .collapse = NULL)
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a tibble).}
 
-\item{col}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of character column to extract.}
+\item{col}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of character column to extract.}
 
 \item{.collapse}{an optional character string to separate the results, see \code{\link[base:paste]{paste}}; default
 \code{NULL}.}

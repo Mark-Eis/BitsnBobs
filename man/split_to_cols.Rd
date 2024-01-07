@@ -12,9 +12,9 @@ split_to_rows(data, col_to_split, pattern)
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a tibble).}
 
-\item{col_to_split}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of character column to be split.}
+\item{col_to_split}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of character column to be split.}
 
-\item{split_to}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of a new character column to be created in \code{data}.}
+\item{split_to}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a new character column to be created in \code{data}.}
 
 \item{pattern}{a single character string representing the pattern to split by. \code{split_to_rows()} allows use
 of the various possibilities for the \code{pattern} argument of \code{\link[stringr]{str_split}}.}

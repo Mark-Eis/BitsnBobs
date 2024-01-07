@@ -32,7 +32,7 @@ Match character, word, line and sentence boundaries with
 \item{.exclude}{a single character string signifying items to be excluded, interpreted as for \code{.pattern};
 default \code{NULL}.}
 
-\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name(s) of column(s) for ordering results.
+\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of column(s) for ordering results.
 Use \code{\link[dplyr]{desc}} to sort by variables in descending order; default \code{desc(n)}.}
 
 \item{value}{a single character string providing the replacement value.}

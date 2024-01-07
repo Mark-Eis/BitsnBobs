@@ -14,7 +14,7 @@ sum_lgl(df, wt = NULL)
 
 \item{.newcol}{quoted name to be assigned to the new count column; default \code{n}.}
 
-\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of a column for ordering results; default
+\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of a column for ordering results; default
 \code{NULL}.}
 
 \item{wt}{frequency weights. Can be \code{NULL} or the name of a numeric variable column; default \code{NULL}.

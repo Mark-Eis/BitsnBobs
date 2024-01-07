@@ -15,7 +15,7 @@ lgl_cols(data)
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a tibble).}
 
-\item{.look_in}{<\code{\link[rlang:args_data_masking]{data-masked}}> quoted name of the character column in which to look for
+\item{.look_in}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name of the character column in which to look for
 keywords; default \code{Response}.}
 
 \item{value}{a \code{character vector} containing the keywords to be identified.}
