@@ -50,7 +50,8 @@
 #' identical(kwd, lgl_cols(car_names))
 #' rm(car_names, kwd)
 
-kwd_cols <- function(data, .look_in = .data$Response, value) {
+kwd_cols <- function(data, .look_in = Response, value) {
+	Response <- NULL
     .look_in <- enquo(.look_in) 
     stopifnot(is.data.frame(data), is.character(eval_tidy(.look_in, data)))
     fns <- setNames(tolower(value), str_to_title(value)) |>
@@ -63,8 +64,10 @@ kwd_cols <- function(data, .look_in = .data$Response, value) {
 #' @rdname kwd_cols
 #' @export
 
-`kwd_cols<-` <- function(data, .look_in = .data$Response, value)
+`kwd_cols<-` <- function(data, .look_in = Response, value) {
+	Response <- NULL
     kwd_cols(data, {{.look_in}}, value)
+}
 
 # ========================================
 #  Get column names of logical columns in a data frame.
