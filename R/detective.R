@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Dec 2023
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -81,25 +81,26 @@
 #'
 
 detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(n)) {
-	pos <- eval_select(expr(c(...) & where(is.character)), .data)
-	.arrange_by <- enquo(.arrange_by)
-	if (!length(pos))
-		pos <- eval_select(expr(where(is.character)), .data)
-	if (missing(.pattern))
-		selrow <- !logical(nrow(.data))
-	else {
-		selrow <- pos |> map(\(x) str_detect(.data[[x]], .pattern)) |> pmap_lgl(any)
-		selrow <- selrow & !is.na(selrow)  ## NA becomes FALSE
-	}
-	if (!is.null(.exclude)) {
-		exlrow <- pos |> map(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
-		exlrow <- exlrow | is.na(exlrow)  ## NA becomes TRUE
-		selrow <- selrow & exlrow
-	}
-	.data[pos] |>
-		filter(selrow) |>
-		count(!!!data_syms(names(pos))) |>
-		arrange(!!.arrange_by)
+    n <- NULL
+    pos <- eval_select(expr(c(...) & where(is.character)), .data)
+    .arrange_by <- enquo(.arrange_by)
+    if (!length(pos))
+        pos <- eval_select(expr(where(is.character)), .data)
+    if (missing(.pattern))
+        selrow <- !logical(nrow(.data))
+    else {
+        selrow <- pos |> map(\(x) str_detect(.data[[x]], .pattern)) |> pmap_lgl(any)
+        selrow <- selrow & !is.na(selrow)  ## NA becomes FALSE
+    }
+    if (!is.null(.exclude)) {
+        exlrow <- pos |> map(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
+        exlrow <- exlrow | is.na(exlrow)  ## NA becomes TRUE
+        selrow <- selrow & exlrow
+    }
+    .data[pos] |>
+        filter(selrow) |>
+        count(!!!data_syms(names(pos))) |>
+        arrange(!!.arrange_by)
 }
 
 # ========================================
@@ -108,21 +109,21 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #' @export
 
 `detective<-` <- function(.data, ..., .pattern, .exclude = NULL, value) {
-	stopifnot(is.data.frame(.data))
-	pos <- eval_select(expr(c(...)), .data)
-	if (!is.null(.exclude)) {
-		exlrow <- pos |> map(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
-		exlrow <- exlrow | is.na(exlrow)  ## NA becomes TRUE
-	} else
-		exlrow <- seq_len(nrow(.data))
+    stopifnot(is.data.frame(.data))
+    pos <- eval_select(expr(c(...)), .data)
+    if (!is.null(.exclude)) {
+        exlrow <- pos |> map(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
+        exlrow <- exlrow | is.na(exlrow)  ## NA becomes TRUE
+    } else
+        exlrow <- seq_len(nrow(.data))
 
-	.data |>
-		mutate(across(all_of(pos), \(x) modify_at(x, exlrow, \(y) 
-			if (str_detect(y, .pattern) & !is.na(y))
-				value
-			else
-				y
-		)))
+    .data |>
+        mutate(across(all_of(pos), \(x) modify_at(x, exlrow, \(y) 
+            if (str_detect(y, .pattern) & !is.na(y))
+                value
+            else
+                y
+        )))
 }
 
 # ========================================
@@ -162,10 +163,10 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #' \dontshow{rm(starwars)}
 
 wizard <- function(data, col, .collapse = NULL) {
-	x <- eval_tidy(expr({{col}}), data = data) |>
-	unique() |>
-	sort(na.last = T)
-	if (!is.null(.collapse))
-		paste0(x, collapse = .collapse)
-	else x
+    x <- eval_tidy(expr({{col}}), data = data) |>
+    unique() |>
+    sort(na.last = T)
+    if (!is.null(.collapse))
+        paste0(x, collapse = .collapse)
+    else x
 }

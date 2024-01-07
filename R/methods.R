@@ -124,6 +124,7 @@ method_info <- function(..., .arrange_by = across(everything())) {
 #'
  
 known_s3generics <- function(.arrange_by = across(Generic:Namespace)) {
+    Generic <- Namespace <- NULL
     gens <- c(.knownS3Generics, set_names(rep("\"primitive\"", length(.S3PrimitiveGenerics)), .S3PrimitiveGenerics))
     data.frame(Generic = names(gens), Namespace = gens) |>
         arrange({{.arrange_by}}) |>
@@ -137,7 +138,7 @@ known_s3generics <- function(.arrange_by = across(Generic:Namespace)) {
 #' @rdname S3Gen_Meth
 #' @export
 
-s3_in_namespace <- function(namespace, .arrange_by = Method) {
+s3_in_namespace <- function(namespace, .arrange_by = .data$Method) {
     namespace_name <- deparse(substitute(namespace))
     ns_S3methods <- getNamespace(namespace_name) |> getNamespaceInfo("S3methods")
     dimnames(ns_S3methods)[2] <- list(c("Generic", "Class", "Method", "Unknown"))
@@ -311,6 +312,6 @@ s3mag7 <- function(env = parent.frame()) {
 #' @rdname S3_Method_Debug
 
 browse <- function(fn, ...) {
-	browser()
-	fn(...)
+    browser()
+    fn(...)
 }

@@ -9,7 +9,7 @@
 \usage{
 known_s3generics(.arrange_by = across(Generic:Namespace))
 
-s3_in_namespace(namespace, .arrange_by = Method)
+s3_in_namespace(namespace, .arrange_by = .data$Method)
 
 \method{print}{info_df}(x, ...)
 }

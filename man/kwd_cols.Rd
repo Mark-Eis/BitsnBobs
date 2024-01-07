@@ -6,9 +6,9 @@
 \alias{lgl_cols}
 \title{Add Logical Columns to Data Frame Flagging Presence of Keywords}
 \usage{
-kwd_cols(data, .look_in = Response, value)
+kwd_cols(data, .look_in = .data$Response, value)
 
-kwd_cols(data, .look_in = Response) <- value
+kwd_cols(data, .look_in = .data$Response) <- value
 
 lgl_cols(data)
 }

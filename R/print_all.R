@@ -119,7 +119,7 @@ print_all.htest <- function(x, ...) {
 #' @export
 
 print_all.MethodsFunction <- function(x, ..., .arrange_by = across(everything())) {
-    x %@% info |>
+    x %@% "info" |>
         rownames_to_column(var = "Method") |>
         rename_with(str_to_title, !last_col()) |>
         arrange(.arrange_by) |>

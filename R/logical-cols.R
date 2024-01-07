@@ -50,12 +50,12 @@
 #' identical(kwd, lgl_cols(car_names))
 #' rm(car_names, kwd)
 
-kwd_cols <- function(data, .look_in = Response, value) {
-	.look_in <- enquo(.look_in) 
-	stopifnot(is.data.frame(data), is.character(eval_tidy(.look_in, data)))
-	fns <- setNames(tolower(value), str_to_title(value)) |>
-		map(\(val) \(look_in) str_detect(tolower(look_in), val))
-	data |> mutate(across(!!.look_in, fns, .names = "{.fn}"))
+kwd_cols <- function(data, .look_in = .data$Response, value) {
+    .look_in <- enquo(.look_in) 
+    stopifnot(is.data.frame(data), is.character(eval_tidy(.look_in, data)))
+    fns <- setNames(tolower(value), str_to_title(value)) |>
+        map(\(val) \(look_in) str_detect(tolower(look_in), val))
+    data |> mutate(across(!!.look_in, fns, .names = "{.fn}"))
 }
 
 # ========================================
@@ -63,8 +63,8 @@ kwd_cols <- function(data, .look_in = Response, value) {
 #' @rdname kwd_cols
 #' @export
 
-`kwd_cols<-` <- function(data, .look_in = Response, value)
-	kwd_cols(data, {{.look_in}}, value)
+`kwd_cols<-` <- function(data, .look_in = .data$Response, value)
+    kwd_cols(data, {{.look_in}}, value)
 
 # ========================================
 #  Get column names of logical columns in a data frame.
@@ -72,8 +72,8 @@ kwd_cols <- function(data, .look_in = Response, value) {
 #' @export
 
 lgl_cols<- function(data) {
-	stopifnot(is.data.frame(data))
-	eval_select(expr(where(is.logical)), data) |> names()
+    stopifnot(is.data.frame(data))
+    eval_select(expr(where(is.logical)), data) |> names()
 }
 
 
@@ -128,10 +128,11 @@ lgl_cols<- function(data) {
 #' rm(car_names, carname_counts)
 
 count_lgl <- function(df, .newcol = n, .arrange_by = NULL) {
-	stopifnot(is.data.frame(df))
-	df |>
-		summarise({{.newcol}} := dplyr::n(), .by = where(is.logical)) |>
-		arrange({{.arrange_by}} %||% across(where(is.logical)))
+    n <- NULL
+    stopifnot(is.data.frame(df))
+    df |>
+        summarise({{.newcol}} := dplyr::n(), .by = where(is.logical)) |>
+        arrange({{.arrange_by}} %||% across(where(is.logical)))
 }
 
 # ========================================
@@ -140,20 +141,20 @@ count_lgl <- function(df, .newcol = n, .arrange_by = NULL) {
 #' @export
 
 sum_lgl <- function(df, wt = NULL) {
-	stopifnot(is.data.frame(df), is.null(wt) || is.numeric(df[[wt]]))
-	df |>
-		mutate(
-			across(where(is.logical), as.integer),
-		    .keep = "used"
-		) |>
-		as.matrix() |>
-		crossprod(
-			if(is.null(wt))
-				rep(1, nrow(df))
-			else
-				df[[wt]]
-		) |>
-		(\(y) y[,1])()
+    stopifnot(is.data.frame(df), is.null(wt) || is.numeric(df[[wt]]))
+    df |>
+        mutate(
+            across(where(is.logical), as.integer),
+            .keep = "used"
+        ) |>
+        as.matrix() |>
+        crossprod(
+            if(is.null(wt))
+                rep(1, nrow(df))
+            else
+                df[[wt]]
+        ) |>
+        (\(y) y[,1])()
 }
 
 # ========================================

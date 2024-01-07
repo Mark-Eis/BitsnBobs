@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler Dec 2023
+# Mark Eisler Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -94,7 +94,7 @@ new_catapult <- function(object = vector(), lead = "Catapult: -\n", revert = FAL
 # #' @export
 
 validate_catapult <- function(x) {
-    lead <- x %@% lead
+    lead <- x %@% "lead"
 
     if(!is.character(lead)) {
 	    stop(
@@ -110,7 +110,7 @@ validate_catapult <- function(x) {
 	    )
     }
 
-    if(!is.logical(x %@% revert)) {
+    if(!is.logical(x %@% "revert")) {
 	    stop(
 	        "\"revert\" attribute must be of type logical",
 		     call. = FALSE
@@ -182,16 +182,16 @@ catapult <- function(object = vector(), lead = "Catapult", revert = FALSE, ...) 
 
 print.catapult <- function(x, ...) {
 	validate_catapult(x)
-    .lead <- x %@% lead
+    .lead <- x %@% "lead"
     cat(paste0(rep(c("_", "\n", .lead, ": -\n\n"), c(nchar(.lead) + 3, 1, 1, 1)), collapse = ""))
 
-    if (!x %@% revert) {
-        x %@% lead <- x %@% revert <- NULL
+    if (!x %@% "revert") {
+        x %@% "lead" <- x %@% "revert" <- NULL
         class(x) <- class(x)[!class(x) %in% "catapult"]
         NextMethod()
 	    class(x) <- .Class
-	    x %@% lead <- .lead
-	    x %@% revert <- FALSE
+	    x %@% "lead" <- .lead
+	    x %@% "revert" <- FALSE
     }
     invisible(x)
 }
