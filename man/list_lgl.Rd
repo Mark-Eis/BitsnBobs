@@ -7,10 +7,10 @@
 list_lgl(.data, ...)
 }
 \arguments{
+\item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
+
 \item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> The selection of columns in \code{data} to be included in
 the tibbles comprising elements of the returned list.}
-
-\item{data}{a data frame, or a data frame extension (e.g. a tibble).}
 }
 \value{
 A named list of \link[tibble:tibble-package]{tibble} data frames containing selected rows and columns of the

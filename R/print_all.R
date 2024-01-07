@@ -33,6 +33,7 @@
 #'   \code{NULL}.
 #'
 #' @inheritParams base::print
+#' @inheritParams base::print.data.frame
 #' @inheritParams tibble::print.tbl_df
 #' @inheritParams method_info
 #'

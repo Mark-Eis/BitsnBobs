@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - May 2023
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -20,7 +20,7 @@
 #'
 #'  \deqn{\displaystyle \phi = \frac{n_{11}n_{22} - n_{12}n_{21}}
 #'    {sqrt{(n_{11} + n_{21})(n_{12} + n_{22})(n_{11} + n_{12})(n_{21} + n_{22})}}}{%
-#'    phi = (n(11).n(22) - n(12).n(21)) / sqrt((n(11) + n(21)) * (n(12) + n(22)) * (n(11) + n(12)) * (n(21) + n(22)))}
+#'    phi = (n(11).n(22) - n(12).n(21)) / \sqrt((n(11) + n(21)) * (n(12) + n(22)) * (n(11) + n(12)) * (n(21) + n(22)))}
 #'
 #' or equivalently, the determinant of the matrix divided by the (principal) square root of the product of its four
 #' marginal sums.
@@ -83,6 +83,9 @@ phi_coef <- function(x) {
 #'
 #' @seealso \code{\link[base]{matrix}}, \code{\link[stats]{mcnemar.test}}
 #' @family correl_coef
+#'
+#' @param alternative a `character` string specifying the alternative hypothesis, must be one of `"two.sided"`
+#'   (default), `"greater"` or `"less"`.  You can specify just the initial letter.
 #'
 #' @param conf.level numeric between 0 and 1, the confidence level required; default \var{0.95}.
 #'

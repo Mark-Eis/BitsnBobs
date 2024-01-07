@@ -16,10 +16,8 @@ cor_coef.test(
 
 \item{n}{integer providing the number of pairs of observations from which \var{r} was derived; minimum 4.}
 
-\item{alternative}{indicates the alternative hypothesis and must be
-    one of \code{"two.sided"}, \code{"greater"} or \code{"less"}.  You
-    can specify just the initial letter.  \code{"greater"} corresponds
-    to positive association, \code{"less"} to negative association.}
+\item{alternative}{a \code{character} string specifying the alternative hypothesis, must be one of \code{"two.sided"}
+(default), \code{"greater"} or \code{"less"}.  You can specify just the initial letter.}
 
 \item{conf.level}{numeric between 0 and 1, the confidence level required; default \var{0.95}.}
 }

@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jul 2023
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -183,7 +183,7 @@ sum_lgl <- function(df, wt = NULL) {
 #'   <[`tidy-select`][dplyr::dplyr_tidy_select]>, [`tibble`][tibble::tibble-package].
 #' @family logical-cols
 #'
-#' @param data a data frame, or a data frame extension (e.g. a tibble).
+#' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
 #'
 #' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> The selection of columns in \code{data} to be included in
 #'   the tibbles comprising elements of the returned list.

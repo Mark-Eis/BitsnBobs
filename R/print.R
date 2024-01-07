@@ -91,7 +91,7 @@ new_catapult <- function(object = vector(), lead = "Catapult: -\n", revert = FAL
 #  validate_catapult()
 #
 # # Not exported, but probably should be…
-#' @export
+# #' @export
 
 validate_catapult <- function(x) {
     lead <- x %@% lead

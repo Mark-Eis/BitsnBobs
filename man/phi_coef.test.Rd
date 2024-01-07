@@ -13,6 +13,9 @@ phi_coef.test(
 \arguments{
 \item{x}{a square \code{matrix} containing the observations of two binary variables as a two-by-two table of counts.}
 
+\item{alternative}{a \code{character} string specifying the alternative hypothesis, must be one of \code{"two.sided"}
+(default), \code{"greater"} or \code{"less"}.  You can specify just the initial letter.}
+
 \item{conf.level}{numeric between 0 and 1, the confidence level required; default \var{0.95}.}
 }
 \value{

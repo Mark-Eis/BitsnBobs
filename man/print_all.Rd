@@ -61,6 +61,13 @@ print_all(x, ...)
 \item{right}{logical, indicating whether or not strings should be
     right aligned.}
 
+\item{row.names}{logical (or character vector), indicating whether (or
+    what) row names should be printed.}
+
+\item{max}{numeric or \code{NULL}, specifying the maximal number of
+    entries to be printed.  By default, when \code{NULL},
+    \code{\link[base]{getOption}("max.print")} used.}
+
 \item{width}{only used when \code{max.levels} is NULL, see above.}
 
 \item{max_extra_cols}{Number of extra columns to print abbreviated information for,
