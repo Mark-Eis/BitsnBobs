@@ -20,6 +20,8 @@ inherited \code{object}; if \code{TRUE}, \code{print.catapult()} will return to 
 
 \item{\dots}{additional named arguments to be forwarded to print methods of classes inherited from \code{object}, for
 example as required for formatting and printing a \code{\link[base:print.dataframe]{data frame}}.}
+
+\item{x}{an object used to select a method.}
 }
 \value{
 An object of class \code{"catapult"} inheriting class(es) from \code{object}.

@@ -140,11 +140,13 @@ validate_catapult <- function(x) {
 #' @param lead a `character` string giving the title to be printed.
 #'
 #' @param revert `logical` indicating whether the `"revert"` attribute should be set to `TRUE` or `FALSE`. By default,
-#' when `FALSE`, the corresponding print method `print.catapult()` will invoke further print methods for the underlying
-#' inherited `object`; if `TRUE`, `print.catapult()` will return to the calling function after printing `lead`.
+#'   when `FALSE`, the corresponding print method `print.catapult()` will invoke further print methods for the underlying
+#'   inherited `object`; if `TRUE`, `print.catapult()` will return to the calling function after printing `lead`.
 #'
 #' @param \dots additional named arguments to be forwarded to print methods of classes inherited from `object`, for
 #'   example as required for formatting and printing a [`data frame`][base::print.data.frame].
+#'
+#' @inheritParams base::print
 #'
 #' @return An object of class `"catapult"` inheriting class(es) from `object`.
 #'

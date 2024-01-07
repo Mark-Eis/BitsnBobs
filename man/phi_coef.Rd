@@ -22,7 +22,7 @@ coefficient is given by: -
 
 \deqn{\displaystyle \phi = \frac{n_{11}n_{22} - n_{12}n_{21}}
    {sqrt{(n_{11} + n_{21})(n_{12} + n_{22})(n_{11} + n_{12})(n_{21} + n_{22})}}}{%
-   phi = (n(11).n(22) - n(12).n(21)) / sqrt((n(11) + n(21)) * (n(12) + n(22)) * (n(11) + n(12)) * (n(21) + n(22)))}
+   phi = (n(11).n(22) - n(12).n(21)) / \sqrt((n(11) + n(21)) * (n(12) + n(22)) * (n(11) + n(12)) * (n(21) + n(22)))}
 
 or equivalently, the determinant of the matrix divided by the (principal) square root of the product of its four
 marginal sums.
