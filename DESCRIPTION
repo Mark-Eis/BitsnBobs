@@ -19,18 +19,21 @@ Description: Does this and that using functions: boxcox3(), browse(),
     skewness.test(), split_to_cols(), split_to_rows(), starsig(),
     sum_lgl(), wizard(); infix operators: op-min-max; and datasets:
     heights, litter_sizes, starwars2 and starwars3.
-License: GPL (>= 3) + file LICENSE
+License: MIT + file LICENSE
 Depends: 
     R (>= 4.1.0)
 Imports: 
     dplyr,
     ggplot2,
+    methods,
     purrr,
     rlang (>= 0.4.11),
+    stats,
     stringr,
     tibble,
     tidyr,
-    tidyselect
+    tidyselect,
+    utils
 Suggests:
     FinancialMath,
     lobstr,
