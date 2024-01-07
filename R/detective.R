@@ -36,7 +36,7 @@
 #' @param .exclude a single character string signifying items to be excluded, interpreted as for `.pattern`;
 #'   default `NULL`.  
 #'
-#' @param .arrange_by <[`data-masked`][rlang::args_data_masking]> quoted name(s) of column(s) for ordering results.
+#' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name(s) of column(s) for ordering results.
 #'   Use \code{\link[dplyr]{desc}} to sort by variables in descending order; default `desc(n)`.
 #'
 #' @param value a single character string providing the replacement value.
@@ -143,7 +143,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #'
 #' @param data a data frame, or a data frame extension (e.g. a tibble).
 #'
-#' @param col <[`data-masked`][rlang::args_data_masking]> quoted name of character column to extract.
+#' @param col <[`data-mask`][rlang::args_data_masking]> quoted name of character column to extract.
 #'
 #' @param .collapse an optional character string to separate the results, see [`paste`][base::paste]; default
 #'   `NULL`.

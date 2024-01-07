@@ -39,9 +39,9 @@
 #'
 #' @param data a data frame, or a data frame extension (e.g. a tibble).
 #'
-#' @param col_to_split <[`data-masked`][rlang::args_data_masking]> quoted name of character column to be split.
+#' @param col_to_split <[`data-masking`][rlang::args_data_masking]> quoted name of character column to be split.
 #'
-#' @param split_to <[`data-masked`][rlang::args_data_masking]> quoted name of a new character column to be created in \code{data}.
+#' @param split_to <[`data-masking`][rlang::args_data_masking]> quoted name of a new character column to be created in \code{data}.
 #'
 #' @param pattern a single character string representing the pattern to split by. \code{split_to_rows()} allows use
 #'   of the various possibilities for the \code{pattern} argument of \code{\link[stringr]{str_split}}.

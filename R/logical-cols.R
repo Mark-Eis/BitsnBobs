@@ -26,7 +26,7 @@
 #'
 #' @param data a data frame, or a data frame extension (e.g. a tibble).
 #'
-#' @param .look_in <[`data-masked`][rlang::args_data_masking]> quoted name of the character column in which to look for
+#' @param .look_in <[`data-masking`][rlang::args_data_masking]> quoted name of the character column in which to look for
 #'   keywords; default \code{Response}.
 #'
 #' @param value a \code{character vector} containing the keywords to be identified.
@@ -104,7 +104,7 @@ lgl_cols<- function(data) {
 #'
 #' @param .newcol quoted name to be assigned to the new count column; default \code{n}.
 #'
-#' @param .arrange_by <[`data-masked`][rlang::args_data_masking]> quoted name of a column for ordering results; default
+#' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name of a column for ordering results; default
 #'   \code{NULL}.
 #'
 #' @param wt frequency weights. Can be \code{NULL} or the name of a numeric variable column; default \code{NULL}.
