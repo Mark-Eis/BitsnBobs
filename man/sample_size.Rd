@@ -7,19 +7,19 @@
 sample_size(Pexp = 0.5, d, N = NULL, conf_level = 0.95)
 }
 \arguments{
-\item{Pexp}{numeric (or numeric vector with all values) between 0 and 1 representing the expected prevalence; default
-\var{0.5}.}
+\item{Pexp}{\code{numeric} (or \verb{numeric vector} with all values) between 0 and 1 representing the expected prevalence;
+default \var{0.5}.}
 
-\item{d}{a positive numeric (or numeric vector with all values) greater than zero representing the desired absolute
-precision.}
+\item{d}{a positive \code{numeric} (or \verb{numeric vector} with all values) greater than zero representing the desired
+absolute precision.}
 
-\item{N}{either NULL for a large (theoretically infinite) population or a positive integer (or integer vector with all
-values) greater than zero representing the population size; default \code{NULL}.}
+\item{N}{either \code{NULL} for a large (theoretically infinite) population or a positive \code{integer} (or \verb{integer vector}
+with all values) greater than zero representing the population size; default \code{NULL}.}
 
 \item{conf_level}{the confidence level(s) required; default \var{0.95}.}
 }
 \value{
-A numeric (or numeric vector) giving the required sample size(s).
+A \code{numeric} (or \verb{numeric vector}) giving the required sample size(s).
 }
 \description{
 Calculate the sample size required from a population to estimate the prevalence of a dichotomous variable to a given
@@ -52,7 +52,8 @@ sample_size(d = 0.1)
 sample_size(d = 0.05, N = c(500L, 750L, 1000L))
 
 ## Expected prevalence = 0.125, 0.25, 0.50, 0.75 or 0.875
-sample_size(Pexp = c(0.125, 0.25, 0.50, 0.75, 0.875), d = 0.05) ## Note symmetry of resulting sample sizes
+## Note symmetry of resulting sample sizes
+sample_size(Pexp = c(0.125, 0.25, 0.50, 0.75, 0.875), d = 0.05)
 
 ## Desired absolute precision = 1\%, 5\%, 10\%, 20\%
 sample_size(d = c(0.01, 0.05, 0.1, 0.2))

@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - April 2023
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -85,18 +85,18 @@ design_effect <- function(m, ri)
 #'
 #' @family sample-size
 #'
-#' @param Pexp numeric (or numeric vector with all values) between 0 and 1 representing the expected prevalence; default
-#'   \var{0.5}.
+#' @param Pexp `numeric` (or `numeric vector` with all values) between 0 and 1 representing the expected prevalence;
+#'   default \var{0.5}.
 #'
-#' @param d a positive numeric (or numeric vector with all values) greater than zero representing the desired absolute
-#'   precision.
+#' @param d a positive `numeric` (or `numeric vector` with all values) greater than zero representing the desired
+#'   absolute precision.
 #'
-#' @param N either NULL for a large (theoretically infinite) population or a positive integer (or integer vector with all
-#'   values) greater than zero representing the population size; default \code{NULL}.
+#' @param N either `NULL` for a large (theoretically infinite) population or a positive `integer` (or `integer vector`
+#'   with all values) greater than zero representing the population size; default \code{NULL}.
 #'
 #' @param conf_level the confidence level(s) required; default \var{0.95}.
 #'
-#' @return A numeric (or numeric vector) giving the required sample size(s).
+#' @return A `numeric` (or `numeric vector`) giving the required sample size(s).
 #'
 #' @keywords survey
 #' @export
@@ -109,7 +109,8 @@ design_effect <- function(m, ri)
 #' sample_size(d = 0.05, N = c(500L, 750L, 1000L))
 #' 
 #' ## Expected prevalence = 0.125, 0.25, 0.50, 0.75 or 0.875
-#' sample_size(Pexp = c(0.125, 0.25, 0.50, 0.75, 0.875), d = 0.05) ## Note symmetry of resulting sample sizes
+#' ## Note symmetry of resulting sample sizes
+#' sample_size(Pexp = c(0.125, 0.25, 0.50, 0.75, 0.875), d = 0.05)
 #' 
 #' ## Desired absolute precision = 1%, 5%, 10%, 20%
 #' sample_size(d = c(0.01, 0.05, 0.1, 0.2))
