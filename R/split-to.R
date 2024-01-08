@@ -61,7 +61,12 @@
 #' tidyr::separate_longer_delim(starwars3, skin_color, ",")
 #'
 #' split_to_cols(starwars3, skin_color, alt_skin_color, ",")
-#' tidyr::separate_wider_delim(starwars3, skin_color, ",", names = c("skin_color", "alt_skin_color"), too_few = "align_start", too_many = "merge")
+#' tidyr::separate_wider_delim(
+#'     starwars3, skin_color, ",",
+#'     names = c("skin_color", "alt_skin_color"),
+#'     too_few = "align_start",
+#'     too_many = "merge"
+#' )
 #'
 #' starwars3[3, 2]$skin_color <- "white\r\nblue"
 #' starwars3[8, 2]$skin_color <- "silver\r\nred"
@@ -78,7 +83,12 @@
 #'
 #' split_to_cols(starwars3, skin_color, alt_skin_color, " ")
 #' split_to_cols(starwars3, skin_color, alt_skin_color, " ", remove_parenth = TRUE)
-#' tidyr::separate_wider_delim(starwars3, skin_color, " ", names = c("skin_color", "alt_skin_color"), too_few = "align_start", too_many = "merge")
+#' tidyr::separate_wider_delim(
+#'     starwars3, skin_color, " ",
+#'     names = c("skin_color", "alt_skin_color"),
+#'     too_few = "align_start",
+#'     too_many = "merge"
+#' )
 #'
 
 split_to_cols <- function(data, col_to_split, split_to, pattern, remove_parenth = FALSE) {
