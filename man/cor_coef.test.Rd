@@ -72,8 +72,8 @@ The confidence interval is then calculated using the hyperbolic tangent: -
   \emph{lower} = (e<sup>2L<\sup> - 1)/(e<sup>2L<\sup> + 1), \emph{upper} = (e<sup>2U<\sup> - 1)/(e<sup>2U<\sup> + 1)}
 }
 \note{
-This function is much like \code{cor.test} and potentially useful if the correlation coefficient is available but
-not the original data.
+This function is much like \code{cor.test} and potentially useful if the correlation coefficient is available
+but not the original data.
 }
 \examples{
 ## Data from cor.test() example (Hollander & Wolfe, 1973): -

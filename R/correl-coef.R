@@ -12,7 +12,7 @@
 #'
 #' @description
 #' The \emph{phi} correlation coefficient (or mean square contingency coefficient and denoted by \eqn{\phi} or \eqn{r\phi})
-#' is a measure of association between two binary variables.
+#' is a measure of association between two naturally dichotomous variables.
 #'
 #' @details
 #' For a two-by-two contingency table \eqn{n_{11}} \eqn{n_{12}} \eqn{n_{21}} \eqn{n_{22}} the \eqn{\phi} correlation
@@ -26,8 +26,8 @@
 #' marginal sums.
 #'
 #' @references
-#' Yule, G.U. (1912). On the Methods of Measuring Association Between Two Attributes. \emph{J Royal Stat Soc}. \strong{75}
-#' (6): 579–652. \href{https://doi.org/10.1177/10.2307/2340126}{\doi{10.2307/2340126}}.
+#' Yule, G.U. (1912). On the Methods of Measuring Association Between Two Attributes. \emph{J Royal Stat Soc}.
+#'   \strong{75} (6): 579–652. \href{https://doi.org/10.1177/10.2307/2340126}{\doi{10.2307/2340126}}.
 #'
 #' @seealso \code{\link[base]{matrix}}, \code{\link[stats]{mcnemar.test}}
 #' @family correl_coef
@@ -71,15 +71,23 @@ phi_coef <- function(x) {
 #'
 #' @details
 #' The \emph{phi} coefficient is calculated using \code{\link{phi_coef}}. For derivation of the standard error and
-#' confidence interval, see Bishop \emph{et al.} (2003) and also documentation for the package \pkg{statpsych} at
-#' \href{https://rdrr.io/cran/statpsych/src/R/statpsych3.R}{statpsych::ci.phi()}.
+#' confidence interval, see Bishop \emph{et al.} (2003), and Bonett (2021). See also `ci.phi()`, the \emph{confidence 
+#' interval for a phi correlation} in the
+#' \href{https://cran.r-project.org/web/packages/statpsych/statpsych.pdf}{reference manual} for package
+#' \CRANpkg{statpsych}.
 #'
 #' @references
-#' Yule, G.U. (1912). On the Methods of Measuring Association Between Two Attributes. \emph{J Royal Stat Soc}. \strong{75}
-#'   (6): 579–652. \href{https://doi.org/10.1177/10.2307/2340126}{\doi{10.2307/2340126}}.
+#' Yule, G.U. (1912). On the Methods of Measuring Association Between Two Attributes. \emph{J Royal Stat Soc}.
+#'   \strong{75} (6): 579–652. \href{https://doi.org/10.1177/10.2307/2340126}{\doi{10.2307/2340126}}.
 #'
 #' Bishop, Y.M.M., Fienberg, S.E., Holland, P.W. (1975). \emph{Discrete Multivariate Analysis.} MIT Press. (See Ch.11.)
 #'   \href{https://download.e-bookshelf.de/download/0000/0020/95/L-G-0000002095-0002339867.pdf}{ISBN 978-0-387-72805-6}.
+#'
+#' Bonett, Douglas G. (2021). 
+#'  \href{https://dgbonett.sites.ucsc.edu/statistical-methods-for-psychologists/}{Statistical Methods for Psychologists},
+#'  Volume 3: Introduction to Introduction to Categorical Data Analysis. University of California, Santa Cruz. (See 3.4
+#'  Measures of Association for 2 × 2 Tables.)
+#'
 #'
 #' @seealso \code{\link[base]{matrix}}, \code{\link[stats]{mcnemar.test}}
 #' @family correl_coef
@@ -133,8 +141,8 @@ phi_coef <- function(x) {
 #' ## Setting confidence level to 1 - p-value gives upper bound of confidence interval close to zero
 #' pval <- phi_coef.test(twobytwo)$p.value
 #' phi_coef.test(twobytwo, conf.level = 1 - pval)
-#' ## Similarly, with one-tailed tests setting confidence level to 1 - p-value/2 conserves the upper or lower CI
-#' ## bound with alternative = "less" or alternative = "greater" respectively
+#' ## Similarly, with one-tailed tests setting confidence level to 1 - p-value/2 conserves the upper
+#' ## or lower CI bound with alternative = "less" or alternative = "greater" respectively
 #' phi_coef.test(twobytwo, alternative = "less", conf.level = 1 - pval/2)
 #' phi_coef.test(twobytwo, alternative = "greater", conf.level = 1 - pval/2)
 #'
@@ -233,8 +241,8 @@ phi_coef.test <- function(x, alternative = c("two.sided", "less", "greater"), co
 #'  \deqn{\displaystyle lower = \frac{e^{2L} - 1}{e^{2L} + 1}, upper = \frac{e^{2U} - 1}{e^{2U} + 1}}{%
 #'	  \emph{lower} = (e<sup>2L<\sup> - 1)/(e<sup>2L<\sup> + 1), \emph{upper} = (e<sup>2U<\sup> - 1)/(e<sup>2U<\sup> + 1)}
 #'
-#' @note This function is much like \code{cor.test} and potentially useful if the correlation coefficient is available but
-#'   not the original data.
+#' @note This function is much like \code{cor.test} and potentially useful if the correlation coefficient is available
+#'   but not the original data.
 #'
 #' @seealso \code{\link[stats]{cor}}, \code{\link[stats]{cor.test}}, \code{\link[stats]{t.test}}
 #' @family correl_coef

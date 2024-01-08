@@ -14,7 +14,7 @@ A numeric between -1 and 1, the \eqn{\phi} correlation coefficient.
 }
 \description{
 The \emph{phi} correlation coefficient (or mean square contingency coefficient and denoted by \eqn{\phi} or \eqn{r\phi})
-is a measure of association between two binary variables.
+is a measure of association between two naturally dichotomous variables.
 }
 \details{
 For a two-by-two contingency table \eqn{n_{11}} \eqn{n_{12}} \eqn{n_{21}} \eqn{n_{22}} the \eqn{\phi} correlation
@@ -45,8 +45,8 @@ phi_coef(twobytwo)
 rm(twobytwo)
 }
 \references{
-Yule, G.U. (1912). On the Methods of Measuring Association Between Two Attributes. \emph{J Royal Stat Soc}. \strong{75}
-(6): 579–652. \href{https://doi.org/10.1177/10.2307/2340126}{\doi{10.2307/2340126}}.
+Yule, G.U. (1912). On the Methods of Measuring Association Between Two Attributes. \emph{J Royal Stat Soc}.
+\strong{75} (6): 579–652. \href{https://doi.org/10.1177/10.2307/2340126}{\doi{10.2307/2340126}}.
 }
 \seealso{
 \code{\link[base]{matrix}}, \code{\link[stats]{mcnemar.test}}
