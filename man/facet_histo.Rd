@@ -66,7 +66,10 @@ cabbages |> facet_histo(VitC)
 ## One faceting variable
 cabbages |> facet_histo(VitC, Date)
 ## Customise titles
-cabbages |> facet_histo(VitC, Cult, .main = "Vitamin C levels by Cultivar", .xtitle = "Ascorbic acid content")
+cabbages |> facet_histo(
+        VitC, Cult, .main = "Vitamin C levels by Cultivar",
+        .xtitle = "Ascorbic acid content"
+    )
 
 ## Set ggplot preferences
 oldtheme <- theme_get()

@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - May 2023
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -64,7 +64,10 @@
 #' ## One faceting variable
 #' cabbages |> facet_histo(VitC, Date)
 #' ## Customise titles
-#' cabbages |> facet_histo(VitC, Cult, .main = "Vitamin C levels by Cultivar", .xtitle = "Ascorbic acid content")
+#' cabbages |> facet_histo(
+#'         VitC, Cult, .main = "Vitamin C levels by Cultivar",
+#'         .xtitle = "Ascorbic acid content"
+#'     )
 #'
 #' ## Set ggplot preferences
 #' oldtheme <- theme_get()
