@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - May 2023
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -101,7 +101,8 @@
 #'
 #' ## Compare the three options for type 
 #' ## log() invoked just once, on execution of power_seq() with type = "evaluate"
-#' expr_ls <- c("simple", "evaluate", "replicate") |> setNames(nm = _) |> map(\(x) power_seq(log(3), 5, x)) |> print()
+#' expr_ls <- c("simple", "evaluate", "replicate") |> setNames(nm = _) |>
+#'     map(\(x) power_seq(log(3), 5, x)) |> print()
 #'
 #' ## log() invoked once on evaluation of expression from power_seq() with type = "simple" and
 #' ## five times on evaluation of expression from power_seq() with type = "replicate"
