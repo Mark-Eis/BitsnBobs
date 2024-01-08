@@ -23,9 +23,7 @@ License: MIT + file LICENSE
 Depends: 
     R (>= 4.1.0)
 Imports: 
-    broom,
     dplyr,
-    forcats,
     ggplot2,
     methods,
     purrr,
