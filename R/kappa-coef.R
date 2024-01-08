@@ -92,8 +92,8 @@
 #'
 #'  ck |> print_all()   
 #'
-#'  ## Example from Altman et al. (Statistics with Confidence 2nd Edn. 2008. ISBN: 978-0-727-91375-3, p.117),
-#'  ## using, as they did, Cohen's approximation to the standard error. 
+#'  ## Example from Altman et al. (Statistics with Confidence 2nd Edn. 2008. ISBN:978-0-727-91375-3,
+#'  ## p.117), using, as they did, Cohen's approximation to the standard error. 
 #'  (twobytwo <- matrix(c(32, 3, 6, 42), nrow = 2, dimnames = rep(list(c("Yes", "No")), 2) |>
 #'                setNames(c("Parent", "Paediatrician"))
 #'              ))
@@ -105,7 +105,8 @@
 #'
 #'  ## Example with three categories from Cohen (1960).
 #'  (threebythree <- matrix(c(88, 10,  2, 14, 40,  6, 18, 10, 12), nrow = 3,
-#'                    dimnames = rep(list(c("Cat1", "Cat2", "Cat3")), 2) |> setNames(c("Judge_B", "Judge_A"))
+#'                    dimnames = rep(list(c("Cat1", "Cat2", "Cat3")), 2) |>
+#'                        setNames(c("Judge_B", "Judge_A"))
 #'                  ))
 #'
 #'  cohens_kappa(threebythree, se_method = "Cohen") |> print_all()
