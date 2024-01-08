@@ -42,11 +42,11 @@ Produce neatly formatted histograms for a numeric variable in a data frame, face
 categorical variables.
 }
 \details{
-Uses the \pkg{ggplot2} package. Formatting of titles etc. is deliberately minimal so that the user can set
-their own preferences as shown in the examples. The \code{\dots} argument may be omitted to obtain a simple unfaceted
-histogram. A set of variables or expressions defining faceting groups may be quoted using \code{\link[ggplot2]{vars}}
-and injected into the \code{\dots} argument with the \pkg{rlang} \code{\link[rlang]{!!!}} splice-operator, see
-examples.
+Uses the \pkg{\link[ggplot2]{ggplot2}} package. Formatting of titles etc. is deliberately minimal so that the
+user can set their own preferences as shown in the examples. The \code{\dots} argument may be omitted to obtain
+a simple unfaceted histogram. A set of variables or expressions defining faceting groups may be quoted using
+\code{\link[ggplot2]{vars}} and injected into the \code{\dots} argument with the \pkg{\link[rlang]{rlang}}
+\code{\link[rlang]{!!!}} splice-operator, see examples.
 
 Categorical variables defining the faceting groups in the \code{\dots} argument must be \code{factor}s or character
 vectors that will be coerced to \code{factor} using \code{\link{as.factor}}. If not supplied in the argument
@@ -67,9 +67,10 @@ cabbages |> facet_histo(VitC)
 cabbages |> facet_histo(VitC, Date)
 ## Customise titles
 cabbages |> facet_histo(
-        VitC, Cult, .main = "Vitamin C levels by Cultivar",
-        .xtitle = "Ascorbic acid content"
-    )
+                VitC, Cult,
+                .main = "Vitamin C levels by Cultivar",
+                .xtitle = "Ascorbic acid content"
+            )
 
 ## Set ggplot preferences
 oldtheme <- theme_get()
