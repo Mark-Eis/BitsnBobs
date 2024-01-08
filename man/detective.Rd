@@ -72,15 +72,19 @@ starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "S")
 starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "s")
 
 starwars |> detective(!c(name, contains("color")))
-starwars |> detective(contains("color"), species, .pattern = "brown", .arrange_by = across(contains("color")))
-
 starwars |> detective(
-         name, contains("color"), species,
-        .pattern = "brown", .exclude = "Human",
-        .arrange_by = across(contains("color"))
+        contains("color"), species, .pattern = "brown",
+       .arrange_by = across(contains("color"))
     )
 
-starwars |> detective(contains("color"), species, .pattern = "brown", .exclude = "Human") <- "chestnut"
+starwars |> detective(
+         name, contains("color"), species, .pattern = "brown",
+        .exclude = "Human", .arrange_by = across(contains("color"))
+    )
+
+starwars |> detective(
+        contains("color"), species, .pattern = "brown",
+    ) <- "chestnut"
 
 starwars |> detective(name, contains("color"), species, .pattern = "brown")
 

@@ -61,7 +61,9 @@
 #'
 #' @export
 #' @examples
-#' ## A lender calculates interest daily using a simple annual rate of 5.7480%, based on a 365-day year:
+#' ## A lender calculates interest daily using a simple annual rate of 5.7480%,
+#' ## based on a 365-day year.
+#'
 #' ## Calculate effective rate: -
 #' eff_rate(0.057480, 365)
 #'
