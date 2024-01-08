@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jul 2023
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -39,28 +39,32 @@
 #' @keywords regression models
 #' @export
 #' @examples
-#' d <- rlnorm(20)              ## Create skewed data
-#' d |> print_lf() |> skew()    ## Inspect data and calculate skewness using BitsnBobs::skew()
+#' ## Create skewed data
+#' (d <- rlnorm(20))
+#' ## Calculate skewness using BitsnBobs::skew()
+#' d |> skew()
+#' ## Box-Cox function for these data
+#' bc_func <- boxcox3(d)
 #'
-#' bc_func <- boxcox3(d)        ## Create Box-Cox function for the data
-#'
-#' bc_func(-1)                  ## Use this function to Box-Cox transform data with various values of lambda
+#' ## Box-Cox transform data with various values of lambda
+#' bc_func(-1)
 #' bc_func(0)
 #' bc_func(1)
 #' bc_func(2)
-#' identical(bc_func(0), log(d))  ## bc_func(0) same as log(d)
+#' ## bc_func(0) same as log(d)
+#' identical(bc_func(0), log(d))
 #'
 #' seq(-3, 3, 1) |>                         ## Create a sequence from -3 to 3
-#'   set_names(\(x) paste("lambda", x)) |>  ## Name the sequence vector using rlang::set_names()
+#'   set_names(\(x) paste("lambda", x)) |>  ## Name sequence vector using rlang::set_names()
 #'   print_lf() |>                          ## Print with line feed
-#'   map(bc_func) |>                        ## Use purrr::map() to Box-Cox transform the data using each
-#'   print_lf() |>                          ## lambda value in the sequence and return a named list
-#'   map_dbl(skewness) |>                   ## Use purrr::map_dbl() and skewness() to calculate skewness
-#'   print_lf() |>                          ## for each element of the list and return a numeric vector
-#'   abs() |>                               ## Absolute skewness
-#'   which.min()                            ## Which lambda gives minimum absolute skewness?
+#'   map(bc_func) |>                        ## Box-Cox transform data using each lambda value
+#'   print_lf() |>                          ##   in sequence and print the named list
+#'   map_dbl(skewness) |>                   ## Calculate skewness for each element of the list
+#'   print_lf() |>                          ##   and print the numeric vector
+#'   abs() |>                               ## Absolute skewness...
+#'   which.min()                            ##   ...which lambda gives minimum?
 #'
-#' ## lambda 0 (usually) has least absolute skewness, unsurprisingly given these data were lognormally distributed. 
+#' ## Usually, lambda 0 has least absolute skewness as data were sampled from lognormal distribution
 #'
 #' rm(d, bc_func)
 
