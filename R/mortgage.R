@@ -195,7 +195,9 @@ j2eff_rate <- function(j, pay_fq, bal = 1) {
 #' if (!requireNamespace("FinancialMath", quietly = TRUE)) 
 #'   warning("package 'FinancialMath' must be installed")
 #' }
-#' (apd <- try(FinancialMath::amort.period(Loan = 200099, n = 15 * 12, i = 0.0184, ic = 12, pf = 12, t = 60)))
+#' (apd <- try(
+#'     FinancialMath::amort.period(Loan = 200099, n = 15 * 12, i = 0.0184, ic = 12, pf = 12, t = 60)
+#' ))
 #'
 #' ## Default value is "Eff Rate"
 #' get_amortval(apd)
