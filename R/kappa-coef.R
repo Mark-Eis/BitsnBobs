@@ -38,7 +38,7 @@
 #' Professor Joseph Fleiss \emph{et al.} (1979) observed: \samp{Many human endeavors have been cursed with repeated
 #' failures before final success is achieved. The scaling of Mount Everest is one example. The discovery of the Northwest
 #' Passage is a second. The derivation of a correct standard error for kappa is a third.} Coding the Fleiss \emph{et al.}
-#' (1979) standard error method in R is no picnic either!
+#' (1979) standard error method in R was an endeavour similarly cursed!
 #'
 #' @references
 #' Cohen, J. (1960). A coefficient of agreement for nominal scales. \emph{Educ Psychol Meas}, \strong{20}, 37–46.
