@@ -40,7 +40,8 @@ s[1:6] + s[11:6]
 rm(s)
 }
 \seealso{
-\code{\link{exp}} and \code{\link{log}}.
+\code{\link{exp}}, \code{\link{log}}, \code{\link[=stats:plogis]{plogis}} and \code{\link[=stats:qlogis]{qlogis}}
+and the \emph{Note} section of \code{\link[stats:Logistic]{Logistic}} in the \pkg{\link[stats]{stats}} package.
 
 Other odds-logit: 
 \code{\link{odds}()}
