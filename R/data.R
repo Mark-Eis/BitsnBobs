@@ -57,7 +57,7 @@
 #' @description
 #' Heights of 100 randomly selected male university students from Table 2.1 of Spiegel and Stephens (2008).
 #'
-#' @format ## `heights`
+#' @format ##
 #' An \code{integer vector} with length \code{100}.
 #' \describe{
 #'   \item{heights}{Height of the student in inches.}
@@ -76,7 +76,7 @@
 #' @description
 #' Litter sizes in albino rats (n = 815) from Table 7 of King (1924).
 #'
-#' @format ## `litter_sizes`
+#' @format ##
 #' An \code{integer vector} with length \code{815}.
 #' \describe{
 #'   \item{litter_sizes}{Sizes of albino rat litters.}

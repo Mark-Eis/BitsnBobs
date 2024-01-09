@@ -5,7 +5,7 @@
 \alias{litter_sizes}
 \title{Rat Litter Sizes}
 \format{
-\subsection{\code{litter_sizes}}{
+\subsection{}{
 
 An \code{integer vector} with length \code{815}.
 \describe{

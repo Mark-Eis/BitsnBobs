@@ -5,7 +5,7 @@
 \alias{heights}
 \title{University Student Heights}
 \format{
-\subsection{\code{heights}}{
+\subsection{}{
 
 An \code{integer vector} with length \code{100}.
 \describe{
