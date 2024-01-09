@@ -10,7 +10,7 @@ Section 10.4.4 Exercises."><!-- mathjax --><script src="https://cdnjs.cloudflare
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
@@ -89,36 +89,36 @@ $$y(\lambda) = \log(y)$$</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Create skewed data</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.9459890 0.5165046 5.3104277 3.1896922 1.1275222 0.8324720 0.2934017</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 0.5602166 0.9967474 1.6662136 0.7760151 1.8121427 0.2646479 2.0647003</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15] 1.1717717 2.3592506 0.7625133 1.5974913 1.0539107 1.8614859</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.2239222 0.1953934 5.5180783 0.3113285 0.7312914 1.8398656 0.0709345</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 2.6208036 6.3120399 0.4246787 0.3251321 0.5852758 1.9068244 0.7335107</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] 1.3774281 0.6921226 1.6855152 6.4547441 1.3449627 0.4809328</span>
 <span class="r-in"><span><span class="co">## Calculate skewness using BitsnBobs::skew()</span></span></span>
 <span class="r-in"><span><span class="va">d</span> <span class="op">|&gt;</span> <span class="fu"><a href="skewness.html">skew</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.093082</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.692293</span>
 <span class="r-in"><span><span class="co">## Box-Cox function for these data</span></span></span>
 <span class="r-in"><span><span class="va">bc_func</span> <span class="op">&lt;-</span> <span class="fu">boxcox3</span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Box-Cox transform data with various values of lambda</span></span></span>
 <span class="r-in"><span><span class="fu">bc_func</span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.05709471 -0.93609136  0.81169125  0.68649012  0.11309949 -0.20124161</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -2.40829708 -0.78502378 -0.00326319  0.39983686 -0.28863471  0.44816708</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] -2.77860513  0.51566822  0.14659143  0.57613659 -0.31145248  0.37401851</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  0.05115297  0.46279476</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  -3.4658360  -4.1178806   0.8187775  -2.2120408  -0.3674440   0.4564820</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -13.0975128   0.6184376   0.8415726  -1.3547215  -2.0756727  -0.7085962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]   0.4755678  -0.3633067   0.2740093  -0.4448306   0.4067096   0.8450752</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]   0.2564850  -1.0792925</span>
 <span class="r-in"><span><span class="fu">bc_func</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.055524301 -0.660671179  1.669672376  1.159924419  0.120022472</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] -0.183355696 -1.226212776 -0.579431735 -0.003257877  0.510553767</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] -0.253583293  0.594509959 -1.329354930  0.724985106  0.158516871</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  0.858344012 -0.271135286  0.468434474  0.052507687  0.621375052</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -1.4964564 -1.6327404  1.7080297 -1.1669065 -0.3129433  0.6096925</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -2.6459984  0.9634810  1.8424589 -0.8564225 -1.1235236 -0.5356721</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]  0.6454392 -0.3099131  0.3202180 -0.3679921  0.5220713  1.8648154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  0.2963663 -0.7320277</span>
 <span class="r-in"><span><span class="fu">bc_func</span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.054010965 -0.483495449  4.310427689  2.189692188  0.127522189</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] -0.167528004 -0.706598346 -0.439783372 -0.003252576  0.666213633</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] -0.223984895  0.812142703 -0.735352077  1.064700348  0.171771694</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  1.359250566 -0.237486668  0.597491320  0.053910663  0.861485923</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.7760778 -0.8046066  4.5180783 -0.6886715 -0.2687086  0.8398656</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -0.9290655  1.6208036  5.3120399 -0.5753213 -0.6748679 -0.4147242</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]  0.9068244 -0.2664893  0.3774281 -0.3078774  0.6855152  5.4547441</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  0.3449627 -0.5190672</span>
 <span class="r-in"><span><span class="fu">bc_func</span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.052552373 -0.366611524 13.600321118  4.587068127  0.135653143</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] -0.153495188 -0.456957735 -0.343078665 -0.003247286  0.888133936</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] -0.198900278  1.141930589 -0.464980738  1.631493764  0.186524451</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  2.283031616 -0.209286709  0.775989259  0.055363843  1.232564920</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.4749294 -0.4809107 14.7245942 -0.4515373 -0.2326065  1.1925528</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -0.4974841  2.9343057 19.4209241 -0.4098240 -0.4471446 -0.3287261</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]  1.3179896 -0.2309810  0.4486540 -0.2604831  0.9204808 20.3318609</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  0.4044624 -0.3843518</span>
 <span class="r-in"><span><span class="co">## bc_func(0) same as log(d)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/identical.html" class="external-link">identical</a></span><span class="op">(</span><span class="fu">bc_func</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
@@ -136,52 +136,52 @@ $$y(\lambda) = \log(y)$$</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        -3        -2        -1         0         1         2         3 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`lambda -3`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  -0.06041655  -2.08578040   0.33110751   0.32306187   0.10079024</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6]  -0.24445643 -12.86414849  -1.56254630  -0.00327385   0.26127459</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11]  -0.37996009   0.27731869 -17.65012763   0.29546226   0.12615242</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]   0.30794954  -0.41852570   0.25156913   0.04858096   0.28165607</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  -29.3550844  -44.3503731    0.3313495  -10.7130957   -0.5189960</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6]    0.2798128 -933.5792646    0.3148161    0.3320079   -4.0187520</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11]   -9.3650444   -1.3293023    0.2852553   -0.5112829    0.2057858</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16]   -0.6720451    0.2637219    0.3320938    0.1963247   -2.6632443</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`lambda -2`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.058724608 -1.374224881  0.482269907  0.450855779  0.106703746</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] -0.221490702 -5.308244491 -1.093154940 -0.003268514  0.319902105</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] -0.330289708  0.347740214 -6.638928382  0.382711362  0.135846910</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  0.410169903 -0.359953802  0.304073586  0.049844659  0.355705263</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  -9.4718455 -12.5963508   0.4835792  -4.6586031  -0.4349516   0.3522941</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -98.8699329   0.4272051   0.4874504  -2.2723567  -4.2298812  -0.9596505</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]   0.3624855  -0.4293026   0.2364687  -0.5437678   0.3240032   0.4879992</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]   0.2235927  -1.6617288</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`lambda -1`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.05709471 -0.93609136  0.81169125  0.68649012  0.11309949 -0.20124161</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -2.40829708 -0.78502378 -0.00326319  0.39983686 -0.28863471  0.44816708</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13] -2.77860513  0.51566822  0.14659143  0.57613659 -0.31145248  0.37401851</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  0.05115297  0.46279476</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  -3.4658360  -4.1178806   0.8187775  -2.2120408  -0.3674440   0.4564820</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -13.0975128   0.6184376   0.8415726  -1.3547215  -2.0756727  -0.7085962</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]   0.4755678  -0.3633067   0.2740093  -0.4448306   0.4067096   0.8450752</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]   0.2564850  -1.0792925</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`lambda 0`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.055524301 -0.660671179  1.669672376  1.159924419  0.120022472</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] -0.183355696 -1.226212776 -0.579431735 -0.003257877  0.510553767</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] -0.253583293  0.594509959 -1.329354930  0.724985106  0.158516871</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  0.858344012 -0.271135286  0.468434474  0.052507687  0.621375052</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -1.4964564 -1.6327404  1.7080297 -1.1669065 -0.3129433  0.6096925</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -2.6459984  0.9634810  1.8424589 -0.8564225 -1.1235236 -0.5356721</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]  0.6454392 -0.3099131  0.3202180 -0.3679921  0.5220713  1.8648154</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  0.2963663 -0.7320277</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`lambda 1`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.054010965 -0.483495449  4.310427689  2.189692188  0.127522189</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] -0.167528004 -0.706598346 -0.439783372 -0.003252576  0.666213633</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] -0.223984895  0.812142703 -0.735352077  1.064700348  0.171771694</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  1.359250566 -0.237486668  0.597491320  0.053910663  0.861485923</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.7760778 -0.8046066  4.5180783 -0.6886715 -0.2687086  0.8398656</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -0.9290655  1.6208036  5.3120399 -0.5753213 -0.6748679 -0.4147242</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]  0.9068244 -0.2664893  0.3774281 -0.3078774  0.6855152  5.4547441</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  0.3449627 -0.5190672</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`lambda 2`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.052552373 -0.366611524 13.600321118  4.587068127  0.135653143</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] -0.153495188 -0.456957735 -0.343078665 -0.003247286  0.888133936</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] -0.198900278  1.141930589 -0.464980738  1.631493764  0.186524451</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  2.283031616 -0.209286709  0.775989259  0.055363843  1.232564920</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.4749294 -0.4809107 14.7245942 -0.4515373 -0.2326065  1.1925528</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -0.4974841  2.9343057 19.4209241 -0.4098240 -0.4471446 -0.3287261</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]  1.3179896 -0.2309810  0.4486540 -0.2604831  0.9204808 20.3318609</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  0.4044624 -0.3843518</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`lambda 3`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.051146301 -0.287402830 49.585823787 10.484120975  0.144475349</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] -0.141029632 -0.324914219 -0.274726706 -0.003242008  1.208618459</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] -0.177561378  1.650275024 -0.327154817  2.600597278  0.202966612</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  4.043912609 -0.185551493  1.025587844  0.056869251  1.816763473</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.3295908 -0.3308467 55.6736689 -0.3232748 -0.2029716  1.7427131</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] -0.3332144  5.6670938 83.4944458 -0.3078028 -0.3218767 -0.2665050</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13]  1.9777245 -0.2017812  0.5378018 -0.2228166  1.2628280 89.3095545</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19]  0.4776455 -0.2962540</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   lambda -3   lambda -2   lambda -1    lambda 0    lambda 1    lambda 2 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -2.93811243 -2.63241531 -1.83092816 -0.08530185  2.09308250  3.54091535 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -4.44973334 -4.28929755 -3.13669778 -0.03330981  1.69229256  2.14128514 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    lambda 3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  4.13831076 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2.28367811 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lambda 0 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        4 </span>
