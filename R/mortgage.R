@@ -165,7 +165,7 @@ j2eff_rate <- function(j, pay_fq, bal = 1) {
 #'
 #' @description
 #' Functions to return individual values from the output of `amort.period()` or `amort.table()` in package
-#' \pkg{FinancialMath}.
+#' \CRANpkg{FinancialMath}.
 #'
 #' @details
 #' `get_amortval()` returns individual values from the output of [`amort.period()`][FinancialMath::amort.period] or

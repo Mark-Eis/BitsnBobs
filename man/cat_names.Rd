@@ -36,8 +36,8 @@ grouping variables.
 \details{
 A number of first name-surname pairs in \code{data} are all concatenated in a single string for each of one or more
 grouping variables selected using \code{\dots}. Grouping variables in \code{.data} are selected using the \code{\dots}
-argument with the <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{dplyr}, including use of
-\strong{selection helpers}.
+argument with the <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{\link[dplyr]{dplyr}}, including
+use of \strong{selection helpers}.
 
 By default, the name pairs within a string are separated using commas or otherwise using \code{.delimiter}, if
 provided.

@@ -131,7 +131,7 @@ validate_catapult <- function(x) {
 #' @details
 #' \code{catapult()} converts an object to class `"catapult"`, inheriting from its existing class(es).
 #'
-#' @note Deprecated, use instead \pkg{ParaAnita} [`announce()`][ParaAnita::announce].
+#' @note Deprecated, use instead \pkg{\link[ParaAnita]{ParaAnita}} [`announce()`][ParaAnita::announce].
 #'
 #' @seealso [`cat()`][base::cat], [`print()`][base::print].
 #' @family print

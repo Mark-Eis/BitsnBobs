@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jul 2023
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -19,8 +19,8 @@
 #' @details
 #' A number of first name-surname pairs in \code{data} are all concatenated in a single string for each of one or more
 #' grouping variables selected using \code{\dots}. Grouping variables in \code{.data} are selected using the \code{\dots}
-#' argument with the <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{dplyr}, including use of
-#' \strong{selection helpers}.
+#' argument with the <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}}, including
+#' use of \strong{selection helpers}.
 #'
 #' By default, the name pairs within a string are separated using commas or otherwise using \code{.delimiter}, if
 #' provided.

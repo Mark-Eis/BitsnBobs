@@ -23,7 +23,7 @@ A numeric value.
 }
 \description{
 Functions to return individual values from the output of \code{amort.period()} or \code{amort.table()} in package
-\pkg{FinancialMath}.
+\CRANpkg{FinancialMath}.
 }
 \details{
 \code{get_amortval()} returns individual values from the output of \code{\link[FinancialMath:amort.period]{amort.period()}} or

@@ -89,7 +89,7 @@ lgl_cols<- function(data) {
 #'
 #' @details
 #' Function \code{count_lgl()} counts the number of ocurrences of unique combinations of values across all logical
-#' columns in a data frame using [`summarise`][dplyr::summarise] in package \pkg{dplyr}.
+#' columns in a data frame using [`summarise`][dplyr::summarise] in package \pkg{\link[dplyr]{dplyr}}.
 #'
 #' Function \code{sum_lgl()} counts the total number of \code{TRUE} values for each logical column in a data frame using
 #' matrix multiplication.
@@ -171,9 +171,9 @@ sum_lgl <- function(df, wt = NULL) {
 #'
 #' @details
 #' Columns of \code{data} to be included in \code{tibble}s comprising the list returned may be selected using the
-#' \code{\dots} argument with the <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{dplyr}, including
-#' use of \strong{selection helpers}. If this argument is omitted, all non-logical columns will be selected using the
-#' tidy selection predicate function \code{\link[tidyselect]{where}(\(x) !\link[base]{is.logical}(x))}.
+#' \code{\dots} argument with the <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}},
+#' including use of \strong{selection helpers}. If this argument is omitted, all non-logical columns will be selected
+#' using the tidy selection predicate function \code{\link[tidyselect]{where}(\(x) !\link[base]{is.logical}(x))}.
 #'
 #' The length of the \code{list} returned is equal to the number of \code{logical} columns in the original data frame.
 #' Each list element is named the same as the corresponding logical column in \code{data} from which rows with

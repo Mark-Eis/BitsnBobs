@@ -151,7 +151,7 @@ revmat <- function(x, type = c("byrow", "bycolumn", "byboth")) {
 #'
 #' @details
 #' The vectorised infix functions `%:<%` and `%>:%` may be useful in implementing [`pmin()`][base::pmin] and,
-#' [`pmax()`][base::pmax] and was inspired by [`%||%`][rlang::op-null-default] in the \pkg{rlang} package.
+#' [`pmax()`][base::pmax] and was inspired by [`%||%`][rlang::op-null-default] in the \pkg{\link[rlang]{rlang}} package.
 #'
 #' @family utils
 #' @seealso [`%||%`][rlang::op-null-default], [`pmin()`][base::pmin] and [`pmax()`][base::pmax].

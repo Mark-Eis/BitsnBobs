@@ -191,7 +191,7 @@ print.info_df <- function(x, ...) {
 #' dispatch `environment`, see the \strong{Technical Details} section of [`UseMethod`][base::UseMethod].
 #'
 #' `browse()` calls a specified function `fn` in "browser" mode with suitable arguments provided in \code{\dots}. The
-#' \pkg{base} function [`debug`][base::debug] is generally preferable.
+#' \pkg{\link[base]{base}} function [`debug`][base::debug] is generally preferable.
 #' 
 #' @family methods
 #' @seealso [`browser()`][base::browser], [`class`][base::class], [`debug`][base::debug],

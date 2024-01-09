@@ -34,7 +34,7 @@ frame and the total number of \code{TRUE} values for each logical column.
 }
 \details{
 Function \code{count_lgl()} counts the number of ocurrences of unique combinations of values across all logical
-columns in a data frame using \code{\link[dplyr:summarise]{summarise}} in package \pkg{dplyr}.
+columns in a data frame using \code{\link[dplyr:summarise]{summarise}} in package \pkg{\link[dplyr]{dplyr}}.
 
 Function \code{sum_lgl()} counts the total number of \code{TRUE} values for each logical column in a data frame using
 matrix multiplication.

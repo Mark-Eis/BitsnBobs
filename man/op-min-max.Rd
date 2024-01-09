@@ -22,7 +22,7 @@ Vectorised infix functions implementing pmin() and pmax().
 }
 \details{
 The vectorised infix functions \verb{\%:<\%} and \verb{\%>:\%} may be useful in implementing \code{\link[base:Extremes]{pmin()}} and,
-\code{\link[base:Extremes]{pmax()}} and was inspired by \code{\link[rlang:op-null-default]{\%||\%}} in the \pkg{rlang} package.
+\code{\link[base:Extremes]{pmax()}} and was inspired by \code{\link[rlang:op-null-default]{\%||\%}} in the \pkg{\link[rlang]{rlang}} package.
 }
 \note{
 \sQuote{Numeric} arguments are vectors of type integer and numeric,

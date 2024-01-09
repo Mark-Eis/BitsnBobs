@@ -21,6 +21,6 @@ A data frame with 10 rows and 2 columns:
 starwars3
 }
 \description{
-Starwars dataset from \pkg{dplyr} with just two columns.
+The \code{name} and \code{skin_colour} columns from the \link[dplyr]{starwars} dataset in \pkg{\link[dplyr]{dplyr}}.
 }
 \keyword{datasets}

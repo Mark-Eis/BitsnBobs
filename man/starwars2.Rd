@@ -32,6 +32,7 @@ A data frame with 63 rows and 12 columns:
 starwars2
 }
 \description{
-Starwars dataset from \pkg{dplyr} with separated first names and surnames.
+\link[dplyr:starwars]{Starwars} dataset from \pkg{\link[dplyr]{dplyr}} with first names and surnames in
+separate columns.
 }
 \keyword{datasets}

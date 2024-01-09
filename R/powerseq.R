@@ -12,8 +12,8 @@
 #' Create a power sequence from an expression, \var{base_expr}, and the maximum power number, \var{n}.
 #'
 #' The power sequence is returned as a \code{"call"} object, which may be evaluated using \code{\link[rlang]{eval_tidy}}
-#' in package \pkg{rlang}, see examples. By default, \code{power_seq()} returns a simple \code{call} object containing
-#' just one instance of both \var{base_expr} and \var{n}.
+#' in package \pkg{\link[rlang]{rlang}}, see examples. By default, \code{power_seq()} returns a simple \code{call}
+#' object containing just one instance of both \var{base_expr} and \var{n}.
 #'
 #' Alternatively, if \var{type} is \code{"evaluate"}, \code{power_seq()} evaluates \var{base_expr} and assigns the result
 #' to a constant nested \var{n} times within the \code{call} object to be returned. This results in \var{base_expr} being

@@ -33,7 +33,7 @@ Creates an object of class \code{"catapult"} with a built-in title string used f
 \code{catapult()} converts an object to class \code{"catapult"}, inheriting from its existing class(es).
 }
 \note{
-Deprecated, use instead \pkg{ParaAnita} \code{\link[ParaAnita:announce]{announce()}}.
+Deprecated, use instead \pkg{\link[ParaAnita]{ParaAnita}} \code{\link[ParaAnita:announce]{announce()}}.
 }
 \examples{
 catapult()

@@ -1,9 +1,9 @@
 # BitsnBobs R Package
-# Mark Eisler - March 2023
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # BitsnBobs R Package
-# Mark Eisler - May 2023
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -13,9 +13,10 @@
 #' Starwars Dataset with Separated First Names and Surnames
 #'
 #' @description
-#' Starwars dataset from \pkg{dplyr} with separated first names and surnames.
+#' \link[dplyr:starwars]{Starwars} dataset from \pkg{\link[dplyr]{dplyr}} with first names and surnames in
+#' separate columns.
 #'
-#' @format ## `starwars2`
+#' @format ##
 #' A data frame with 63 rows and 12 columns:
 #' \describe{
 #'   \item{Firstname}{Firstname of the character}
@@ -39,9 +40,10 @@
 #' Starwars Dataset with Name and Skin Colour Only
 #'
 #' @description
-#' Starwars dataset from \pkg{dplyr} with just two columns.
+#' The `name` and `skin_colour` columns from the \link[dplyr]{starwars} dataset in \pkg{\link[dplyr]{dplyr}}.
+# #' [`Starwars`][dplyr:starwars] dataset from \pkg{\link[dplyr]{dplyr}} with just two columns.
 #'
-#' @format ## `starwars3`
+#' @format ##
 #' A data frame with 10 rows and 2 columns:
 #' \describe{
 #'   \item{name}{Name of the character}

@@ -24,9 +24,9 @@ a particular \code{logical} column.
 }
 \details{
 Columns of \code{data} to be included in \code{tibble}s comprising the list returned may be selected using the
-\code{\dots} argument with the <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{dplyr}, including
-use of \strong{selection helpers}. If this argument is omitted, all non-logical columns will be selected using the
-tidy selection predicate function \code{\link[tidyselect]{where}(\(x) !\link[base]{is.logical}(x))}.
+\code{\dots} argument with the <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{\link[dplyr]{dplyr}},
+including use of \strong{selection helpers}. If this argument is omitted, all non-logical columns will be selected
+using the tidy selection predicate function \code{\link[tidyselect]{where}(\(x) !\link[base]{is.logical}(x))}.
 
 The length of the \code{list} returned is equal to the number of \code{logical} columns in the original data frame.
 Each list element is named the same as the corresponding logical column in \code{data} from which rows with

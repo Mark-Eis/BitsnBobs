@@ -31,21 +31,22 @@ Duplicate columns or rows in a data frame by splitting strings in a character co
 disaggregate data.
 }
 \details{
-Similar to the more sophisticated \pkg{tidyr} function \code{\link[tidyr]{separate_wider_delim}} on which it is based,
-\code{split_to_cols()} trims leading and trailing whitespace using \code{\link[stringr]{str_trim}} and also optionally
-removes parentheses from the string in the newly created column \code{split_to}. This was the main motivation
-for creating this function, which can be used for conveniently disaggregating addenda to strings contained in
-parentheses, see examples. The trade-off is that unlike \code{separate_wider_delim()}, function \code{split_to_cols()}
-only handles a single split.
+Similar to the more sophisticated \pkg{\link[tidyr]{tidyr}} function \code{\link[tidyr]{separate_wider_delim}} on
+which it is based, \code{split_to_cols()} trims leading and trailing whitespace using \code{\link[stringr]{str_trim}}
+and also optionally removes parentheses from the string in the newly created column \code{split_to}. This was the main
+motivation for creating this function, which can be used for conveniently disaggregating addenda to strings contained
+in parentheses, see examples. The trade-off is that unlike \code{separate_wider_delim()}, function
+\code{split_to_cols()} only handles a single split.
 
 \pkg{BitsnBobs}'s homegrown \code{split_to_rows()} succeeds with \code{pattern = "\\\\r\\\\n"} representing
 the CRLF escape sequence that results for example, from an imported Excel file sporting within-cell line breaks,
-whereas the otherwise similar but more sophisticated \pkg{tidyr} function \code{\link[tidyr]{separate_longer_delim}}
-does not*. Like \code{separate_longer_delim()}, function \code{split_to_rows()} handles multiple splits.
+whereas the otherwise similar but more sophisticated \pkg{\link[tidyr]{tidyr}} function
+\code{\link[tidyr]{separate_longer_delim}()} does not*. Like \code{separate_longer_delim()}, function
+\code{split_to_rows()} handles multiple splits.
 
 Both \code{split_to_rows()} and \code{split_to_cols()} also add the convenience of trimming leading and trailing
-whitespaces from the split strings using \code{\link[stringr]{str_trim}}, whereas the \pkg{tidyr} functions do not
-afford this luxury.
+whitespaces from the split strings using \code{\link[stringr]{str_trim}}, whereas the \pkg{\link[tidyr]{tidyr}}
+functions do not afford this luxury.
 
 *Note that \code{separate_longer_delim()} does succeed with the equivalent CRLF hex sequence \verb{"\u000D\u000A"};
 trimming leading and trailing whitespaces may be \code{split_to_rows}'s main advantage.

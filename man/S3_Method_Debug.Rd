@@ -66,7 +66,7 @@ Intended for use while debugging an S3 \code{\link[utils:methods]{method}} in in
 dispatch \code{environment}, see the \strong{Technical Details} section of \code{\link[base:UseMethod]{UseMethod}}.
 
 \code{browse()} calls a specified function \code{fn} in "browser" mode with suitable arguments provided in \code{\dots}. The
-\pkg{base} function \code{\link[base:debug]{debug}} is generally preferable.
+\pkg{\link[base]{base}} function \code{\link[base:debug]{debug}} is generally preferable.
 }
 \examples{
 fn <- function() {
