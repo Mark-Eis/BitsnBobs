@@ -1,7 +1,7 @@
 url: https://mark-eis.github.io/BitsnBobs/
 template:
   bootstrap: 5
-  bootswatch: Materia
+  bootswatch: materia
   bslib:
     pkgdown-nav-height: 100px
 
