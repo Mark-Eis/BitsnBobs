@@ -5,7 +5,7 @@
 \alias{starwars3}
 \title{Starwars Dataset with Name and Skin Colour Only}
 \format{
-\subsection{\code{starwars3}}{
+\subsection{}{
 
 A data frame with 10 rows and 2 columns:
 \describe{

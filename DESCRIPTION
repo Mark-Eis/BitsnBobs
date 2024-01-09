@@ -20,6 +20,7 @@ Description: Does this and that using functions: boxcox3(), browse(),
     sum_lgl(), wizard(); infix operators: op-min-max; and datasets:
     heights, litter_sizes, starwars2 and starwars3.
 License: MIT + file LICENSE
+URL: https://mark-eis.github.io/BitsnBobs/
 Depends: 
     R (>= 4.1.0)
 Imports: 

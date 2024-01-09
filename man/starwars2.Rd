@@ -5,7 +5,7 @@
 \alias{starwars2}
 \title{Starwars Dataset with Separated First Names and Surnames}
 \format{
-\subsection{\code{starwars2}}{
+\subsection{}{
 
 A data frame with 63 rows and 12 columns:
 \describe{
