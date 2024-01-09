@@ -199,7 +199,7 @@ revmat <- function(x, type = c("byrow", "bycolumn", "byboth")) {
 #' expressions `'[:punct:]'` and `'[:space:]'`, and [`str_sub`][stringr:: str_sub] to modify the string.
 #'
 #' For `endstop_data()`, character columns in `.data` are selected using \code{\dots} with the
-#' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package [dplyr][dplyr], including use of
+#' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
 #' \strong{selection helpers} and modified by `endstop()`. If no character columns are selected in \code{\dots},
 #' all character columns in \var{.data} will be modified  by `endstop()`.
 #'

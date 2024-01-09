@@ -35,7 +35,7 @@ Uses \code{\link[stringr:str_detect]{str_detect}} from package \pkg{\link[string
 expressions \code{'[:punct:]'} and \code{'[:space:]'}, and \code{\link[stringr:str_sub]{str_sub}} to modify the string.
 
 For \code{endstop_data()}, character columns in \code{.data} are selected using \code{\dots} with the
-<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \link{dplyr}, including use of
+<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
 \strong{selection helpers} and modified by \code{endstop()}. If no character columns are selected in \code{\dots},
 all character columns in \var{.data} will be modified  by \code{endstop()}.
 }
