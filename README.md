@@ -21,8 +21,8 @@ devtools::install_github("Mark-Eis/BitsnBobs")
 The **BitsnBobs R package** does this and that using functions: –
 
 `boxcox3()`, `browse()`, `cat_names()`, `cc_rate()`, `cohens_kappa()`, `const()`, `cor_coef.test()`, `count_lgl()`,
-`design_effect()`, `detective(), `detective<-()`, eff_rate()`, `endstop()`, `endstop_data()`, `facet_histo()`,
-`fct_to_num()`, `formul_pwrseq()`, `get_amortint()`, `get_amortval()`, `iterate()`, `j()`, `j2eff_rate()`,
+`design_effect()`, `detective(), [`detective<-()`](https://mark-eis.github.io/BitsnBobs/reference/detective.html),
+`eff_rate()`, `endstop()`, `endstop_data()`, `facet_histo()`,`fct_to_num()`, `formul_pwrseq()`, `get_amortint()`, `get_amortval()`, `iterate()`, `j()`, `j2eff_rate()`,
 `known_s3generics()`, `kwd_cols()`, `kwd_cols<-()`, `lf()`, `lgl_cols()`, `list_lgl()`, `logit()`, `ls_all()`,
 `marker()`, `method_info()`, `nom_rate()`, `opt_bc()`, `phi_coef()`, `phi_coef.test()`, `power_seq()`, `print_all()`,
 `print_lf()`, `prob_from_logit()`, `recursive()`, `remplacer()`, `retriever()`, `revmat()`, `rm_objects()`,
@@ -31,11 +31,11 @@ The **BitsnBobs R package** does this and that using functions: –
 
 infix operators: –
 
-`op-min-max`;
+[`op-min-max`](https://mark-eis.github.io/BitsnBobs/reference/op-min-max.html];
 
 and datasets: –
 
-`heights`, `litter_sizes`, `starwars2` and `starwars3`.
+[`heights`](https://mark-eis.github.io/BitsnBobs/reference/heights.html), [`litter_sizes`](https://mark-eis.github.io/BitsnBobs/reference/litter_sizes.html), [`starwars2`](https://mark-eis.github.io/BitsnBobs/reference/starwars2.html) and [`starwars3`](https://mark-eis.github.io/BitsnBobs/reference/starwars3.html).
 
 ## Example
 
