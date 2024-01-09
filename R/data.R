@@ -41,7 +41,6 @@
 #'
 #' @description
 #' The `name` and `skin_colour` columns from the \link[dplyr]{starwars} dataset in \pkg{\link[dplyr]{dplyr}}.
-# #' [`Starwars`][dplyr:starwars] dataset from \pkg{\link[dplyr]{dplyr}} with just two columns.
 #'
 #' @format ##
 #' A data frame with 10 rows and 2 columns:
