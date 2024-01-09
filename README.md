@@ -31,7 +31,7 @@ The **BitsnBobs R package** does this and that using functions: –
 
 infix operators: –
 
-[`op-min-max`](https://mark-eis.github.io/BitsnBobs/reference/op-min-max.html];
+[`op-min-max`](https://mark-eis.github.io/BitsnBobs/reference/op-min-max.html);
 
 and datasets: –
 
