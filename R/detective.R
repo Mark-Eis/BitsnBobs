@@ -18,28 +18,30 @@
 #' columns in `.data`, while `detective()<-` is the equivalent replacement function. Both functions forms
 #' allow use of the various possibilities for the `.pattern` argument of [`str_detect`][stringr::str_detect].
 #'
-#' Character columns in `.data` are selected using \code{\dots} with the <[`tidy-select`][dplyr::dplyr_tidy_select]>
-#' syntax of package [dplyr][dplyr], including use of \strong{selection helpers}.
+#' Character columns in `.data` are selected using \code{\dots} with the
+#' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
+#' \strong{selection helpers}.
 #'
-#' The output may be ordered by the values of selected columns using the syntax of [`arrange`][dplyr::arrange], including
-#' use of [`across`][dplyr::across] or [`pick`][dplyr::pick] to select columns with
+#' The output may be ordered by the values of selected columns using the syntax of [`arrange`][dplyr::arrange],
+#' including use of [`across`][dplyr::across] or [`pick`][dplyr::pick] to select columns with
 #' <[`tidy-select`][dplyr::dplyr_tidy_select]> (see examples).
 #'
 #' @seealso [`arrange()`][dplyr::arrange], [`desc()`][dplyr::desc], [`str_detect()`][stringr::str_detect] and
 #'   [`pick()`][dplyr::pick].
 #' @family detective
 #'
-#' @param .data a data frame, or a data frame extension (e.g. a tibble).
+#' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
 #'
-#' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> character columns to search and return.
+#' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> `character` or `factor` columns to search and
+#'   return.
 #'
-#' @param .exclude a single character string signifying items to be excluded, interpreted as for `.pattern`;
+#' @param .exclude a single `character` string signifying items to be excluded, interpreted as for `.pattern`;
 #'   default `NULL`.  
 #'
-#' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name(s) of column(s) for ordering results.
-#'   Use \code{\link[dplyr]{desc}} to sort by variables in descending order; default `desc(n)`.
+#' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name(s) of column(s) for ordering  
+#'   results. Use \code{\link[dplyr]{desc}} to sort by variables in descending order; default `desc(n)`.
 #'
-#' @param value a single character string providing the replacement value.
+#' @param value a single `character` string providing the replacement value.
 #'
 #' @inheritParams stringr::str_detect
 #'

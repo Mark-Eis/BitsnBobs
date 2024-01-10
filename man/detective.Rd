@@ -10,9 +10,10 @@ detective(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(n))
 detective(.data, ..., .pattern, .exclude = NULL) <- value
 }
 \arguments{
-\item{.data}{a data frame, or a data frame extension (e.g. a tibble).}
+\item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> character columns to search and return.}
+\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> \code{character} or \code{factor} columns to search and
+return.}
 
 \item{.pattern}{Pattern to look for.
 
@@ -29,13 +30,13 @@ Match character, word, line and sentence boundaries with
 \code{\link[stringr:boundary]{boundary()}}. An empty pattern, "", is equivalent to
 \code{boundary("character")}.}
 
-\item{.exclude}{a single character string signifying items to be excluded, interpreted as for \code{.pattern};
+\item{.exclude}{a single \code{character} string signifying items to be excluded, interpreted as for \code{.pattern};
 default \code{NULL}.}
 
-\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of column(s) for ordering results.
-Use \code{\link[dplyr]{desc}} to sort by variables in descending order; default \code{desc(n)}.}
+\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of column(s) for ordering
+results. Use \code{\link[dplyr]{desc}} to sort by variables in descending order; default \code{desc(n)}.}
 
-\item{value}{a single character string providing the replacement value.}
+\item{value}{a single \code{character} string providing the replacement value.}
 }
 \value{
 \code{detective()} returns a \code{\link[tibble:tibble-package]{tibble}} with columns selected using \verb{\\dots} and
@@ -49,11 +50,12 @@ Find and modify strings containing a specified pattern in a data frame character
 columns in \code{.data}, while \verb{detective()<-} is the equivalent replacement function. Both functions forms
 allow use of the various possibilities for the \code{.pattern} argument of \code{\link[stringr:str_detect]{str_detect}}.
 
-Character columns in \code{.data} are selected using \code{\dots} with the <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}>
-syntax of package \link{dplyr}, including use of \strong{selection helpers}.
+Character columns in \code{.data} are selected using \code{\dots} with the
+<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
+\strong{selection helpers}.
 
-The output may be ordered by the values of selected columns using the syntax of \code{\link[dplyr:arrange]{arrange}}, including
-use of \code{\link[dplyr:across]{across}} or \code{\link[dplyr:pick]{pick}} to select columns with
+The output may be ordered by the values of selected columns using the syntax of \code{\link[dplyr:arrange]{arrange}},
+including use of \code{\link[dplyr:across]{across}} or \code{\link[dplyr:pick]{pick}} to select columns with
 <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> (see examples).
 }
 \examples{
