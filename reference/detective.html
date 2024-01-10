@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0005</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,11 +50,12 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>.data</dt>
-<dd><p>a data frame, or a data frame extension (e.g. a tibble).</p></dd>
+<dd><p>a data frame, or a data frame extension (e.g. a <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></code>).</p></dd>
 
 
 <dt>...</dt>
-<dd><p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; character columns to search and return.</p></dd>
+<dd><p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; <code>character</code> or <code>factor</code> columns to search and
+return.</p></dd>
 
 
 <dt>.pattern</dt>
@@ -72,17 +73,17 @@ respects character matching rules for the specified locale.</p>
 
 
 <dt>.exclude</dt>
-<dd><p>a single character string signifying items to be excluded, interpreted as for <code>.pattern</code>;
+<dd><p>a single <code>character</code> string signifying items to be excluded, interpreted as for <code>.pattern</code>;
 default <code>NULL</code>.</p></dd>
 
 
 <dt>.arrange_by</dt>
-<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/args_data_masking.html" class="external-link">data-masking</a></code>&gt; quoted name(s) of column(s) for ordering results.
-Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></code> to sort by variables in descending order; default <code>desc(n)</code>.</p></dd>
+<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/args_data_masking.html" class="external-link">data-masking</a></code>&gt; quoted name(s) of column(s) for ordering
+results. Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></code> to sort by variables in descending order; default <code>desc(n)</code>.</p></dd>
 
 
 <dt>value</dt>
-<dd><p>a single character string providing the replacement value.</p></dd>
+<dd><p>a single <code>character</code> string providing the replacement value.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -97,10 +98,11 @@ Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" class="exter
     <p><code>detective()</code> finds and counts strings matching <code>.pattern</code> but not matching <code>.exclude</code> in selected
 columns in <code>.data</code>, while <code>detective()&lt;-</code> is the equivalent replacement function. Both functions forms
 allow use of the various possibilities for the <code>.pattern</code> argument of <code><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></code>.</p>
-<p>Character columns in <code>.data</code> are selected using <code>...</code> with the &lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt;
-syntax of package dplyr, including use of <strong>selection helpers</strong>.</p>
-<p>The output may be ordered by the values of selected columns using the syntax of <code><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></code>, including
-use of <code><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">pick</a></code> to select columns with
+<p>Character columns in <code>.data</code> are selected using <code>...</code> with the
+&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; syntax of package <span class="pkg"><a href="https://dplyr.tidyverse.org/reference/dplyr-package.html" class="external-link">dplyr</a></span>, including use of
+<strong>selection helpers</strong>.</p>
+<p>The output may be ordered by the values of selected columns using the syntax of <code><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></code>,
+including use of <code><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></code> or <code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">pick</a></code> to select columns with
 &lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; (see examples).</p>
     </div>
     <div class="section level2">

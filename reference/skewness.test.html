@@ -12,7 +12,7 @@ skewness(), performs a t-test of its significance and calculates a confidence in
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0005</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -242,38 +242,38 @@ kurtosis. <em>Behavior Research Methods</em> <strong>43</strong>(1): 8-17.
 <span class="r-in"><span>     <span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span>.id <span class="op">=</span> <span class="st">"Alternative"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span>.id <span class="op">=</span> <span class="st">"Distribution"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Distribution Alternative       Lower     Upper   Skewness          t df</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       uniform        less        -Inf 0.4033745 -0.3228254 -0.7562219 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       uniform   two.sided -1.19727483 0.5516240 -0.3228254 -0.7562219 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       uniform     greater -1.04902526       Inf -0.3228254 -0.7562219 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        normal        less        -Inf 1.4200636  0.6938637  1.6253832 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        normal   two.sided -0.18058569 1.5683132  0.6938637  1.6253832 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        normal     greater -0.03233611       Inf  0.6938637  1.6253832 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     lognormal        less        -Inf 2.1089159  1.3827160  3.2390270 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     lognormal   two.sided  0.50826657 2.2571654  1.3827160  3.2390270 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     lognormal     greater  0.65651615       Inf  1.3827160  3.2390270 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10      poisson        less        -Inf 0.8335847  0.1073849  0.2515502 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11      poisson   two.sided -0.76706456 0.9818343  0.1073849  0.2515502 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      poisson     greater -0.61881499       Inf  0.1073849  0.2515502 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13     negbinom        less        -Inf 1.1837881  0.4575882  1.0719053 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14     negbinom   two.sided -0.41686122 1.3320376  0.4575882  1.0719053 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15     negbinom     greater -0.26861165       Inf  0.4575882  1.0719053 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              p sig</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  0.227915975  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  0.455831949  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  0.772084025  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  0.942357206  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  0.115285588  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  0.057642794   .</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  0.998457849  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  0.003084302  **</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  0.001542151  **</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 0.598387074  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 0.803225853  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 0.401612926  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 0.853542498  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 0.292915005  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 0.146457502  NS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Distribution Alternative        Lower     Upper    Skewness          t df</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       uniform        less         -Inf 0.7781103  0.05191042  0.1216007 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2       uniform   two.sided -0.822539008 0.9263599  0.05191042  0.1216007 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3       uniform     greater -0.674289436       Inf  0.05191042  0.1216007 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4        normal        less         -Inf 0.5818821 -0.14431776 -0.3380659 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5        normal   two.sided -1.018767193 0.7301317 -0.14431776 -0.3380659 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6        normal     greater -0.870517621       Inf -0.14431776 -0.3380659 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7     lognormal        less         -Inf 4.9134460  4.18724614  9.8086688 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     lognormal   two.sided  3.312796704 5.0616956  4.18724614  9.8086688 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     lognormal     greater  3.461046276       Inf  4.18724614  9.8086688 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10      poisson        less         -Inf 1.5932347  0.86703484  2.0310384 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11      poisson   two.sided -0.007414594 1.7414843  0.86703484  2.0310384 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12      poisson     greater  0.140834978       Inf  0.86703484  2.0310384 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13     negbinom        less         -Inf 1.7935609  1.06736102  2.5003046 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14     negbinom   two.sided  0.192911588 1.9418105  1.06736102  2.5003046 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15     negbinom     greater  0.341161160       Inf  1.06736102  2.5003046 28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               p sig</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1  5.479581e-01  NS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  9.040837e-01  NS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  4.520419e-01  NS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4  3.689176e-01  NS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  7.378353e-01  NS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6  6.310824e-01  NS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7  1.000000e+00  NS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8  1.471809e-10 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9  7.359045e-11 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10 9.740786e-01  NS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 5.184274e-02   .</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 12 2.592137e-02   *</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 13 9.907310e-01  NS</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 14 1.853796e-02   *</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 9.268978e-03  **</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
