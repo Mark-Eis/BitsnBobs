@@ -87,7 +87,7 @@
 
 detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(n)) {
     n <- NULL
-    pos <- eval_select(expr(c(...) & where(is.character)), .data)
+    pos <- eval_select(expr(c(...) & where(\(x) is.factor(x) | is.character(x))), .data)
     .arrange_by <- enquo(.arrange_by)
     if (!length(pos))
         pos <- eval_select(expr(where(is.character)), .data)
