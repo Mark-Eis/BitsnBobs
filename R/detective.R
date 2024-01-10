@@ -18,7 +18,7 @@
 #' columns in `.data`, while `detective()<-` is the equivalent replacement function. Both functions forms
 #' allow use of the various possibilities for the `.pattern` argument of [`str_detect`][stringr::str_detect].
 #'
-#' Character columns in `.data` are selected using \code{\dots} with the
+#' `character` or `factor` columns in `.data` are selected using \code{\dots} with the
 #' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
 #' \strong{selection helpers}.
 #'
@@ -45,7 +45,7 @@
 #'
 #' @inheritParams stringr::str_detect
 #'
-#' @return `detective()` returns a [`tibble`][tibble::tibble-package] with columns selected using `\dots` and
+#' @return `detective()` returns a [`tibble`][tibble::tibble-package] with columns selected using \dots and
 #'   `n`, giving the count of occurences of each item.
 #'
 #' @export

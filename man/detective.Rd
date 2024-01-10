@@ -39,7 +39,7 @@ results. Use \code{\link[dplyr]{desc}} to sort by variables in descending order;
 \item{value}{a single \code{character} string providing the replacement value.}
 }
 \value{
-\code{detective()} returns a \code{\link[tibble:tibble-package]{tibble}} with columns selected using \verb{\\dots} and
+\code{detective()} returns a \code{\link[tibble:tibble-package]{tibble}} with columns selected using \dots and
 \code{n}, giving the count of occurences of each item.
 }
 \description{
@@ -50,7 +50,7 @@ Find and modify strings containing a specified pattern in a data frame character
 columns in \code{.data}, while \verb{detective()<-} is the equivalent replacement function. Both functions forms
 allow use of the various possibilities for the \code{.pattern} argument of \code{\link[stringr:str_detect]{str_detect}}.
 
-Character columns in \code{.data} are selected using \code{\dots} with the
+\code{character} or \code{factor} columns in \code{.data} are selected using \code{\dots} with the
 <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
 \strong{selection helpers}.
 
