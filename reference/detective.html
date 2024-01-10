@@ -90,7 +90,7 @@ results. Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" cla
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p><code>detective()</code> returns a <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></code> with columns selected using <code>\dots</code> and
+<p><code>detective()</code> returns a <code><a href="https://tibble.tidyverse.org/reference/tibble-package.html" class="external-link">tibble</a></code> with columns selected using ... and
 <code>n</code>, giving the count of occurences of each item.</p>
     </div>
     <div class="section level2">
@@ -98,7 +98,7 @@ results. Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" cla
     <p><code>detective()</code> finds and counts strings matching <code>.pattern</code> but not matching <code>.exclude</code> in selected
 columns in <code>.data</code>, while <code>detective()&lt;-</code> is the equivalent replacement function. Both functions forms
 allow use of the various possibilities for the <code>.pattern</code> argument of <code><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></code>.</p>
-<p>Character columns in <code>.data</code> are selected using <code>...</code> with the
+<p><code>character</code> or <code>factor</code> columns in <code>.data</code> are selected using <code>...</code> with the
 &lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; syntax of package <span class="pkg"><a href="https://dplyr.tidyverse.org/reference/dplyr-package.html" class="external-link">dplyr</a></span>, including use of
 <strong>selection helpers</strong>.</p>
 <p>The output may be ordered by the values of selected columns using the syntax of <code><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></code>,
