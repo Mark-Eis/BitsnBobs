@@ -90,7 +90,6 @@
 detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(n)) {
     n <- NULL
     pos <- eval_select(expr(c(...) & where(\(x) is.factor(x) | is.character(x))), .data)
-    .arrange_by <- enquo(.arrange_by)
     if (!length(pos))
         pos <- eval_select(expr(where(is.character)), .data)
     if (missing(.pattern))
@@ -107,7 +106,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
     .data[pos] |>
         filter(selrow) |>
         count(!!!data_syms(names(pos))) |>
-        arrange(!!.arrange_by)
+        arrange({{.arrange_by}})
 }
 
 # ========================================
