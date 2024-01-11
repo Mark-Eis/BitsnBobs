@@ -89,7 +89,7 @@
 
 detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(n)) {
     n <- NULL
-    pos <- eval_select(expr(c(...) & where(\(x) is.factor(x) | is.character(x))), .data)
+    pos <- eval_select(expr(c(...) & chr_or_fct(), .data)
     if (!length(pos))
         pos <- eval_select(expr(where(is.character)), .data)
     if (missing(.pattern))
@@ -116,7 +116,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 
 `detective<-` <- function(.data, ..., .pattern, .exclude = NULL, value) {
     stopifnot(is.data.frame(.data))
-    pos <- eval_select(expr(c(...)), .data)
+    pos <- eval_select(expr(c(...) & chr_or_fct()), .data)
     if (!is.null(.exclude)) {
         exlrow <- pos |> map(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
         exlrow <- exlrow | is.na(exlrow)  ## NA becomes TRUE
@@ -176,3 +176,12 @@ wizard <- function(data, col, .collapse = NULL) {
         paste0(x, collapse = .collapse)
     else x
 }
+
+
+# ========================================
+# chr_or_fct
+# Predicate function
+# Not exported
+
+chr_or_fct <- function()
+    force(\(x) is.factor(x) | is.character(x))
