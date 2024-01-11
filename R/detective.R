@@ -137,7 +137,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
                 else
                     y
             )),
-                across(all_of(posfct), fct_drop)        
+            across(all_of(posfct), fct_drop)        
        )
 }
 
