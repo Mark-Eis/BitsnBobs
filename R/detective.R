@@ -125,19 +125,19 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
         exlrow <- seq_len(nrow(.data))
 
     .data |>
-	    mutate(
-		    across(all_of(posfct), \(x) {
-			    x |>
-			    fct_expand(value) |>
-			    fct_relevel(sort)
-		    }),
-	        across(all_of(pos), \(x) modify_at(x, exlrow, \(y) 
-	            if (str_detect(y, .pattern) & !is.na(y))
-	                value
-	            else
-	                y
-	        )),
-		    across(all_of(posfct), fct_drop)	        
+        mutate(
+           across(all_of(posfct), \(x) {
+                x |>
+                fct_expand(value) |>
+                fct_relevel(sort)
+            }),
+            across(all_of(pos), \(x) modify_at(x, exlrow, \(y) 
+                if (str_detect(y, .pattern) & !is.na(y))
+                    value
+                else
+                    y
+            )),
+                across(all_of(posfct), fct_drop)        
        )
 }
 
