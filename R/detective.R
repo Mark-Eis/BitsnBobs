@@ -114,9 +114,28 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #' @rdname detective
 #' @export
 
+# `detective<-` <- function(.data, ..., .pattern, .exclude = NULL, value) {
+    # stopifnot(is.data.frame(.data))
+    # pos <- eval_select(expr(c(...) & chr_or_fct()), .data)
+    # if (!is.null(.exclude)) {
+        # exlrow <- pos |> map(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
+        # exlrow <- exlrow | is.na(exlrow)  ## NA becomes TRUE
+    # } else
+        # exlrow <- seq_len(nrow(.data))
+
+    # .data |>
+        # mutate(across(all_of(pos), \(x) modify_at(x, exlrow, \(y) 
+            # if (str_detect(y, .pattern) & !is.na(y))
+                # value
+            # else
+                # y
+        # )))
+# }
+
 `detective<-` <- function(.data, ..., .pattern, .exclude = NULL, value) {
     stopifnot(is.data.frame(.data))
     pos <- eval_select(expr(c(...) & chr_or_fct()), .data)
+    posfct <- eval_select(expr(c(...) & where(is.factor)), .data)
     if (!is.null(.exclude)) {
         exlrow <- pos |> map(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
         exlrow <- exlrow | is.na(exlrow)  ## NA becomes TRUE
@@ -124,6 +143,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
         exlrow <- seq_len(nrow(.data))
 
     .data |>
+	    mutate(across(all_of(posfct), \(x) fct_expand(x, value))) |> 
         mutate(across(all_of(pos), \(x) modify_at(x, exlrow, \(y) 
             if (str_detect(y, .pattern) & !is.na(y))
                 value
