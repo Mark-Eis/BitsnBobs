@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   Using-wizard: Using-wizard.html
-last_built: 2024-01-13T14:06Z
+last_built: 2024-01-13T17:33Z
 urls:
   reference: https://mark-eis.github.io/BitsnBobs/reference
   article: https://mark-eis.github.io/BitsnBobs/articles
