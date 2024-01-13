@@ -146,12 +146,15 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #' Extract, Sort Unique Values, and Paste Column from Data Frame
 #'
 #' @description
-#' Extract and sort unique values of a selected column from a data frame, and optionally paste into a character string.
+#' `wizard()` extracts and sorts unique values of a selected column from a data frame, and optionally pastes into
+#' a character string.
+#'
+#' `data_wizard()` does the same across all columns in a  data frame.
 #'
 #' @details
-#' Useful within a piped sequence to quickly extract or review [`sorted`][base::sort], [`unique`][base::unique]
-#' contents of a column and optionally collapse into a single character string using [`paste`][base::paste] by
-#' providing a suitable value for `.collapse`.
+#' `wizard()` can be useful within a piped sequence to quickly extract or review [`sorted`][base::sort],
+#' [`unique`][base::unique] contents of a column and optionally collapse into a single character string using
+#' [`paste`][base::paste] by providing a suitable value for `.collapse`.
 #'
 #' @seealso [`paste`][base::paste], [`sort`][base::sort], [`unique`][base::unique].
 #' @family detective
@@ -175,15 +178,28 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #' starwars |> wizard(homeworld, "\t") |> cat()
 #' starwars |> wizard(homeworld, "\n") |> cat()
 #'
+#' data_wizard(mtcars) 
+#'
 #' \dontshow{rm(starwars)}
 
 wizard <- function(data, col, .collapse = NULL) {
+    stopifnot(is.data.frame(data))
     x <- eval_tidy(expr({{col}}), data = data) |>
     unique() |>
     sort(na.last = T)
     if (!is.null(.collapse))
         paste0(x, collapse = .collapse)
     else x
+}
+
+# ========================================
+# Extract, Sort Unique Values, and Paste all Columns in Data Frame
+#' @rdname wizard
+#' @export
+
+data_wizard <- function(data) {
+    stopifnot(is.data.frame(data))
+    lapply(data, wizard, data = data)
 }
 
 

@@ -2,9 +2,12 @@
 % Please edit documentation in R/detective.R
 \name{wizard}
 \alias{wizard}
+\alias{data_wizard}
 \title{Extract, Sort Unique Values, and Paste Column from Data Frame}
 \usage{
 wizard(data, col, .collapse = NULL)
+
+data_wizard(data)
 }
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a tibble).}
@@ -19,12 +22,15 @@ A vector of the same type as \code{col} or a single character string if a value 
 supplied.
 }
 \description{
-Extract and sort unique values of a selected column from a data frame, and optionally paste into a character string.
+\code{wizard()} extracts and sorts unique values of a selected column from a data frame, and optionally pastes into
+a character string.
+
+\code{data_wizard()} does the same across all columns in a  data frame.
 }
 \details{
-Useful within a piped sequence to quickly extract or review \code{\link[base:sort]{sorted}}, \code{\link[base:unique]{unique}}
-contents of a column and optionally collapse into a single character string using \code{\link[base:paste]{paste}} by
-providing a suitable value for \code{.collapse}.
+\code{wizard()} can be useful within a piped sequence to quickly extract or review \code{\link[base:sort]{sorted}},
+\code{\link[base:unique]{unique}} contents of a column and optionally collapse into a single character string using
+\code{\link[base:paste]{paste}} by providing a suitable value for \code{.collapse}.
 }
 \examples{
 \dontshow{starwars <- dplyr::starwars}
@@ -33,6 +39,8 @@ starwars |> wizard(homeworld)
 starwars |> wizard(homeworld, ", ")
 starwars |> wizard(homeworld, "\t") |> cat()
 starwars |> wizard(homeworld, "\n") |> cat()
+
+data_wizard(mtcars) 
 
 \dontshow{rm(starwars)}
 }
