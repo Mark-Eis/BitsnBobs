@@ -15,6 +15,6 @@ library(BitsnBobs)
 
 ### Sometime this might become R markdown
 
-Meanwhile, you can copy the gist of it below into R.
+Meanwhile, you can copy, paste and run the gist of it below into R.
 
 <script src="https://gist.github.com/Mark-Eis/39766bed60f1c6835cbfd357ffdd61d0.js"></script>
