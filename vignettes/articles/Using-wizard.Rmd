@@ -1,0 +1,15 @@
+---
+title: "Using wizard"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(BitsnBobs)
+```
+<script src="https://gist.github.com/Mark-Eis/39766bed60f1c6835cbfd357ffdd61d0.js"></script>
