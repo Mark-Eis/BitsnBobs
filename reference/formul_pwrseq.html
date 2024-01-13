@@ -12,7 +12,7 @@ n, optionally including other formula terms."><!-- mathjax --><script src="https
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0006</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0007</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,6 +22,12 @@ n, optionally including other formula terms."><!-- mathjax --><script src="https
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/Using-wizard.html">Using wizard</a>
+  </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
@@ -79,13 +85,13 @@ n, optionally including other formula terms."><!-- mathjax --><script src="https
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">formul_pwrseq</span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span>, <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> y ~ x + I(x^2L) + I(x^3L) + I(x^4L) + I(x^5L)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55b8b2ae6778&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562b9955f0b0&gt;</span>
 <span class="r-in"><span><span class="fu">formul_pwrseq</span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> y ~ log(x) + I(log(x)^2L) + I(log(x)^3L) + I(log(x)^4L) + I(log(x)^5L)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55b8b2ae6778&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562b9955f0b0&gt;</span>
 <span class="r-in"><span><span class="fu">formul_pwrseq</span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">A</span>, <span class="fl">3</span>, <span class="va">B</span>, <span class="va">C</span>, <span class="va">D</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> y ~ A + I(A^2L) + I(A^3L) + B + C + D</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x55b8b2ae6778&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;environment: 0x562b9955f0b0&gt;</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

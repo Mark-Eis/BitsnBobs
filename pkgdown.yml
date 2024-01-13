@@ -1,8 +1,9 @@
 pandoc: 2.19.2
 pkgdown: 2.0.7
 pkgdown_sha: ~
-articles: {}
-last_built: 2024-01-11T22:35Z
+articles:
+  Using-wizard: Using-wizard.html
+last_built: 2024-01-13T14:06Z
 urls:
   reference: https://mark-eis.github.io/BitsnBobs/reference
   article: https://mark-eis.github.io/BitsnBobs/articles
