@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 library(BitsnBobs)
 ```
 
-#### Someday this might be real R markdown…
+##### Someday this might be real R markdown…
 
 For now, you can simply copy the gist of it below, paste into R and run.
 
