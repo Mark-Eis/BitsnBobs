@@ -13,8 +13,8 @@ knitr::opts_chunk$set(
 library(BitsnBobs)
 ```
 
-### Sometime this might become R markdown
+#### Someday this might be real R markdown…
 
-Meanwhile, you can copy, paste and run the gist of it below into R.
+For now, you can simply copy the gist of it below, paste into R and run.
 
 <script src="https://gist.github.com/Mark-Eis/39766bed60f1c6835cbfd357ffdd61d0.js"></script>
