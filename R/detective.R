@@ -143,7 +143,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 
 # ========================================
 #' @title
-#' Extract, Sort Unique Values, and Paste Column from Data Frame
+#' Extract, Sort Unique Values, and Paste Columns from Data Frame
 #'
 #' @description
 #' `wizard()` extracts and sorts unique values of a selected column from a data frame, and optionally pastes into
@@ -155,6 +155,12 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #' `wizard()` can be useful within a piped sequence to quickly extract or review [`sorted`][base::sort],
 #' [`unique`][base::unique] contents of a column and optionally collapse into a single character string using
 #' [`paste`][base::paste] by providing a suitable value for `.collapse`.
+#'
+#' `data_wizard()` invokes `wizard()` for all columns in `data` that are one of the [atomic types][base::vector],
+#' ignores columns of other types and shows a warning if any present. If `.collapse` is used with `data_wizard()`
+#, all columns are returned as `character vectors`. 
+#'
+#' Further information at \href{https://mark-eis.github.io/BitsnBobs/articles/Using-wizard.html}{Using wizard}.
 #'
 #' @seealso [`paste`][base::paste], [`sort`][base::sort], [`unique`][base::unique].
 #' @family detective
@@ -180,6 +186,8 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #'
 #' data_wizard(mtcars) 
 #'
+#' data_wizard(starwars, ", ") 
+#'
 #' \dontshow{rm(starwars)}
 
 wizard <- function(data, col, .collapse = NULL) {
@@ -200,7 +208,8 @@ wizard <- function(data, col, .collapse = NULL) {
 data_wizard <- function(data, .collapse = NULL) {
     stopifnot(is.data.frame(data))
     types <- data |> purrr::map_lgl(is.atomic)
-    if (!all(types))
+    if (!all(types)){
+	    	cat("\n")
 	    if (!any(types))
 		    warning("No columns with atomic types in `data`.")
 	    else
@@ -209,6 +218,7 @@ data_wizard <- function(data, .collapse = NULL) {
 		        paste(names(types[!types]), collapse = "\", \""),
 		        "\" with non-atomic types."
 	        )
+    }
     data |>
     select(where(is.atomic)) |>
     lapply(wizard, data = data, .collapse = .collapse)

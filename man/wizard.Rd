@@ -3,11 +3,11 @@
 \name{wizard}
 \alias{wizard}
 \alias{data_wizard}
-\title{Extract, Sort Unique Values, and Paste Column from Data Frame}
+\title{Extract, Sort Unique Values, and Paste Columns from Data Frame}
 \usage{
 wizard(data, col, .collapse = NULL)
 
-data_wizard(data)
+data_wizard(data, .collapse = NULL)
 }
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a tibble).}
@@ -31,6 +31,11 @@ a character string.
 \code{wizard()} can be useful within a piped sequence to quickly extract or review \code{\link[base:sort]{sorted}},
 \code{\link[base:unique]{unique}} contents of a column and optionally collapse into a single character string using
 \code{\link[base:paste]{paste}} by providing a suitable value for \code{.collapse}.
+
+\code{data_wizard()} invokes \code{wizard()} for all columns in \code{data} that are one of the \link[base:vector]{atomic types},
+ignores columns of other types and shows a warning if any present. If \code{.collapse} is used with \code{data_wizard()}
+
+Further information at \href{https://mark-eis.github.io/BitsnBobs/articles/Using-wizard.html}{Using wizard}.
 }
 \examples{
 \dontshow{starwars <- dplyr::starwars}
@@ -41,6 +46,8 @@ starwars |> wizard(homeworld, "\t") |> cat()
 starwars |> wizard(homeworld, "\n") |> cat()
 
 data_wizard(mtcars) 
+
+data_wizard(starwars, ", ") 
 
 \dontshow{rm(starwars)}
 }
