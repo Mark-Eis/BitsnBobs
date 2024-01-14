@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Dec 2024
+# Mark Eisler - Jan 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -24,7 +24,7 @@
 #'  \deqn{p = \exp(\displaystyle \frac{logit}{1 + logit})}{%
 #'        p = exp(logit / (1 + logit))}  
 #'
-#' @seealso \code{\link{exp}}, \code{\link{log}}, [`plogis`][stats:plogis] and [`qlogis`][stats:qlogis]
+#' @seealso \code{\link{exp}}, \code{\link{log}}, [`plogis`][stats::plogis] and [`qlogis`][stats::qlogis]
 #'   and the \emph{Note} section of [`Logistic`][stats::Logistic] in the \pkg{\link[stats]{stats}} package.
 #' @family odds-logit
 #'
