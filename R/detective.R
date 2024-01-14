@@ -197,9 +197,21 @@ wizard <- function(data, col, .collapse = NULL) {
 #' @rdname wizard
 #' @export
 
-data_wizard <- function(data) {
+data_wizard <- function(data, .collapse = NULL) {
     stopifnot(is.data.frame(data))
-    lapply(data, wizard, data = data)
+    types <- data |> purrr::map_lgl(is.atomic)
+    if (!all(types))
+	    if (!any(types))
+		    warning("No columns with atomic types in `data`.")
+	    else
+		    warning(
+		        "Omitting `data` column(s) \"",
+		        paste(names(types[!types]), collapse = "\", \""),
+		        "\" with non-atomic types."
+	        )
+    data |>
+    select(where(is.atomic)) |>
+    lapply(wizard, data = data, .collapse = .collapse)
 }
 
 
