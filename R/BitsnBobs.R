@@ -46,67 +46,6 @@
 
 fct_to_num <- function(f) as.numeric(levels(f))[f]
 
-# ========================================
-#' Remove Sequentially Numbered Objects From Workspace
-#'
-#' Remove a series of sequentially named objects from the workspace or from another specified
-#' environment. For example, conveniently remove a series of sequentially numbered models.
-#'
-#' `rm_objects()` lists all objects in the workspace (or another specified environment) whose
-#' names start with `basename`, then removes any in which `basename` is followed by
-#' an element included in `suffixes`, and finally lists all remaining objects with names
-#' matching `basename`.
-#'
-#' @seealso [`ls`][base::ls] and [`rm`][base::rm].
-#'
-#' @param basename Common base name (quoted) of the series of objects.
-#' @param suffixes A numeric or character vector representing the suffixes of the series of objects.
-#' @param envir An environment from which to remove objects. Use `.GlobalEnv` for the workspace; default
-#'   `caller_env()`.
-#'
-#' @return A character vector of matching names remaining in the workspace or another specified
-#'   environment, returned invisibly.
-#'
-#' @keywords environment
-#' @export
-#' @examples
-#'
-#'  ## Create some sequentially numbered objects
-#'  model1 <- model2 <- model3 <- model4 <- lm(1~1)
-#'  ls(pattern = "model")
-#'
-#'  ## Remove three of them
-#'  rm_objects(model, 1:3)
-#'
-#'  ## Create some sequentially named objects
-#'  model_a <- model_b <- model_c <- model_d <- lm(1~1)
-#'  ls(pattern = "model_")
-#'
-#'  ## Remove three of them
-#'  rm_objects(model_, letters[1:3])
-#'
-#'  ## Use within a function - here it's anonymous but doesn't have to be
-#'  (\() {
-#'    model1 <- model2 <- model3 <- model4 <- model5 <- lm(1~1)
-#'    rm_objects(model, 1:5)
-#'  })()
-#'
-#'  ls(pattern = "model")
-#'
-#'  rm_objects(model, c(4, "_d"))
-
-rm_objects <- function(basename, suffixes, envir = rlang::caller_env()) {
-    basename <- enquo(basename)
-    intro <- paste0("Objects matching \"", as_name(basename), "\u2026\"")
-    envirname <- rlang::env_name(envir)
-    envstr <- paste("in", ifelse(identical(envirname, ""), "this", envirname), "environment:\n\t")
-    objs <- expr(ls(envir, pattern = as_name(basename)))
-
-    cat(intro, envstr, eval(objs), "\n")
-    rm(list = map_chr(suffixes, ~ paste0(as_name(basename), .)), envir = envir)
-    cat(intro, "remaining", envstr, eval(objs), "\n")
-    invisible(eval(objs))
-}
 
 # ========================================
 #' @title
