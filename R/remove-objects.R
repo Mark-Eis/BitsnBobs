@@ -25,8 +25,8 @@
 #'
 #' @param suffixes A numeric or character vector representing the suffixes of the series of objects.
 #'
-#' @param envir An environment from which to remove objects. Use `.GlobalEnv` for the workspace; default
-#'   [`parent.frame()`][base::sys.parent] i.e., the environment in which `rm_objects()` was called.
+#' @param envir An [`environment`][base::environment] from which to remove objects. Use `.GlobalEnv` for the workspace;
+#'   default [`parent.frame()`][base::sys.parent] i.e., the `environment` in which `rm_objects()` was called.
 #'
 #' @return A character vector of matching names remaining in the calling [`environment`][base::environment], usually
 #'   the workspace unless `rm_objects()` was called within a function, or another specified `environment`, returned
