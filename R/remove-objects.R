@@ -17,7 +17,7 @@
 #' whose names start with `basename`, then removes any in which `basename` is followed by an element included in
 #' `suffixes`, and finally lists all remaining objects with names matching `basename`.
 #'
-#' Sin \acronym{#TACC}
+#' \acronym{#GF}
 #'
 #' @seealso [`environment`][base::environment], [`ls()`][base::ls] and [`rm()`][base::rm].
 #'

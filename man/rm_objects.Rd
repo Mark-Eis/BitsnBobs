@@ -11,13 +11,8 @@ rm_objects(basename, suffixes, envir = parent.frame())
 
 \item{suffixes}{A numeric or character vector representing the suffixes of the series of objects.}
 
-<<<<<<< HEAD
-\item{envir}{An environment from which to remove objects. Use \code{.GlobalEnv} for the workspace; default
-\code{\link[base:sys.parent]{parent.frame()}} i.e., the environment in which \code{rm_objects()} was called.}
-=======
 \item{envir}{An \code{\link[base:environment]{environment}} from which to remove objects. Use \code{.GlobalEnv} for the workspace;
 default \code{\link[base:sys.parent]{parent.frame()}} i.e., the \code{environment} in which \code{rm_objects()} was called.}
->>>>>>> rev-rm_objects
 }
 \value{
 A character vector of matching names remaining in the calling \code{\link[base:environment]{environment}}, usually
