@@ -18,8 +18,11 @@ data_wizard(data, .collapse = NULL)
 \code{NULL}.}
 }
 \value{
-A vector of the same type as \code{col} or a single character string if a value for \code{.collapse} is
+For \code{wizard()}, a vector of the same type as \code{col} or a single character string if a value for \code{.collapse} is
 supplied.
+
+For \code{data_wizard()}, a \code{\link[base:list]{list}} corresponding to columns in \code{data} that are of \code{\link[base:vector]{atomic}}
+types, with list elements as for \code{wizard()}.
 }
 \description{
 \code{wizard()} extracts and sorts unique values of a selected column from a data frame, and optionally pastes into
@@ -32,8 +35,9 @@ a character string.
 \code{\link[base:unique]{unique}} contents of a column and optionally collapse into a single character string using
 \code{\link[base:paste]{paste}} by providing a suitable value for \code{.collapse}.
 
-\code{data_wizard()} invokes \code{wizard()} for all columns in \code{data} that are one of the \link[base:vector]{atomic types},
-ignores columns of other types and shows a warning if any present. If \code{.collapse} is used with \code{data_wizard()}
+\code{data_wizard()} invokes \code{wizard()} for all columns in \code{data} that are one of the \code{\link[base:vector]{atomic}} types,
+ignores columns of other types and shows a warning if any present. If \code{.collapse} is used with \code{data_wizard()},
+all columns are returned as \verb{character vectors}.
 
 Further information at \href{https://mark-eis.github.io/BitsnBobs/articles/Using-wizard.html}{Using wizard}.
 }

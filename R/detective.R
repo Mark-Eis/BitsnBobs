@@ -156,9 +156,9 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #' [`unique`][base::unique] contents of a column and optionally collapse into a single character string using
 #' [`paste`][base::paste] by providing a suitable value for `.collapse`.
 #'
-#' `data_wizard()` invokes `wizard()` for all columns in `data` that are one of the [atomic types][base::vector],
-#' ignores columns of other types and shows a warning if any present. If `.collapse` is used with `data_wizard()`
-#, all columns are returned as `character vectors`. 
+#' `data_wizard()` invokes `wizard()` for all columns in `data` that are one of the [`atomic`][base::vector] types,
+#' ignores columns of other types and shows a warning if any present. If `.collapse` is used with `data_wizard()`,
+#' all columns are returned as `character vectors`. 
 #'
 #' Further information at \href{https://mark-eis.github.io/BitsnBobs/articles/Using-wizard.html}{Using wizard}.
 #'
@@ -172,8 +172,12 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #' @param .collapse an optional character string to separate the results, see [`paste`][base::paste]; default
 #'   `NULL`.
 #'
-#' @return A vector of the same type as `col` or a single character string if a value for `.collapse` is
+#' @return
+#' For `wizard()`, a vector of the same type as `col` or a single character string if a value for `.collapse` is
 #'   supplied.
+#'
+#' For `data_wizard()`, a [`list`][base::list] corresponding to columns in `data` that are of [`atomic`][base::vector]
+#'   types, with list elements as for `wizard()`.
 #'
 #' @export
 #' @examples
