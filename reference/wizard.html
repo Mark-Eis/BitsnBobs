@@ -14,7 +14,7 @@ data_wizard() does the same across all columns in a  data frame."><!-- mathjax -
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.0009</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.00010</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,16 +78,23 @@ a character string.</p>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A vector of the same type as <code>col</code> or a single character string if a value for <code>.collapse</code> is
+<p>For <code>wizard()</code>, a vector of the same type as <code>col</code> or a single character string if a value for <code>.collapse</code> is
 supplied.</p>
+
+
+<p>For <code>data_wizard()</code>, a <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></code> corresponding to columns in <code>data</code> that are of <code><a href="https://rdrr.io/r/base/vector.html" class="external-link">atomic</a></code></p>
+
+
+<p>types, with list elements as for <code>wizard()</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>wizard()</code> can be useful within a piped sequence to quickly extract or review <code><a href="https://rdrr.io/r/base/sort.html" class="external-link">sorted</a></code>,
 <code><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></code> contents of a column and optionally collapse into a single character string using
 <code><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></code> by providing a suitable value for <code>.collapse</code>.</p>
-<p><code>data_wizard()</code> invokes <code>wizard()</code> for all columns in <code>data</code> that are one of the <a href="https://rdrr.io/r/base/vector.html" class="external-link">atomic types</a>,
-ignores columns of other types and shows a warning if any present. If <code>.collapse</code> is used with <code>data_wizard()</code></p>
+<p><code>data_wizard()</code> invokes <code>wizard()</code> for all columns in <code>data</code> that are one of the <code><a href="https://rdrr.io/r/base/vector.html" class="external-link">atomic</a></code> types,
+ignores columns of other types and shows a warning if any present. If <code>.collapse</code> is used with <code>data_wizard()</code>,
+all columns are returned as <code>character vectors</code>.</p>
 <p>Further information at <a href="https://mark-eis.github.io/BitsnBobs/articles/Using-wizard.html">Using wizard</a>.</p>
     </div>
     <div class="section level2">
