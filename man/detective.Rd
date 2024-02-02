@@ -49,6 +49,8 @@ Find and modify strings containing a specified pattern in a data frame character
 \code{detective()} finds and counts strings matching \code{.pattern} but not matching \code{.exclude} in selected
 columns in \code{.data}, while \verb{detective()<-} is the equivalent replacement function. Both functions forms
 allow use of the various possibilities for the \code{.pattern} argument of \code{\link[stringr:str_detect]{str_detect}}.
+Use \pkg{\link[utils]{utils}} package \code{\link[utils:glob2rx]{glob2rx()}} to change a wildcard or globbing pattern into
+a regular expression.
 
 \code{character} or \code{factor} columns in \code{.data} are selected using \code{\dots} with the
 <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
@@ -96,8 +98,8 @@ starwars |> detective(name, contains("color"), species, .pattern = "chestnut")
 
 }
 \seealso{
-\code{\link[dplyr:arrange]{arrange()}}, \code{\link[dplyr:desc]{desc()}}, \code{\link[stringr:str_detect]{str_detect()}} and
-\code{\link[dplyr:pick]{pick()}}.
+\code{\link[dplyr:across]{across}}, \code{\link[dplyr:arrange]{arrange()}}, \code{\link[dplyr:desc]{desc()}},
+\code{\link[utils:glob2rx]{glob2rx()}}, \code{\link[dplyr:pick]{pick()}} and \code{\link[stringr:str_detect]{str_detect()}}.
 
 Other detective: 
 \code{\link{retriever}()},

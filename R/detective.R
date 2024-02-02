@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - Feb 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -17,6 +17,8 @@
 #' `detective()` finds and counts strings matching `.pattern` but not matching `.exclude` in selected
 #' columns in `.data`, while `detective()<-` is the equivalent replacement function. Both functions forms
 #' allow use of the various possibilities for the `.pattern` argument of [`str_detect`][stringr::str_detect].
+#' Use \pkg{\link[utils]{utils}} package [`glob2rx()`][utils::glob2rx] to change a wildcard or globbing pattern into
+#' a regular expression.
 #'
 #' `character` or `factor` columns in `.data` are selected using \code{\dots} with the
 #' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
@@ -26,8 +28,9 @@
 #' including use of [`across`][dplyr::across] or [`pick`][dplyr::pick] to select columns with
 #' <[`tidy-select`][dplyr::dplyr_tidy_select]> (see examples).
 #'
-#' @seealso [`arrange()`][dplyr::arrange], [`desc()`][dplyr::desc], [`str_detect()`][stringr::str_detect] and
-#'   [`pick()`][dplyr::pick].
+#' @seealso [`across`][dplyr::across], [`arrange()`][dplyr::arrange], [`desc()`][dplyr::desc],
+#'   [`glob2rx()`][utils::glob2rx], [`pick()`][dplyr::pick] and [`str_detect()`][stringr::str_detect].
+#'
 #' @family detective
 #'
 #' @param .data a data frame, or a data frame extension (e.g. a [`tibble`][tibble::tibble-package]).
