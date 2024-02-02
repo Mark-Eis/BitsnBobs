@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.00010</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.00011</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -103,7 +103,9 @@ results. Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" cla
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p><code>detective()</code> finds and counts strings matching <code>.pattern</code> but not matching <code>.exclude</code> in selected
 columns in <code>.data</code>, while <code>detective()&lt;-</code> is the equivalent replacement function. Both functions forms
-allow use of the various possibilities for the <code>.pattern</code> argument of <code><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></code>.</p>
+allow use of the various possibilities for the <code>.pattern</code> argument of <code><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></code>.
+Use <span class="pkg"><a href="https://rdrr.io/r/utils/utils-package.html" class="external-link">utils</a></span> package <code><a href="https://rdrr.io/r/utils/glob2rx.html" class="external-link">glob2rx()</a></code> to change a wildcard or globbing pattern into
+a regular expression.</p>
 <p><code>character</code> or <code>factor</code> columns in <code>.data</code> are selected using <code>...</code> with the
 &lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; syntax of package <span class="pkg"><a href="https://dplyr.tidyverse.org/reference/dplyr-package.html" class="external-link">dplyr</a></span>, including use of
 <strong>selection helpers</strong>.</p>
@@ -113,8 +115,8 @@ including use of <code><a href="https://dplyr.tidyverse.org/reference/across.htm
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc()</a></code>, <code><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect()</a></code> and
-<code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">pick()</a></code>.</p>
+    <div class="dont-index"><p><code><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc()</a></code>,
+<code><a href="https://rdrr.io/r/utils/glob2rx.html" class="external-link">glob2rx()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">pick()</a></code> and <code><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect()</a></code>.</p>
 <p>Other detective: 
 <code><a href="retriever.html">retriever</a>()</code>,
 <code><a href="wizard.html">wizard</a>()</code></p></div>
