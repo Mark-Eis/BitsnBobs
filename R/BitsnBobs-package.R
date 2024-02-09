@@ -7,6 +7,7 @@
 #' @export element_text theme_get theme_set theme_update
 #' @export eval_tidy set_names
 #' @export map map2_chr map_chr map_dbl map_int
+#' @export boundary coll fixed regex
 #' @export tibble
 #' @importFrom dplyr across
 #' @importFrom dplyr arrange
