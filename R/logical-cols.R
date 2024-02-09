@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - Feb 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -9,15 +9,17 @@
 # ========================================
 #' Add Logical Columns to Data Frame Flagging Presence of Keywords
 #'
+#' @description
 #' Function to add logical columns indicating whether or not specified keywords are present in a character column of
 #' a data frame.
 #'
+#' @details
 #' The character column of \code{data} identified by \code{.look_in} is searched for keywords provided in \code{value}
-#' using [`str_detect`][stringr::str_detect]. If no character column identified by \code{look_in} is present in
-#' \code{data}, an error message will be given.
+#' using [`str_detect`][stringr::str_detect]. The keyword search is case insensitive. If no character column identified
+#' by \code{look_in} is present in \code{data}, an error message will be given.
 #'
-#' The logical columns resulting from use of \code{kwd_cols()} and the infix form \code{kwd_cols()<-} may be analysed and
-#' the number of \code{TRUE} values counted using the functions [`count_lgl`][count_lgl] and [`sum_lgl`][sum_lgl].
+#' The logical columns resulting from use of \code{kwd_cols()} and the infix form \code{kwd_cols()<-} may be analysed
+#' and the number of \code{TRUE} values counted using the functions [`count_lgl`][count_lgl] and [`sum_lgl`][sum_lgl].
 #'
 #' The function \code{lgl_cols()} returns the names of all logical columns in \code{data}. 
 #'
