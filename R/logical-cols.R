@@ -23,7 +23,7 @@
 #'
 #' The function \code{lgl_cols()} returns the names of all logical columns in \code{data}. 
 #'
-#' @seealso [`str_detect`][stringr::str_detect].
+#' @seealso [`detective()`][detective], [`str_detect`][stringr::str_detect].
 #' @family logical-cols
 #'
 #' @param data a data frame, or a data frame extension (e.g. a tibble).

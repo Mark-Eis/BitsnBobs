@@ -54,7 +54,7 @@ identical(kwd, lgl_cols(car_names))
 rm(car_names, kwd)
 }
 \seealso{
-\code{\link[stringr:str_detect]{str_detect}}.
+\code{\link[=detective]{detective()}}, \code{\link[stringr:str_detect]{str_detect}}.
 
 Other logical-cols: 
 \code{\link{count_lgl}()},
