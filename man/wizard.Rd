@@ -3,7 +3,7 @@
 \name{wizard}
 \alias{wizard}
 \alias{data_wizard}
-\title{Extract, Sort Unique Values, and Paste Columns from Data Frame}
+\title{Extract Unique Values from Data Frame Columns, Sort and Concatenate}
 \usage{
 wizard(data, col, .collapse = NULL)
 

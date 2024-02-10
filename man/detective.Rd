@@ -34,7 +34,7 @@ Match character, word, line and sentence boundaries with
 default \code{NULL}.}
 
 \item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of column(s) for ordering
-results. Use \code{\link[dplyr]{desc}} to sort by variables in descending order; default \code{desc(n)}.}
+results. Use \code{\link[dplyr:desc]{desc()}} to sort by variables in descending order; default \code{desc(n)}.}
 
 \item{value}{a single \code{character} string providing the replacement value.}
 }
@@ -49,15 +49,15 @@ Find and modify strings containing a specified pattern in a data frame character
 \code{detective()} finds and counts strings matching \code{.pattern} but not matching \code{.exclude} in selected
 columns in \code{.data}, while \verb{detective()<-} is the equivalent replacement function. Both functions forms
 allow use of the various possibilities for the \code{.pattern} argument of \code{\link[stringr:str_detect]{str_detect}}.
-Use \pkg{\link[utils]{utils}} package \code{\link[utils:glob2rx]{glob2rx()}} to change a wildcard or globbing pattern into
-a regular expression.
+Use \code{.pattern = regex("xyz", ignore_case = TRUE)} for a case insensitive search. Use \pkg{\link[utils]{utils}}
+package \code{\link[utils:glob2rx]{glob2rx()}} to change a wildcard or globbing pattern into a regular expression.
 
 \code{character} or \code{factor} columns in \code{.data} are selected using \code{\dots} with the
 <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
 \strong{selection helpers}.
 
-The output may be ordered by the values of selected columns using the syntax of \code{\link[dplyr:arrange]{arrange}},
-including use of \code{\link[dplyr:across]{across}} or \code{\link[dplyr:pick]{pick}} to select columns with
+The output may be ordered by the values of selected columns using the syntax of \code{\link[dplyr:arrange]{arrange()}},
+including use of \code{\link[dplyr:across]{across()}} or \code{\link[dplyr:pick]{pick()}} to select columns with
 <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> (see examples).
 }
 \examples{
@@ -74,6 +74,9 @@ starwars |> detective(name, .pattern = "Darth", .arrange_by = desc(name))
 starwars |> detective(homeworld, species, .pattern = "Human")
 starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "S")
 starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "s")
+
+starwars |> detective(name, homeworld, .pattern = "Dar")
+starwars |> detective(name, homeworld, .pattern = regex("Dar", ignore_case = TRUE))
 
 starwars |> detective(!c(name, contains("color")))
 starwars |> detective(
@@ -98,7 +101,7 @@ starwars |> detective(name, contains("color"), species, .pattern = "chestnut")
 
 }
 \seealso{
-\code{\link[dplyr:across]{across}}, \code{\link[dplyr:arrange]{arrange()}}, \code{\link[dplyr:desc]{desc()}},
+\code{\link[dplyr:across]{across()}}, \code{\link[dplyr:arrange]{arrange()}}, \code{\link[dplyr:desc]{desc()}},
 \code{\link[utils:glob2rx]{glob2rx()}}, \code{\link[dplyr:pick]{pick()}} and \code{\link[stringr:str_detect]{str_detect()}}.
 
 Other detective: 

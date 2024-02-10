@@ -17,18 +17,18 @@
 #' `detective()` finds and counts strings matching `.pattern` but not matching `.exclude` in selected
 #' columns in `.data`, while `detective()<-` is the equivalent replacement function. Both functions forms
 #' allow use of the various possibilities for the `.pattern` argument of [`str_detect`][stringr::str_detect].
-#' Use \pkg{\link[utils]{utils}} package [`glob2rx()`][utils::glob2rx] to change a wildcard or globbing pattern into
-#' a regular expression.
+#' Use `.pattern = regex("xyz", ignore_case = TRUE)` for a case insensitive search. Use \pkg{\link[utils]{utils}}
+#' package [`glob2rx()`][utils::glob2rx] to change a wildcard or globbing pattern into a regular expression.
 #'
 #' `character` or `factor` columns in `.data` are selected using \code{\dots} with the
 #' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
 #' \strong{selection helpers}.
 #'
-#' The output may be ordered by the values of selected columns using the syntax of [`arrange`][dplyr::arrange],
-#' including use of [`across`][dplyr::across] or [`pick`][dplyr::pick] to select columns with
+#' The output may be ordered by the values of selected columns using the syntax of [`arrange()`][dplyr::arrange],
+#' including use of [`across()`][dplyr::across] or [`pick()`][dplyr::pick] to select columns with
 #' <[`tidy-select`][dplyr::dplyr_tidy_select]> (see examples).
 #'
-#' @seealso [`across`][dplyr::across], [`arrange()`][dplyr::arrange], [`desc()`][dplyr::desc],
+#' @seealso [`across()`][dplyr::across], [`arrange()`][dplyr::arrange], [`desc()`][dplyr::desc],
 #'   [`glob2rx()`][utils::glob2rx], [`pick()`][dplyr::pick] and [`str_detect()`][stringr::str_detect].
 #'
 #' @family detective
@@ -42,7 +42,7 @@
 #'   default `NULL`.  
 #'
 #' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name(s) of column(s) for ordering  
-#'   results. Use \code{\link[dplyr]{desc}} to sort by variables in descending order; default `desc(n)`.
+#'   results. Use [`desc()`][dplyr::desc] to sort by variables in descending order; default `desc(n)`.
 #'
 #' @param value a single `character` string providing the replacement value.
 #'
@@ -66,6 +66,9 @@
 #' starwars |> detective(homeworld, species, .pattern = "Human")
 #' starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "S")
 #' starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "s")
+#'
+#' starwars |> detective(name, homeworld, .pattern = "Dar")
+#' starwars |> detective(name, homeworld, .pattern = regex("Dar", ignore_case = TRUE))
 #'
 #' starwars |> detective(!c(name, contains("color")))
 #' starwars |> detective(
@@ -146,7 +149,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 
 # ========================================
 #' @title
-#' Extract, Sort Unique Values, and Paste Columns from Data Frame
+#' Extract Unique Values from Data Frame Columns, Sort and Concatenate
 #'
 #' @description
 #' `wizard()` extracts and sorts unique values of a selected column from a data frame, and optionally pastes into
