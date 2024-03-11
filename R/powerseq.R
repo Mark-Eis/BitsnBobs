@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - Mar 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -7,7 +7,7 @@
 # powerseq.R
 
 # ========================================
-#' Expand Expression As A Power Sequence
+#' Expand Expression as a Power Sequence
 #'
 #' Create a power sequence from an expression, \var{base_expr}, and the maximum power number, \var{n}.
 #'
@@ -141,7 +141,7 @@ power_seq <- function(base_expr, n, type = c("simple", "evaluate", "replicate"))
 
 
 # ========================================
-#' Expand Term In Right Hand Side Of A Formula As A Power Sequence
+#' Expand Term in Right Hand Side of a Formula as a Power Sequence
 #'
 #' Create a power sequence from a term in a \code{\link[stats]{formula}}, \var{base_fla}, and the maximum power number,
 #' \var{n}, optionally including other formula terms.

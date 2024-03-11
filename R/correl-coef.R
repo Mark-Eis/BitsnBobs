@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - Mar 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -8,7 +8,7 @@
 
 # ========================================
 #' @title
-#' Phi Correlation Coefficient Of Association Between Paired Binary Variables
+#' Phi Correlation Coefficient of Association Between Paired Binary Variables
 #'
 #' @description
 #' The \emph{phi} correlation coefficient (or mean square contingency coefficient and denoted by \eqn{\phi} or \eqn{r\phi})
@@ -210,7 +210,7 @@ phi_coef.test <- function(x, alternative = c("two.sided", "less", "greater"), co
 
 
 # ========================================
-#' Confidence Interval and t-Test From Pearson's Correlation Coefficient
+#' Confidence Interval and t-Test from Pearson's Correlation Coefficient
 #'
 #' @description
 #' This function performs a \emph{t}-test for a given Pearson's product-moment correlation coefficient \var{r} derived

@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - Mar 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -8,7 +8,7 @@
 
 # ========================================
 #' @title
-#' Cohen's Kappa Coefficient Of Agreement For Nominal Scales
+#' Cohen's Kappa Coefficient of Agreement for Nominal Scales
 #'
 #' @description
 #' Cohen's \emph{kappa} measures the agreement between two raters (or diagnostic tests) who each classify \var{N} items
