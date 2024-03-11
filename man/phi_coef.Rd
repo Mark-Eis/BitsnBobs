@@ -2,7 +2,7 @@
 % Please edit documentation in R/correl-coef.R
 \name{phi_coef}
 \alias{phi_coef}
-\title{Phi Correlation Coefficient Of Association Between Paired Binary Variables}
+\title{Phi Correlation Coefficient of Association Between Paired Binary Variables}
 \usage{
 phi_coef(x)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/powerseq.R
 \name{power_seq}
 \alias{power_seq}
-\title{Expand Expression As A Power Sequence}
+\title{Expand Expression as a Power Sequence}
 \usage{
 power_seq(base_expr, n, type = c("simple", "evaluate", "replicate"))
 }

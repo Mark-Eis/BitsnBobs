@@ -2,7 +2,7 @@
 % Please edit documentation in R/powerseq.R
 \name{formul_pwrseq}
 \alias{formul_pwrseq}
-\title{Expand Term In Right Hand Side Of A Formula As A Power Sequence}
+\title{Expand Term in Right Hand Side of a Formula as a Power Sequence}
 \usage{
 formul_pwrseq(base_fla, n, ...)
 }

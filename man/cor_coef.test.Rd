@@ -2,7 +2,7 @@
 % Please edit documentation in R/correl-coef.R
 \name{cor_coef.test}
 \alias{cor_coef.test}
-\title{Confidence Interval and t-Test From Pearson's Correlation Coefficient}
+\title{Confidence Interval and t-Test from Pearson's Correlation Coefficient}
 \usage{
 cor_coef.test(
   r,
@@ -97,8 +97,8 @@ but not the original data.
 \code{\link[stats]{cor}}, \code{\link[stats]{cor.test}}, \code{\link[stats]{t.test}}
 
 Other correl_coef: 
-\code{\link{phi_coef.test}()},
-\code{\link{phi_coef}()}
+\code{\link{phi_coef}()},
+\code{\link{phi_coef.test}()}
 }
 \concept{correl_coef}
 \keyword{htest}

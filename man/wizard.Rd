@@ -5,9 +5,9 @@
 \alias{data_wizard}
 \title{Extract Unique Values from Data Frame Columns, Sort and Concatenate}
 \usage{
-wizard(data, col, .collapse = NULL)
+wizard(data, col, .collapse = NULL, .noquote = FALSE)
 
-data_wizard(data, .collapse = NULL)
+data_wizard(data, .collapse = NULL, .noquote = TRUE)
 }
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a tibble).}
@@ -16,6 +16,9 @@ data_wizard(data, .collapse = NULL)
 
 \item{.collapse}{an optional character string to separate the results, see \code{\link[base:paste]{paste}}; default
 \code{NULL}.}
+
+\item{.noquote}{\code{logical} whether to return an object of class \code{"noquote"}; default \code{FALSE} for \code{wizard()}, \code{TRUE}
+for  \code{data_wizard()}.}
 }
 \value{
 For \code{wizard()}, a vector of the same type as \code{col} or a single character string if a value for \code{.collapse} is
@@ -46,6 +49,7 @@ Further information at \href{https://mark-eis.github.io/BitsnBobs/articles/Using
 
 starwars |> wizard(homeworld)
 starwars |> wizard(homeworld, ", ")
+starwars |> wizard(homeworld, ", ", TRUE)
 starwars |> wizard(homeworld, "\t") |> cat()
 starwars |> wizard(homeworld, "\n") |> cat()
 

@@ -178,6 +178,9 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #' @param .collapse an optional character string to separate the results, see [`paste`][base::paste]; default
 #'   `NULL`.
 #'
+#' @param .noquote `logical` whether to return an object of class `"noquote"`; default `FALSE` for `wizard()`, `TRUE`
+#'   for  `data_wizard()`.
+#'
 #' @return
 #' For `wizard()`, a vector of the same type as `col` or a single character string if a value for `.collapse` is
 #'   supplied.
@@ -191,6 +194,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #'
 #' starwars |> wizard(homeworld)
 #' starwars |> wizard(homeworld, ", ")
+#' starwars |> wizard(homeworld, ", ", TRUE)
 #' starwars |> wizard(homeworld, "\t") |> cat()
 #' starwars |> wizard(homeworld, "\n") |> cat()
 #'
@@ -200,13 +204,15 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #'
 #' \dontshow{rm(starwars)}
 
-wizard <- function(data, col, .collapse = NULL) {
+wizard <- function(data, col, .collapse = NULL, .noquote = FALSE) {
     stopifnot(is.data.frame(data))
     x <- eval_tidy(expr({{col}}), data = data) |>
     unique() |>
     sort(na.last = T)
     if (!is.null(.collapse))
-        paste0(x, collapse = .collapse)
+        x <- paste0(x, collapse = .collapse)
+    if (.noquote)
+        noquote(x)
     else x
 }
 
@@ -215,7 +221,7 @@ wizard <- function(data, col, .collapse = NULL) {
 #' @rdname wizard
 #' @export
 
-data_wizard <- function(data, .collapse = NULL) {
+data_wizard <- function(data, .collapse = NULL, .noquote = TRUE) {
     stopifnot(is.data.frame(data))
     types <- data |> purrr::map_lgl(is.atomic)
     if (!all(types))
@@ -229,7 +235,7 @@ data_wizard <- function(data, .collapse = NULL) {
             )
     data |>
     select(where(is.atomic)) |>
-    lapply(wizard, data = data, .collapse = .collapse)
+    lapply(wizard, data = data, .collapse = .collapse, .noquote = .noquote)
 }
 
 

@@ -3,7 +3,7 @@
 \name{cohens_kappa}
 \alias{cohens_kappa}
 \alias{print_all.cohens_kappa}
-\title{Cohen's Kappa Coefficient Of Agreement For Nominal Scales}
+\title{Cohen's Kappa Coefficient of Agreement for Nominal Scales}
 \usage{
 cohens_kappa(x, se_method = c("Fleiss", "Cohen"), conf.level = 0.95)
 
