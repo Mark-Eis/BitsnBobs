@@ -23,7 +23,8 @@ specified value in the \code{index} column, having the following arguments: –
 
 \item{key}{Value to be matched in the \code{index} column.}
 
-\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> character columns to return.}
+\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> character columns to return. If none are provided, all
+columns are returned.}
 
 For \code{remplacer()}, a replacement \code{function} for modifying a value in a specified column of \code{data} in rows matching a
 specified value in the index column, having the following arguments: –

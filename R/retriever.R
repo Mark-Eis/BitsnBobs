@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - Mar 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -51,7 +51,8 @@
 #'
 #' \item{key}{Value to be matched in the `index` column.}
 #'
-#' \item{\dots}{<[`tidy-select`][dplyr::dplyr_tidy_select]> character columns to return.}
+#' \item{\dots}{<[`tidy-select`][dplyr::dplyr_tidy_select]> character columns to return. If none are provided, all
+#'   columns are returned.}
 #'
 #' For `remplacer()`, a replacement `function` for modifying a value in a specified column of `data` in rows matching a
 #'   specified value in the index column, having the following arguments: –
@@ -105,17 +106,21 @@
 
 retriever <- function(data, index, labile_data = TRUE) {
     data <- {
-            if (labile_data) enquo(data) else force(data)
-        }
+        if (labile_data) enquo(data) else force(data)
+    }
     index <- enquo(index)
     stopifnot(is.data.frame(if (labile_data) eval_tidy(data) else data))
 
     function(key, ...) {
-            {
-                if (labile_data) eval_tidy(data) else data
-            } |>
-            filter(!!index == key) |>
-            select(!!index, ...)
+        data <- {
+            if (labile_data) eval_tidy(data) else data
+        } |>
+        filter(!!index == key)
+
+        if(...length())
+            select(data, !!index, ...)
+        else
+            select(data, everything())
     }
 }
 
