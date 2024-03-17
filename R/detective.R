@@ -97,7 +97,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
     n <- NULL
     pos <- eval_select(expr(c(...) & chr_or_fct()), .data)
     if (!length(pos))
-        pos <- eval_select(expr(where(is.character)), .data)
+        pos <- eval_select(expr(chr_or_fct()), .data)
     if (missing(.pattern))
         selrow <- !logical(nrow(.data))
     else {
