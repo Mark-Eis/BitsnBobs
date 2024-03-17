@@ -85,7 +85,7 @@
 #' environment(retrieve_original_starwars)$data
 #'
 #' ## Retrieve selected columns for a row specified using the index
-#' retrieve_original_starwars("Luke Skywalker", ends_with("color"), homeworld)
+#' retrieve_original_starwars("Luke Skywalker", where(is.atomic), homeworld)
 #'
 #' ## Create replacement function
 #' `replace_at_name<-` <- remplacer(name)
@@ -95,11 +95,11 @@
 #'
 #' ## Retrieve selected columns for a row specified using the index
 #' ## "retrieval" function with labile_data TRUE reflects the change
-#' retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)
+#' retrieve_starwars("Luke Skywalker", where(is.atomic), homeworld)
 #'
 #' ## Retrieve selected columns for a row specified using the index
 #' ## "retrieval" function with labile_data FALSE shows no change
-#' retrieve_original_starwars("Luke Skywalker", ends_with("color"), homeworld)
+#' retrieve_original_starwars("Luke Skywalker", where(is.atomic), homeworld)
 #' 
 #' rm(retrieve_starwars, retrieve_original_starwars, `replace_at_name<-`, starwars)
 #'
