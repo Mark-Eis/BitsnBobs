@@ -67,7 +67,7 @@
 #'
 #' @export
 #' @examples
-#' \dontshow{starwars <- (\() dplyr::starwars)()}
+#' \dontshow{starwars <- (\() dplyr::starwars |> dplyr::relocate(homeworld, .after = name))()}
 #'
 #' ## Create "retrieval" function with labile_data TRUE
 #' retrieve_starwars <- retriever(starwars, name)

@@ -62,7 +62,7 @@ environment as with \code{retriever()}. However, there is no immediately apparen
 "replaced" must be the first argument for replacement functions.
 }
 \examples{
-\dontshow{starwars <- (\() dplyr::starwars)()}
+\dontshow{starwars <- (\() dplyr::starwars |> dplyr::relocate(homeworld, .after = name))()}
 
 ## Create "retrieval" function with labile_data TRUE
 retrieve_starwars <- retriever(starwars, name)
