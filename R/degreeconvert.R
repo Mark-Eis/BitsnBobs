@@ -17,13 +17,50 @@
 #' See reference.
 #'
 #' @family degreeconvert
-#' @seealso 
 #'
-#' @param name a symbol, the name to be assigned to the constant.
+#' @param dms an object of class [`"degminsec"`][degminsec], representing a coordinate of latitude or longitude in
+#'   degrees, minutes and seconds.
 #'
-#' @param value any valid R object, including a function
+#' @return numeric, a coordinate of latitude or longitude in decimal degrees
 #'
-#' @return NULL
+#' @keywords utilities
+#'
+#' @export
+#' @examples
+#' degminsec(49.32464) |> dms_to_decdeg()
+
+dms_to_decdeg <- function(dms) {
+	dms$dd + dms$mm / 60 + dms$ss / 3600
+}
+
+# ========================================
+#' Create Degrees, Minutes and Seconds Object
+#'
+#' @description
+#' The function `degminsec()` is used to create (latitude or longitude) coordinate objects represented in degrees,
+#' minutes and seconds. 
+#'
+#' @details
+#' `degminsec()` is a generic S3 function. The default method works with a numeric (`double`) representing a
+#' coordinate of latitude or longitude in degrees, minutes and seconds. The argument `pointafter` indicates the
+#' position of the decimal point, which may be placed after the degrees, the minutes or the (whole) seconds, and by
+#' default assumed to be placed after the degrees.
+#'
+#' @family degreeconvert
+#'
+#' @param degminsec numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.
+#'
+#' @param pointafter a character string specifying the position of the decimal point in `degminsec`; must be one of
+#'   "deg" (default), "min", or "sec". You can specify just the initial letter.
+#'
+#' @return An object of class `"degminsec"`, representing a coordinate of latitude or longitude in degrees, minutes
+#'   and seconds as a named list with components: -
+#'
+#' \item{dd}{degrees represented by an integer with maximum absolute value of 180.}
+#'
+#' \item{mm}{minutes represented by a positive integer with value less than 60.}
+#'
+#' \item{ss}{seconds represented by a positiveinteger with value less than 60.}
 #'
 #' @keywords utilities
 #'
@@ -52,8 +89,7 @@ degminsec.default <- function(dms, ..., pointafter = c("deg", "min", "sec")) {
 # ========================================
 #  Constructor
 #  new_degminsec()
-#'
-#' @rdname degminsec
+#
 #  not exported
 
 new_degminsec <- function(dms, pointafter = c("deg", "min", "sec")) {
@@ -73,12 +109,10 @@ new_degminsec <- function(dms, pointafter = c("deg", "min", "sec")) {
     )
 }
 
-
 # ========================================
 #  Validator
 #  validate_degminsec()
-#'
-#' @rdname degminsec
+#
 #  not exported
 
 validate_degminsec <- function(dms) {
@@ -109,3 +143,15 @@ validate_degminsec <- function(dms) {
     
     dms
 }
+
+# ========================================
+# Print degminsec Object
+#  S3method print.degminsec()
+#'
+#' @rdname degminsec
+#' @export
+
+print.degminsec <- function(x, ...) {
+    with(x, cat(paste("\n\t", dd, "degrees,", mm, "minutes,", zapsmall(ss), "seconds\n")))
+    invisible(x)
+} 
