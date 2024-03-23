@@ -56,6 +56,7 @@ dms_to_decdeg <- function(object, ...) {
 #' @export
 
 dms_to_decdeg.degminsec <- function(object, ...) {
+    check_dots_empty()
     validate_degminsec(object)
     with(object, deg + min / 60 + sec / 3600)
 }
@@ -68,6 +69,7 @@ dms_to_decdeg.degminsec <- function(object, ...) {
 #' @export
 
 dms_to_decdeg.default <- function(object, ..., pointafter = c("deg", "min", "sec")) {
+    check_dots_empty()
     stopifnot(is.numeric(object))
     with(degminsec(object, pointafter = pointafter), deg + min / 60 + sec / 3600)
 }
@@ -80,6 +82,7 @@ dms_to_decdeg.default <- function(object, ..., pointafter = c("deg", "min", "sec
 #' @export
 
 dms_to_decdeg.list <- function(object, ...) {
+    check_dots_empty()
     stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "degminsec")))))
     map_dbl(object, dms_to_decdeg)
 }
@@ -136,6 +139,7 @@ degminsec <- function(x, ...) {
 #' @export
 
 degminsec.default <- function(x, ..., pointafter = c("deg", "min", "sec")) {
+    check_dots_empty()
     new_degminsec(x, pointafter) |> validate_degminsec()
 }
 
@@ -246,6 +250,7 @@ decdeg <- function(x, ...) {
 #' @export
 
 decdeg.default <- function(x, ...) {
+    check_dots_empty()
     new_decdeg(x) |> validate_decdeg()
 }
 

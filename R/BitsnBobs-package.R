@@ -4,10 +4,10 @@
 ## usethis namespace: start
 #' @export across bind_rows desc
 #' @export all_of any_of contains ends_with everything last_col matches num_range starts_with where
+#' @export boundary coll fixed regex
 #' @export element_text theme_get theme_set theme_update
 #' @export eval_tidy set_names
 #' @export map map2_chr map_chr map_dbl map_int
-#' @export boundary coll fixed regex
 #' @export tibble
 #' @importFrom dplyr across
 #' @importFrom dplyr arrange
@@ -50,6 +50,7 @@
 #' @importFrom rlang %||%
 #' @importFrom rlang as_label
 #' @importFrom rlang as_name
+#' @importFrom rlang check_dots_empty
 #' @importFrom rlang data_syms
 #' @importFrom rlang enexprs
 #' @importFrom rlang enquo
@@ -59,7 +60,6 @@
 #' @importFrom rlang exprs
 #' @importFrom rlang f_rhs
 #' @importFrom rlang f_rhs<-
-#' @importFrom rlang quos
 #' @importFrom rlang set_names
 #' @importFrom stats optimise
 #' @importFrom stats pnorm
