@@ -66,6 +66,10 @@ minutes and seconds.</p>
 <dd><p>numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.</p></dd>
 
 
+<dt>...</dt>
+<dd><p>further arguments passed to or from other methods.</p></dd>
+
+
 <dt>pointafter</dt>
 <dd><p>a character string specifying the position of the decimal point in <code>x</code>; must be one of
 "deg" (default), "min", or "sec". You can specify just the initial letter.</p></dd>
@@ -77,16 +81,16 @@ minutes and seconds.</p>
 
 <p>An object of class <code>"degminsec"</code>, representing a coordinate of latitude or longitude in degrees, minutes
 and seconds as a named list with components: -</p>
-<dl><dt>dd</dt>
+<dl><dt>deg</dt>
 <dd><p>degrees represented by an integer with maximum absolute value of 180.</p></dd>
 
 
-<dt>mm</dt>
+<dt>min</dt>
 <dd><p>minutes represented by a positive integer with value less than 60.</p></dd>
 
 
-<dt>ss</dt>
-<dd><p>seconds represented by a positiveinteger with value less than 60.</p></dd>
+<dt>sec</dt>
+<dd><p>seconds represented by a positive numeric with value less than 60.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -99,6 +103,7 @@ default assumed to be placed after the degrees.</p>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>Other degreeconvert: 
+<code><a href="decdeg.html">decdeg</a>()</code>,
 <code><a href="dms_to_decdeg.html">dms_to_decdeg</a>()</code></p></div>
     </div>
 
