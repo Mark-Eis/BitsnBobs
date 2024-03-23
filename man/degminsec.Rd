@@ -15,6 +15,8 @@ degminsec(x, ...)
 \arguments{
 \item{x}{numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.}
 
+\item{\dots}{further arguments passed to or from other methods.}
+
 \item{pointafter}{a character string specifying the position of the decimal point in \code{x}; must be one of
 "deg" (default), "min", or "sec". You can specify just the initial letter.}
 }
