@@ -35,7 +35,18 @@
 #'
 #' rm(coords)
 
-dms_to_decdeg <- function(dms) {
+dms_to_decdeg <- function(x, ...) {
+    UseMethod("dms_to_decdeg")
+}
+
+# ========================================
+#  Convert Degrees, Minutes and Seconds to Decimal Degrees
+#  S3method degminsec.default()
+#'
+#' @rdname dms_to_decdeg
+#' @export
+
+dms_to_decdeg.default <- function(dms) {
     convdms <- function(x) with(x, dd + mm / 60 + ss / 3600)
     if (inherits(dms, "degminsec"))
         convdms(dms)
@@ -88,7 +99,7 @@ degminsec <- function(x, ...) {
 }
 
 # ========================================
-#  Convert Degrees, Minutes and Seconds to Decimal Degrees
+#  Create Degrees, Minutes and Seconds Object
 #  S3method degminsec.default()
 #'
 #' @rdname degminsec

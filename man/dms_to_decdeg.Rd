@@ -2,9 +2,12 @@
 % Please edit documentation in R/degreeconvert.R
 \name{dms_to_decdeg}
 \alias{dms_to_decdeg}
+\alias{dms_to_decdeg.default}
 \title{Convert Degrees, Minutes and Seconds to Decimal Degrees}
 \usage{
-dms_to_decdeg(dms)
+dms_to_decdeg(x, ...)
+
+\method{dms_to_decdeg}{default}(dms)
 }
 \arguments{
 \item{dms}{an object of class \code{\link[=degminsec]{"degminsec"}}, representing a coordinate of latitude or longitude in
