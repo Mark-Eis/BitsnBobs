@@ -2,6 +2,7 @@
 
 S3method(decdeg,default)
 S3method(degminsec,default)
+S3method(dms_to_decdeg,default)
 S3method(dms_to_decdeg,degminsec)
 S3method(dms_to_decdeg,list)
 S3method(print,catapult)

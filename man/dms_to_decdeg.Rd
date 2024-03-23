@@ -3,18 +3,24 @@
 \name{dms_to_decdeg}
 \alias{dms_to_decdeg}
 \alias{dms_to_decdeg.degminsec}
+\alias{dms_to_decdeg.default}
 \alias{dms_to_decdeg.list}
 \title{Convert Degrees, Minutes and Seconds to Decimal Degrees}
 \usage{
 dms_to_decdeg(object, ...)
 
-\method{dms_to_decdeg}{degminsec}(object)
+\method{dms_to_decdeg}{degminsec}(object, ...)
 
-\method{dms_to_decdeg}{list}(object)
+\method{dms_to_decdeg}{default}(object, ..., pointafter = c("deg", "min", "sec"))
+
+\method{dms_to_decdeg}{list}(object, ...)
 }
 \arguments{
 \item{object}{an object of class \code{\link[=degminsec]{"degminsec"}}, representing a coordinate of latitude or longitude in
 degrees, minutes and seconds or a list of "degminsec" objects.}
+
+\item{pointafter}{a character string specifying the position of the decimal point in \code{x}; must be one of
+"deg" (default), "min", or "sec". You can specify just the initial letter.}
 }
 \value{
 numeric, a coordinate of latitude or longitude in decimal degrees
@@ -27,12 +33,19 @@ Convert degrees, minutes and seconds to decimal degrees.
 values paired in a named list (see examples) or with a longer list of coordinates.
 }
 \examples{
-degminsec(49.32464) |> dms_to_decdeg()
+
+dms_to_decdeg(49.32464)
+dms_to_decdeg(49.32464, pointafter = "deg")
+dms_to_decdeg(4932.464, pointafter = "min")
+dms_to_decdeg(493246.4, pointafter = "sec")
+
+coord <- degminsec(49.32464)
+dms_to_decdeg(coord)
 
 (coords <- list(lat = degminsec(49.32464), long = degminsec(18.2354822)))
 dms_to_decdeg(coords)
 
-rm(coords)
+rm(coord, coords)
 }
 \seealso{
 Other degreeconvert: 

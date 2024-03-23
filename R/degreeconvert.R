@@ -22,18 +22,27 @@
 #' @param object an object of class [`"degminsec"`][degminsec], representing a coordinate of latitude or longitude in
 #'   degrees, minutes and seconds or a list of "degminsec" objects.
 #'
+#' @inheritParams degminsec
+#'
 #' @return numeric, a coordinate of latitude or longitude in decimal degrees
 #'
 #' @keywords utilities
 #'
 #' @export
 #' @examples
-#' degminsec(49.32464) |> dms_to_decdeg()
+#'
+#' dms_to_decdeg(49.32464)
+#' dms_to_decdeg(49.32464, pointafter = "deg")
+#' dms_to_decdeg(4932.464, pointafter = "min")
+#' dms_to_decdeg(493246.4, pointafter = "sec")
+#'
+#' coord <- degminsec(49.32464)
+#' dms_to_decdeg(coord)
 #'
 #' (coords <- list(lat = degminsec(49.32464), long = degminsec(18.2354822)))
 #' dms_to_decdeg(coords)
 #'
-#' rm(coords)
+#' rm(coord, coords)
 
 dms_to_decdeg <- function(object, ...) {
     UseMethod("dms_to_decdeg")
@@ -46,9 +55,21 @@ dms_to_decdeg <- function(object, ...) {
 #' @rdname dms_to_decdeg
 #' @export
 
-dms_to_decdeg.degminsec <- function(object) {
+dms_to_decdeg.degminsec <- function(object, ...) {
     validate_degminsec(object)
     with(object, deg + min / 60 + sec / 3600)
+}
+
+# ========================================
+#  Convert Degrees, Minutes and Seconds to Decimal Degrees
+#  S3method dms_to_decdeg.default()
+#'
+#' @rdname dms_to_decdeg
+#' @export
+
+dms_to_decdeg.default <- function(object, ..., pointafter = c("deg", "min", "sec")) {
+    stopifnot(is.numeric(object))
+    with(degminsec(object, pointafter = pointafter), deg + min / 60 + sec / 3600)
 }
 
 # ========================================
@@ -58,7 +79,7 @@ dms_to_decdeg.degminsec <- function(object) {
 #' @rdname dms_to_decdeg
 #' @export
 
-dms_to_decdeg.list <- function(object) {
+dms_to_decdeg.list <- function(object, ...) {
     stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "degminsec")))))
     map_dbl(object, dms_to_decdeg)
 }
