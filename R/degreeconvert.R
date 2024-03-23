@@ -14,12 +14,12 @@
 #' Convert degrees, minutes and seconds to decimal degrees. 
 #'
 #' @details
-#' `dms_to_decdeg()` is a vectorised function that works with individual coordinates, latitude and longitude
+#' `dms_to_decdeg()` is an S3 function that works with individual coordinates, latitude and longitude
 #' values paired in a named list (see examples) or with a longer list of coordinates.
 #'
 #' @family degreeconvert
 #'
-#' @param dms an object of class [`"degminsec"`][degminsec], representing a coordinate of latitude or longitude in
+#' @param object an object of class [`"degminsec"`][degminsec], representing a coordinate of latitude or longitude in
 #'   degrees, minutes and seconds or a list of "degminsec" objects.
 #'
 #' @return numeric, a coordinate of latitude or longitude in decimal degrees
@@ -35,25 +35,32 @@
 #'
 #' rm(coords)
 
-dms_to_decdeg <- function(x, ...) {
+dms_to_decdeg <- function(object, ...) {
     UseMethod("dms_to_decdeg")
 }
 
 # ========================================
-#  Convert Degrees, Minutes and Seconds to Decimal Degrees
-#  S3method degminsec.default()
+#  Convert Degrees, Minutes and Seconds in a "degminsec" object to Decimal Degrees
+#  S3method dms_to_decdeg.degminsec()
 #'
 #' @rdname dms_to_decdeg
 #' @export
 
-dms_to_decdeg.default <- function(dms) {
-    convdms <- function(x) with(x, dd + mm / 60 + ss / 3600)
-    if (inherits(dms, "degminsec"))
-        convdms(dms)
-    else {
-        stopifnot(all(purrr::map_lgl(dms, \(x) (inherits(x, "degminsec")))))
-        map_dbl(dms, convdms)
-    }
+dms_to_decdeg.degminsec <- function(object) {
+    validate_degminsec(object)
+    with(object, dd + mm / 60 + ss / 3600)
+}
+
+# ========================================
+#  Convert Degrees, Minutes and Seconds in a list to Decimal Degrees
+#  S3method dms_to_decdeg.list()
+#'
+#' @rdname dms_to_decdeg
+#' @export
+
+dms_to_decdeg.list <- function(object) {
+    stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "degminsec")))))
+    map_dbl(object, dms_to_decdeg)
 }
 
 # ========================================
@@ -71,7 +78,7 @@ dms_to_decdeg.default <- function(dms) {
 #'
 #' @family degreeconvert
 #'
-#' @param degminsec numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.
+#' @param x numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.
 #'
 #' @param pointafter a character string specifying the position of the decimal point in `degminsec`; must be one of
 #'   "deg" (default), "min", or "sec". You can specify just the initial letter.
@@ -105,8 +112,8 @@ degminsec <- function(x, ...) {
 #' @rdname degminsec
 #' @export
 
-degminsec.default <- function(dms, ..., pointafter = c("deg", "min", "sec")) {
-    new_degminsec(dms, pointafter) |> validate_degminsec()
+degminsec.default <- function(x, ..., pointafter = c("deg", "min", "sec")) {
+    new_degminsec(x, pointafter) |> validate_degminsec()
 }
 
 # ========================================

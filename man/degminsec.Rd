@@ -8,15 +8,15 @@
 \usage{
 degminsec(x, ...)
 
-\method{degminsec}{default}(dms, ..., pointafter = c("deg", "min", "sec"))
+\method{degminsec}{default}(x, ..., pointafter = c("deg", "min", "sec"))
 
 \method{print}{degminsec}(x, ...)
 }
 \arguments{
+\item{x}{numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.}
+
 \item{pointafter}{a character string specifying the position of the decimal point in \code{degminsec}; must be one of
 "deg" (default), "min", or "sec". You can specify just the initial letter.}
-
-\item{degminsec}{numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.}
 }
 \value{
 An object of class \code{"degminsec"}, representing a coordinate of latitude or longitude in degrees, minutes

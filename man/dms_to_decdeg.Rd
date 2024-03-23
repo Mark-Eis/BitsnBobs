@@ -2,15 +2,18 @@
 % Please edit documentation in R/degreeconvert.R
 \name{dms_to_decdeg}
 \alias{dms_to_decdeg}
-\alias{dms_to_decdeg.default}
+\alias{dms_to_decdeg.degminsec}
+\alias{dms_to_decdeg.list}
 \title{Convert Degrees, Minutes and Seconds to Decimal Degrees}
 \usage{
-dms_to_decdeg(x, ...)
+dms_to_decdeg(object, ...)
 
-\method{dms_to_decdeg}{default}(dms)
+\method{dms_to_decdeg}{degminsec}(object)
+
+\method{dms_to_decdeg}{list}(object)
 }
 \arguments{
-\item{dms}{an object of class \code{\link[=degminsec]{"degminsec"}}, representing a coordinate of latitude or longitude in
+\item{object}{an object of class \code{\link[=degminsec]{"degminsec"}}, representing a coordinate of latitude or longitude in
 degrees, minutes and seconds or a list of "degminsec" objects.}
 }
 \value{
@@ -20,7 +23,7 @@ numeric, a coordinate of latitude or longitude in decimal degrees
 Convert degrees, minutes and seconds to decimal degrees.
 }
 \details{
-\code{dms_to_decdeg()} is a vectorised function that works with individual coordinates, latitude and longitude
+\code{dms_to_decdeg()} is an S3 function that works with individual coordinates, latitude and longitude
 values paired in a named list (see examples) or with a longer list of coordinates.
 }
 \examples{
