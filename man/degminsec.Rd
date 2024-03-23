@@ -22,11 +22,11 @@ degminsec(x, ...)
 An object of class \code{"degminsec"}, representing a coordinate of latitude or longitude in degrees, minutes
 and seconds as a named list with components: -
 
-\item{dd}{degrees represented by an integer with maximum absolute value of 180.}
+\item{deg}{degrees represented by an integer with maximum absolute value of 180.}
 
-\item{mm}{minutes represented by a positive integer with value less than 60.}
+\item{min}{minutes represented by a positive integer with value less than 60.}
 
-\item{ss}{seconds represented by a positiveinteger with value less than 60.}
+\item{sec}{seconds represented by a positive numeric with value less than 60.}
 }
 \description{
 The function \code{degminsec()} is used to create (latitude or longitude) coordinate objects represented in degrees,
@@ -46,6 +46,7 @@ degminsec(493246.4, pointafter = "sec")
 }
 \seealso{
 Other degreeconvert: 
+\code{\link{decdeg}()},
 \code{\link{dms_to_decdeg}()}
 }
 \concept{degreeconvert}

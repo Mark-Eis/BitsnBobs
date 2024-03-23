@@ -36,6 +36,7 @@ rm(coords)
 }
 \seealso{
 Other degreeconvert: 
+\code{\link{decdeg}()},
 \code{\link{degminsec}()}
 }
 \concept{degreeconvert}

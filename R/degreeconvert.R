@@ -48,7 +48,7 @@ dms_to_decdeg <- function(object, ...) {
 
 dms_to_decdeg.degminsec <- function(object) {
     validate_degminsec(object)
-    with(object, dd + mm / 60 + ss / 3600)
+    with(object, deg + min / 60 + sec / 3600)
 }
 
 # ========================================
@@ -86,11 +86,11 @@ dms_to_decdeg.list <- function(object) {
 #' @return An object of class `"degminsec"`, representing a coordinate of latitude or longitude in degrees, minutes
 #'   and seconds as a named list with components: -
 #'
-#' \item{dd}{degrees represented by an integer with maximum absolute value of 180.}
+#' \item{deg}{degrees represented by an integer with maximum absolute value of 180.}
 #'
-#' \item{mm}{minutes represented by a positive integer with value less than 60.}
+#' \item{min}{minutes represented by a positive integer with value less than 60.}
 #'
-#' \item{ss}{seconds represented by a positiveinteger with value less than 60.}
+#' \item{sec}{seconds represented by a positive numeric with value less than 60.}
 #'
 #' @keywords utilities
 #'
@@ -124,16 +124,16 @@ degminsec.default <- function(x, ..., pointafter = c("deg", "min", "sec")) {
 
 new_degminsec <- function(dms, pointafter = c("deg", "min", "sec")) {
     pointafter <- match.arg(pointafter)
-	pax <- switch(pointafter,
-		    deg = 1e0L,
-		    min = 1e2L,
-		    sec = 1e4L
-	    )
+    pax <- switch(pointafter,
+            deg = 1e0L,
+            min = 1e2L,
+            sec = 1e4L
+        )
     structure(
         list(
-            dd = as.integer(dms %/% pax),
-            mm = as.integer((dms %% pax) * 100 / pax),
-            ss = ((dms %% pax) * 10000 / pax) %% 100
+            deg = as.integer(dms %/% pax),
+            min = as.integer((dms %% pax) * 100 / pax),
+            sec = ((dms %% pax) * 10000 / pax) %% 100
         ),
         class = "degminsec"
     )
@@ -153,21 +153,21 @@ validate_degminsec <- function(dms) {
         call. = FALSE
       )
 
-    if (abs(dms$dd) > 180)
+    if (abs(dms$deg) > 180)
       stop(
-        "`dms$dd` must not be greater than 180",
+        "`dms$deg` must not be greater than 180",
         call. = FALSE
       )
 
-    if (!abs(dms$mm) < 60)
+    if (!abs(dms$min) < 60)
       stop(
-        "`dms$mm` must be less than 60",
+        "`dms$min` must be less than 60",
         call. = FALSE
       )
 
-    if (!abs(dms$s) < 60)
+    if (!abs(dms$sec) < 60)
       stop(
-        "`dms$ss` must be less than 60",
+        "`dms$sec` must be less than 60",
         call. = FALSE
       )
     
@@ -182,6 +182,88 @@ validate_degminsec <- function(dms) {
 #' @export
 
 print.degminsec <- function(x, ...) {
-    with(x, cat(paste("\n\t", dd, "degrees,", mm, "minutes,", zapsmall(ss), "seconds\n")))
+    with(x, cat(paste("\n\t", deg, "degrees,", min, "minutes,", zapsmall(sec), "seconds\n")))
+    invisible(x)
+} 
+
+# ========================================
+#' Create Decimal Degrees Object
+#'
+#' @description
+#' The function `decdeg()` is used to create (latitude or longitude) coordinate objects represented in decimal degrees. 
+#'
+#' @details
+#' `decdeg()` is a generic S3 function. The default method works with a numeric (`double`) representing a
+#' coordinate of latitude or longitude in decimal degrees.
+#'
+#' @family degreeconvert
+#'
+#' @param x numeric, representing a coordinate of latitude or longitude in decimal degrees.
+#'
+#' @return An object of class `"decdeg"`, representing a coordinate of latitude or longitude in decimal degrees
+#'   represented by a numeric `ddeg` with maximum absolute value of 180.
+#'
+#' @keywords utilities
+#'
+#' @export
+#' @examples
+#' decdeg(49.54622)
+
+decdeg <- function(x, ...) {
+    UseMethod("decdeg")
+}
+
+# ========================================
+#  Create Decimal Degrees Object
+#  S3method decdeg.default()
+#'
+#' @rdname decdeg
+#' @export
+
+decdeg.default <- function(x, ...) {
+    new_decdeg(x) |> validate_decdeg()
+}
+
+# ========================================
+#  Constructor
+#  new_decdeg()
+#
+#  not exported
+
+new_decdeg <- function(d)
+    structure(d, class = "decdeg")
+
+# ========================================
+#  Validator
+#  validate_decdeg()
+#
+#  not exported
+
+validate_decdeg <- function(dd) {
+
+    if (!inherits(dd, "decdeg"))
+      stop(
+        "`dd` must be of class \"decdeg\"",
+        call. = FALSE
+      )
+
+    if (abs(dd) > 180)
+      stop(
+        "`dd` must not be greater than 180",
+        call. = FALSE
+      )
+    
+    dd
+}
+
+# ========================================
+# Print decdeg Object
+#  S3method print.decdeg()
+#'
+#' @rdname decdeg
+#' @export
+
+print.decdeg <- function(x, ...) {
+    cat(paste("\n\t", zapsmall(x), "decimal degrees\n"))
     invisible(x)
 } 
