@@ -80,7 +80,7 @@ dms_to_decdeg.list <- function(object) {
 #'
 #' @param x numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.
 #'
-#' @param pointafter a character string specifying the position of the decimal point in `degminsec`; must be one of
+#' @param pointafter a character string specifying the position of the decimal point in `x`; must be one of
 #'   "deg" (default), "min", or "sec". You can specify just the initial letter.
 #'
 #' @return An object of class `"degminsec"`, representing a coordinate of latitude or longitude in degrees, minutes
