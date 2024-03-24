@@ -101,7 +101,7 @@ print.decdeg <- function(x, ...) {
 #'
 #' @details
 #' `degminsec()` is a generic S3 function. The default method works with a numeric (`double`) representing a
-#' coordinate of latitude or longitude in degrees, minutes and seconds. The argument `pointafter` indicates the
+#' coordinate of latitude or longitude in degrees, minutes and seconds. The argument `.after` indicates the
 #' position of the decimal point, which may be placed after the degrees, the minutes or the (whole) seconds, and by
 #' default assumed to be placed after the degrees.
 #'
@@ -111,7 +111,7 @@ print.decdeg <- function(x, ...) {
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
-#' @param pointafter a character string specifying the position of the decimal point in `x`; must be one of
+#' @param .after a character string specifying the position of the decimal point in `x`; must be one of
 #'   "deg" (default), "min", or "sec". You can specify just the initial letter.
 #'
 #' @return An object of class `"degminsec"`, representing a coordinate of latitude or longitude in degrees, minutes
@@ -128,11 +128,11 @@ print.decdeg <- function(x, ...) {
 #' @export
 #' @examples
 #' degminsec(49.32464)
-#' degminsec(49.32464, pointafter = "deg")
-#' degminsec(4932.464, pointafter = "min")
-#' degminsec(493246.4, pointafter = "sec")
+#' degminsec(49.32464, .after = "deg")
+#' degminsec(4932.464, .after = "min")
+#' degminsec(493246.4, .after = "sec")
 
-degminsec <- function(x, ...) {
+degminsec <- function(object, ...) {
     UseMethod("degminsec")
 }
 
@@ -143,9 +143,9 @@ degminsec <- function(x, ...) {
 #' @rdname degminsec
 #' @export
 
-degminsec.default <- function(x, ..., pointafter = c("deg", "min", "sec")) {
+degminsec.default <- function(object, ..., .after = c("deg", "min", "sec")) {
     check_dots_empty()
-    new_degminsec(x, pointafter) |> validate_degminsec()
+    new_degminsec(x, .after) |> validate_degminsec()
 }
 
 # ========================================
@@ -154,9 +154,9 @@ degminsec.default <- function(x, ..., pointafter = c("deg", "min", "sec")) {
 #
 #  not exported
 
-new_degminsec <- function(dms, pointafter = c("deg", "min", "sec")) {
-    pointafter <- match.arg(pointafter)
-    pax <- switch(pointafter,
+new_degminsec <- function(dms, .after = c("deg", "min", "sec")) {
+    .after <- match.arg(.after)
+    pax <- switch(.after,
             deg = 1e0L,
             min = 1e2L,
             sec = 1e4L
@@ -244,9 +244,9 @@ print.degminsec <- function(x, ...) {
 #' @examples
 #'
 #' dms_to_decdeg(49.32464)
-#' dms_to_decdeg(49.32464, pointafter = "deg")
-#' dms_to_decdeg(4932.464, pointafter = "min")
-#' dms_to_decdeg(493246.4, pointafter = "sec")
+#' dms_to_decdeg(49.32464, .after = "deg")
+#' dms_to_decdeg(4932.464, .after = "min")
+#' dms_to_decdeg(493246.4, .after = "sec")
 #'
 #' (coord <- degminsec(49.32464))
 #' dms_to_decdeg(coord)
@@ -267,10 +267,10 @@ dms_to_decdeg <- function(object, ...) {
 #' @rdname dms_to_decdeg
 #' @export
 
-dms_to_decdeg.default <- function(object, ..., pointafter = c("deg", "min", "sec")) {
+dms_to_decdeg.default <- function(object, ..., .after = c("deg", "min", "sec")) {
     check_dots_empty()
     stopifnot(is.numeric(object))
-    degminsec(object, pointafter = pointafter) |>
+    degminsec(object, .after = .after) |>
     dms_to_decdeg()
 }
 

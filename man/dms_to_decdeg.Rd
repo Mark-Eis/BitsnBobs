@@ -9,7 +9,7 @@
 \usage{
 dms_to_decdeg(object, ...)
 
-\method{dms_to_decdeg}{default}(object, ..., pointafter = c("deg", "min", "sec"))
+\method{dms_to_decdeg}{default}(object, ..., .after = c("deg", "min", "sec"))
 
 \method{dms_to_decdeg}{degminsec}(object, ...)
 
@@ -21,7 +21,7 @@ degrees, minutes and seconds or a list of "degminsec" objects.}
 
 \item{...}{further arguments passed to or from other methods.}
 
-\item{pointafter}{a character string specifying the position of the decimal point in \code{x}; must be one of
+\item{.after}{a character string specifying the position of the decimal point in \code{x}; must be one of
 "deg" (default), "min", or "sec". You can specify just the initial letter.}
 }
 \value{
@@ -38,9 +38,9 @@ values paired in a named list (see examples) or with a longer list of coordinate
 \examples{
 
 dms_to_decdeg(49.32464)
-dms_to_decdeg(49.32464, pointafter = "deg")
-dms_to_decdeg(4932.464, pointafter = "min")
-dms_to_decdeg(493246.4, pointafter = "sec")
+dms_to_decdeg(49.32464, .after = "deg")
+dms_to_decdeg(4932.464, .after = "min")
+dms_to_decdeg(493246.4, .after = "sec")
 
 (coord <- degminsec(49.32464))
 dms_to_decdeg(coord)

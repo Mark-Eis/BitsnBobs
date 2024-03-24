@@ -6,19 +6,19 @@
 \alias{print.degminsec}
 \title{Create Degrees, Minutes and Seconds Object}
 \usage{
-degminsec(x, ...)
+degminsec(object, ...)
 
-\method{degminsec}{default}(x, ..., pointafter = c("deg", "min", "sec"))
+\method{degminsec}{default}(object, ..., .after = c("deg", "min", "sec"))
 
 \method{print}{degminsec}(x, ...)
 }
 \arguments{
-\item{x}{numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.}
-
 \item{\dots}{further arguments passed to or from other methods.}
 
-\item{pointafter}{a character string specifying the position of the decimal point in \code{x}; must be one of
+\item{.after}{a character string specifying the position of the decimal point in \code{x}; must be one of
 "deg" (default), "min", or "sec". You can specify just the initial letter.}
+
+\item{x}{numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.}
 }
 \value{
 An object of class \code{"degminsec"}, representing a coordinate of latitude or longitude in degrees, minutes
@@ -36,15 +36,15 @@ minutes and seconds.
 }
 \details{
 \code{degminsec()} is a generic S3 function. The default method works with a numeric (\code{double}) representing a
-coordinate of latitude or longitude in degrees, minutes and seconds. The argument \code{pointafter} indicates the
+coordinate of latitude or longitude in degrees, minutes and seconds. The argument \code{.after} indicates the
 position of the decimal point, which may be placed after the degrees, the minutes or the (whole) seconds, and by
 default assumed to be placed after the degrees.
 }
 \examples{
 degminsec(49.32464)
-degminsec(49.32464, pointafter = "deg")
-degminsec(4932.464, pointafter = "min")
-degminsec(493246.4, pointafter = "sec")
+degminsec(49.32464, .after = "deg")
+degminsec(4932.464, .after = "min")
+degminsec(493246.4, .after = "sec")
 }
 \seealso{
 Other degreeconvert: 
