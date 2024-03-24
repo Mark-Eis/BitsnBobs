@@ -13,12 +13,12 @@ degminsec(object, ...)
 \method{print}{degminsec}(x, ...)
 }
 \arguments{
+\item{object}{numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.}
+
 \item{\dots}{further arguments passed to or from other methods.}
 
 \item{.after}{a character string indicating the position of the decimal point in \code{x}; must be one of
 "deg" (default), "min", or "sec". You can specify just the initial letter.}
-
-\item{x}{numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.}
 }
 \value{
 An object of class \code{"degminsec"}, representing a coordinate of latitude or longitude in degrees, minutes

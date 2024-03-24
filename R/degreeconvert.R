@@ -107,7 +107,7 @@ print.decdeg <- function(x, ...) {
 #'
 #' @family degreeconvert
 #'
-#' @param x numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.
+#' @param object numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
