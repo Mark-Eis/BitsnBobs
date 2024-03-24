@@ -303,3 +303,94 @@ dms_to_decdeg.list <- function(object, ...) {
     stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "degminsec")))))
     lapply(object, dms_to_decdeg)
 }
+
+# =================================
+
+
+# ========================================
+#' Convert Decimal Degrees to Degrees, Minutes and Seconds
+#'
+#' @description
+#' Convert decimal degrees to degrees, minutes and seconds. 
+#'
+#' @details
+#' `decdeg_to_dms()` is an S3 function that works with individual coordinates, latitude and longitude
+#' values paired in a named list (see examples) or with a longer list of coordinates.
+#'
+#' @family degreeconvert
+#'
+#' @param object a numeric or an object of class [`"decdeg"`][decdeg], representing a coordinate of latitude or
+#'   longitude in decimal degrees or a list of "degminsec" objects.
+#'
+#' @inheritParams degminsec
+#'
+#' @return An object of class `"degminsec"`, representing a coordinate of latitude or longitude in degrees, minutes
+#'   and seconds as a named list with components: -
+#'
+#' \item{deg}{degrees represented by an integer with maximum absolute value of 180.}
+#'
+#' \item{min}{minutes represented by a positive integer with value less than 60.}
+#'
+#' \item{sec}{seconds represented by a positive numeric with value less than 60.}
+#'
+#' @keywords utilities
+#'
+#' @export
+#' @examples
+#' decdeg_to_dms(49.54622)
+#' decdeg_to_dms(49.54622, .after = "deg")
+#' decdeg_to_dms(4932.464, .after = "min")
+#' decdeg_to_dms(493246.4, .after = "sec")
+#'
+#' (coord <- degminsec(49.54622))
+#' decdeg_to_dms(coord)
+#'
+#' (coords <- list(lat = degminsec(49.54622), long = degminsec(18.398562)))
+#' decdeg_to_dms(coords)
+#'
+#' rm(coord, coords)
+
+decdeg_to_dms <- function(object, ...) {
+    UseMethod("decdeg_to_dms")
+}
+
+# ========================================
+#  Convert Decimal Degrees to Degrees, Minutes and Seconds
+#  S3method decdeg_to_dms.default()
+#'
+#' @rdname decdeg_to_dms
+#' @export
+
+decdeg_to_dms.default <- function(object, ..., .after = c("deg", "min", "sec")) {
+    check_dots_empty()
+    stopifnot(is.numeric(object))
+    degminsec(object, .after = .after) |>
+    decdeg_to_dms()
+}
+
+# ========================================
+#  Convert Decimal Degrees in a "decdeg" object to Degrees, Minutes and Seconds
+#  S3method decdeg_to_dms.degminsec()
+#'
+#' @rdname decdeg_to_dms
+#' @export
+
+decdeg_to_dms.degminsec <- function(object, ...) {
+    check_dots_empty()
+    validate_degminsec(object)
+    with(object, deg + min / 60 + sec / 3600) |>
+    decdeg()
+}
+
+# ========================================
+#  Convert Decimal Degrees in a list to Degrees, Minutes and Seconds
+#  S3method decdeg_to_dms.list()
+#'
+#' @rdname decdeg_to_dms
+#' @export
+
+decdeg_to_dms.list <- function(object, ...) {
+    check_dots_empty()
+    stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "degminsec")))))
+    lapply(object, decdeg_to_dms)
+}
