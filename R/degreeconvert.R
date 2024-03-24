@@ -111,7 +111,7 @@ print.decdeg <- function(x, ...) {
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
-#' @param .after a character string specifying the position of the decimal point in `x`; must be one of
+#' @param .after a character string indicating the position of the decimal point in `x`; must be one of
 #'   "deg" (default), "min", or "sec". You can specify just the initial letter.
 #'
 #' @return An object of class `"degminsec"`, representing a coordinate of latitude or longitude in degrees, minutes
