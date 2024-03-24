@@ -21,7 +21,9 @@
 #'
 #' @param object numeric, representing a coordinate of latitude or longitude in decimal degrees.
 #'
-#' @inheritParams degminsec
+#' @param \dots further arguments passed to or from other methods.
+#'
+#' @param x object to be printed.
 #'
 #' @return An object of class `"decdeg"`, representing a coordinate of latitude or longitude in decimal degrees
 #'   represented by a numeric of type `double` with maximum absolute value of 180.
@@ -109,10 +111,10 @@ print.decdeg <- function(x, ...) {
 #'
 #' @param object numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.
 #'
-#' @param \dots further arguments passed to or from other methods.
-#'
 #' @param .after a character string indicating the position of the decimal point in `object`; must be one of
 #'   "deg" (default), "min", or "sec". You can specify just the initial letter.
+#'
+#' @inheritParams decdeg
 #'
 #' @return An object of class `"degminsec"`, representing a coordinate of latitude or longitude in degrees, minutes
 #'   and seconds as a named list with components: -

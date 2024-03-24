@@ -15,7 +15,9 @@ decdeg(object, ...)
 \arguments{
 \item{object}{numeric, representing a coordinate of latitude or longitude in decimal degrees.}
 
-\item{...}{further arguments passed to or from other methods.}
+\item{\dots}{further arguments passed to or from other methods.}
+
+\item{x}{object to be printed.}
 }
 \value{
 An object of class \code{"decdeg"}, representing a coordinate of latitude or longitude in decimal degrees
