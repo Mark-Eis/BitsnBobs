@@ -145,7 +145,7 @@ degminsec <- function(object, ...) {
 
 degminsec.default <- function(object, ..., .after = c("deg", "min", "sec")) {
     check_dots_empty()
-    new_degminsec(x, .after) |> validate_degminsec()
+    new_degminsec(object, .after) |> validate_degminsec()
 }
 
 # ========================================
