@@ -8,7 +8,7 @@ Authors@R:
 Description: Does this and that using functions: boxcox3(), browse(),
     cat_names(), cc_rate(), cohens_kappa(), const(), cor_coef.test(),
     count_lgl(), data_wizard(), decdeg(), degminsec(), design_effect(),
-    detective(), detective()<-, dms_to_decdeg() eff_rate(), endstop(),
+    detective(), detective()<-, dms_to_decdeg(), eff_rate(), endstop(),
     endstop_data(), facet_histo(), fct_to_num(), formul_pwrseq(),
     get_amortint(), get_amortval(), iterate(), j(), j2eff_rate(),
     known_s3generics(), kwd_cols(), kwd_cols()<-, lf(), lgl_cols(),
