@@ -58,7 +58,8 @@ dms_to_decdeg <- function(object, ...) {
 dms_to_decdeg.degminsec <- function(object, ...) {
     check_dots_empty()
     validate_degminsec(object)
-    with(object, deg + min / 60 + sec / 3600)
+    with(object, deg + min / 60 + sec / 3600) |>
+    decdeg()
 }
 
 # ========================================
@@ -71,8 +72,8 @@ dms_to_decdeg.degminsec <- function(object, ...) {
 dms_to_decdeg.default <- function(object, ..., pointafter = c("deg", "min", "sec")) {
     check_dots_empty()
     stopifnot(is.numeric(object))
-    # with(degminsec(object, pointafter = pointafter), deg + min / 60 + sec / 3600)
-    with(degminsec(object, pointafter = pointafter), dms_to_decdeg)
+    degminsec(object, pointafter = pointafter) |>
+    dms_to_decdeg()
 }
 
 # ========================================
