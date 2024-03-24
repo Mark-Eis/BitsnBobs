@@ -43,14 +43,15 @@ position of the decimal point, which may be placed after the degrees, the minute
 default assumed to be placed after the degrees.
 }
 \examples{
-degminsec(49.32464)
-degminsec(49.32464, .after = "deg")
-degminsec(4932.464, .after = "min")
-degminsec(493246.4, .after = "sec")
+degminsec(49.3246368)
+degminsec(49.3246368, .after = "deg")
+degminsec(4932.46368, .after = "min")
+degminsec(493246.368, .after = "sec")
 }
 \seealso{
 Other degreeconvert: 
 \code{\link{decdeg}()},
+\code{\link{decdeg_to_dms}()},
 \code{\link{dms_to_decdeg}()}
 }
 \concept{degreeconvert}

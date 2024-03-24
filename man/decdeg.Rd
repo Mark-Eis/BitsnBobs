@@ -31,10 +31,11 @@ The function \code{decdeg()} is used to create (latitude or longitude) coordinat
 coordinate of latitude or longitude in decimal degrees.
 }
 \examples{
-decdeg(49.54622)
+decdeg(49.54621)
 }
 \seealso{
 Other degreeconvert: 
+\code{\link{decdeg_to_dms}()},
 \code{\link{degminsec}()},
 \code{\link{dms_to_decdeg}()}
 }

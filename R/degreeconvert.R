@@ -32,7 +32,7 @@
 #'
 #' @export
 #' @examples
-#' decdeg(49.54622)
+#' decdeg(49.54621)
 
 decdeg <- function(object, ...) {
     UseMethod("decdeg")
@@ -130,10 +130,10 @@ print.decdeg <- function(x, ...) {
 #'
 #' @export
 #' @examples
-#' degminsec(49.32464)
-#' degminsec(49.32464, .after = "deg")
-#' degminsec(4932.464, .after = "min")
-#' degminsec(493246.4, .after = "sec")
+#' degminsec(49.3246368)
+#' degminsec(49.3246368, .after = "deg")
+#' degminsec(4932.46368, .after = "min")
+#' degminsec(493246.368, .after = "sec")
 
 degminsec <- function(object, ...) {
     UseMethod("degminsec")
@@ -235,26 +235,25 @@ print.degminsec <- function(x, ...) {
 #' @family degreeconvert
 #'
 #' @param object a numeric or an object of class [`"degminsec"`][degminsec], representing a coordinate of latitude or
-#'   longitude in degrees, minutes and seconds or a list of "degminsec" objects.
+#'   longitude in degrees, minutes and seconds or a list of `"degminsec"` objects.
 #'
 #' @inheritParams degminsec
 #'
-#' @return An object of class [`"decdeg"`][decdeg], representing a coordinate of latitude or longitude in decimal
-#'   degrees represented by a numeric of type `double` with maximum absolute value of 180, or a list of such objects.
+#' @inherit decdeg return
 #'
 #' @keywords utilities
 #'
 #' @export
 #' @examples
-#' dms_to_decdeg(49.32464)
-#' dms_to_decdeg(49.32464, .after = "deg")
-#' dms_to_decdeg(4932.464, .after = "min")
-#' dms_to_decdeg(493246.4, .after = "sec")
+#' dms_to_decdeg(49.3246368)
+#' dms_to_decdeg(49.3246368, .after = "deg")
+#' dms_to_decdeg(4932.46368, .after = "min")
+#' dms_to_decdeg(493246.368, .after = "sec")
 #'
-#' (coord <- degminsec(49.32464))
+#' (coord <- degminsec(49.3246368))
 #' dms_to_decdeg(coord)
 #'
-#' (coords <- list(lat = degminsec(49.32464), long = degminsec(18.2354822)))
+#' (coords <- list(lat = degminsec(49.3246368), long = degminsec(18.2354822)))
 #' dms_to_decdeg(coords)
 #'
 #' rm(coord, coords)
@@ -320,32 +319,22 @@ dms_to_decdeg.list <- function(object, ...) {
 #' @family degreeconvert
 #'
 #' @param object a numeric or an object of class [`"decdeg"`][decdeg], representing a coordinate of latitude or
-#'   longitude in decimal degrees or a list of "degminsec" objects.
+#'   longitude in decimal degrees or a list of `"decdeg"` objects.
 #'
 #' @inheritParams degminsec
 #'
-#' @return An object of class `"degminsec"`, representing a coordinate of latitude or longitude in degrees, minutes
-#'   and seconds as a named list with components: -
-#'
-#' \item{deg}{degrees represented by an integer with maximum absolute value of 180.}
-#'
-#' \item{min}{minutes represented by a positive integer with value less than 60.}
-#'
-#' \item{sec}{seconds represented by a positive numeric with value less than 60.}
+#' @inherit degminsec return
 #'
 #' @keywords utilities
 #'
 #' @export
 #' @examples
-#' decdeg_to_dms(49.54622)
-#' decdeg_to_dms(49.54622, .after = "deg")
-#' decdeg_to_dms(4932.464, .after = "min")
-#' decdeg_to_dms(493246.4, .after = "sec")
+#' decdeg_to_dms(49.54621)
 #'
-#' (coord <- degminsec(49.54622))
+#' (coord <- decdeg(49.54621))
 #' decdeg_to_dms(coord)
 #'
-#' (coords <- list(lat = degminsec(49.54622), long = degminsec(18.398562)))
+#' (coords <- list(lat = decdeg(49.54621), long = decdeg(18.398562)))
 #' decdeg_to_dms(coords)
 #'
 #' rm(coord, coords)
@@ -361,11 +350,18 @@ decdeg_to_dms <- function(object, ...) {
 #' @rdname decdeg_to_dms
 #' @export
 
-decdeg_to_dms.default <- function(object, ..., .after = c("deg", "min", "sec")) {
+decdeg_to_dms.default <- function(object, ...) {
     check_dots_empty()
     stopifnot(is.numeric(object))
-    degminsec(object, .after = .after) |>
-    decdeg_to_dms()
+    structure(
+        list(
+            deg = as.integer(object %/% 1),
+            min = as.integer(((object %% 1) * 60) %/% 1),
+            sec = (((object %% 1) * 60) %% 1) * 60
+        ),
+        class = "degminsec"
+    ) |>
+    validate_degminsec()
 }
 
 # ========================================
@@ -375,11 +371,9 @@ decdeg_to_dms.default <- function(object, ..., .after = c("deg", "min", "sec")) 
 #' @rdname decdeg_to_dms
 #' @export
 
-decdeg_to_dms.degminsec <- function(object, ...) {
+decdeg_to_dms.decdeg <- function(object, ...) {
     check_dots_empty()
-    validate_degminsec(object)
-    with(object, deg + min / 60 + sec / 3600) |>
-    decdeg()
+    unclass(object) |> decdeg_to_dms()
 }
 
 # ========================================
@@ -391,6 +385,6 @@ decdeg_to_dms.degminsec <- function(object, ...) {
 
 decdeg_to_dms.list <- function(object, ...) {
     check_dots_empty()
-    stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "degminsec")))))
+    stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "decdeg")))))
     lapply(object, decdeg_to_dms)
 }

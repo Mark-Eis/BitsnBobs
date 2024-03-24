@@ -16,8 +16,8 @@ dms_to_decdeg(object, ...)
 \method{dms_to_decdeg}{list}(object, ...)
 }
 \arguments{
-\item{object}{an object of class \code{\link[=degminsec]{"degminsec"}}, representing a coordinate of latitude or longitude in
-degrees, minutes and seconds or a list of "degminsec" objects.}
+\item{object}{a numeric or an object of class \code{\link[=degminsec]{"degminsec"}}, representing a coordinate of latitude or
+longitude in degrees, minutes and seconds or a list of \code{"degminsec"} objects.}
 
 \item{...}{further arguments passed to or from other methods.}
 
@@ -25,8 +25,8 @@ degrees, minutes and seconds or a list of "degminsec" objects.}
 "deg" (default), "min", or "sec". You can specify just the initial letter.}
 }
 \value{
-An object of class \code{\link[=decdeg]{"decdeg"}}, representing a coordinate of latitude or longitude in decimal
-degrees represented by a numeric of type \code{double} with maximum absolute value of 180, or a list of such objects.
+An object of class \code{"decdeg"}, representing a coordinate of latitude or longitude in decimal degrees
+represented by a numeric of type \code{double} with maximum absolute value of 180.
 }
 \description{
 Convert degrees, minutes and seconds to decimal degrees.
@@ -36,15 +36,15 @@ Convert degrees, minutes and seconds to decimal degrees.
 values paired in a named list (see examples) or with a longer list of coordinates.
 }
 \examples{
-dms_to_decdeg(49.32464)
-dms_to_decdeg(49.32464, .after = "deg")
-dms_to_decdeg(4932.464, .after = "min")
-dms_to_decdeg(493246.4, .after = "sec")
+dms_to_decdeg(49.3246368)
+dms_to_decdeg(49.3246368, .after = "deg")
+dms_to_decdeg(4932.46368, .after = "min")
+dms_to_decdeg(493246.368, .after = "sec")
 
-(coord <- degminsec(49.32464))
+(coord <- degminsec(49.3246368))
 dms_to_decdeg(coord)
 
-(coords <- list(lat = degminsec(49.32464), long = degminsec(18.2354822)))
+(coords <- list(lat = degminsec(49.3246368), long = degminsec(18.2354822)))
 dms_to_decdeg(coords)
 
 rm(coord, coords)
@@ -52,6 +52,7 @@ rm(coord, coords)
 \seealso{
 Other degreeconvert: 
 \code{\link{decdeg}()},
+\code{\link{decdeg_to_dms}()},
 \code{\link{degminsec}()}
 }
 \concept{degreeconvert}
