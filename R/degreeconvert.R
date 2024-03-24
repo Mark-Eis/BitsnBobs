@@ -90,7 +90,7 @@ validate_decdeg <- function(dec_deg) {
 #' @export
 
 print.decdeg <- function(x, ...) {
-    rlang::check_dots_used()
+    check_dots_used()
     cat(paste("\t", zapsmall(x), "decimal degrees\n"))
     invisible(x)
 } 
@@ -217,7 +217,7 @@ validate_degminsec <- function(dms) {
 #' @export
 
 print.degminsec <- function(x, ...) {
-    rlang::check_dots_used()
+    check_dots_used()
     with(x, cat(paste("\t", deg, "degrees,", min, "minutes,", zapsmall(sec), "seconds\n")))
     invisible(x)
 } 
