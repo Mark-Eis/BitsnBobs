@@ -1,13 +1,13 @@
 Package: BitsnBobs
 Title: For General Bits and Bobs of Code
-Version: 0.0.5.00019
-Date: 2024-03-23
+Version: 0.0.5.00020
+Date: 2024-03-24
 Authors@R: 
     person("Mark", "Eisler", , "Mark.Eisler@bristol.ac.uk", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-6843-3345"))
 Description: Does this and that using functions: boxcox3(), browse(),
     cat_names(), cc_rate(), cohens_kappa(), const(), cor_coef.test(),
-    count_lgl(), data_wizard(),decdeg(), degminsec(), design_effect(),
+    count_lgl(), data_wizard(), decdeg(), degminsec(), design_effect(),
     detective(), detective()<-, dms_to_decdeg() eff_rate(), endstop(),
     endstop_data(), facet_histo(), fct_to_num(), formul_pwrseq(),
     get_amortint(), get_amortval(), iterate(), j(), j2eff_rate(),
