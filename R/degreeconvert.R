@@ -234,8 +234,8 @@ print.degminsec <- function(x, ...) {
 #'
 #' @family degreeconvert
 #'
-#' @param object an object of class [`"degminsec"`][degminsec], representing a coordinate of latitude or longitude in
-#'   degrees, minutes and seconds or a list of "degminsec" objects.
+#' @param object a numeric or an object of class [`"degminsec"`][degminsec], representing a coordinate of latitude or
+#'   longitude in degrees, minutes and seconds or a list of "degminsec" objects.
 #'
 #' @inheritParams degminsec
 #'
