@@ -2,16 +2,16 @@
 % Please edit documentation in R/degreeconvert.R
 \name{dms_to_decdeg}
 \alias{dms_to_decdeg}
-\alias{dms_to_decdeg.degminsec}
 \alias{dms_to_decdeg.default}
+\alias{dms_to_decdeg.degminsec}
 \alias{dms_to_decdeg.list}
 \title{Convert Degrees, Minutes and Seconds to Decimal Degrees}
 \usage{
 dms_to_decdeg(object, ...)
 
-\method{dms_to_decdeg}{degminsec}(object, ...)
-
 \method{dms_to_decdeg}{default}(object, ..., pointafter = c("deg", "min", "sec"))
+
+\method{dms_to_decdeg}{degminsec}(object, ...)
 
 \method{dms_to_decdeg}{list}(object, ...)
 }
