@@ -19,7 +19,7 @@ decdeg(x, ...)
 }
 \value{
 An object of class \code{"decdeg"}, representing a coordinate of latitude or longitude in decimal degrees
-represented by a numeric \code{ddeg} with maximum absolute value of 180.
+represented by a numeric of type \code{double} with maximum absolute value of 180.
 }
 \description{
 The function \code{decdeg()} is used to create (latitude or longitude) coordinate objects represented in decimal degrees.

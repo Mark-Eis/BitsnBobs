@@ -25,7 +25,8 @@ degrees, minutes and seconds or a list of "degminsec" objects.}
 "deg" (default), "min", or "sec". You can specify just the initial letter.}
 }
 \value{
-numeric, a coordinate of latitude or longitude in decimal degrees
+An object of class \code{\link[=decdeg]{"decdeg"}}, representing a coordinate of latitude or longitude in decimal
+degrees represented by a numeric of type \code{double} with maximum absolute value of 180, or a list of such objects.
 }
 \description{
 Convert degrees, minutes and seconds to decimal degrees.

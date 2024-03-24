@@ -24,7 +24,8 @@
 #'
 #' @inheritParams degminsec
 #'
-#' @return numeric, a coordinate of latitude or longitude in decimal degrees
+#' @return An object of class [`"decdeg"`][decdeg], representing a coordinate of latitude or longitude in decimal
+#'   degrees represented by a numeric of type `double` with maximum absolute value of 180, or a list of such objects.
 #'
 #' @keywords utilities
 #'
@@ -86,7 +87,7 @@ dms_to_decdeg.default <- function(object, ..., pointafter = c("deg", "min", "sec
 dms_to_decdeg.list <- function(object, ...) {
     check_dots_empty()
     stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "degminsec")))))
-    map_dbl(object, dms_to_decdeg)
+    lapply(object, dms_to_decdeg)
 }
 
 # ========================================
@@ -232,7 +233,7 @@ print.degminsec <- function(x, ...) {
 #' @inheritParams degminsec
 #'
 #' @return An object of class `"decdeg"`, representing a coordinate of latitude or longitude in decimal degrees
-#'   represented by a numeric `ddeg` with maximum absolute value of 180.
+#'   represented by a numeric of type `double` with maximum absolute value of 180.
 #'
 #' @keywords utilities
 #'
