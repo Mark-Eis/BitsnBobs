@@ -6,14 +6,14 @@
 \alias{print.decdeg}
 \title{Create Decimal Degrees Object}
 \usage{
-decdeg(x, ...)
+decdeg(object, ...)
 
-\method{decdeg}{default}(x, ...)
+\method{decdeg}{default}(object, ...)
 
 \method{print}{decdeg}(x, ...)
 }
 \arguments{
-\item{x}{numeric, representing a coordinate of latitude or longitude in decimal degrees.}
+\item{object}{numeric, representing a coordinate of latitude or longitude in decimal degrees.}
 
 \item{...}{further arguments passed to or from other methods.}
 }

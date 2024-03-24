@@ -19,7 +19,7 @@
 #'
 #' @family degreeconvert
 #'
-#' @param x numeric, representing a coordinate of latitude or longitude in decimal degrees.
+#' @param object numeric, representing a coordinate of latitude or longitude in decimal degrees.
 #'
 #' @inheritParams degminsec
 #'
@@ -32,7 +32,7 @@
 #' @examples
 #' decdeg(49.54622)
 
-decdeg <- function(x, ...) {
+decdeg <- function(object, ...) {
     UseMethod("decdeg")
 }
 
@@ -43,9 +43,9 @@ decdeg <- function(x, ...) {
 #' @rdname decdeg
 #' @export
 
-decdeg.default <- function(x, ...) {
+decdeg.default <- function(object, ...) {
     check_dots_empty()
-    new_decdeg(x) |> validate_decdeg()
+    new_decdeg(object) |> validate_decdeg()
 }
 
 # ========================================
@@ -111,7 +111,7 @@ print.decdeg <- function(x, ...) {
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
-#' @param .after a character string indicating the position of the decimal point in `x`; must be one of
+#' @param .after a character string indicating the position of the decimal point in `object`; must be one of
 #'   "deg" (default), "min", or "sec". You can specify just the initial letter.
 #'
 #' @return An object of class `"degminsec"`, representing a coordinate of latitude or longitude in degrees, minutes
