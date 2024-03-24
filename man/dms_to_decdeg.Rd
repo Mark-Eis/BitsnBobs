@@ -36,7 +36,6 @@ Convert degrees, minutes and seconds to decimal degrees.
 values paired in a named list (see examples) or with a longer list of coordinates.
 }
 \examples{
-
 dms_to_decdeg(49.32464)
 dms_to_decdeg(49.32464, .after = "deg")
 dms_to_decdeg(4932.464, .after = "min")
