@@ -50,8 +50,6 @@ degminsec(4932.46368, .after = "min")
 degminsec(493246.368, .after = "sec")
 
 degminsec(c(lat = 49.3246368, lon = 18.2354822))
-degminsec(c(lat = 49.3246368, lon = 18.2354822), .after = "deg")
-degminsec(c(lat = 4932.46368, lon = 1823.54822), .after = "min")
 degminsec(c(lat = 493246.368, lon = 182354.822), .after = "sec")
 }
 \seealso{

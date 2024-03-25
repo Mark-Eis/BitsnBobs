@@ -44,7 +44,7 @@ decdeg_to_dms(49.54621)
 (coord <- decdeg(49.54621))
 decdeg_to_dms(coord)
 
-(coords <- list(lat = decdeg(49.54621), long = decdeg(18.398562)))
+(coords <- decdeg(c(lat = 49.54621, long = 18.398562)))
 decdeg_to_dms(coords)
 
 rm(coord, coords)

@@ -144,8 +144,6 @@ print.decdeg <- function(x, ...) {
 #' degminsec(493246.368, .after = "sec")
 #'
 #' degminsec(c(lat = 49.3246368, lon = 18.2354822))
-#' degminsec(c(lat = 49.3246368, lon = 18.2354822), .after = "deg")
-#' degminsec(c(lat = 4932.46368, lon = 1823.54822), .after = "min")
 #' degminsec(c(lat = 493246.368, lon = 182354.822), .after = "sec")
 
 degminsec <- function(object, ...) {
@@ -272,7 +270,7 @@ print.degminsec <- function(x, ...) {
 #' (coord <- degminsec(49.3246368))
 #' dms_to_decdeg(coord)
 #'
-#' (coords <- list(lat = degminsec(49.3246368), long = degminsec(18.2354822)))
+#' (coords <- degminsec(c(lat = 49.3246368, lon = 18.2354822))
 #' dms_to_decdeg(coords)
 #'
 #' rm(coord, coords)
@@ -350,7 +348,7 @@ dms_to_decdeg.list <- function(object, ...) {
 #' (coord <- decdeg(49.54621))
 #' decdeg_to_dms(coord)
 #'
-#' (coords <- list(lat = decdeg(49.54621), long = decdeg(18.398562)))
+#' (coords <- decdeg(c(lat = 49.54621, long = 18.398562)))
 #' decdeg_to_dms(coords)
 #'
 #' rm(coord, coords)
