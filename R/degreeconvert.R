@@ -19,20 +19,22 @@
 #'
 #' @family degreeconvert
 #'
-#' @param object numeric, representing a coordinate of latitude or longitude in decimal degrees.
+#' @param object numeric, representing one or more coordinates of latitude or longitude in decimal degrees.
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
 #' @param x object to be printed.
 #'
-#' @return An object of class `"decdeg"`, representing a coordinate of latitude or longitude in decimal degrees
-#'   represented by a numeric of type `double` with maximum absolute value of 180.
+#' @return An object of class `"decdeg"`, instantiating a coordinate of latitude or longitude in decimal degrees
+#'   represented by a numeric of type `double` with maximum absolute value of 180; or if `length(object) > 1`,
+#'   a `list` of such objects.
 #'
 #' @keywords utilities
 #'
 #' @export
 #' @examples
 #' decdeg(49.54621)
+#' decdeg(c(lat = 49.54621, lon = 18.2354822))
 
 decdeg <- function(object, ...) {
     UseMethod("decdeg")
@@ -47,7 +49,12 @@ decdeg <- function(object, ...) {
 
 decdeg.default <- function(object, ...) {
     check_dots_empty()
-    new_decdeg(object) |> validate_decdeg()
+	ndvd <- \(x) new_decdeg(x) |> validate_decdeg()
+
+    if (length(object) > 1)
+	    lapply(object, ndvd)
+    else
+	   ndvd(object)  
 }
 
 # ========================================
