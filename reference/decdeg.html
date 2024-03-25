@@ -60,7 +60,7 @@
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>object</dt>
-<dd><p>numeric, representing a coordinate of latitude or longitude in decimal degrees.</p></dd>
+<dd><p>numeric, representing one or more coordinates of latitude or longitude in decimal degrees.</p></dd>
 
 
 <dt>...</dt>
@@ -75,13 +75,14 @@
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>An object of class <code>"decdeg"</code>, representing a coordinate of latitude or longitude in decimal degrees
-represented by a numeric of type <code>double</code> with maximum absolute value of 180.</p>
+<p>An object of class <code>"decdeg"</code>, or if <code>length(object) &gt; 1</code>, a <code>list</code> of such objects, instantiating a
+coordinate of latitude or longitude in decimal degrees represented by a numeric of type <code>double</code> with maximum
+absolute value of 180 degrees.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>decdeg()</code> is a generic S3 function. The default method works with a numeric (<code>double</code>) representing a
-coordinate of latitude or longitude in decimal degrees.</p>
+    <p><code>decdeg()</code> is a generic S3 function. The default method works with a numeric (<code>double</code>) vector representing one
+or more coordinates of latitude or longitude in decimal degrees.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -95,6 +96,13 @@ coordinate of latitude or longitude in decimal degrees.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">decdeg</span><span class="op">(</span><span class="fl">49.54621</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 49.54621 decimal degrees</span>
+<span class="r-in"><span><span class="fu">decdeg</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">49.54621</span>, lon <span class="op">=</span> <span class="fl">18.2354822</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 49.54621 decimal degrees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 18.235482 decimal degrees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>

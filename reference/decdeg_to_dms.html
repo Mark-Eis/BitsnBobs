@@ -75,8 +75,8 @@ longitude in decimal degrees or a list of <code>"decdeg"</code> objects.</p></dd
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>An object of class <code>"degminsec"</code>, representing a coordinate of latitude or longitude in degrees, minutes
-and seconds as a named list with components: -</p>
+<p>An object of class <code>"degminsec"</code>, or if <code>length(object) &gt; 1</code>, a <code>list</code> of such objects, representing a
+coordinate of latitude or longitude in degrees, minutes and seconds as a named list with components: -</p>
 <dl><dt>deg</dt>
 <dd><p>degrees represented by an integer with maximum absolute value of 180.</p></dd>
 
@@ -112,7 +112,7 @@ values paired in a named list (see examples) or with a longer list of coordinate
 <span class="r-in"><span><span class="fu">decdeg_to_dms</span><span class="op">(</span><span class="va">coord</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 49 degrees, 32 minutes, 46.356 seconds</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="op">(</span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fu"><a href="decdeg.html">decdeg</a></span><span class="op">(</span><span class="fl">49.54621</span><span class="op">)</span>, long <span class="op">=</span> <span class="fu"><a href="decdeg.html">decdeg</a></span><span class="op">(</span><span class="fl">18.398562</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="decdeg.html">decdeg</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">49.54621</span>, long <span class="op">=</span> <span class="fl">18.398562</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 49.54621 decimal degrees</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

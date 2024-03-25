@@ -63,7 +63,8 @@ minutes and seconds.</p>
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>object</dt>
-<dd><p>numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.</p></dd>
+<dd><p>numeric, representing one or more coordinates of latitude or longitude in degrees, minutes and
+seconds.</p></dd>
 
 
 <dt>...</dt>
@@ -83,8 +84,8 @@ minutes and seconds.</p>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>An object of class <code>"degminsec"</code>, representing a coordinate of latitude or longitude in degrees, minutes
-and seconds as a named list with components: -</p>
+<p>An object of class <code>"degminsec"</code>, or if <code>length(object) &gt; 1</code>, a <code>list</code> of such objects, representing a
+coordinate of latitude or longitude in degrees, minutes and seconds as a named list with components: -</p>
 <dl><dt>deg</dt>
 <dd><p>degrees represented by an integer with maximum absolute value of 180.</p></dd>
 
@@ -99,8 +100,8 @@ and seconds as a named list with components: -</p>
 </dl></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>degminsec()</code> is a generic S3 function. The default method works with a numeric (<code>double</code>) representing a
-coordinate of latitude or longitude in degrees, minutes and seconds. The argument <code>.after</code> indicates the
+    <p><code>degminsec()</code> is a generic S3 function. The default method works with a numeric (<code>double</code>) representing one or
+more coordinates of latitude or longitude in degrees, minutes and seconds. The argument <code>.after</code> indicates the
 position of the decimal point, which may be placed after the degrees, the minutes or the (whole) seconds, and by
 default assumed to be placed after the degrees.</p>
     </div>
@@ -122,6 +123,21 @@ default assumed to be placed after the degrees.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 49 degrees, 32 minutes, 46.368 seconds</span>
 <span class="r-in"><span><span class="fu">degminsec</span><span class="op">(</span><span class="fl">493246.368</span>, .after <span class="op">=</span> <span class="st">"sec"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 49 degrees, 32 minutes, 46.368 seconds</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">degminsec</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">49.3246368</span>, lon <span class="op">=</span> <span class="fl">18.2354822</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 49 degrees, 32 minutes, 46.368 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 18 degrees, 23 minutes, 54.822 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">degminsec</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">493246.368</span>, lon <span class="op">=</span> <span class="fl">182354.822</span><span class="op">)</span>, .after <span class="op">=</span> <span class="st">"sec"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 49 degrees, 32 minutes, 46.368 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 18 degrees, 23 minutes, 54.822 seconds</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
