@@ -157,18 +157,18 @@ degminsec.default <- function(object, ..., .after = c("deg", "min", "sec")) {
 #
 #  not exported
 
-new_degminsec <- function(dms, .after = c("deg", "min", "sec")) {
+new_degminsec <- function(x, .after = c("deg", "min", "sec")) {
     .after <- match.arg(.after)
-    pax <- switch(.after,
-            deg = 1e0L,
-            min = 1e2L,
-            sec = 1e4L
+    x <- switch(.after,
+            deg = x,
+            min = x / 1e2L,
+            sec = x / 1e4L
         )
     structure(
         list(
-            deg = as.integer(dms %/% pax),
-            min = as.integer((dms %% pax) * 100 / pax),
-            sec = ((dms %% pax) * 10000 / pax) %% 100
+            deg = as.integer(x),
+            min = as.integer(.up2(x)),
+            sec = .up2(.up2(x))
         ),
         class = "degminsec"
     )
@@ -303,9 +303,6 @@ dms_to_decdeg.list <- function(object, ...) {
     lapply(object, dms_to_decdeg)
 }
 
-# =================================
-
-
 # ========================================
 #' Convert Decimal Degrees to Degrees, Minutes and Seconds
 #'
@@ -388,3 +385,12 @@ decdeg_to_dms.list <- function(object, ...) {
     stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "decdeg")))))
     lapply(object, decdeg_to_dms)
 }
+
+
+# ========================================
+#  Get decimal multiplied by 100
+#  .up2()
+#
+#  not exported
+
+.up2 <- function(x) x %% 1 * 1e2L
