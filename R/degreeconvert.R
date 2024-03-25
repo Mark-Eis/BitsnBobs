@@ -14,8 +14,8 @@
 #' The function `decdeg()` is used to create (latitude or longitude) coordinate objects represented in decimal degrees. 
 #'
 #' @details
-#' `decdeg()` is a generic S3 function. The default method works with a numeric (`double`) representing a
-#' coordinate of latitude or longitude in decimal degrees.
+#' `decdeg()` is a generic S3 function. The default method works with a numeric (`double`) vector representing one
+#' or more coordinates of latitude or longitude in decimal degrees.
 #'
 #' @family degreeconvert
 #'
@@ -25,9 +25,9 @@
 #'
 #' @param x object to be printed.
 #'
-#' @return An object of class `"decdeg"`, instantiating a coordinate of latitude or longitude in decimal degrees
-#'   represented by a numeric of type `double` with maximum absolute value of 180; or if `length(object) > 1`,
-#'   a `list` of such objects.
+#' @return An object of class `"decdeg"`, or if `length(object) > 1`, a `list` of such objects, instantiating a
+#'   coordinate of latitude or longitude in decimal degrees represented by a numeric of type `double` with maximum
+#'   absolute value of 180 degrees.
 #'
 #' @keywords utilities
 #'
@@ -110,22 +110,23 @@ print.decdeg <- function(x, ...) {
 #' minutes and seconds. 
 #'
 #' @details
-#' `degminsec()` is a generic S3 function. The default method works with a numeric (`double`) representing a
-#' coordinate of latitude or longitude in degrees, minutes and seconds. The argument `.after` indicates the
+#' `degminsec()` is a generic S3 function. The default method works with a numeric (`double`) representing one or
+#' more coordinates of latitude or longitude in degrees, minutes and seconds. The argument `.after` indicates the
 #' position of the decimal point, which may be placed after the degrees, the minutes or the (whole) seconds, and by
 #' default assumed to be placed after the degrees.
 #'
 #' @family degreeconvert
 #'
-#' @param object numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.
+#' @param object numeric, representing one or more coordinates of latitude or longitude in degrees, minutes and
+#'   seconds.
 #'
 #' @param .after a character string indicating the position of the decimal point in `object`; must be one of
 #'   "deg" (default), "min", or "sec". You can specify just the initial letter.
 #'
 #' @inheritParams decdeg
 #'
-#' @return An object of class `"degminsec"`, representing a coordinate of latitude or longitude in degrees, minutes
-#'   and seconds as a named list with components: -
+#' @return An object of class `"degminsec"`, or if `length(object) > 1`, a `list` of such objects, representing a
+#'   coordinate of latitude or longitude in degrees, minutes and seconds as a named list with components: -
 #'
 #' \item{deg}{degrees represented by an integer with maximum absolute value of 180.}
 #'
@@ -141,6 +142,11 @@ print.decdeg <- function(x, ...) {
 #' degminsec(49.3246368, .after = "deg")
 #' degminsec(4932.46368, .after = "min")
 #' degminsec(493246.368, .after = "sec")
+#'
+#' degminsec(c(lat = 49.3246368, lon = 18.2354822))
+#' degminsec(c(lat = 49.3246368, lon = 18.2354822), .after = "deg")
+#' degminsec(c(lat = 4932.46368, lon = 1823.54822), .after = "min")
+#' degminsec(c(lat = 493246.368, lon = 182354.822), .after = "sec")
 
 degminsec <- function(object, ...) {
     UseMethod("degminsec")
@@ -155,7 +161,13 @@ degminsec <- function(object, ...) {
 
 degminsec.default <- function(object, ..., .after = c("deg", "min", "sec")) {
     check_dots_empty()
-    new_degminsec(object, .after) |> validate_degminsec()
+    # ndvd <- \(x, a = .after) new_degminsec(x, .after = a) |> validate_degminsec()
+    ndvd <- \(x) new_degminsec(x, .after) |> validate_degminsec()
+
+    if (length(object) > 1)
+	    lapply(object, ndvd)
+    else
+	   ndvd(object)  
 }
 
 # ========================================

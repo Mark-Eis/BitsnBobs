@@ -20,16 +20,16 @@ decdeg(object, ...)
 \item{x}{object to be printed.}
 }
 \value{
-An object of class \code{"decdeg"}, instantiating a coordinate of latitude or longitude in decimal degrees
-represented by a numeric of type \code{double} with maximum absolute value of 180; or if \code{length(object) > 1},
-a \code{list} of such objects.
+An object of class \code{"decdeg"}, or if \code{length(object) > 1}, a \code{list} of such objects, instantiating a
+coordinate of latitude or longitude in decimal degrees represented by a numeric of type \code{double} with maximum
+absolute value of 180 degrees.
 }
 \description{
 The function \code{decdeg()} is used to create (latitude or longitude) coordinate objects represented in decimal degrees.
 }
 \details{
-\code{decdeg()} is a generic S3 function. The default method works with a numeric (\code{double}) representing a
-coordinate of latitude or longitude in decimal degrees.
+\code{decdeg()} is a generic S3 function. The default method works with a numeric (\code{double}) vector representing one
+or more coordinates of latitude or longitude in decimal degrees.
 }
 \examples{
 decdeg(49.54621)

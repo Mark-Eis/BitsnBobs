@@ -13,7 +13,8 @@ degminsec(object, ...)
 \method{print}{degminsec}(x, ...)
 }
 \arguments{
-\item{object}{numeric, representing a coordinate of latitude or longitude in degrees, minutes and seconds.}
+\item{object}{numeric, representing one or more coordinates of latitude or longitude in degrees, minutes and
+seconds.}
 
 \item{...}{further arguments passed to or from other methods.}
 
@@ -23,8 +24,8 @@ degminsec(object, ...)
 \item{x}{object to be printed.}
 }
 \value{
-An object of class \code{"degminsec"}, representing a coordinate of latitude or longitude in degrees, minutes
-and seconds as a named list with components: -
+An object of class \code{"degminsec"}, or if \code{length(object) > 1}, a \code{list} of such objects, representing a
+coordinate of latitude or longitude in degrees, minutes and seconds as a named list with components: -
 
 \item{deg}{degrees represented by an integer with maximum absolute value of 180.}
 
@@ -37,8 +38,8 @@ The function \code{degminsec()} is used to create (latitude or longitude) coordi
 minutes and seconds.
 }
 \details{
-\code{degminsec()} is a generic S3 function. The default method works with a numeric (\code{double}) representing a
-coordinate of latitude or longitude in degrees, minutes and seconds. The argument \code{.after} indicates the
+\code{degminsec()} is a generic S3 function. The default method works with a numeric (\code{double}) representing one or
+more coordinates of latitude or longitude in degrees, minutes and seconds. The argument \code{.after} indicates the
 position of the decimal point, which may be placed after the degrees, the minutes or the (whole) seconds, and by
 default assumed to be placed after the degrees.
 }
@@ -47,6 +48,11 @@ degminsec(49.3246368)
 degminsec(49.3246368, .after = "deg")
 degminsec(4932.46368, .after = "min")
 degminsec(493246.368, .after = "sec")
+
+degminsec(c(lat = 49.3246368, lon = 18.2354822))
+degminsec(c(lat = 49.3246368, lon = 18.2354822), .after = "deg")
+degminsec(c(lat = 4932.46368, lon = 1823.54822), .after = "min")
+degminsec(c(lat = 493246.368, lon = 182354.822), .after = "sec")
 }
 \seealso{
 Other degreeconvert: 
