@@ -49,12 +49,12 @@ decdeg <- function(object, ...) {
 
 decdeg.default <- function(object, ...) {
     check_dots_empty()
-	ndvd <- \(x) new_decdeg(x) |> validate_decdeg()
+    ndvd <- \(x) new_decdeg(x) |> validate_decdeg()
 
     if (length(object) > 1)
-	    lapply(object, ndvd)
+        lapply(object, ndvd)
     else
-	   ndvd(object)  
+       ndvd(object)  
 }
 
 # ========================================
@@ -159,13 +159,12 @@ degminsec <- function(object, ...) {
 
 degminsec.default <- function(object, ..., .after = c("deg", "min", "sec")) {
     check_dots_empty()
-    # ndvd <- \(x, a = .after) new_degminsec(x, .after = a) |> validate_degminsec()
     ndvd <- \(x) new_degminsec(x, .after) |> validate_degminsec()
 
     if (length(object) > 1)
-	    lapply(object, ndvd)
+        lapply(object, ndvd)
     else
-	   ndvd(object)  
+       ndvd(object)  
 }
 
 # ========================================
@@ -270,7 +269,7 @@ print.degminsec <- function(x, ...) {
 #' (coord <- degminsec(49.3246368))
 #' dms_to_decdeg(coord)
 #'
-#' (coords <- degminsec(c(lat = 49.3246368, lon = 18.2354822))
+#' (coords <- degminsec(c(lat = 49.3246368, lon = 18.2354822)))
 #' dms_to_decdeg(coords)
 #'
 #' rm(coord, coords)
@@ -348,7 +347,7 @@ dms_to_decdeg.list <- function(object, ...) {
 #' (coord <- decdeg(49.54621))
 #' decdeg_to_dms(coord)
 #'
-#' (coords <- decdeg(c(lat = 49.54621, long = 18.398562)))
+#' (coords <- decdeg(c(lat = 49.54621, lon = 18.398562)))
 #' decdeg_to_dms(coords)
 #'
 #' rm(coord, coords)
