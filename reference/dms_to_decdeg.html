@@ -128,6 +128,21 @@ values paired in a named list (see examples) or with a longer list of coordinate
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 18.398562 decimal degrees</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="degminsec.html">degminsec</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="op">-</span><span class="fl">37.0642264</span>, lon <span class="op">=</span> <span class="op">-</span><span class="fl">12.1719068</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	37°6'42.264"(W/S)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	12°17'19.068"(W/S)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="fu">dms_to_decdeg</span><span class="op">(</span><span class="va">coords</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 -37.11174 decimal degrees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $lon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	 -12.28863 decimal degrees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">coord</span>, <span class="va">coords</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
