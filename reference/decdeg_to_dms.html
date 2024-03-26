@@ -108,12 +108,12 @@ values paired in a named list (see examples) or with a longer list of coordinate
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">decdeg_to_dms</span><span class="op">(</span><span class="fl">49.54621</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	 49 degrees, 32 minutes, 46.356 seconds (N/E) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	49°32'46.356"(N/E)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">coord</span> <span class="op">&lt;-</span> <span class="fu"><a href="decdeg.html">decdeg</a></span><span class="op">(</span><span class="fl">49.54621</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	 49.54621 decimal degrees</span>
 <span class="r-in"><span><span class="fu">decdeg_to_dms</span><span class="op">(</span><span class="va">coord</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	 49 degrees, 32 minutes, 46.356 seconds (N/E) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	49°32'46.356"(N/E)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="decdeg.html">decdeg</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">49.54621</span>, lon <span class="op">=</span> <span class="fl">18.398562</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
@@ -124,19 +124,19 @@ values paired in a named list (see examples) or with a longer list of coordinate
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="fu">decdeg_to_dms</span><span class="op">(</span><span class="va">coords</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	 49 degrees, 32 minutes, 46.356 seconds (N/E) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	49°32'46.356"(N/E)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	 18 degrees, 23 minutes, 54.8232 seconds (N/E) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	18°23'54.8232"(N/E)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="decdeg.html">decdeg</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="op">-</span><span class="fl">37.11174</span>, lon <span class="op">=</span> <span class="op">-</span><span class="fl">12.28863</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">decdeg_to_dms</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	 37 degrees, 6 minutes, 42.264 seconds (W/S) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	37°6'42.264"(W/S)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	 12 degrees, 17 minutes, 19.068 seconds (W/S) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	12°17'19.068"(W/S)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">coord</span>, <span class="va">coords</span><span class="op">)</span></span></span>
