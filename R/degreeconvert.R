@@ -246,8 +246,10 @@ validate_degminsec <- function(dms) {
 print.degminsec <- function(x, ...) {
     check_dots_used()
     with(x, cat(
-        paste(
-            "\t", deg, "degrees,", min, "minutes,", zapsmall(sec), "seconds",
+        # paste(
+            # "\t", deg, "degrees,", min, "minutes,", zapsmall(sec), "seconds",
+        paste0(
+            "\t", deg, "\u00B0", min, "\'", zapsmall(sec), "\"",
             if (x %@% "negative") "(W/S)" else "(N/E)", "\n" 
         )
     ))
