@@ -134,6 +134,9 @@ print.decdeg <- function(x, ...) {
 #'
 #' \item{sec}{seconds represented by a positive numeric with value less than 60.}
 #'
+#' An attribute `"negative"` indicates whether `object` was originally a negative number i.e. if `TRUE`, the
+#'   value represents a west or south rather than north or east coordinate.
+#'
 #' @keywords utilities
 #'
 #' @export
@@ -374,13 +377,16 @@ decdeg_to_dms <- function(object, ...) {
 decdeg_to_dms.default <- function(object, ...) {
     check_dots_empty()
     stopifnot(is.numeric(object))
+    ltz <- object < 0
+    object <- abs(object)
     structure(
         list(
             deg = as.integer(object %/% 1),
             min = as.integer(((object %% 1) * 60) %/% 1),
             sec = (((object %% 1) * 60) %% 1) * 60
         ),
-        class = "degminsec"
+        class = "degminsec",
+        negative = ltz
     ) |>
     validate_degminsec()
 }

@@ -30,6 +30,9 @@ coordinate of latitude or longitude in degrees, minutes and seconds as a named l
 \item{min}{minutes represented by a positive integer with value less than 60.}
 
 \item{sec}{seconds represented by a positive numeric with value less than 60.}
+
+An attribute \code{"negative"} indicates whether \code{object} was originally a negative number i.e. if \code{TRUE}, the
+value represents a west or south rather than north or east coordinate.
 }
 \description{
 Convert decimal degrees to degrees, minutes and seconds.
