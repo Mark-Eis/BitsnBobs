@@ -175,10 +175,11 @@ degminsec.default <- function(object, ..., .after = c("deg", "min", "sec")) {
 
 new_degminsec <- function(x, .after = c("deg", "min", "sec")) {
     .after <- match.arg(.after)
+    ltz <- x < 0
     x <- switch(.after,
-            deg = x,
-            min = x / 1e2L,
-            sec = x / 1e4L
+            deg = abs(x),
+            min = abs(x) / 1e2L,
+            sec = abs(x) / 1e4L
         )
     structure(
         list(
@@ -186,7 +187,8 @@ new_degminsec <- function(x, .after = c("deg", "min", "sec")) {
             min = as.integer(.up2(x)),
             sec = .up2(.up2(x))
         ),
-        class = "degminsec"
+        class = "degminsec",
+        negative = ltz
     )
 }
 
@@ -204,19 +206,25 @@ validate_degminsec <- function(dms) {
         call. = FALSE
       )
 
-    if (abs(dms$deg) > 180)
+    if (any(dms$deg < 0, dms$min < 0, dms$sec < 0))
+      stop(
+        "`dms$deg`, `dms$min` and `dms$sec` must all be not less than zero",
+        call. = FALSE
+      )
+
+    if (dms$deg > 180)
       stop(
         "`dms$deg` must not be greater than 180",
         call. = FALSE
       )
 
-    if (!abs(dms$min) < 60)
+    if (!dms$min < 60)
       stop(
         "`dms$min` must be less than 60",
         call. = FALSE
       )
 
-    if (!abs(dms$sec) < 60)
+    if (!dms$sec < 60)
       stop(
         "`dms$sec` must be less than 60",
         call. = FALSE
