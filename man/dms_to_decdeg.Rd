@@ -38,7 +38,6 @@ values paired in a named list (see examples) or with a longer list of coordinate
 }
 \examples{
 dms_to_decdeg(49.3246368)
-dms_to_decdeg(49.3246368, .after = "deg")
 dms_to_decdeg(4932.46368, .after = "min")
 dms_to_decdeg(493246.368, .after = "sec")
 

@@ -246,8 +246,6 @@ validate_degminsec <- function(dms) {
 print.degminsec <- function(x, ...) {
     check_dots_used()
     with(x, cat(
-        # paste(
-            # "\t", deg, "degrees,", min, "minutes,", zapsmall(sec), "seconds",
         paste0(
             "\t", deg, "\u00B0", min, "\'", zapsmall(sec), "\"",
             if (x %@% "negative") "(W/S)" else "(N/E)", "\n" 
@@ -280,7 +278,6 @@ print.degminsec <- function(x, ...) {
 #' @export
 #' @examples
 #' dms_to_decdeg(49.3246368)
-#' dms_to_decdeg(49.3246368, .after = "deg")
 #' dms_to_decdeg(4932.46368, .after = "min")
 #' dms_to_decdeg(493246.368, .after = "sec")
 #'
@@ -324,9 +321,7 @@ dms_to_decdeg.degminsec <- function(object, ...) {
     check_dots_empty()
     validate_degminsec(object)
     dd <- with(object, deg + min / 60 + sec / 3600)
-    # {
-    	(if (object %@% "negative") -dd else dd) |>
-    # } |>
+    (if (object %@% "negative") -dd else dd) |>
     decdeg()
 }
 
