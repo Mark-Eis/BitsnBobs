@@ -290,6 +290,9 @@ print.degminsec <- function(x, ...) {
 #' (coords <- degminsec(c(lat = 49.3246368, lon = 18.2354822)))
 #' dms_to_decdeg(coords)
 #'
+#' (coords <- degminsec(c(lat = -37.0642264, lon = -12.1719068)))
+#' dms_to_decdeg(coords)
+#'
 #' rm(coord, coords)
 
 dms_to_decdeg <- function(object, ...) {
@@ -320,7 +323,10 @@ dms_to_decdeg.default <- function(object, ..., .after = c("deg", "min", "sec")) 
 dms_to_decdeg.degminsec <- function(object, ...) {
     check_dots_empty()
     validate_degminsec(object)
-    with(object, deg + min / 60 + sec / 3600) |>
+    dd <- with(object, deg + min / 60 + sec / 3600)
+    # {
+    	(if (object %@% "negative") -dd else dd) |>
+    # } |>
     decdeg()
 }
 

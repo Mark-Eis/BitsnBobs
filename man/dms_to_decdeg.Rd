@@ -48,6 +48,9 @@ dms_to_decdeg(coord)
 (coords <- degminsec(c(lat = 49.3246368, lon = 18.2354822)))
 dms_to_decdeg(coords)
 
+(coords <- degminsec(c(lat = -37.0642264, lon = -12.1719068)))
+dms_to_decdeg(coords)
+
 rm(coord, coords)
 }
 \seealso{
