@@ -35,6 +35,7 @@
 #' @examples
 #' decdeg(49.54621)
 #' decdeg(c(lat = 49.54621, lon = 18.2354822))
+#' decdeg(c(lat = -37.11174, lon = -12.28863))
 
 decdeg <- function(object, ...) {
     UseMethod("decdeg")
@@ -142,12 +143,11 @@ print.decdeg <- function(x, ...) {
 #' @export
 #' @examples
 #' degminsec(49.3246368)
-#' degminsec(49.3246368, .after = "deg")
 #' degminsec(4932.46368, .after = "min")
 #' degminsec(493246.368, .after = "sec")
 #'
 #' degminsec(c(lat = 49.3246368, lon = 18.2354822))
-#' degminsec(c(lat = 493246.368, lon = 182354.822), .after = "sec")
+#' degminsec(c(lat = -370642.264, lon = -121719.068), .after = "sec")
 
 degminsec <- function(object, ...) {
     UseMethod("degminsec")
@@ -245,7 +245,12 @@ validate_degminsec <- function(dms) {
 
 print.degminsec <- function(x, ...) {
     check_dots_used()
-    with(x, cat(paste("\t", deg, "degrees,", min, "minutes,", zapsmall(sec), "seconds\n")))
+    with(x, cat(
+        paste(
+            "\t", deg, "degrees,", min, "minutes,", zapsmall(sec), "seconds",
+            if (x %@% "negative") "(W/S)" else "(N/E)", "\n" 
+        )
+    ))
     invisible(x)
 } 
 
@@ -360,6 +365,9 @@ dms_to_decdeg.list <- function(object, ...) {
 #'
 #' (coords <- decdeg(c(lat = 49.54621, lon = 18.398562)))
 #' decdeg_to_dms(coords)
+#'
+#' decdeg(c(lat = -37.11174, lon = -12.28863)) |>
+#'   decdeg_to_dms()
 #'
 #' rm(coord, coords)
 

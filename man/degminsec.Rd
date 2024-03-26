@@ -48,12 +48,11 @@ default assumed to be placed after the degrees.
 }
 \examples{
 degminsec(49.3246368)
-degminsec(49.3246368, .after = "deg")
 degminsec(4932.46368, .after = "min")
 degminsec(493246.368, .after = "sec")
 
 degminsec(c(lat = 49.3246368, lon = 18.2354822))
-degminsec(c(lat = 493246.368, lon = 182354.822), .after = "sec")
+degminsec(c(lat = -370642.264, lon = -121719.068), .after = "sec")
 }
 \seealso{
 Other degreeconvert: 
