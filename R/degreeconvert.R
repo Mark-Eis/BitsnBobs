@@ -245,14 +245,20 @@ validate_degminsec <- function(dms) {
 
 print.degminsec <- function(x, ...) {
     check_dots_used()
-    with(x, cat(
-        paste0(
-            "\t", deg, "\u00B0", min, "\'", zapsmall(sec), "\"",
-            if (x %@% "negative") "(W/S)" else "(N/E)", "\n" 
-        )
-    ))
+    cat(paste0("\t",.dmsstr(x), if (x %@% "negative") "(W/S)" else "(N/E)", "\n"))
     invisible(x)
 } 
+
+# ========================================
+#  Degrees, Minutes and Seconds as String
+#  .dmsstr()
+#
+#  not exported
+
+.dmsstr <- function(dms) {
+    stopifnot(inherits(dms, "degminsec"))
+    with(dms, paste0(deg, "\u00B0", min, "\'", zapsmall(sec), "\""))
+}
 
 # ========================================
 #' Convert Degrees, Minutes and Seconds to Decimal Degrees
