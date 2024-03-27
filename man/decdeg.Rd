@@ -8,7 +8,7 @@
 \usage{
 decdeg(object, ...)
 
-\method{decdeg}{default}(object, ...)
+\method{decdeg}{default}(object, ..., .latorlon = c(NA, "lat", "lon"))
 
 \method{print}{decdeg}(x, ...)
 }
@@ -16,6 +16,9 @@ decdeg(object, ...)
 \item{object}{numeric, representing one or more coordinates of latitude or longitude in decimal degrees.}
 
 \item{\dots}{further arguments passed to or from other methods.}
+
+\item{.latorlon}{a character string indicating whether the coordinate represented by \code{object} is a latitude or
+longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}. You can specify just the initial letter.}
 
 \item{x}{object to be printed.}
 }

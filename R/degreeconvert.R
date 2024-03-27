@@ -23,6 +23,9 @@
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
+#' @param .latorlon a character string indicating whether the coordinate represented by `object` is a latitude or
+#'   longitude; must be one of `NA` (default), `"lat"`, or `"lon"`. You can specify just the initial letter.
+#'
 #' @param x object to be printed.
 #'
 #' @return An object of class `"decdeg"`, or if `length(object) > 1`, a `list` of such objects, instantiating a
@@ -48,14 +51,15 @@ decdeg <- function(object, ...) {
 #' @rdname decdeg
 #' @export
 
-decdeg.default <- function(object, ...) {
+decdeg.default <- function(object, ..., .latorlon = c(NA, "lat", "lon")) {
     check_dots_empty()
-    ndvd <- \(x) new_decdeg(x) |> validate_decdeg()
+    .latorlon <- match.arg(.latorlon)    
+    ndvd <- \(x) new_decdeg(x, .latorlon) |> validate_decdeg()
 
     if (length(object) > 1)
         lapply(object, ndvd)
     else
-       ndvd(object)  
+        ndvd(object)  
 }
 
 # ========================================
@@ -64,10 +68,8 @@ decdeg.default <- function(object, ...) {
 #
 #  not exported
 
-new_decdeg <- function(d, .latorlon = c(NA, "lat", "lon")) {
-    .latorlon <- match.arg(.latorlon)    
+new_decdeg <- function(d, .latorlon)
     structure(d, class = "decdeg", .latorlon = .latorlon)
-}
 
 # ========================================
 #  Validator
@@ -331,8 +333,8 @@ dms_to_decdeg.degminsec <- function(object, ...) {
     check_dots_empty()
     validate_degminsec(object)
     dd <- with(object, deg + min / 60 + sec / 3600)
-    (if (object %@% "negative") -dd else dd) |>
-    decdeg()
+    dd <- (if (object %@% "negative") -dd else dd)
+    decdeg(dd, .latorlon = dd %@% ".latorlon")
 }
 
 # ========================================
