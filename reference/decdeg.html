@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.00022</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.00023</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,7 +51,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">decdeg</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for default</span></span>
-<span><span class="fu">decdeg</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span><span class="fu">decdeg</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span>, .latorlon <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">NA</span>, <span class="st">"lat"</span>, <span class="st">"lon"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for decdeg</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
@@ -67,6 +67,11 @@
 <dd><p>further arguments passed to or from other methods.</p></dd>
 
 
+<dt>.latorlon</dt>
+<dd><p>a character string indicating whether the coordinate represented by <code>object</code> is a latitude or
+longitude; must be one of <code>NA</code> (default), <code>"lat"</code>, or <code>"lon"</code>.</p></dd>
+
+
 <dt>x</dt>
 <dd><p>object to be printed.</p></dd>
 
@@ -77,7 +82,8 @@
 
 <p>An object of class <code>"decdeg"</code>, or if <code>length(object) &gt; 1</code>, a <code>list</code> of such objects, instantiating a
 coordinate of latitude or longitude in decimal degrees represented by a numeric of type <code>double</code> with maximum
-absolute value of 180 degrees.</p>
+absolute value of <var>180</var>˚. Attribute <code>".latorlon"</code> indicates whether the object is a coordinate of latitude
+or longitude.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
