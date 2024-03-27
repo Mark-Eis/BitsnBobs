@@ -9,7 +9,7 @@
 \usage{
 decdeg_to_dms(object, ...)
 
-\method{decdeg_to_dms}{default}(object, ...)
+\method{decdeg_to_dms}{default}(object, ..., .latorlon = c(NA, "lat", "lon"))
 
 \method{decdeg_to_dms}{decdeg}(object, ...)
 

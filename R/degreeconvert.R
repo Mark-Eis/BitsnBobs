@@ -397,9 +397,10 @@ decdeg_to_dms <- function(object, ...) {
 #' @rdname decdeg_to_dms
 #' @export
 
-decdeg_to_dms.default <- function(object, ...) {
+decdeg_to_dms.default <- function(object, ..., .latorlon = c(NA, "lat", "lon")) {
     check_dots_empty()
     stopifnot(is.numeric(object))
+    .latorlon <- match.arg(.latorlon)    
     ltz <- object < 0
     object <- abs(object)
     structure(
@@ -409,7 +410,8 @@ decdeg_to_dms.default <- function(object, ...) {
             sec = (((object %% 1) * 60) %% 1) * 60
         ),
         class = "degminsec",
-        negative = ltz
+        negative = ltz,
+        .latorlon = .latorlon
     ) |>
     validate_degminsec()
 }
@@ -423,7 +425,8 @@ decdeg_to_dms.default <- function(object, ...) {
 
 decdeg_to_dms.decdeg <- function(object, ...) {
     check_dots_empty()
-    unclass(object) |> decdeg_to_dms()
+    as.numeric(object) |>
+    decdeg_to_dms(.latorlon = object %@% ".latorlon")
 }
 
 # ========================================
