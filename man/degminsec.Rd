@@ -60,6 +60,8 @@ degminsec(49.3246368)
 degminsec(4932.46368, .after = "min")
 degminsec(493246.368, .after = "sec")
 
+degminsec(49.3246368, .latorlon = "lat")
+
 degminsec(c(lat = 49.3246368, lon = 18.2354822))
 degminsec(c(lat = -370642.264, lon = -121719.068), .after = "sec")
 }

@@ -38,7 +38,7 @@
 #' @export
 #' @examples
 #' decdeg(49.54621)
-#' decdeg(49.54621, .latlon = "lat")
+#' decdeg(49.54621, .latorlon = "lat")
 #' decdeg(c(lat = 49.54621, lon = 18.2354822))
 #' decdeg(c(lat = -37.11174, lon = -12.28863))
 
@@ -153,7 +153,7 @@ print.decdeg <- function(x, ...) {
 #' degminsec(4932.46368, .after = "min")
 #' degminsec(493246.368, .after = "sec")
 #'
-#' degminsec(49.3246368, .latlon = "lat")
+#' degminsec(49.3246368, .latorlon = "lat")
 #'
 #' degminsec(c(lat = 49.3246368, lon = 18.2354822))
 #' degminsec(c(lat = -370642.264, lon = -121719.068), .after = "sec")
