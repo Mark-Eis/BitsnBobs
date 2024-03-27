@@ -64,8 +64,10 @@ decdeg.default <- function(object, ...) {
 #
 #  not exported
 
-new_decdeg <- function(d)
-    structure(d, class = "decdeg")
+new_decdeg <- function(d, .latorlon = c(NA, "lat", "lon")) {
+    .latorlon <- match.arg(.latorlon)    
+    structure(d, class = "decdeg", .latorlon = .latorlon)
+}
 
 # ========================================
 #  Validator
