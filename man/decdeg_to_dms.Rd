@@ -34,8 +34,9 @@ coordinate of latitude or longitude in degrees, minutes and seconds as a named l
 
 \item{sec}{seconds represented by a positive numeric with value less than 60.}
 
-An attribute \code{"negative"} indicates whether \code{object} was originally a negative number i.e. if \code{TRUE}, the
-value represents a west or south rather than north or east coordinate.
+Attribute \code{"negative"} indicates whether \code{object} was originally a negative number i.e. if \code{TRUE}, the
+value represents a west or south rather than north or east coordinate. Attribute \code{".latorlon"} indicates
+whether the object is a coordinate of latitude or longitude.
 }
 \description{
 Convert decimal degrees to degrees, minutes and seconds.

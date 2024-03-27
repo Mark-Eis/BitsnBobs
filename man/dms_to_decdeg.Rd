@@ -27,7 +27,8 @@ longitude in degrees, minutes and seconds or a list of \code{"degminsec"} object
 \value{
 An object of class \code{"decdeg"}, or if \code{length(object) > 1}, a \code{list} of such objects, instantiating a
 coordinate of latitude or longitude in decimal degrees represented by a numeric of type \code{double} with maximum
-absolute value of 180 degrees.
+absolute value of \var{180}˚. Attribute \code{".latorlon"} indicates whether the object is a coordinate of latitude
+or longitude.
 }
 \description{
 Convert degrees, minutes and seconds to decimal degrees.

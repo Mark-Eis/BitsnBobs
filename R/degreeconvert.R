@@ -30,13 +30,15 @@
 #'
 #' @return An object of class `"decdeg"`, or if `length(object) > 1`, a `list` of such objects, instantiating a
 #'   coordinate of latitude or longitude in decimal degrees represented by a numeric of type `double` with maximum
-#'   absolute value of 180 degrees.
+#'   absolute value of \var{180}˚. Attribute `".latorlon"` indicates whether the object is a coordinate of latitude
+#'   or longitude.
 #'
 #' @keywords utilities
 #'
 #' @export
 #' @examples
 #' decdeg(49.54621)
+#' decdeg(49.54621, .latlon = "lat")
 #' decdeg(c(lat = 49.54621, lon = 18.2354822))
 #' decdeg(c(lat = -37.11174, lon = -12.28863))
 
@@ -139,8 +141,9 @@ print.decdeg <- function(x, ...) {
 #'
 #' \item{sec}{seconds represented by a positive numeric with value less than 60.}
 #'
-#' An attribute `"negative"` indicates whether `object` was originally a negative number i.e. if `TRUE`, the
-#'   value represents a west or south rather than north or east coordinate.
+#' Attribute `"negative"` indicates whether `object` was originally a negative number i.e. if `TRUE`, the
+#'   value represents a west or south rather than north or east coordinate. Attribute `".latorlon"` indicates
+#'   whether the object is a coordinate of latitude or longitude.
 #'
 #' @keywords utilities
 #'
@@ -149,6 +152,8 @@ print.decdeg <- function(x, ...) {
 #' degminsec(49.3246368)
 #' degminsec(4932.46368, .after = "min")
 #' degminsec(493246.368, .after = "sec")
+#'
+#' degminsec(49.3246368, .latlon = "lat")
 #'
 #' degminsec(c(lat = 49.3246368, lon = 18.2354822))
 #' degminsec(c(lat = -370642.264, lon = -121719.068), .after = "sec")
