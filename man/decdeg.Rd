@@ -18,7 +18,7 @@ decdeg(object, ...)
 \item{\dots}{further arguments passed to or from other methods.}
 
 \item{.latorlon}{a character string indicating whether the coordinate represented by \code{object} is a latitude or
-longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}. You can specify just the initial letter.}
+longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 
 \item{x}{object to be printed.}
 }

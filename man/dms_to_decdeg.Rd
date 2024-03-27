@@ -22,7 +22,7 @@ longitude in degrees, minutes and seconds or a list of \code{"degminsec"} object
 \item{...}{further arguments passed to or from other methods.}
 
 \item{.after}{a character string indicating the position of the decimal point in \code{object}; must be one of
-"deg" (default), "min", or "sec". You can specify just the initial letter.}
+\code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
 }
 \value{
 An object of class \code{"decdeg"}, or if \code{length(object) > 1}, a \code{list} of such objects, instantiating a

@@ -8,7 +8,12 @@
 \usage{
 degminsec(object, ...)
 
-\method{degminsec}{default}(object, ..., .after = c("deg", "min", "sec"))
+\method{degminsec}{default}(
+  object,
+  ...,
+  .after = c("deg", "min", "sec"),
+  .latorlon = c(NA, "lat", "lon")
+)
 
 \method{print}{degminsec}(x, ...)
 }
@@ -19,7 +24,10 @@ seconds.}
 \item{...}{further arguments passed to or from other methods.}
 
 \item{.after}{a character string indicating the position of the decimal point in \code{object}; must be one of
-"deg" (default), "min", or "sec". You can specify just the initial letter.}
+\code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
+
+\item{.latorlon}{a character string indicating whether the coordinate represented by \code{object} is a latitude or
+longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 
 \item{x}{object to be printed.}
 }

@@ -24,7 +24,7 @@
 #' @param \dots further arguments passed to or from other methods.
 #'
 #' @param .latorlon a character string indicating whether the coordinate represented by `object` is a latitude or
-#'   longitude; must be one of `NA` (default), `"lat"`, or `"lon"`. You can specify just the initial letter.
+#'   longitude; must be one of `NA` (default), `"lat"`, or `"lon"`.
 #'
 #' @param x object to be printed.
 #'
@@ -126,7 +126,7 @@ print.decdeg <- function(x, ...) {
 #'   seconds.
 #'
 #' @param .after a character string indicating the position of the decimal point in `object`; must be one of
-#'   "deg" (default), "min", or "sec". You can specify just the initial letter.
+#'   `"deg"` (default), `"min"`, or `"sec"`. You can specify just the initial letter.
 #'
 #' @inheritParams decdeg
 #'
@@ -164,9 +164,10 @@ degminsec <- function(object, ...) {
 #' @rdname degminsec
 #' @export
 
-degminsec.default <- function(object, ..., .after = c("deg", "min", "sec")) {
+degminsec.default <- function(object, ..., .after = c("deg", "min", "sec"), .latorlon = c(NA, "lat", "lon")) {
     check_dots_empty()
-    ndvd <- \(x) new_degminsec(x, .after) |> validate_degminsec()
+    ndvd <- \(x) new_degminsec(x, .after, .latorlon) |>
+        validate_degminsec()
 
     if (length(object) > 1)
         lapply(object, ndvd)
@@ -319,7 +320,7 @@ dms_to_decdeg.default <- function(object, ..., .after = c("deg", "min", "sec")) 
     check_dots_empty()
     stopifnot(is.numeric(object))
     degminsec(object, .after = .after) |>
-    dms_to_decdeg()
+        dms_to_decdeg()
 }
 
 # ========================================
@@ -334,7 +335,7 @@ dms_to_decdeg.degminsec <- function(object, ...) {
     validate_degminsec(object)
     dd <- with(object, deg + min / 60 + sec / 3600)
     dd <- (if (object %@% "negative") -dd else dd)
-    decdeg(dd, .latorlon = dd %@% ".latorlon")
+    decdeg(dd, .latorlon = object %@% ".latorlon")
 }
 
 # ========================================

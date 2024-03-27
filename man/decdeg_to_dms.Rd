@@ -20,6 +20,9 @@ decdeg_to_dms(object, ...)
 longitude in decimal degrees or a list of \code{"decdeg"} objects.}
 
 \item{...}{further arguments passed to or from other methods.}
+
+\item{.latorlon}{a character string indicating whether the coordinate represented by \code{object} is a latitude or
+longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 }
 \value{
 An object of class \code{"degminsec"}, or if \code{length(object) > 1}, a \code{list} of such objects, representing a
