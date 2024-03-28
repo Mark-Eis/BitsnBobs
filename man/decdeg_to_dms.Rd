@@ -46,9 +46,9 @@ Convert decimal degrees to degrees, minutes and seconds.
 values paired in a named list (see examples) or with a longer list of coordinates.
 }
 \examples{
-decdeg_to_dms(49.54621)
+decdeg_to_dms(49.54621, .latorlon = "lat")
 
-(coord <- decdeg(49.54621))
+(coord <- decdeg(49.54621, .latorlon = "lat"))
 decdeg_to_dms(coord)
 
 (coords <- decdeg(c(lat = 49.54621, lon = 18.398562)))

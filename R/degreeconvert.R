@@ -38,11 +38,7 @@
 #' @export
 #' @examples
 #' decdeg(49.54621)
-# #' decdeg(49.54621, .latorlon = "lat")
-# #' decdeg(18.2354822, .latorlon = "lon"))
 #' decdeg(c(lat = 49.54621, lon = 18.2354822))
-# #' decdeg(-37.11174, .latorlon = "lat"))
-# #' decdeg(-12.28863, .latorlon = "lon")
 #' decdeg(c(lat = -37.11174, lon = -12.28863))
 
 decdeg <- function(object, ...) {
@@ -408,9 +404,9 @@ dms_to_decdeg.list <- function(object, ...) {
 #'
 #' @export
 #' @examples
-#' decdeg_to_dms(49.54621)
+#' decdeg_to_dms(49.54621, .latorlon = "lat")
 #'
-#' (coord <- decdeg(49.54621))
+#' (coord <- decdeg(49.54621, .latorlon = "lat"))
 #' decdeg_to_dms(coord)
 #'
 #' (coords <- decdeg(c(lat = 49.54621, lon = 18.398562)))
