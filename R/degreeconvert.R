@@ -82,16 +82,22 @@ new_decdeg <- function(d, .latorlon)
 validate_decdeg <- function(dec_deg) {
 
     if (!inherits(dec_deg, "decdeg"))
-      stop(
-        "`dec_deg` must be of class \"decdeg\"",
-        call. = FALSE
-      )
+        stop(
+            "`dec_deg` must be of class \"decdeg\"",
+            call. = FALSE
+        )
 
     if (abs(dec_deg) > 180)
-      stop(
-        "`dec_deg` must not be greater than 180",
-        call. = FALSE
-      )
+        stop(
+            "`dec_deg` must not be greater than 180",
+            call. = FALSE
+        )
+
+    if (!dec_deg %@% ".latorlon" %in% c(NA, "lat", "lon"))
+        stop(
+            "Attribute `\".latorlon\"` must be one of `NA`, `\"lat\"`, `\"lon\"`",
+            call. = FALSE
+        )    
     
     dec_deg
 }
