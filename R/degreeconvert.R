@@ -421,22 +421,11 @@ decdeg_to_dms <- function(object, ...) {
 #' @export
 
 decdeg_to_dms.default <- function(object, ..., .latorlon = c(NA, "lat", "lon")) {
-    check_dots_empty()
     stopifnot(is.numeric(object))
-    .latorlon <- match.arg(.latorlon)    
-    ltz <- object < 0
-    object <- abs(object)
-    structure(
-        list(
-            deg = as.integer(object %/% 1),
-            min = as.integer(((object %% 1) * 60) %/% 1),
-            sec = (((object %% 1) * 60) %% 1) * 60
-        ),
-        class = "degminsec",
-        negative = ltz,
-        .latorlon = .latorlon
-    ) |>
-    validate_degminsec()
+    check_dots_empty()
+   .latorlon <- match.arg(.latorlon)    
+    decdeg(object, .latorlon = .latorlon) |>
+    decdeg_to_dms()
 }
 
 # ========================================
