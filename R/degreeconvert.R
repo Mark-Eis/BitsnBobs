@@ -216,35 +216,47 @@ new_degminsec <- function(x, .after = c("deg", "min", "sec"), .latorlon = c(NA, 
 validate_degminsec <- function(dms) {
 
     if (!inherits(dms, "degminsec"))
-      stop(
-        "`dms` must be of class \"degminsec\"",
-        call. = FALSE
-      )
+        stop(
+            "`dms` must be of class \"degminsec\"",
+            call. = FALSE
+        )
 
     if (any(dms$deg < 0, dms$min < 0, dms$sec < 0))
-      stop(
-        "`dms$deg`, `dms$min` and `dms$sec` must all be not less than zero",
-        call. = FALSE
-      )
+        stop(
+            "`dms$deg`, `dms$min` and `dms$sec` must all be not less than zero",
+            call. = FALSE
+        )
 
     if (dms$deg > 180)
-      stop(
-        "`dms$deg` must not be greater than 180",
-        call. = FALSE
-      )
+        stop(
+            "`dms$deg` must not be greater than 180",
+            call. = FALSE
+        )
 
     if (!dms$min < 60)
-      stop(
-        "`dms$min` must be less than 60",
-        call. = FALSE
-      )
+        stop(
+            "`dms$min` must be less than 60",
+            call. = FALSE
+        )
 
     if (!dms$sec < 60)
-      stop(
-        "`dms$sec` must be less than 60",
-        call. = FALSE
-      )
-    
+        stop(
+            "`dms$sec` must be less than 60",
+            call. = FALSE
+        )
+
+    if (!dms %@% ".latorlon" %in% c(NA, "lat", "lon"))
+        stop(
+            "Attribute `\".latorlon\"` must be one of `NA`, `\"lat\"`, `\"lon\"`",
+            call. = FALSE
+        )    
+
+    if (!is.logical(dms %@% "negative"))
+        stop(
+            "Attribute `\"negative\"` must be of type `logical`",
+            call. = FALSE
+        )    
+
     dms
 }
 
