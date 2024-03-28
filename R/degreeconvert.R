@@ -448,9 +448,17 @@ decdeg_to_dms.default <- function(object, ..., .latorlon = c(NA, "lat", "lon")) 
 
 decdeg_to_dms.decdeg <- function(object, ...) {
     check_dots_empty()
-    as.numeric(object) |>
-    decdeg_to_dms(.latorlon = object %@% ".latorlon")
+    negative <- object < 0
+    object <- abs(object)
+    sum(
+        as.integer(object %/% 1),
+        as.integer(((object %% 1) * 60) %/% 1) / 100,
+        as.numeric((((object %% 1) * 60) %% 1) * 3) / 500
+    ) |>
+    new_degminsec(negative, object %@% ".latorlon") |>
+    validate_degminsec()
 }
+
 
 # ========================================
 #  Convert Decimal Degrees in a list to Degrees, Minutes and Seconds
