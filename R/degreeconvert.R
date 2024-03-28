@@ -192,15 +192,7 @@ degminsec.default <- function(object, ..., .after = c("deg", "min", "sec"), .lat
 #
 #  not exported
 
-new_degminsec <- function(x, .after = c("deg", "min", "sec"), .latorlon = c(NA, "lat", "lon")) {
-    .after <- match.arg(.after)
-    .latorlon <- match.arg(.latorlon)
-    ltz <- x < 0
-    x <- switch(.after,
-            deg = abs(x),
-            min = abs(x) / 1e2L,
-            sec = abs(x) / 1e4L
-        )
+new_degminsec <- function(x, negative, .latorlon) {
     structure(
         list(
             deg = as.integer(x),
@@ -208,7 +200,7 @@ new_degminsec <- function(x, .after = c("deg", "min", "sec"), .latorlon = c(NA, 
             sec = .up2(.up2(x))
         ),
         class = "degminsec",
-        negative = ltz,
+        negative = negative,
         .latorlon = .latorlon
     )
 }
