@@ -37,7 +37,6 @@ or more coordinates of latitude or longitude in decimal degrees.
 }
 \examples{
 decdeg(49.54621)
-decdeg(49.54621, .latorlon = "lat")
 decdeg(c(lat = 49.54621, lon = 18.2354822))
 decdeg(c(lat = -37.11174, lon = -12.28863))
 }

@@ -38,8 +38,11 @@
 #' @export
 #' @examples
 #' decdeg(49.54621)
-#' decdeg(49.54621, .latorlon = "lat")
+# #' decdeg(49.54621, .latorlon = "lat")
+# #' decdeg(18.2354822, .latorlon = "lon"))
 #' decdeg(c(lat = 49.54621, lon = 18.2354822))
+# #' decdeg(-37.11174, .latorlon = "lat"))
+# #' decdeg(-12.28863, .latorlon = "lon")
 #' decdeg(c(lat = -37.11174, lon = -12.28863))
 
 decdeg <- function(object, ...) {
@@ -160,6 +163,10 @@ print.decdeg <- function(x, ...) {
 #' degminsec(493246.368, .after = "sec")
 #'
 #' degminsec(49.3246368, .latorlon = "lat")
+#' degminsec(18.2354822, .latorlon = "lon")
+#'
+#' degminsec(-37.0642264, .latorlon = "lat")
+#' degminsec(-12.1719068, .latorlon = "lon")
 #'
 #' degminsec(c(lat = 49.3246368, lon = 18.2354822))
 #' degminsec(c(lat = -370642.264, lon = -121719.068), .after = "sec")
@@ -274,7 +281,12 @@ validate_degminsec <- function(dms) {
 
 print.degminsec <- function(x, ...) {
     check_dots_used()
-    cat(paste0("\t",.dmsstr(x), if (x %@% "negative") "(W/S)" else "(N/E)", "\n"))
+    if(is.na(x %@% ".latorlon"))
+        cat(paste0("\t",.dmsstr(x), if (x %@% "negative") "(W/S)" else "(N/E)", "\n"))
+    else {
+        sfx <- matrix(c("N", "E", "S", "W"), nrow = 2, dimnames = list(c("lat", "lon")))
+        cat(paste0("\t",.dmsstr(x), sfx[x %@% ".latorlon", as.integer(x %@% "negative") + 1], "\n"))
+    }
     invisible(x)
 } 
 
