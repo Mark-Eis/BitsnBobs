@@ -177,13 +177,20 @@ degminsec <- function(object, ...) {
 
 degminsec.default <- function(object, ..., .after = c("deg", "min", "sec"), .latorlon = c(NA, "lat", "lon")) {
     check_dots_empty()
-    ndvd <- \(x) new_degminsec(x, .after, .latorlon) |>
-        validate_degminsec()
+    .after <- match.arg(.after)
+    .latorlon <- match.arg(.latorlon)
 
-    if (length(object) > 1)
-        lapply(object, ndvd)
-    else
-       ndvd(object)  
+    rv <- lapply(object, \(x) {
+        negative <- x < 0
+        switch(.after,
+                deg = abs(x),
+                min = abs(x) / 1e2L,
+                sec = abs(x) / 1e4L
+            ) |>
+        new_degminsec(negative, .latorlon) |>
+        validate_degminsec()
+    })
+    if (length(rv) > 1) rv else rv[[1]] 
 }
 
 # ========================================
