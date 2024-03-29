@@ -36,6 +36,7 @@
 #' @importFrom ggplot2 theme_set
 #' @importFrom ggplot2 theme_update
 #' @importFrom methods formalArgs
+#' @importFrom purrr imap
 #' @importFrom purrr map
 #' @importFrom purrr map_chr
 #' @importFrom purrr map_dbl
