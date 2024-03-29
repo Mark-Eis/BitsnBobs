@@ -279,10 +279,8 @@ print.degminsec <- function(x, ...) {
     check_dots_used()
     if(is.na(x %@% ".latorlon"))
         cat(paste0("\t",.dmsstr(x), if (x %@% "negative") "(W/S)" else "(N/E)", "\n"))
-    else {
-        sfx <- matrix(c("N", "E", "S", "W"), nrow = 2, dimnames = list(c("lat", "lon")))
-        cat(paste0("\t",.dmsstr(x), sfx[x %@% ".latorlon", as.integer(x %@% "negative") + 1], "\n"))
-    }
+    else
+        cat(paste0("\t",.dmsstr(x), sfx(x), "\n"))
     invisible(x)
 } 
 
@@ -478,3 +476,19 @@ decdeg_to_dms.list <- function(object, ...) {
 #  not exported
 
 .up2 <- function(x) x %% 1 * 1e2L
+
+
+# ========================================
+#  Matrix to provide NESW suffix
+#  sfx()
+#
+#  not exported
+
+sfx <- function(dms) {
+    stopifnot(inherits(dms, "degminsec"))
+    matrix(
+        c("N", "E", "S", "W"),
+        nrow = 2,
+        dimnames = list(c("lat", "lon"))
+    )[dms %@% ".latorlon", as.integer(dms %@% "negative") + 1]
+}
