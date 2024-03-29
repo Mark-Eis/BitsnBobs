@@ -79,7 +79,7 @@ validate_decdeg <- function(dec_deg) {
 
     if (!inherits(dec_deg, "decdeg"))
         stop(
-            "`dec_deg` must be of class \"decdeg\"",
+            "`dec_deg` must be of class `\"decdeg\"`",
             call. = FALSE
         )
 
@@ -222,7 +222,7 @@ validate_degminsec <- function(dms) {
 
     if (!inherits(dms, "degminsec"))
         stop(
-            "`dms` must be of class \"degminsec\"",
+            "`dms` must be of class `\"degminsec\"`",
             call. = FALSE
         )
 
