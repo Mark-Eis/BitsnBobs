@@ -38,7 +38,7 @@
 #' @export
 #' @examples
 #' decdeg(49.54621)
-#' decdeg(c(lat = 49.54621, lon = 18.2354822))
+#' decdeg(c(lat = 49.54621, lon = 18.398562))
 #' decdeg(c(lat = -37.11174, lon = -12.28863))
 
 decdeg <- function(object, ...) {
