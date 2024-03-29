@@ -55,12 +55,9 @@ decdeg <- function(object, ...) {
 decdeg.default <- function(object, ..., .latorlon = c(NA, "lat", "lon")) {
     check_dots_empty()
     .latorlon <- match.arg(.latorlon)    
-    ndvd <- \(x) new_decdeg(x, .latorlon) |> validate_decdeg()
 
-    if (length(object) > 1)
-        lapply(object, ndvd)
-    else
-        ndvd(object)  
+    rv <- lapply(object,  \(x) new_decdeg(x, .latorlon) |> validate_decdeg())
+    if (length(object) > 1) rv else rv[[1]]
 }
 
 # ========================================
