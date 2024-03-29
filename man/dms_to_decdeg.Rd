@@ -25,7 +25,7 @@ longitude in degrees, minutes and seconds or a list of \code{"degminsec"} object
 \code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
 }
 \value{
-An object of class \code{"decdeg"}, or if \code{length(object) > 1}, a \code{list} of such objects, instantiating a
+An object of class \code{"decdeg"}, or if \code{length(object) > 1}, a list of such objects, instantiating a
 coordinate of latitude or longitude in decimal degrees represented by a numeric of type \code{double} with maximum
 absolute value of \var{180}˚. Attribute \code{".latorlon"} indicates whether the object is a coordinate of latitude
 or longitude.
@@ -57,7 +57,8 @@ rm(coord, coords)
 Other degreeconvert: 
 \code{\link{decdeg}()},
 \code{\link{decdeg_to_dms}()},
-\code{\link{degminsec}()}
+\code{\link{degminsec}()},
+\code{\link{latlon}()}
 }
 \concept{degreeconvert}
 \keyword{utilities}

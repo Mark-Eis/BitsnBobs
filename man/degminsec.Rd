@@ -32,7 +32,7 @@ longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 \item{x}{object to be printed.}
 }
 \value{
-An object of class \code{"degminsec"}, or if \code{length(object) > 1}, a \code{list} of such objects, representing a
+An object of class \code{"degminsec"}, or if \code{length(object) > 1}, a list of such objects, representing a
 coordinate of latitude or longitude in degrees, minutes and seconds as a named list with components: -
 
 \item{deg}{degrees represented by an integer with maximum absolute value of 180.}
@@ -73,7 +73,8 @@ degminsec(c(lat = -370642.264, lon = -121719.068), .after = "sec")
 Other degreeconvert: 
 \code{\link{decdeg}()},
 \code{\link{decdeg_to_dms}()},
-\code{\link{dms_to_decdeg}()}
+\code{\link{dms_to_decdeg}()},
+\code{\link{latlon}()}
 }
 \concept{degreeconvert}
 \keyword{utilities}

@@ -25,7 +25,7 @@ longitude in decimal degrees or a list of \code{"decdeg"} objects.}
 longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 }
 \value{
-An object of class \code{"degminsec"}, or if \code{length(object) > 1}, a \code{list} of such objects, representing a
+An object of class \code{"degminsec"}, or if \code{length(object) > 1}, a list of such objects, representing a
 coordinate of latitude or longitude in degrees, minutes and seconds as a named list with components: -
 
 \item{deg}{degrees represented by an integer with maximum absolute value of 180.}
@@ -63,7 +63,8 @@ rm(coord, coords)
 Other degreeconvert: 
 \code{\link{decdeg}()},
 \code{\link{degminsec}()},
-\code{\link{dms_to_decdeg}()}
+\code{\link{dms_to_decdeg}()},
+\code{\link{latlon}()}
 }
 \concept{degreeconvert}
 \keyword{utilities}

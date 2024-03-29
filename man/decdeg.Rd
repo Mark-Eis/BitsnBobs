@@ -23,7 +23,7 @@ longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 \item{x}{object to be printed.}
 }
 \value{
-An object of class \code{"decdeg"}, or if \code{length(object) > 1}, a \code{list} of such objects, instantiating a
+An object of class \code{"decdeg"}, or if \code{length(object) > 1}, a list of such objects, instantiating a
 coordinate of latitude or longitude in decimal degrees represented by a numeric of type \code{double} with maximum
 absolute value of \var{180}˚. Attribute \code{".latorlon"} indicates whether the object is a coordinate of latitude
 or longitude.
@@ -44,7 +44,8 @@ decdeg(c(lat = -37.11174, lon = -12.28863))
 Other degreeconvert: 
 \code{\link{decdeg_to_dms}()},
 \code{\link{degminsec}()},
-\code{\link{dms_to_decdeg}()}
+\code{\link{dms_to_decdeg}()},
+\code{\link{latlon}()}
 }
 \concept{degreeconvert}
 \keyword{utilities}

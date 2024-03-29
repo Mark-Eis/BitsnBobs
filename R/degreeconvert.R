@@ -28,7 +28,7 @@
 #'
 #' @param x object to be printed.
 #'
-#' @return An object of class `"decdeg"`, or if `length(object) > 1`, a `list` of such objects, instantiating a
+#' @return An object of class `"decdeg"`, or if `length(object) > 1`, a list of such objects, instantiating a
 #'   coordinate of latitude or longitude in decimal degrees represented by a numeric of type `double` with maximum
 #'   absolute value of \var{180}˚. Attribute `".latorlon"` indicates whether the object is a coordinate of latitude
 #'   or longitude.
@@ -134,7 +134,7 @@ print.decdeg <- function(x, ...) {
 #'
 #' @inheritParams decdeg
 #'
-#' @return An object of class `"degminsec"`, or if `length(object) > 1`, a `list` of such objects, representing a
+#' @return An object of class `"degminsec"`, or if `length(object) > 1`, a list of such objects, representing a
 #'   coordinate of latitude or longitude in degrees, minutes and seconds as a named list with components: -
 #'
 #' \item{deg}{degrees represented by an integer with maximum absolute value of 180.}
@@ -489,3 +489,165 @@ sfx <- function(dms) {
         dimnames = list(c("lat", "lon"))
     )[dms %@% ".latorlon", as.integer(dms %@% "negative") + 1]
 }
+
+
+# ========================================
+#' Create Latitude and Longitude Object
+#'
+#' @description
+#' The function `latlon()` is used to create latitude and longitude objects represented in decimal degrees or in
+#'  degrees minutes and seconds. 
+#'
+#' @details
+#' `latlon()` is a generic S3 function. ...
+#'
+#' @family degreeconvert
+#'
+#' @param object a numeric vector, representing a pair of coordinates of latitude and longitude in decimal degrees
+#'   or in degrees, minutes and seconds.
+#'
+#' @param \dots further arguments passed to or from other methods.
+#'
+#' @param decimal logical, if `TRUE` indicating whether the coordinate represented by `object` is in decimal degrees
+#'   or otherwise in degrees, minutes and seconds; default `FALSE`.
+#'
+#' @param x object to be printed.
+#'
+#' @inheritParams degminsec
+#'
+#' @return An object of class `"latlon"`, or if `length(object) > 1`, a list of such objects, instantiating a
+#'   coordinate of latitude and longitude in decimal degrees or degrees, minutes and seconds, comprising a list of
+#'   either two "`decdeg`" or two "`degminsec`" objects, with attribute `"coordtype"` indicating which of these two
+#'   types the object is.
+#'
+#' @keywords utilities
+#'
+#' @export
+#' @examples
+#' latlon(c(49.54621, 18.398562), decimal = TRUE)
+#' latlon(c(49.3246368, 18.2354822))
+#'
+#' latlon_dd(c(49.54621, 18.398562))
+#' latlon_dms(c(49.3246368, 18.2354822))
+#' latlon_dms(c(493246.368, 182354.822), .after = "sec")
+
+latlon <- function(object, ...) {
+    UseMethod("latlon")
+}
+
+# ========================================
+#  Create Latitude and Longitude Object
+#  S3method latlon.default()
+#'
+#' @rdname latlon
+#' @export
+
+latlon.default <- function(object, decimal = FALSE, .after = c("deg", "min", "sec")) {
+    if (decimal) {
+        coordtype <- "dd"
+        fun <- function(x, idx) decdeg(x, .latorlon = idx)
+    } else {
+        coordtype <- "dms"
+        .after <- match.arg(.after)
+        fun <- function(x, idx) degminsec(x, .after = .after, .latorlon = idx)
+    }
+
+    setNames(object, c("lat", "lon")) |>
+	imap(fun) |>
+    new_latlon(coordtype) |>
+    validate_latlon()
+}
+
+
+# ========================================
+#  Create Latitude and Longitude Object with Decimal Degrees
+#  S3method latlon_dd()
+#'
+#' @rdname latlon
+#' @export
+
+latlon_dd <- function(object)
+	latlon(object, TRUE)
+
+# ========================================
+#  Create Latitude and Longitude Object with Degrees, Minutes and Seconds
+#  S3method latlon_dms()
+#'
+#' @rdname latlon
+#' @export
+
+latlon_dms <- function(object, .after = c("deg", "min", "sec"))
+	latlon(object,, .after)
+
+
+# ========================================
+#  Constructor
+#  new_latlon()
+#
+#  not exported
+
+new_latlon <- function(ll, coordtype) {
+    structure(ll, class = "latlon", coordtype = coordtype)
+}
+
+
+# ========================================
+#  Validator
+#  validate_latlon()
+#
+#  not exported
+
+validate_latlon <- function(ll) {
+    if (!inherits(ll, "latlon"))
+        stop(
+            "`ll` must be of class `\"latlon\"`",
+            call. = FALSE
+        )
+
+    if (length(ll) != 2)
+        stop(
+            "Length of `ll` must be 2",
+            call. = FALSE
+        )
+
+    if (!identical(class(ll[[1]]), class(ll[[2]])))
+        stop(
+            "`ll[[1]]` and `ll[[2]]` must be of the same class",
+            call. = FALSE
+        )
+
+    if (inherits(ll, "decdeg")) {
+    		lapply(ll, validate_decdeg)
+    }
+
+    if (inherits(ll, "degminsec")) {
+    		lapply(ll, validate_degminsec)
+    }
+
+    if (!ll %@% "coordtype" %in% c("dd", "dms"))
+        stop(
+            "Attribute `\".latorlon\"` must be either `\"dd\"` or `\"dms\"`",
+            call. = FALSE
+        )    
+   
+    ll
+}
+
+
+# ========================================
+# Print latlon Object
+#  S3method print.latlon()
+#'
+#' @rdname latlon
+#' @export
+
+print.latlon <- function(x, ...) {
+	switch(x %@% "coordtype",
+	    "dd" = cat(paste0("\t", x$lat, ", ", x$lon, " decimal degrees\n")),
+	    "dms" = cat(paste0("\t", .dmsstr(x$lat), sfx(x$lat), ", ", .dmsstr(x$lon), sfx(x$lon), "\n")),
+	    stop("Invalid `\"coordtype\"`")
+    )
+    invisible(x)
+}
+
+
