@@ -542,7 +542,7 @@ latlon <- function(object, ...) {
 #' @rdname latlon
 #' @export
 
-latlon.default <- function(object, decimal = FALSE, .after = c("deg", "min", "sec")) {
+latlon.default <- function(object, ..., decimal = FALSE, .after = c("deg", "min", "sec")) {
     if (decimal) {
         coordtype <- "dd"
         fun <- function(x, idx) decdeg(x, .latorlon = idx)
@@ -567,7 +567,7 @@ latlon.default <- function(object, decimal = FALSE, .after = c("deg", "min", "se
 #' @export
 
 latlon_dd <- function(object)
-	latlon(object, TRUE)
+	latlon(object, decimal = TRUE)
 
 # ========================================
 #  Create Latitude and Longitude Object with Degrees, Minutes and Seconds
@@ -577,7 +577,7 @@ latlon_dd <- function(object)
 #' @export
 
 latlon_dms <- function(object, .after = c("deg", "min", "sec"))
-	latlon(object,, .after)
+	latlon(object, .after = .after)
 
 
 # ========================================

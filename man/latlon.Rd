@@ -10,7 +10,7 @@
 \usage{
 latlon(object, ...)
 
-\method{latlon}{default}(object, decimal = FALSE, .after = c("deg", "min", "sec"))
+\method{latlon}{default}(object, ..., decimal = FALSE, .after = c("deg", "min", "sec"))
 
 latlon_dd(object)
 
