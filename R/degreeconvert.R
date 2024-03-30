@@ -377,6 +377,20 @@ dms_to_decdeg.list <- function(object, ...) {
 }
 
 # ========================================
+#  Convert Degrees, Minutes and Seconds in a latlon to Decimal Degrees
+#  S3method dms_to_decdeg.latlon()
+#'
+#' @rdname dms_to_decdeg
+#' @export
+
+dms_to_decdeg.latlon <- function(object, ...) {
+    lapply(object, dms_to_decdeg) |>
+    new_latlon("dd") |>
+    validate_latlon()
+}
+
+
+# ========================================
 #' Convert Decimal Degrees to Degrees, Minutes and Seconds
 #'
 #' @description
@@ -463,6 +477,20 @@ decdeg_to_dms.list <- function(object, ...) {
     check_dots_empty()
     stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "decdeg")))))
     lapply(object, decdeg_to_dms)
+}
+
+
+# ========================================
+#  Convert Decimal Degrees in a latlon to Degrees, Minutes and Seconds
+#  S3method decdeg_to_dms.latlon()
+#'
+#' @rdname decdeg_to_dms
+#' @export
+
+decdeg_to_dms.latlon <- function(object, ...) {
+    lapply(object, decdeg_to_dms) |>
+    new_latlon("dms") |>
+    validate_latlon()
 }
 
 

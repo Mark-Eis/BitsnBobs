@@ -5,6 +5,7 @@
 \alias{decdeg_to_dms.default}
 \alias{decdeg_to_dms.decdeg}
 \alias{decdeg_to_dms.list}
+\alias{decdeg_to_dms.latlon}
 \title{Convert Decimal Degrees to Degrees, Minutes and Seconds}
 \usage{
 decdeg_to_dms(object, ...)
@@ -14,6 +15,8 @@ decdeg_to_dms(object, ...)
 \method{decdeg_to_dms}{decdeg}(object, ...)
 
 \method{decdeg_to_dms}{list}(object, ...)
+
+\method{decdeg_to_dms}{latlon}(object, ...)
 }
 \arguments{
 \item{object}{a \code{numeric} or an object of class \code{\link[=decdeg]{"decdeg"}}, representing a coordinate of latitude or
