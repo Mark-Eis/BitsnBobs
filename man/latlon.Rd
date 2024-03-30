@@ -35,7 +35,7 @@ or otherwise in degrees, minutes and seconds; default \code{FALSE}.}
 \value{
 An object of class \code{"latlon"}, or if \code{length(object) > 1}, a list of such objects, instantiating a
 coordinate of latitude and longitude in decimal degrees or degrees, minutes and seconds, comprising a list of
-either two \code{"decdeg"} or two \code{"degminsec"} objects, with attribute \code{"coordtype"} indicating which of these two
+either two \code{"decdeg"} or two \code{"degminsec"} objects, with attribute \code{"degrtype"} indicating which of these two
 types the object is.
 }
 \description{

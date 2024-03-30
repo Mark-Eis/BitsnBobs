@@ -517,7 +517,7 @@ decdeg_to_dms.list <- function(object, ...) {
 #'
 #' @return An object of class `"latlon"`, or if `length(object) > 1`, a list of such objects, instantiating a
 #'   coordinate of latitude and longitude in decimal degrees or degrees, minutes and seconds, comprising a list of
-#'   either two `"decdeg"` or two `"degminsec"` objects, with attribute `"coordtype"` indicating which of these two
+#'   either two `"decdeg"` or two `"degminsec"` objects, with attribute `"degrtype"` indicating which of these two
 #'   types the object is.
 #'
 #' @keywords utilities
@@ -544,17 +544,17 @@ latlon <- function(object, ...) {
 
 latlon.default <- function(object, ..., decimal = FALSE, .after = c("deg", "min", "sec")) {
     if (decimal) {
-        coordtype <- "dd"
+        degrtype <- "dd"
         fun <- function(x, idx) decdeg(x, .latorlon = idx)
     } else {
-        coordtype <- "dms"
+        degrtype <- "dms"
         .after <- match.arg(.after)
         fun <- function(x, idx) degminsec(x, .after = .after, .latorlon = idx)
     }
 
     setNames(object, c("lat", "lon")) |>
 	imap(fun) |>
-    new_latlon(coordtype) |>
+    new_latlon(degrtype) |>
     validate_latlon()
 }
 
@@ -586,8 +586,8 @@ latlon_dms <- function(object, .after = c("deg", "min", "sec"))
 #
 #  not exported
 
-new_latlon <- function(ll, coordtype) {
-    structure(ll, class = "latlon", coordtype = coordtype)
+new_latlon <- function(ll, degrtype) {
+    structure(ll, class = "latlon", degrtype = degrtype)
 }
 
 
@@ -624,7 +624,7 @@ validate_latlon <- function(ll) {
     		lapply(ll, validate_degminsec)
     }
 
-    if (!ll %@% "coordtype" %in% c("dd", "dms"))
+    if (!ll %@% "degrtype" %in% c("dd", "dms"))
         stop(
             "Attribute `\".latorlon\"` must be either `\"dd\"` or `\"dms\"`",
             call. = FALSE
@@ -642,10 +642,10 @@ validate_latlon <- function(ll) {
 #' @export
 
 print.latlon <- function(x, ...) {
-	switch(x %@% "coordtype",
+	switch(x %@% "degrtype",
 	    "dd" = cat(paste0("\t", x$lat, ", ", x$lon, " decimal degrees\n")),
 	    "dms" = cat(paste0("\t", .dmsstr(x$lat), .sfmtx(x$lat), ", ", .dmsstr(x$lon), .sfmtx(x$lon), "\n")),
-	    stop("Invalid `\"coordtype\"`")
+	    stop("Invalid `\"degrtype\"`")
     )
     invisible(x)
 }
