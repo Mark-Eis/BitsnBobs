@@ -277,7 +277,7 @@ print.degminsec <- function(x, ...) {
     if(is.na(x %@% ".latorlon"))
         cat(paste0("\t", .dmsstr(x), if (x %@% "negative") "(W/S)" else "(N/E)", "\n"))
     else
-        cat(paste0("\t", .dmsstr(x), sfx(x), "\n"))
+        cat(paste0("\t", .dmsstr(x), .sfmtx(x), "\n"))
     invisible(x)
 } 
 
@@ -477,11 +477,11 @@ decdeg_to_dms.list <- function(object, ...) {
 
 # ========================================
 #  Matrix to provide NESW suffix
-#  sfx()
+#  .sfmtx()
 #
 #  not exported
 
-sfx <- function(dms) {
+.sfmtx <- function(dms) {
     stopifnot(inherits(dms, "degminsec"))
     matrix(
         c("N", "E", "S", "W"),
@@ -517,7 +517,7 @@ sfx <- function(dms) {
 #'
 #' @return An object of class `"latlon"`, or if `length(object) > 1`, a list of such objects, instantiating a
 #'   coordinate of latitude and longitude in decimal degrees or degrees, minutes and seconds, comprising a list of
-#'   either two "`decdeg`" or two "`degminsec`" objects, with attribute `"coordtype"` indicating which of these two
+#'   either two `"decdeg"` or two `"degminsec"` objects, with attribute `"coordtype"` indicating which of these two
 #'   types the object is.
 #'
 #' @keywords utilities
@@ -644,7 +644,7 @@ validate_latlon <- function(ll) {
 print.latlon <- function(x, ...) {
 	switch(x %@% "coordtype",
 	    "dd" = cat(paste0("\t", x$lat, ", ", x$lon, " decimal degrees\n")),
-	    "dms" = cat(paste0("\t", .dmsstr(x$lat), sfx(x$lat), ", ", .dmsstr(x$lon), sfx(x$lon), "\n")),
+	    "dms" = cat(paste0("\t", .dmsstr(x$lat), .sfmtx(x$lat), ", ", .dmsstr(x$lon), .sfmtx(x$lon), "\n")),
 	    stop("Invalid `\"coordtype\"`")
     )
     invisible(x)
