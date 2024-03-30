@@ -19,11 +19,11 @@
 #'
 #' @family degreeconvert
 #'
-#' @param object numeric, representing one or more coordinates of latitude or longitude in decimal degrees.
+#' @param object `numeric`, representing one or more coordinates of latitude or longitude in decimal degrees.
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
-#' @param .latorlon a character string indicating whether the coordinate represented by `object` is a latitude or
+#' @param .latorlon a `character` string indicating whether the coordinate represented by `object` is a latitude or
 #'   longitude; must be one of `NA` (default), `"lat"`, or `"lon"`.
 #'
 #' @param x object to be printed.
@@ -126,10 +126,10 @@ print.decdeg <- function(x, ...) {
 #'
 #' @family degreeconvert
 #'
-#' @param object numeric, representing one or more coordinates of latitude or longitude in degrees, minutes and
+#' @param object `numeric`, representing one or more coordinates of latitude or longitude in degrees, minutes and
 #'   seconds.
 #'
-#' @param .after a character string indicating the position of the decimal point in `object`; must be one of
+#' @param .after a `character` string indicating the position of the decimal point in `object`; must be one of
 #'   `"deg"` (default), `"min"`, or `"sec"`. You can specify just the initial letter.
 #'
 #' @inheritParams decdeg
@@ -304,8 +304,8 @@ print.degminsec <- function(x, ...) {
 #'
 #' @family degreeconvert
 #'
-#' @param object a numeric or an object of class [`"degminsec"`][degminsec], representing a coordinate of latitude or
-#'   longitude in degrees, minutes and seconds or a list of `"degminsec"` objects.
+#' @param object a `numeric` or an object of class [`"degminsec"`][degminsec], representing a coordinate of latitude
+#'   or longitude in degrees, minutes and seconds or a list of `"degminsec"` objects.
 #'
 #' @inheritParams degminsec
 #'
@@ -388,7 +388,7 @@ dms_to_decdeg.list <- function(object, ...) {
 #'
 #' @family degreeconvert
 #'
-#' @param object a numeric or an object of class [`"decdeg"`][decdeg], representing a coordinate of latitude or
+#' @param object a `numeric` or an object of class [`"decdeg"`][decdeg], representing a coordinate of latitude or
 #'   longitude in decimal degrees or a list of `"decdeg"` objects.
 #'
 #' @inheritParams degminsec
@@ -496,19 +496,23 @@ decdeg_to_dms.list <- function(object, ...) {
 #'
 #' @description
 #' The function `latlon()` is used to create latitude and longitude objects represented in decimal degrees or in
-#'  degrees minutes and seconds. 
+#'  degrees minutes and seconds.
+#'
+#' `latlon_dd()` is a convenience function such that `latlon_dd(...)` is equivalent to `latlon(..., decimal = TRUE)`.
 #'
 #' @details
-#' `latlon()` is a generic S3 function. ...
+#' `latlon()` is a generic S3 function. The default method works with a numeric vector of length 2 representing a
+#' coordinate of paired latitude and longitude values. The method for class `"matrix"` works with a two column
+#' numeric matrix each row of which contains paired latitude and longitude values.
 #'
 #' @family degreeconvert
 #'
-#' @param object a numeric vector, representing a pair of coordinates of latitude and longitude in decimal degrees
-#'   or in degrees, minutes and seconds.
+#' @param object a `numeric vector`, representing a coordinate of latitude and longitude in decimal degrees or in
+#'   degrees, minutes and seconds; or a two-column numeric `matrix` representing a number of such coordinates.
 #'
 #' @param \dots further arguments passed to or from other methods.
 #'
-#' @param decimal logical, if `TRUE` indicating whether the coordinate represented by `object` is in decimal degrees
+#' @param decimal `logical`, if `TRUE` indicating whether the coordinate represented by `object` is in decimal degrees
 #'   or otherwise in degrees, minutes and seconds; default `FALSE`.
 #'
 #' @param x object to be printed.
@@ -526,10 +530,34 @@ decdeg_to_dms.list <- function(object, ...) {
 #' @examples
 #' latlon(c(49.54621, 18.398562), decimal = TRUE)
 #' latlon(c(49.3246368, 18.2354822))
+#' latlon(c(493246.368, 182354.822), .after = "sec")
 #'
 #' latlon_dd(c(49.54621, 18.398562))
-#' latlon_dms(c(49.3246368, 18.2354822))
-#' latlon_dms(c(493246.368, 182354.822), .after = "sec")
+#' 
+#' (ll_mtx <- matrix(
+#'        c(49.546210,   18.398562,
+#'         -37.111740,  -12.288630,
+#'         -53.104781,   73.517283,
+#'          48.107232, -122.778671),
+#'         ncol = 2,
+#'         byrow = TRUE
+#'     ))
+#'
+#' latlon(ll_mtx, decimal = TRUE)
+#'
+
+#' matrix(
+#'        c(49.3246368,  18.2354822,
+#'         -37.0642264, -12.1719068,
+#'         -53.0617212,  73.3102219,
+#'          48.0626035, -122.464322),
+#'         ncol = 2,
+#'         byrow = TRUE,
+#'         dimnames = list(c("Ostravice", "Queen Mary's Peak", "Mawson Peak", "Tally Ho"))
+#'     ) |>
+#' latlon()
+#'
+#' rm(ll_mtx)
 
 latlon <- function(object, ...) {
     UseMethod("latlon")
@@ -554,6 +582,22 @@ latlon.default <- function(object, ..., decimal = FALSE, .after = c("deg", "min"
     validate_latlon()
 }
 
+# ========================================
+#  Create Latitude and Longitude Object from Matrix
+#  latlon.matrix()
+#'
+#' @rdname latlon
+#' @export
+
+latlon.matrix <- function(object, ..., decimal = FALSE, .after = c("deg", "min", "sec")) {
+    if (dim(object)[2] != 2)
+        stop(
+            "`object` must be a matrix of two columns",
+            call. = FALSE
+        )
+    lapply(seq_len(dim(object)[1]), \(x) latlon(object[x, ], decimal = decimal, .after = .after)) |>
+    setNames(dimnames(object)[[1]])
+}
 
 # ========================================
 #  Create Latitude and Longitude Object with Decimal Degrees
@@ -564,17 +608,6 @@ latlon.default <- function(object, ..., decimal = FALSE, .after = c("deg", "min"
 
 latlon_dd <- function(object)
     latlon(object, decimal = TRUE)
-
-# ========================================
-#  Create Latitude and Longitude Object with Degrees, Minutes and Seconds
-#  S3method latlon_dms()
-#'
-#' @rdname latlon
-#' @export
-
-latlon_dms <- function(object, .after = c("deg", "min", "sec"))
-    latlon(object, .after = .after)
-
 
 # ========================================
 #  Constructor

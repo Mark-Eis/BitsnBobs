@@ -16,12 +16,12 @@ dms_to_decdeg(object, ...)
 \method{dms_to_decdeg}{list}(object, ...)
 }
 \arguments{
-\item{object}{a numeric or an object of class \code{\link[=degminsec]{"degminsec"}}, representing a coordinate of latitude or
-longitude in degrees, minutes and seconds or a list of \code{"degminsec"} objects.}
+\item{object}{a \code{numeric} or an object of class \code{\link[=degminsec]{"degminsec"}}, representing a coordinate of latitude
+or longitude in degrees, minutes and seconds or a list of \code{"degminsec"} objects.}
 
 \item{...}{further arguments passed to or from other methods.}
 
-\item{.after}{a character string indicating the position of the decimal point in \code{object}; must be one of
+\item{.after}{a \code{character} string indicating the position of the decimal point in \code{object}; must be one of
 \code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
 }
 \value{

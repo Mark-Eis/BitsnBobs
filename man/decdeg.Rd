@@ -13,11 +13,11 @@ decdeg(object, ...)
 \method{print}{decdeg}(x, ...)
 }
 \arguments{
-\item{object}{numeric, representing one or more coordinates of latitude or longitude in decimal degrees.}
+\item{object}{\code{numeric}, representing one or more coordinates of latitude or longitude in decimal degrees.}
 
 \item{\dots}{further arguments passed to or from other methods.}
 
-\item{.latorlon}{a character string indicating whether the coordinate represented by \code{object} is a latitude or
+\item{.latorlon}{a \code{character} string indicating whether the coordinate represented by \code{object} is a latitude or
 longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 
 \item{x}{object to be printed.}

@@ -16,12 +16,12 @@ decdeg_to_dms(object, ...)
 \method{decdeg_to_dms}{list}(object, ...)
 }
 \arguments{
-\item{object}{a numeric or an object of class \code{\link[=decdeg]{"decdeg"}}, representing a coordinate of latitude or
+\item{object}{a \code{numeric} or an object of class \code{\link[=decdeg]{"decdeg"}}, representing a coordinate of latitude or
 longitude in decimal degrees or a list of \code{"decdeg"} objects.}
 
 \item{...}{further arguments passed to or from other methods.}
 
-\item{.latorlon}{a character string indicating whether the coordinate represented by \code{object} is a latitude or
+\item{.latorlon}{a \code{character} string indicating whether the coordinate represented by \code{object} is a latitude or
 longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 }
 \value{

@@ -3,8 +3,8 @@
 \name{latlon}
 \alias{latlon}
 \alias{latlon.default}
+\alias{latlon.matrix}
 \alias{latlon_dd}
-\alias{latlon_dms}
 \alias{print.latlon}
 \title{Create Latitude and Longitude Object}
 \usage{
@@ -12,22 +12,22 @@ latlon(object, ...)
 
 \method{latlon}{default}(object, ..., decimal = FALSE, .after = c("deg", "min", "sec"))
 
-latlon_dd(object)
+\method{latlon}{matrix}(object, ..., decimal = FALSE, .after = c("deg", "min", "sec"))
 
-latlon_dms(object, .after = c("deg", "min", "sec"))
+latlon_dd(object)
 
 \method{print}{latlon}(x, ...)
 }
 \arguments{
-\item{object}{a numeric vector, representing a pair of coordinates of latitude and longitude in decimal degrees
-or in degrees, minutes and seconds.}
+\item{object}{a \verb{numeric vector}, representing a coordinate of latitude and longitude in decimal degrees or in
+degrees, minutes and seconds; or a two-column numeric \code{matrix} representing a number of such coordinates.}
 
 \item{\dots}{further arguments passed to or from other methods.}
 
-\item{decimal}{logical, if \code{TRUE} indicating whether the coordinate represented by \code{object} is in decimal degrees
+\item{decimal}{\code{logical}, if \code{TRUE} indicating whether the coordinate represented by \code{object} is in decimal degrees
 or otherwise in degrees, minutes and seconds; default \code{FALSE}.}
 
-\item{.after}{a character string indicating the position of the decimal point in \code{object}; must be one of
+\item{.after}{a \code{character} string indicating the position of the decimal point in \code{object}; must be one of
 \code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
 
 \item{x}{object to be printed.}
@@ -41,17 +41,44 @@ types the object is.
 \description{
 The function \code{latlon()} is used to create latitude and longitude objects represented in decimal degrees or in
 degrees minutes and seconds.
+
+\code{latlon_dd()} is a convenience function such that \code{latlon_dd(...)} is equivalent to \code{latlon(..., decimal = TRUE)}.
 }
 \details{
-\code{latlon()} is a generic S3 function. ...
+\code{latlon()} is a generic S3 function. The default method works with a numeric vector of length 2 representing a
+coordinate of paired latitude and longitude values. The method for class \code{"matrix"} works with a two column
+numeric matrix each row of which contains paired latitude and longitude values.
 }
 \examples{
 latlon(c(49.54621, 18.398562), decimal = TRUE)
 latlon(c(49.3246368, 18.2354822))
+latlon(c(493246.368, 182354.822), .after = "sec")
 
 latlon_dd(c(49.54621, 18.398562))
-latlon_dms(c(49.3246368, 18.2354822))
-latlon_dms(c(493246.368, 182354.822), .after = "sec")
+
+(ll_mtx <- matrix(
+       c(49.546210,   18.398562,
+        -37.111740,  -12.288630,
+        -53.104781,   73.517283,
+         48.107232, -122.778671),
+        ncol = 2,
+        byrow = TRUE
+    ))
+
+latlon(ll_mtx, decimal = TRUE)
+
+matrix(
+       c(49.3246368,  18.2354822,
+        -37.0642264, -12.1719068,
+        -53.0617212,  73.3102219,
+         48.0626035, -122.464322),
+        ncol = 2,
+        byrow = TRUE,
+        dimnames = list(c("Ostravice", "Queen Mary's Peak", "Mawson Peak", "Tally Ho"))
+    ) |>
+latlon()
+
+rm(ll_mtx)
 }
 \seealso{
 Other degreeconvert: 

@@ -18,15 +18,15 @@ degminsec(object, ...)
 \method{print}{degminsec}(x, ...)
 }
 \arguments{
-\item{object}{numeric, representing one or more coordinates of latitude or longitude in degrees, minutes and
+\item{object}{\code{numeric}, representing one or more coordinates of latitude or longitude in degrees, minutes and
 seconds.}
 
 \item{...}{further arguments passed to or from other methods.}
 
-\item{.after}{a character string indicating the position of the decimal point in \code{object}; must be one of
+\item{.after}{a \code{character} string indicating the position of the decimal point in \code{object}; must be one of
 \code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
 
-\item{.latorlon}{a character string indicating whether the coordinate represented by \code{object} is a latitude or
+\item{.latorlon}{a \code{character} string indicating whether the coordinate represented by \code{object} is a latitude or
 longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 
 \item{x}{object to be printed.}
