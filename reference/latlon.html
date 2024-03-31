@@ -14,7 +14,7 @@ latlon_dd() is a convenience function such that latlon_dd(...) is equivalent to 
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.00027</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.00028</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,55 +129,84 @@ numeric matrix each row of which contains paired latitude and longitude values.<
 <span class="r-in"><span><span class="fu">latlon_dd</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">49.54621</span>, <span class="fl">18.398562</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	49.54621, 18.398562 decimal degrees</span>
 <span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Decimal degrees</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">ll_mtx</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>       <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">49.546210</span>,   <span class="fl">18.398562</span>,</span></span>
-<span class="r-in"><span>        <span class="op">-</span><span class="fl">37.111740</span>,  <span class="op">-</span><span class="fl">12.288630</span>,</span></span>
-<span class="r-in"><span>        <span class="op">-</span><span class="fl">53.104781</span>,   <span class="fl">73.517283</span>,</span></span>
-<span class="r-in"><span>         <span class="fl">48.107232</span>, <span class="op">-</span><span class="fl">122.778671</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>       <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">51.507765</span>, <span class="fl">49.54621</span>, <span class="fl">48.107232</span>, <span class="fl">38.889494</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">37.11174</span>, <span class="op">-</span><span class="fl">53.104781</span>,</span></span>
+<span class="r-in"><span>         <span class="op">-</span><span class="fl">0.127924</span>, <span class="fl">18.398562</span>, <span class="op">-</span><span class="fl">122.778671</span>, <span class="op">-</span><span class="fl">77.035242</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">12.28863</span>, <span class="fl">73.517283</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>        ncol <span class="op">=</span> <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>        byrow <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>        dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>            <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Nelson's Column"</span>, <span class="st">"Ostravice"</span>, <span class="st">"Tally Ho"</span>, <span class="st">"Washington Monument"</span>,</span></span>
+<span class="r-in"><span>              <span class="st">"Null Island"</span>, <span class="st">"Tristan da Cunha"</span>, <span class="st">"Mawson Peak"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>        <span class="op">)</span></span></span>
 <span class="r-in"><span>    <span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           [,1]       [,2]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  49.54621   18.39856</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -37.11174  -12.28863</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -53.10478   73.51728</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  48.10723 -122.77867</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          [,1]        [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nelson's Column      51.50776   -0.127924</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ostravice            49.54621   18.398562</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tally Ho             48.10723 -122.778671</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Washington Monument  38.88949  -77.035242</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Null Island           0.00000    0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tristan da Cunha    -37.11174  -12.288630</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mawson Peak         -53.10478   73.517283</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">latlon</span><span class="op">(</span><span class="va">ll_mtx</span>, decimal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Nelson's Column`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	51.507765, -0.127924 decimal degrees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $Ostravice</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	49.54621, 18.398562 decimal degrees</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	-37.11174, -12.28863 decimal degrees</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	-53.104781, 73.517283 decimal degrees</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [[4]]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Tally Ho`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	48.107232, -122.778671 decimal degrees</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Washington Monument`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	38.889494, -77.035242 decimal degrees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Null Island`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	0, 0 decimal degrees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Tristan da Cunha`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	-37.11174, -12.28863 decimal degrees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Mawson Peak`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	-53.104781, 73.517283 decimal degrees</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>       <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">49.3246368</span>,  <span class="fl">18.2354822</span>,</span></span>
-<span class="r-in"><span>        <span class="op">-</span><span class="fl">37.0642264</span>, <span class="op">-</span><span class="fl">12.1719068</span>,</span></span>
-<span class="r-in"><span>        <span class="op">-</span><span class="fl">53.0617212</span>,  <span class="fl">73.3102219</span>,</span></span>
-<span class="r-in"><span>         <span class="fl">48.0626035</span>, <span class="op">-</span><span class="fl">122.464322</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>        ncol <span class="op">=</span> <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>        byrow <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>        dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Ostravice"</span>, <span class="st">"Queen Mary's Peak"</span>, <span class="st">"Mawson Peak"</span>, <span class="st">"Tally Ho"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>    <span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span><span class="fu">latlon</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">## Deg Min Sec</span></span></span>
+<span class="r-in"><span><span class="va">ll_mtx</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">14</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>    <span class="fl">51.3027954</span>, <span class="fl">49.3246368</span>, <span class="fl">48.0626035</span>, <span class="fl">38.5322178</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">37.0642264</span>, <span class="op">-</span><span class="fl">53.0617212</span>,</span></span>
+<span class="r-in"><span>    <span class="op">-</span><span class="fl">0.0740526</span>, <span class="fl">18.2354822</span>, <span class="op">-</span><span class="fl">122.464322</span>, <span class="fl">77.0206871</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">12.1719068</span>, <span class="fl">73.3102219</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">ll_mtx</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                          [,1]         [,2]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Nelson's Column      51.30280   -0.0740526</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ostravice            49.32464   18.2354822</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tally Ho             48.06260 -122.4643220</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Washington Monument  38.53222   77.0206871</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Null Island           0.00000    0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tristan da Cunha    -37.06423  -12.1719068</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mawson Peak         -53.06172   73.3102219</span>
+<span class="r-in"><span><span class="fu">latlon</span><span class="op">(</span><span class="va">ll_mtx</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Nelson's Column`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	51°30'27.954"N, 0°7'40.526"W</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Ostravice</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	49°32'46.368"N, 18°23'54.822"E</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`Queen Mary's Peak`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Tally Ho`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	48°6'26.035"N, 122°46'43.22"W</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Washington Monument`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	38°53'22.178"N, 77°2'6.871"E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Null Island`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	0°0'0"N, 0°0'0"E</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $`Tristan da Cunha`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	37°6'42.264"S, 12°17'19.068"W</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $`Mawson Peak`</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	53°6'17.212"S, 73°31'2.219"E</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $`Tally Ho`</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	48°6'26.035"N, 122°46'43.22"W</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">ll_mtx</span><span class="op">)</span></span></span>
