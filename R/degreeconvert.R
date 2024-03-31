@@ -527,10 +527,10 @@ decdeg_to_dms.latlon <- function(object, ...) {
 #' Create Latitude and Longitude Object
 #'
 #' @description
-#' The function `latlon()` is used to create latitude and longitude objects represented in decimal degrees or in
-#'  degrees minutes and seconds.
+#' The function `latlon()` is used to create latitude and longitude objects representing paired coordinates in either
+#' decimal degrees or degrees minutes and seconds.
 #'
-#' `latlon_dd()` is a convenience function such that `latlon_dd(...)` is equivalent to `latlon(..., decimal = TRUE)`.
+#' `latlon_dd()` is a convenience function, such that `latlon_dd(...)` is equivalent to `latlon(..., decimal = TRUE)`.
 #'
 #' @details
 #' `latlon()` is a generic S3 function. The default method works with a numeric vector of length 2 representing a
@@ -551,22 +551,26 @@ decdeg_to_dms.latlon <- function(object, ...) {
 #'
 #' @inheritParams degminsec
 #'
-#' @return An object of class `"latlon"`, or if `length(object) > 1`, a list of such objects, instantiating a
-#'   coordinate of latitude and longitude in decimal degrees or degrees, minutes and seconds, comprising a list of
-#'   either two `"decdeg"` or two `"degminsec"` objects, with attribute `"degrtype"` indicating which of these two
-#'   types the object is.
+#' @return An object of class `"latlon"` instantiating a coordinate of latitude and longitude in decimal degrees or
+#'   degrees, minutes and seconds, comprising a list of either two `"decdeg"` or two `"degminsec"` objects, with
+#'   attribute `"degrtype"` indicating which of these two types the object is; or if `length(object) > 1`, a list
+#'   of `"latlon"` objects.
 #'
 #' @keywords utilities
 #'
 #' @export
 #' @examples
+#' ## Decimal degrees
 #' latlon(c(49.54621, 18.398562), decimal = TRUE)
+#'
+#' ## Degrees minutes and seconds
 #' latlon(c(49.3246368, 18.2354822))
 #' latlon(c(493246.368, 182354.822), .after = "sec")
 #'
+#' ## Decimal degrees—convenience function
 #' latlon_dd(c(49.54621, 18.398562))
 #'
-#' ## Decimal degrees
+#' ## Two-column numeric `matrix` in decimal degrees
 #' (ll_mtx <- matrix(
 #'        c(51.507765, 49.54621, 48.107232, 38.889494, 0, -37.11174, -53.104781,
 #'          -0.127924, 18.398562, -122.778671, -77.035242, 0, -12.28863, 73.517283),
@@ -579,13 +583,15 @@ decdeg_to_dms.latlon <- function(object, ...) {
 #'
 #' latlon(ll_mtx, decimal = TRUE)
 #'
+#' ## Two-column numeric `matrix` in degrees minutes and seconds
 #' ## Deg Min Sec
 #' ll_mtx[1:14] <- c(
 #'     51.3027954, 49.3246368, 48.0626035, 38.5322178, 0, -37.0642264, -53.0617212,
-#'     -0.0740526, 18.2354822, -122.464322, 77.0206871, 0, -12.1719068, 73.3102219
+#'     -0.0740526, 18.2354822, -122.464322, -77.0206871, 0, -12.1719068, 73.3102219
 #' )
 #'
 #' ll_mtx
+#'
 #' latlon(ll_mtx)
 #'
 #' rm(ll_mtx)
