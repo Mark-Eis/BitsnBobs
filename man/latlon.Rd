@@ -58,38 +58,29 @@ latlon_dd(c(49.54621, 18.398562))
 
 ## Decimal degrees
 (ll_mtx <- matrix(
-       c(51.507765,  -00.127924,
-         49.546210,   18.398562,
-         48.107232, -122.778671,
-         38.889494,  -77.035242,
-        -00.000000,  -00.000000,
-        -37.111740,  -12.288630,
-        -53.104781,   73.517283
-        ),
-        ncol = 2,
-        byrow = TRUE,
-        dimnames = list(
-            c("Nelson's Column", "Ostravice", "Tally Ho", "Washington Monument",
-              "Null Island", "Tristan da Cunha", "Mawson Peak")
-        )
-    ))
+    c(51.507765,  -00.127924,
+      49.546210,   18.398562,
+      48.107232, -122.778671,
+      38.889494,  -77.035242,
+     -00.000000,  -00.000000,
+     -37.111740,  -12.288630,
+     -53.104781,   73.517283),
+    ncol = 2,
+    byrow = TRUE,
+    dimnames = list(
+        c("Nelson's Column", "Ostravice", "Tally Ho", "Washington Monument",
+          "Null Island", "Tristan da Cunha", "Mawson Peak")
+    )
+))
 
 latlon(ll_mtx, decimal = TRUE)
 
 ## Deg Min Sec
-matrix(
-      c(51.3027954,  -00.0740526,
-        49.3246368,   18.2354822,
-        48.0626035, -122.4643220,
-        38.5322178,   77.0206871,
-       -00.0000000,  -00.0000000,
-       -37.0642264,  -12.1719068,
-       -53.0617212,   73.3102219),
-        ncol = 2,
-        byrow = TRUE,
-        dimnames = dimnames(ll_mtx)
-    ) |>
-latlon()
+ll_mtx[1:14] <- c(51.3027954, 49.3246368, 48.0626035, 38.5322178, 0, -37.0642264, -53.0617212,
+                  -0.0740526, 18.2354822, -122.464322, 77.0206871, 0, -12.1719068, 73.3102219)
+
+ll_mtx
+latlon(ll_mtx)
 
 rm(ll_mtx)
 }
