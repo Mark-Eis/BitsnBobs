@@ -54,11 +54,8 @@ decdeg_to_dms(49.54621, .latorlon = "lat")
 (coord <- decdeg(49.54621, .latorlon = "lat"))
 decdeg_to_dms(coord)
 
-(coords <- decdeg(c(lat = 49.54621, lon = 18.398562)))
+(coords <- latlon_dd(c(49.54621, 18.398562)))
 decdeg_to_dms(coords)
-
-decdeg(c(lat = -37.11174, lon = -12.28863)) |>
-  decdeg_to_dms()
 
 rm(coord, coords)
 }

@@ -322,10 +322,7 @@ print.degminsec <- function(x, ...) {
 #' (coord <- degminsec(49.3246368))
 #' dms_to_decdeg(coord)
 #'
-#' (coords <- degminsec(c(lat = 49.3246368, lon = 18.2354822)))
-#' dms_to_decdeg(coords)
-#'
-#' (coords <- degminsec(c(lat = -37.0642264, lon = -12.1719068)))
+#' (coords <- latlon(c(49.3246368, 18.2354822)))
 #' dms_to_decdeg(coords)
 #'
 #' rm(coord, coords)
@@ -372,7 +369,10 @@ dms_to_decdeg.degminsec <- function(object, ...) {
 
 dms_to_decdeg.list <- function(object, ...) {
     check_dots_empty()
-    stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "degminsec")))))
+    stopifnot(any(
+        all(purrr::map_lgl(object, \(x) (inherits(x, "degminsec")))),
+        all(purrr::map_lgl(object, \(x) (inherits(x, "latlon"))))
+    ))
     lapply(object, dms_to_decdeg)
 }
 
@@ -418,11 +418,8 @@ dms_to_decdeg.latlon <- function(object, ...) {
 #' (coord <- decdeg(49.54621, .latorlon = "lat"))
 #' decdeg_to_dms(coord)
 #'
-#' (coords <- decdeg(c(lat = 49.54621, lon = 18.398562)))
+#' (coords <- latlon_dd(c(49.54621, 18.398562)))
 #' decdeg_to_dms(coords)
-#'
-#' decdeg(c(lat = -37.11174, lon = -12.28863)) |>
-#'   decdeg_to_dms()
 #'
 #' rm(coord, coords)
 
@@ -475,7 +472,10 @@ decdeg_to_dms.decdeg <- function(object, ...) {
 
 decdeg_to_dms.list <- function(object, ...) {
     check_dots_empty()
-    stopifnot(all(purrr::map_lgl(object, \(x) (inherits(x, "decdeg")))))
+    stopifnot(any(
+        all(purrr::map_lgl(object, \(x) (inherits(x, "decdeg")))),
+        all(purrr::map_lgl(object, \(x) (inherits(x, "latlon"))))
+    ))
     lapply(object, decdeg_to_dms)
 }
 

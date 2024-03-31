@@ -48,10 +48,7 @@ dms_to_decdeg(493246.368, .after = "sec")
 (coord <- degminsec(49.3246368))
 dms_to_decdeg(coord)
 
-(coords <- degminsec(c(lat = 49.3246368, lon = 18.2354822)))
-dms_to_decdeg(coords)
-
-(coords <- degminsec(c(lat = -37.0642264, lon = -12.1719068)))
+(coords <- latlon(c(49.3246368, 18.2354822)))
 dms_to_decdeg(coords)
 
 rm(coord, coords)
