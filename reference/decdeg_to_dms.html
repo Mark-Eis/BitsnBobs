@@ -103,8 +103,10 @@ whether the object is a coordinate of latitude or longitude.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p><code>decdeg_to_dms()</code> is an S3 function that works with individual coordinates, latitude and longitude
-values paired in a named list (see examples) or with a longer list of coordinates.</p>
+    <p><code>decdeg_to_dms()</code> is an S3 function that works with individual coordinates supplied as <code>numeric values</code> or as
+<code><a href="decdeg.html">"decdeg"</a></code> objects, or with lists of such coordinates.  It also accepts, latitude and
+longitude values paired in a <code><a href="latlon.html">"latlon"</a></code> object (see examples), or lists of <code>"latlon"</code>
+paired coordinates.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -125,29 +127,10 @@ values paired in a named list (see examples) or with a longer list of coordinate
 <span class="r-in"><span><span class="fu">decdeg_to_dms</span><span class="op">(</span><span class="va">coord</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	49°32'46.356"N</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="op">(</span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="decdeg.html">decdeg</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="fl">49.54621</span>, lon <span class="op">=</span> <span class="fl">18.398562</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	 49.54621 decimal degrees</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $lon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	 18.398562 decimal degrees</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="op">(</span><span class="va">coords</span> <span class="op">&lt;-</span> <span class="fu"><a href="latlon.html">latlon_dd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">49.54621</span>, <span class="fl">18.398562</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	49.54621, 18.398562 decimal degrees</span>
 <span class="r-in"><span><span class="fu">decdeg_to_dms</span><span class="op">(</span><span class="va">coords</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	49°32'46.356"(N/E)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $lon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	18°23'54.8232"(N/E)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="decdeg.html">decdeg</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>lat <span class="op">=</span> <span class="op">-</span><span class="fl">37.11174</span>, lon <span class="op">=</span> <span class="op">-</span><span class="fl">12.28863</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">decdeg_to_dms</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $lat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	37°6'42.264"(W/S)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $lon</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	12°17'19.068"(W/S)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 	49°32'46.356"N, 18°23'54.8232"E</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">coord</span>, <span class="va">coords</span><span class="op">)</span></span></span>
 </code></pre></div>
