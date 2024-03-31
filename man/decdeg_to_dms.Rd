@@ -45,8 +45,10 @@ whether the object is a coordinate of latitude or longitude.
 Convert decimal degrees to degrees, minutes and seconds.
 }
 \details{
-\code{decdeg_to_dms()} is an S3 function that works with individual coordinates, latitude and longitude
-values paired in a named list (see examples) or with a longer list of coordinates.
+\code{decdeg_to_dms()} is an S3 function that works with individual coordinates supplied as \verb{numeric values} or as
+\code{\link[=decdeg]{"decdeg"}} objects, or with lists of such coordinates.  It also accepts, latitude and
+longitude values paired in a \code{\link[=latlon]{"latlon"}} object (see examples), or lists of \code{"latlon"}
+paired coordinates.
 }
 \examples{
 decdeg_to_dms(49.54621, .latorlon = "lat")

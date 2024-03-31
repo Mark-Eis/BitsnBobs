@@ -299,8 +299,10 @@ print.degminsec <- function(x, ...) {
 #' Convert degrees, minutes and seconds to decimal degrees. 
 #'
 #' @details
-#' `dms_to_decdeg()` is an S3 function that works with individual coordinates, latitude and longitude
-#' values paired in a named list (see examples) or with a longer list of coordinates.
+#' `dms_to_decdeg()` is an S3 function that works with individual coordinates supplied as `numeric values` or as
+#' [`"degminsec"`][BitsnBobs::degminsec] objects, or with lists of such coordinates.  It also accepts, latitude and
+#' longitude values paired in a [`"latlon"`][BitsnBobs::latlon] object (see examples), or lists of `"latlon"`
+#' paired coordinates.
 #'
 #' @family degreeconvert
 #'
@@ -397,8 +399,10 @@ dms_to_decdeg.latlon <- function(object, ...) {
 #' Convert decimal degrees to degrees, minutes and seconds. 
 #'
 #' @details
-#' `decdeg_to_dms()` is an S3 function that works with individual coordinates, latitude and longitude
-#' values paired in a named list (see examples) or with a longer list of coordinates.
+#' `decdeg_to_dms()` is an S3 function that works with individual coordinates supplied as `numeric values` or as
+#' [`"decdeg"`][BitsnBobs::decdeg] objects, or with lists of such coordinates.  It also accepts, latitude and
+#' longitude values paired in a [`"latlon"`][BitsnBobs::latlon] object (see examples), or lists of `"latlon"`
+#' paired coordinates.
 #'
 #' @family degreeconvert
 #'
