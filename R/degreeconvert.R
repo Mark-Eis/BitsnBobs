@@ -237,6 +237,12 @@ validate_degminsec <- function(dms) {
             call. = FALSE
         )
 
+    if (!with(dms, is.integer(c(deg, min))))
+        stop(
+            "`dms$deg` and  `dms$min` must both be of type `integer`",
+            call. = FALSE
+        )
+
     if (any(dms$deg < 0, dms$min < 0, dms$sec < 0))
         stop(
             "`dms$deg`, `dms$min` and `dms$sec` must all be not less than zero",
@@ -245,19 +251,19 @@ validate_degminsec <- function(dms) {
 
     if (dms$deg > 180)
         stop(
-            "`dms$deg` must not be greater than 180",
+            "`dms$deg` must not be greater than 180\u00B0",
             call. = FALSE
         )
 
     if (!dms$min < 60)
         stop(
-            "`dms$min` must be less than 60",
+            "`dms$min` must be less than 60\u00B0",
             call. = FALSE
         )
 
     if (!dms$sec < 60)
         stop(
-            "`dms$sec` must be less than 60",
+            "`dms$sec` must be less than 60\u00B0",
             call. = FALSE
         )
 
