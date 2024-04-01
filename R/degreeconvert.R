@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler Mar 2024
+# Mark Eisler Apr 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -107,7 +107,7 @@ validate_decdeg <- function(dec_deg) {
 
 print.decdeg <- function(x, ...) {
     check_dots_used()
-    cat(paste("\t", zapsmall(x), "decimal degrees\n"))
+    cat(paste("\t", round(x, 6), "decimal degrees\n"))
     invisible(x)
 } 
 
@@ -709,7 +709,7 @@ validate_latlon <- function(ll) {
 
 print.latlon <- function(x, ...) {
     switch(x %@% "degrtype",
-        "dd" = cat(paste0("\t", x$lat, ", ", x$lon, " decimal degrees\n")),
+        "dd" = cat(paste0("\t", round(x$lat, 6), ", ", round(x$lon, 6), " decimal degrees\n")),
         "dms" = cat(paste0("\t", .dmsstr(x$lat), .sfmtx(x$lat), ", ", .dmsstr(x$lon), .sfmtx(x$lon), "\n")),
         stop("Invalid `\"degrtype\"`")
     )
