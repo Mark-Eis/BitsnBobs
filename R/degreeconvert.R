@@ -289,7 +289,12 @@ print.degminsec <- function(x, ...) {
 
 .dmsstr <- function(dms) {
     stopifnot(inherits(dms, "degminsec"))
-    with(dms, paste0(deg, "\u00B0", min, "\'", zapsmall(sec), "\""))
+    # with(dms, paste0(deg, "\u00B0", min, "\'", round(sec, 3), "\""))
+    with(dms, paste0(
+    	deg, "\u00B0", 
+    	formatC(min, digits = 0, width = 2, format = "f", flag = "0"), "\'", 
+    	formatC(sec, digits = 3, width = 6, format = "f", flag = "0"), "\""
+   	))
 }
 
 # ========================================
@@ -528,7 +533,7 @@ decdeg_to_dms.latlon <- function(object, ...) {
 #'
 #' @description
 #' The function `latlon()` is used to create latitude and longitude objects representing paired coordinates in either
-#' decimal degrees or degrees minutes and seconds.
+#' decimal degrees or degrees, minutes and seconds.
 #'
 #' `latlon_dd()` is a convenience function, such that `latlon_dd(...)` is equivalent to `latlon(..., decimal = TRUE)`.
 #'
@@ -563,7 +568,7 @@ decdeg_to_dms.latlon <- function(object, ...) {
 #' ## Decimal degrees
 #' latlon(c(49.54621, 18.398562), decimal = TRUE)
 #'
-#' ## Degrees minutes and seconds
+#' ## degrees, minutes and seconds
 #' latlon(c(49.3246368, 18.2354822))
 #' latlon(c(493246.368, 182354.822), .after = "sec")
 #'
@@ -583,7 +588,7 @@ decdeg_to_dms.latlon <- function(object, ...) {
 #'
 #' latlon(ll_mtx, decimal = TRUE)
 #'
-#' ## Two-column numeric `matrix` in degrees minutes and seconds
+#' ## Two-column numeric `matrix` in degrees, minutes and seconds
 #' ## Deg Min Sec
 #' ll_mtx[1:14] <- c(
 #'     51.3027954, 49.3246368, 48.0626035, 38.5322178, 0, -37.0642264, -53.0617212,
