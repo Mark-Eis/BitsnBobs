@@ -38,6 +38,10 @@
 #' @export
 #' @examples
 #' decdeg(49.54621)
+#'
+#' decdeg(49.54621, .latorlon = "lat")
+#' decdeg(18.398562, .latorlon = "lon")
+#'
 #' decdeg(c(lat = 49.54621, lon = 18.398562))
 #' decdeg(c(lat = -37.11174, lon = -12.28863))
 
@@ -85,7 +89,13 @@ validate_decdeg <- function(dec_deg) {
 
     if (abs(dec_deg) > 180)
         stop(
-            "`dec_deg` must not be greater than 180\u00B0",
+            "`dec_deg` must be between -180\u00B0 and 180\u00B0",
+            call. = FALSE
+        )
+
+    if (all(dec_deg %@% ".latorlon" == "lat", abs(dec_deg) > 90))
+        stop(
+            "`dec_deg` for latitude must be between -90\u00B0 and 90\u00B0",
             call. = FALSE
         )
 
