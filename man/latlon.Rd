@@ -40,7 +40,7 @@ of \code{"latlon"} objects.
 }
 \description{
 The function \code{latlon()} is used to create latitude and longitude objects representing paired coordinates in either
-decimal degrees or degrees minutes and seconds.
+decimal degrees or degrees, minutes and seconds.
 
 \code{latlon_dd()} is a convenience function, such that \code{latlon_dd(...)} is equivalent to \code{latlon(..., decimal = TRUE)}.
 }
@@ -53,7 +53,7 @@ numeric matrix each row of which contains paired latitude and longitude values.
 ## Decimal degrees
 latlon(c(49.54621, 18.398562), decimal = TRUE)
 
-## Degrees minutes and seconds
+## degrees, minutes and seconds
 latlon(c(49.3246368, 18.2354822))
 latlon(c(493246.368, 182354.822), .after = "sec")
 
@@ -73,7 +73,7 @@ latlon_dd(c(49.54621, 18.398562))
 
 latlon(ll_mtx, decimal = TRUE)
 
-## Two-column numeric `matrix` in degrees minutes and seconds
+## Two-column numeric `matrix` in degrees, minutes and seconds
 ## Deg Min Sec
 ll_mtx[1:14] <- c(
     51.3027954, 49.3246368, 48.0626035, 38.5322178, 0, -37.0642264, -53.0617212,

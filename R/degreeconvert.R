@@ -107,9 +107,20 @@ validate_decdeg <- function(dec_deg) {
 
 print.decdeg <- function(x, ...) {
     check_dots_used()
-    cat(paste("\t", round(x, 6), "decimal degrees\n"))
+    cat(paste("\t", .ddfmt(x), "decimal degrees\n"))
     invisible(x)
 } 
+
+# ========================================
+#  Format decdeg Object
+#  .ddfmt()
+#
+#  not exported
+
+.ddfmt <- function(dd) {
+    stopifnot(inherits(dd, "decdeg"))
+    formatC(dd, digits = 6, width = 2, format = "f", flag = "0")
+}
 
 # ========================================
 #' Create Degrees, Minutes and Seconds Object
@@ -289,12 +300,11 @@ print.degminsec <- function(x, ...) {
 
 .dmsstr <- function(dms) {
     stopifnot(inherits(dms, "degminsec"))
-    # with(dms, paste0(deg, "\u00B0", min, "\'", round(sec, 3), "\""))
     with(dms, paste0(
-    	deg, "\u00B0", 
-    	formatC(min, digits = 0, width = 2, format = "f", flag = "0"), "\'", 
-    	formatC(sec, digits = 3, width = 6, format = "f", flag = "0"), "\""
-   	))
+        deg, "\u00B0", 
+        formatC(min, digits = 0, width = 2, format = "f", flag = "0"), "\'", 
+        formatC(sec, digits = 3, width = 6, format = "f", flag = "0"), "\""
+    ))
 }
 
 # ========================================
@@ -714,11 +724,10 @@ validate_latlon <- function(ll) {
 
 print.latlon <- function(x, ...) {
     switch(x %@% "degrtype",
-        "dd" = cat(paste0("\t", round(x$lat, 6), ", ", round(x$lon, 6), " decimal degrees\n")),
+        "dd" = cat(paste0("\t", .ddfmt(x$lat), ", ", .ddfmt(x$lon), " decimal degrees\n")),
         "dms" = cat(paste0("\t", .dmsstr(x$lat), .sfmtx(x$lat), ", ", .dmsstr(x$lon), .sfmtx(x$lon), "\n")),
         stop("Invalid `\"degrtype\"`")
     )
     invisible(x)
 }
-
 
