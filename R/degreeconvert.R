@@ -279,7 +279,7 @@ validate_degminsec <- function(dms) {
 
    if (all(dms %@% ".latorlon" == "lat", with(dms, deg + min / 60 + sec / 3600) > 90))
         stop(
-            "`dms$deg` for latitude must not be greater than 90\u00B0",
+            "`dms` for latitude must not be greater than 90\u00B0",
             call. = FALSE
         )
 
