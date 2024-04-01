@@ -85,7 +85,7 @@ validate_decdeg <- function(dec_deg) {
 
     if (abs(dec_deg) > 180)
         stop(
-            "`dec_deg` must not be greater than 180",
+            "`dec_deg` must not be greater than 180\u00B0",
             call. = FALSE
         )
 
@@ -257,13 +257,13 @@ validate_degminsec <- function(dms) {
 
     if (!dms$min < 60)
         stop(
-            "`dms$min` must be less than 60\u00B0",
+            "`dms$min` must be less than 60\'",
             call. = FALSE
         )
 
     if (!dms$sec < 60)
         stop(
-            "`dms$sec` must be less than 60\u00B0",
+            "`dms$sec` must be less than 60\"",
             call. = FALSE
         )
 
