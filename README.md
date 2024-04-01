@@ -21,7 +21,7 @@ devtools::install_github("Mark-Eis/BitsnBobs")
 The **BitsnBobs R package** does this and that using functions: –
 
 `boxcox3()`, `browse()`, `cat_names()`, `cc_rate()`, `cohens_kappa()`, `const()`, `cor_coef.test()`, `count_lgl()`,
-`data_wizard()`, `decdeg()`, `degminsec()`, `design_effect()`, `detective()`,
+`data_wizard()`, `decdeg()`, `decdeg_to_dms()`, `degminsec()`, `design_effect()`, `detective()`,
 [`detective<-()`](https://mark-eis.github.io/BitsnBobs/reference/detective.html), `dms_to_decdeg()`, `eff_rate()`,
 `endstop()`, `endstop_data()`, `facet_histo()`,`fct_to_num()`, `formul_pwrseq()`, `get_amortint()`, `get_amortval()`,
 `iterate()`, `j()`, `j2eff_rate()`, `known_s3generics()`, `kwd_cols()`, `kwd_cols<-()`, `latlon()`, `latlon_dd()`,
