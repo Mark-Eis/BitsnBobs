@@ -409,8 +409,8 @@ dms_to_decdeg.degminsec <- function(object, ...) {
 dms_to_decdeg.list <- function(object, ...) {
     check_dots_empty()
     stopifnot(any(
-        all(purrr::map_lgl(object, \(x) (inherits(x, "degminsec")))),
-        all(purrr::map_lgl(object, \(x) (inherits(x, "latlon"))))
+        all(map_lgl(object, \(x) (inherits(x, "degminsec")))),
+        all(map_lgl(object, \(x) (inherits(x, "latlon"))))
     ))
     lapply(object, dms_to_decdeg)
 }
@@ -514,8 +514,8 @@ decdeg_to_dms.decdeg <- function(object, ...) {
 decdeg_to_dms.list <- function(object, ...) {
     check_dots_empty()
     stopifnot(any(
-        all(purrr::map_lgl(object, \(x) (inherits(x, "decdeg")))),
-        all(purrr::map_lgl(object, \(x) (inherits(x, "latlon"))))
+        all(map_lgl(object, \(x) (inherits(x, "decdeg")))),
+        all(map_lgl(object, \(x) (inherits(x, "latlon"))))
     ))
     lapply(object, decdeg_to_dms)
 }
