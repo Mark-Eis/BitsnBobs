@@ -423,6 +423,8 @@ dms_to_decdeg.list <- function(object, ...) {
 #' @export
 
 dms_to_decdeg.latlon <- function(object, ...) {
+    check_dots_empty()
+    stopifnot(attr(object, "degrtype") == "dms")
     lapply(object, dms_to_decdeg) |>
     new_latlon("dd") |>
     validate_latlon()
@@ -529,6 +531,8 @@ decdeg_to_dms.list <- function(object, ...) {
 #' @export
 
 decdeg_to_dms.latlon <- function(object, ...) {
+    check_dots_empty()
+    stopifnot(attr(object, "degrtype") == "dd")
     lapply(object, decdeg_to_dms) |>
     new_latlon("dms") |>
     validate_latlon()
