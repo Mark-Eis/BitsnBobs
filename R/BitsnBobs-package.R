@@ -41,6 +41,7 @@
 #' @importFrom purrr map_chr
 #' @importFrom purrr map_dbl
 #' @importFrom purrr map_int
+#' @importFrom purrr map_lgl
 #' @importFrom purrr map2_chr
 #' @importFrom purrr modify_at
 #' @importFrom purrr pmap_lgl
