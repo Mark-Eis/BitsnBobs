@@ -14,8 +14,8 @@
 #' The function `decdeg()` is used to create (latitude or longitude) coordinate objects represented in decimal degrees. 
 #'
 #' @details
-#' `decdeg()` is a generic S3 function. The default method works with a numeric (`double`) vector representing one
-#' or more coordinates of latitude or longitude in decimal degrees.
+#' `decdeg()` works with a numeric (`double`) vector representing one or more coordinates of latitude or longitude in
+#' decimal degrees.
 #'
 #' @family degreeconvert
 #'
@@ -45,19 +45,7 @@
 #' decdeg(c(lat = 49.54621, lon = 18.398562))
 #' decdeg(c(lat = -37.11174, lon = -12.28863))
 
-decdeg <- function(object, ...) {
-    UseMethod("decdeg")
-}
-
-# ========================================
-#  Create Decimal Degrees Object
-#  S3method decdeg.default()
-#'
-#' @rdname decdeg
-#' @export
-
-decdeg.default <- function(object, ..., .latorlon = c(NA, "lat", "lon")) {
-    check_dots_empty()
+decdeg <- function(object, .latorlon = c(NA, "lat", "lon")) {
     .latorlon <- match.arg(.latorlon)    
 
     rv <- lapply(object,  \(x) new_decdeg(x, .latorlon) |> validate_decdeg())

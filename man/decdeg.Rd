@@ -2,25 +2,22 @@
 % Please edit documentation in R/degreeconvert.R
 \name{decdeg}
 \alias{decdeg}
-\alias{decdeg.default}
 \alias{print.decdeg}
 \title{Create Decimal Degrees Object}
 \usage{
-decdeg(object, ...)
-
-\method{decdeg}{default}(object, ..., .latorlon = c(NA, "lat", "lon"))
+decdeg(object, .latorlon = c(NA, "lat", "lon"))
 
 \method{print}{decdeg}(x, ...)
 }
 \arguments{
 \item{object}{\code{numeric}, representing one or more coordinates of latitude or longitude in decimal degrees.}
 
-\item{\dots}{further arguments passed to or from other methods.}
-
 \item{.latorlon}{a \code{character} string indicating whether the coordinate represented by \code{object} is a latitude or
 longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 
 \item{x}{object to be printed.}
+
+\item{\dots}{further arguments passed to or from other methods.}
 }
 \value{
 An object of class \code{"decdeg"}, or if \code{length(object) > 1}, a list of such objects, instantiating a
@@ -32,8 +29,8 @@ or longitude.
 The function \code{decdeg()} is used to create (latitude or longitude) coordinate objects represented in decimal degrees.
 }
 \details{
-\code{decdeg()} is a generic S3 function. The default method works with a numeric (\code{double}) vector representing one
-or more coordinates of latitude or longitude in decimal degrees.
+\code{decdeg()} works with a numeric (\code{double}) vector representing one or more coordinates of latitude or longitude in
+decimal degrees.
 }
 \examples{
 decdeg(49.54621)
