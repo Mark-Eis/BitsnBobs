@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Mar 2024
+# Mark Eisler - Apr 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -11,11 +11,13 @@
 #' Cohen's Kappa Coefficient of Agreement for Nominal Scales
 #'
 #' @description
-#' Cohen's \emph{kappa} measures the agreement between two raters (or diagnostic tests) who each classify \var{N} items
-#' into \var{C} mutually exclusive categories, typically two categories in the case of diagnostic tests.
+#' Cohen's \emph{kappa} measures the agreement between two raters (or diagnostic tests) who each classify
+#' \var{N} items into \var{C} mutually exclusive categories, typically two categories in the case of
+#' diagnostic tests.
 #'
-#' `print_kappa()` first prints the standard \code{htest} output, then the matrices of observed and expected numbers with
-#' their marginal sums, and lastly the numbers and proportions of observations agreeing.
+#' `print_all()` for class `"cohens_kappa"` first prints the standard \code{htest} output, then the matrices
+#' of observed and expected numbers with their marginal sums, and lastly the numbers and proportions of
+#' observations agreeing.
 #'
 #' @details
 #' Cohen's \emph{kappa} coefficient is given by: -

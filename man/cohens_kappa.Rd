@@ -41,11 +41,13 @@ A list with classes \code{"cohens_kappa"} and \code{"htest"}, containing the fol
 \item{method}{the character string "Cohen's kappa coefficient of agreement" and the standard error method used.}
 }
 \description{
-Cohen's \emph{kappa} measures the agreement between two raters (or diagnostic tests) who each classify \var{N} items
-into \var{C} mutually exclusive categories, typically two categories in the case of diagnostic tests.
+Cohen's \emph{kappa} measures the agreement between two raters (or diagnostic tests) who each classify
+\var{N} items into \var{C} mutually exclusive categories, typically two categories in the case of
+diagnostic tests.
 
-\code{print_kappa()} first prints the standard \code{htest} output, then the matrices of observed and expected numbers with
-their marginal sums, and lastly the numbers and proportions of observations agreeing.
+\code{print_all()} for class \code{"cohens_kappa"} first prints the standard \code{htest} output, then the matrices
+of observed and expected numbers with their marginal sums, and lastly the numbers and proportions of
+observations agreeing.
 }
 \details{
 Cohen's \emph{kappa} coefficient is given by: -
