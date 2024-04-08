@@ -90,8 +90,7 @@ rm(ll_mtx)
 Other degreeconvert: 
 \code{\link{decdeg}()},
 \code{\link{decdeg_to_dms}()},
-\code{\link{degminsec}()},
-\code{\link{dms_to_decdeg}()}
+\code{\link{degminsec}()}
 }
 \concept{degreeconvert}
 \keyword{utilities}

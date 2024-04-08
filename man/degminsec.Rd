@@ -73,7 +73,6 @@ degminsec(c(lat = -370642.264, lon = -121719.068), .after = "sec")
 Other degreeconvert: 
 \code{\link{decdeg}()},
 \code{\link{decdeg_to_dms}()},
-\code{\link{dms_to_decdeg}()},
 \code{\link{latlon}()}
 }
 \concept{degreeconvert}

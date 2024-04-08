@@ -2,10 +2,25 @@
 % Please edit documentation in R/degreeconvert.R
 \name{decdeg}
 \alias{decdeg}
+\alias{as_decdeg}
+\alias{as_decdeg.default}
+\alias{as_decdeg.degminsec}
+\alias{as_decdeg.list}
+\alias{as_decdeg.latlon}
 \alias{print.decdeg}
 \title{Create Decimal Degrees Object}
 \usage{
 decdeg(object, .latorlon = c(NA, "lat", "lon"))
+
+as_decdeg(object, ...)
+
+\method{as_decdeg}{default}(object, ..., .fmt = c("deg", "min", "sec"))
+
+\method{as_decdeg}{degminsec}(object, ...)
+
+\method{as_decdeg}{list}(object, ...)
+
+\method{as_decdeg}{latlon}(object, ...)
 
 \method{print}{decdeg}(x, ...)
 }
@@ -15,9 +30,12 @@ decdeg(object, .latorlon = c(NA, "lat", "lon"))
 \item{.latorlon}{a \code{character} string indicating whether the coordinate represented by \code{object} is a latitude or
 longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 
-\item{x}{object to be printed.}
-
 \item{\dots}{further arguments passed to or from other methods.}
+
+\item{.fmt}{a \code{character} string indicating the position of the decimal point in \code{object}; must be one of
+\code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
+
+\item{x}{object to be printed.}
 }
 \value{
 An object of class \code{"decdeg"}, or if \code{length(object) > 1}, a list of such objects, instantiating a
@@ -27,10 +45,17 @@ or longitude.
 }
 \description{
 The function \code{decdeg()} is used to create (latitude or longitude) coordinate objects represented in decimal degrees.
+
+\code{as_decdeg()} converts degrees, minutes and seconds to coordinate objects represented in decimal degrees.
 }
 \details{
 \code{decdeg()} works with a numeric (\code{double}) vector representing one or more coordinates of latitude or longitude in
 decimal degrees.
+
+\code{as_decdeg()} is an S3 function that works with individual coordinates supplied as \verb{numeric values} or as
+\code{\link[=degminsec]{"degminsec"}} objects, or with lists of such coordinates.  It also accepts, latitude and
+longitude values paired in a \code{\link[=latlon]{"latlon"}} object (see examples), or lists of \code{"latlon"}
+paired coordinates.
 }
 \examples{
 decdeg(49.54621)
@@ -40,12 +65,23 @@ decdeg(18.398562, .latorlon = "lon")
 
 decdeg(c(lat = 49.54621, lon = 18.398562))
 decdeg(c(lat = -37.11174, lon = -12.28863))
+
+as_decdeg(49.3246368)
+as_decdeg(4932.46368, .fmt = "min")
+as_decdeg(493246.368, .fmt = "sec")
+
+(coord <- degminsec(49.3246368))
+as_decdeg(coord)
+
+(coords <- latlon(c(49.3246368, 18.2354822)))
+as_decdeg(coords)
+
+rm(coord, coords)
 }
 \seealso{
 Other degreeconvert: 
 \code{\link{decdeg_to_dms}()},
 \code{\link{degminsec}()},
-\code{\link{dms_to_decdeg}()},
 \code{\link{latlon}()}
 }
 \concept{degreeconvert}

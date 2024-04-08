@@ -65,7 +65,6 @@ rm(coord, coords)
 Other degreeconvert: 
 \code{\link{decdeg}()},
 \code{\link{degminsec}()},
-\code{\link{dms_to_decdeg}()},
 \code{\link{latlon}()}
 }
 \concept{degreeconvert}
