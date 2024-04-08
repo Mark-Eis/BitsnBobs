@@ -2,7 +2,6 @@
 % Please edit documentation in R/degreeconvert.R
 \name{degminsec}
 \alias{degminsec}
-\alias{degminsec.default}
 \alias{as_degminsec}
 \alias{as_degminsec.default}
 \alias{as_degminsec.decdeg}
@@ -11,11 +10,8 @@
 \alias{print.degminsec}
 \title{Create Degrees, Minutes and Seconds Object}
 \usage{
-degminsec(object, ...)
-
-\method{degminsec}{default}(
+degminsec(
   object,
-  ...,
   .fmt = c("deg", "min", "sec"),
   .latorlon = c(NA, "lat", "lon")
 )
@@ -36,13 +32,13 @@ as_degminsec(object, ...)
 \item{object}{\code{numeric}, representing one or more coordinates of latitude or longitude in degrees, minutes and
 seconds.}
 
-\item{...}{further arguments passed to or from other methods.}
-
 \item{.fmt}{a \code{character} string indicating the position of the decimal point in \code{object}; must be one of
 \code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
 
 \item{.latorlon}{a \code{character} string indicating whether the coordinate represented by \code{object} is a latitude or
 longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
+
+\item{...}{further arguments passed to or from other methods.}
 
 \item{x}{object to be printed.}
 }
@@ -67,10 +63,9 @@ minutes and seconds.
 \code{as_degminsec()} converts decimal degrees to coordinate objects represented in  degrees, minutes and seconds.
 }
 \details{
-\code{degminsec()} is a generic S3 function. The default method works with a numeric (\code{double}) representing one or
-more coordinates of latitude or longitude in degrees, minutes and seconds. The argument \code{.fmt} indicates the
-position of the decimal point, which may be placed after the degrees, the minutes or the (whole) seconds, and by
-default assumed to be placed after the degrees.
+\code{degminsec()} works with a numeric (\code{double}) representing one or more coordinates of latitude or longitude in
+degrees, minutes and seconds. The argument \code{.fmt} indicates the position of the decimal point, which may be placed
+after the degrees, the minutes or the (whole) seconds, and by default assumed to be placed after the degrees.
 
 \code{as_degminsec()} is an S3 function that works with individual coordinates supplied as \verb{numeric values} or as
 \code{\link[=decdeg]{"decdeg"}} objects, or with lists of such coordinates.  It also accepts, latitude and

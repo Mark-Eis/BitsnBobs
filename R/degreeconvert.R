@@ -223,10 +223,9 @@ print.decdeg <- function(x, ...) {
 #' `as_degminsec()` converts decimal degrees to coordinate objects represented in  degrees, minutes and seconds. 
 #'
 #' @details
-#' `degminsec()` is a generic S3 function. The default method works with a numeric (`double`) representing one or
-#' more coordinates of latitude or longitude in degrees, minutes and seconds. The argument `.fmt` indicates the
-#' position of the decimal point, which may be placed after the degrees, the minutes or the (whole) seconds, and by
-#' default assumed to be placed after the degrees.
+#' `degminsec()` works with a numeric (`double`) representing one or more coordinates of latitude or longitude in
+#' degrees, minutes and seconds. The argument `.fmt` indicates the position of the decimal point, which may be placed
+#' after the degrees, the minutes or the (whole) seconds, and by default assumed to be placed after the degrees.
 #'
 #' `as_degminsec()` is an S3 function that works with individual coordinates supplied as `numeric values` or as
 #' [`"decdeg"`][BitsnBobs::decdeg] objects, or with lists of such coordinates.  It also accepts, latitude and
@@ -280,19 +279,7 @@ print.decdeg <- function(x, ...) {
 #'
 #' rm(coord, coords)
 
-degminsec <- function(object, ...) {
-    UseMethod("degminsec")
-}
-
-# ========================================
-#  Create Degrees, Minutes and Seconds Object
-#  S3method degminsec.default()
-#'
-#' @rdname degminsec
-#' @export
-
-degminsec.default <- function(object, ..., .fmt = c("deg", "min", "sec"), .latorlon = c(NA, "lat", "lon")) {
-    check_dots_empty()
+degminsec <- function(object, .fmt = c("deg", "min", "sec"), .latorlon = c(NA, "lat", "lon")) {
     .fmt <- match.arg(.fmt)
     .latorlon <- match.arg(.latorlon)
 
