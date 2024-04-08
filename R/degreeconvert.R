@@ -40,8 +40,8 @@
 #'
 #' @return An object of class `"decdeg"`, or if `length(object) > 1`, a list of such objects, instantiating a
 #'   coordinate of latitude or longitude in decimal degrees represented by a numeric of type `double` with maximum
-#'   absolute value of \var{180}˚. Attribute `".latorlon"` indicates whether the object is a coordinate of latitude
-#'   or longitude.
+#'   absolute value of \var{180˚}. Attribute `".latorlon"` indicates whether the object is a coordinate of latitude
+#'   or longitude; if latitude, the  maximum absolute value is \var{90˚}.
 #'
 #' @keywords utilities
 #'

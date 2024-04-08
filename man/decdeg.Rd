@@ -40,8 +40,8 @@ longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 \value{
 An object of class \code{"decdeg"}, or if \code{length(object) > 1}, a list of such objects, instantiating a
 coordinate of latitude or longitude in decimal degrees represented by a numeric of type \code{double} with maximum
-absolute value of \var{180}˚. Attribute \code{".latorlon"} indicates whether the object is a coordinate of latitude
-or longitude.
+absolute value of \var{180˚}. Attribute \code{".latorlon"} indicates whether the object is a coordinate of latitude
+or longitude; if latitude, the  maximum absolute value is \var{90˚}.
 }
 \description{
 The function \code{decdeg()} is used to create (latitude or longitude) coordinate objects represented in decimal degrees.
