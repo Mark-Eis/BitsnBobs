@@ -10,9 +10,9 @@
 \usage{
 latlon(object, ...)
 
-\method{latlon}{default}(object, ..., decimal = FALSE, .after = c("deg", "min", "sec"))
+\method{latlon}{default}(object, ..., decimal = FALSE, .fmt = c("deg", "min", "sec"))
 
-\method{latlon}{matrix}(object, ..., decimal = FALSE, .after = c("deg", "min", "sec"))
+\method{latlon}{matrix}(object, ..., decimal = FALSE, .fmt = c("deg", "min", "sec"))
 
 latlon_dd(object)
 
@@ -27,7 +27,7 @@ degrees, minutes and seconds; or a two-column numeric \code{matrix} representing
 \item{decimal}{\code{logical}, if \code{TRUE} indicating whether the coordinate represented by \code{object} is in decimal degrees
 or otherwise in degrees, minutes and seconds; default \code{FALSE}.}
 
-\item{.after}{a \code{character} string indicating the position of the decimal point in \code{object}; must be one of
+\item{.fmt}{a \code{character} string indicating the position of the decimal point in \code{object}; must be one of
 \code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
 
 \item{x}{object to be printed.}
@@ -55,7 +55,7 @@ latlon(c(49.54621, 18.398562), decimal = TRUE)
 
 ## degrees, minutes and seconds
 latlon(c(49.3246368, 18.2354822))
-latlon(c(493246.368, 182354.822), .after = "sec")
+latlon(c(493246.368, 182354.822), .fmt = "sec")
 
 ## Decimal degrees—convenience function
 latlon_dd(c(49.54621, 18.398562))
@@ -89,7 +89,6 @@ rm(ll_mtx)
 \seealso{
 Other degreeconvert: 
 \code{\link{decdeg}()},
-\code{\link{decdeg_to_dms}()},
 \code{\link{degminsec}()}
 }
 \concept{degreeconvert}

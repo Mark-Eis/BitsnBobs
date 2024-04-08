@@ -3,6 +3,11 @@
 \name{degminsec}
 \alias{degminsec}
 \alias{degminsec.default}
+\alias{as_degminsec}
+\alias{as_degminsec.default}
+\alias{as_degminsec.decdeg}
+\alias{as_degminsec.list}
+\alias{as_degminsec.latlon}
 \alias{print.degminsec}
 \title{Create Degrees, Minutes and Seconds Object}
 \usage{
@@ -11,9 +16,19 @@ degminsec(object, ...)
 \method{degminsec}{default}(
   object,
   ...,
-  .after = c("deg", "min", "sec"),
+  .fmt = c("deg", "min", "sec"),
   .latorlon = c(NA, "lat", "lon")
 )
+
+as_degminsec(object, ...)
+
+\method{as_degminsec}{default}(object, ..., .latorlon = c(NA, "lat", "lon"))
+
+\method{as_degminsec}{decdeg}(object, ...)
+
+\method{as_degminsec}{list}(object, ...)
+
+\method{as_degminsec}{latlon}(object, ...)
 
 \method{print}{degminsec}(x, ...)
 }
@@ -23,7 +38,7 @@ seconds.}
 
 \item{...}{further arguments passed to or from other methods.}
 
-\item{.after}{a \code{character} string indicating the position of the decimal point in \code{object}; must be one of
+\item{.fmt}{a \code{character} string indicating the position of the decimal point in \code{object}; must be one of
 \code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
 
 \item{.latorlon}{a \code{character} string indicating whether the coordinate represented by \code{object} is a latitude or
@@ -48,17 +63,24 @@ whether the object is a coordinate of latitude or longitude.
 \description{
 The function \code{degminsec()} is used to create (latitude or longitude) coordinate objects represented in degrees,
 minutes and seconds.
+
+\code{as_degminsec()} converts decimal degrees to coordinate objects represented in  degrees, minutes and seconds.
 }
 \details{
 \code{degminsec()} is a generic S3 function. The default method works with a numeric (\code{double}) representing one or
-more coordinates of latitude or longitude in degrees, minutes and seconds. The argument \code{.after} indicates the
+more coordinates of latitude or longitude in degrees, minutes and seconds. The argument \code{.fmt} indicates the
 position of the decimal point, which may be placed after the degrees, the minutes or the (whole) seconds, and by
 default assumed to be placed after the degrees.
+
+\code{as_degminsec()} is an S3 function that works with individual coordinates supplied as \verb{numeric values} or as
+\code{\link[=decdeg]{"decdeg"}} objects, or with lists of such coordinates.  It also accepts, latitude and
+longitude values paired in a \code{\link[=latlon]{"latlon"}} object (see examples), or lists of \code{"latlon"}
+paired coordinates.
 }
 \examples{
 degminsec(49.3246368)
-degminsec(4932.46368, .after = "min")
-degminsec(493246.368, .after = "sec")
+degminsec(4932.46368, .fmt = "min")
+degminsec(493246.368, .fmt = "sec")
 
 degminsec(49.3246368, .latorlon = "lat")
 degminsec(18.2354822, .latorlon = "lon")
@@ -67,12 +89,21 @@ degminsec(-37.0642264, .latorlon = "lat")
 degminsec(-12.1719068, .latorlon = "lon")
 
 degminsec(c(lat = 49.3246368, lon = 18.2354822))
-degminsec(c(lat = -370642.264, lon = -121719.068), .after = "sec")
+degminsec(c(lat = -370642.264, lon = -121719.068), .fmt = "sec")
+
+as_degminsec(49.54621, .latorlon = "lat")
+
+(coord <- decdeg(49.54621, .latorlon = "lat"))
+as_degminsec(coord)
+
+(coords <- latlon_dd(c(49.54621, 18.398562)))
+as_degminsec(coords)
+
+rm(coord, coords)
 }
 \seealso{
 Other degreeconvert: 
 \code{\link{decdeg}()},
-\code{\link{decdeg_to_dms}()},
 \code{\link{latlon}()}
 }
 \concept{degreeconvert}

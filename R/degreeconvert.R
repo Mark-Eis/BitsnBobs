@@ -139,7 +139,7 @@ as_decdeg <- function(object, ...) {
 as_decdeg.default <- function(object, ..., .fmt = c("deg", "min", "sec")) {
     check_dots_empty()
     stopifnot(is.numeric(object))
-    degminsec(object, .after = .fmt) |>
+    degminsec(object, .fmt = .fmt) |>
         as_decdeg()
 }
 
@@ -218,21 +218,25 @@ print.decdeg <- function(x, ...) {
 #'
 #' @description
 #' The function `degminsec()` is used to create (latitude or longitude) coordinate objects represented in degrees,
-#' minutes and seconds. 
+#' minutes and seconds.
+#'
+#' `as_degminsec()` converts decimal degrees to coordinate objects represented in  degrees, minutes and seconds. 
 #'
 #' @details
 #' `degminsec()` is a generic S3 function. The default method works with a numeric (`double`) representing one or
-#' more coordinates of latitude or longitude in degrees, minutes and seconds. The argument `.after` indicates the
+#' more coordinates of latitude or longitude in degrees, minutes and seconds. The argument `.fmt` indicates the
 #' position of the decimal point, which may be placed after the degrees, the minutes or the (whole) seconds, and by
 #' default assumed to be placed after the degrees.
+#'
+#' `as_degminsec()` is an S3 function that works with individual coordinates supplied as `numeric values` or as
+#' [`"decdeg"`][BitsnBobs::decdeg] objects, or with lists of such coordinates.  It also accepts, latitude and
+#' longitude values paired in a [`"latlon"`][BitsnBobs::latlon] object (see examples), or lists of `"latlon"`
+#' paired coordinates.
 #'
 #' @family degreeconvert
 #'
 #' @param object `numeric`, representing one or more coordinates of latitude or longitude in degrees, minutes and
 #'   seconds.
-#'
-#' @param .after a `character` string indicating the position of the decimal point in `object`; must be one of
-#'   `"deg"` (default), `"min"`, or `"sec"`. You can specify just the initial letter.
 #'
 #' @inheritParams decdeg
 #'
@@ -254,8 +258,8 @@ print.decdeg <- function(x, ...) {
 #' @export
 #' @examples
 #' degminsec(49.3246368)
-#' degminsec(4932.46368, .after = "min")
-#' degminsec(493246.368, .after = "sec")
+#' degminsec(4932.46368, .fmt = "min")
+#' degminsec(493246.368, .fmt = "sec")
 #'
 #' degminsec(49.3246368, .latorlon = "lat")
 #' degminsec(18.2354822, .latorlon = "lon")
@@ -264,7 +268,17 @@ print.decdeg <- function(x, ...) {
 #' degminsec(-12.1719068, .latorlon = "lon")
 #'
 #' degminsec(c(lat = 49.3246368, lon = 18.2354822))
-#' degminsec(c(lat = -370642.264, lon = -121719.068), .after = "sec")
+#' degminsec(c(lat = -370642.264, lon = -121719.068), .fmt = "sec")
+#'
+#' as_degminsec(49.54621, .latorlon = "lat")
+#'
+#' (coord <- decdeg(49.54621, .latorlon = "lat"))
+#' as_degminsec(coord)
+#'
+#' (coords <- latlon_dd(c(49.54621, 18.398562)))
+#' as_degminsec(coords)
+#'
+#' rm(coord, coords)
 
 degminsec <- function(object, ...) {
     UseMethod("degminsec")
@@ -277,14 +291,14 @@ degminsec <- function(object, ...) {
 #' @rdname degminsec
 #' @export
 
-degminsec.default <- function(object, ..., .after = c("deg", "min", "sec"), .latorlon = c(NA, "lat", "lon")) {
+degminsec.default <- function(object, ..., .fmt = c("deg", "min", "sec"), .latorlon = c(NA, "lat", "lon")) {
     check_dots_empty()
-    .after <- match.arg(.after)
+    .fmt <- match.arg(.fmt)
     .latorlon <- match.arg(.latorlon)
 
     rv <- lapply(object, \(x) {
         negative <- x < 0
-        switch(.after,
+        switch(.fmt,
                 deg = abs(x),
                 min = abs(x) / 1e2L,
                 sec = abs(x) / 1e4L
@@ -380,6 +394,85 @@ validate_degminsec <- function(dms) {
 }
 
 # ========================================
+#  Convert Decimal Degrees to Degrees, Minutes and Seconds
+#  S3method as_degminsec()
+#'
+#' @rdname degminsec
+#' @export
+
+as_degminsec <- function(object, ...) {
+    UseMethod("as_degminsec")
+}
+
+# ========================================
+#  Convert Decimal Degrees to Degrees, Minutes and Seconds
+#  S3method as_degminsec.default()
+#'
+#' @rdname degminsec
+#' @export
+
+as_degminsec.default <- function(object, ..., .latorlon = c(NA, "lat", "lon")) {
+    stopifnot(is.numeric(object))
+    check_dots_empty()
+   .latorlon <- match.arg(.latorlon)    
+    decdeg(object, .latorlon = .latorlon) |>
+    as_degminsec()
+}
+
+# ========================================
+#  Convert Decimal Degrees in a "decdeg" object to Degrees, Minutes and Seconds
+#  S3method as_degminsec.degminsec()
+#'
+#' @rdname degminsec
+#' @export
+
+as_degminsec.decdeg <- function(object, ...) {
+    check_dots_empty()
+    negative <- object < 0
+    object <- abs(object)
+    sum(
+        as.integer(object %/% 1),
+        as.integer(((object %% 1) * 60) %/% 1) / 100,
+        as.numeric((((object %% 1) * 60) %% 1) * 3) / 500
+    ) |>
+    new_degminsec(negative, object %@% ".latorlon") |>
+    validate_degminsec()
+}
+
+
+# ========================================
+#  Convert Decimal Degrees in a list to Degrees, Minutes and Seconds
+#  S3method as_degminsec.list()
+#'
+#' @rdname degminsec
+#' @export
+
+as_degminsec.list <- function(object, ...) {
+    check_dots_empty()
+    stopifnot(any(
+        all(map_lgl(object, \(x) (inherits(x, "decdeg")))),
+        all(map_lgl(object, \(x) (inherits(x, "latlon"))))
+    ))
+    lapply(object, as_degminsec)
+}
+
+
+# ========================================
+#  Convert Decimal Degrees in a latlon to Degrees, Minutes and Seconds
+#  S3method as_degminsec.latlon()
+#'
+#' @rdname degminsec
+#' @export
+
+as_degminsec.latlon <- function(object, ...) {
+    check_dots_empty()
+    stopifnot(attr(object, "degrtype") == "dd")
+    lapply(object, as_degminsec) |>
+    new_latlon("dms") |>
+    validate_latlon()
+}
+
+# ========================================
 # Print degminsec Object
 #  S3method print.degminsec()
 #'
@@ -409,216 +502,6 @@ print.degminsec <- function(x, ...) {
         formatC(sec, digits = 3, width = 6, format = "f", flag = "0"), "\""
     ))
 }
-
-# # ========================================
-# #' Convert Degrees, Minutes and Seconds to Decimal Degrees
-# #'
-# #' @description
-# #' Convert degrees, minutes and seconds to decimal degrees. 
-# #'
-# #' @details
-# #' `as_decdeg()` is an S3 function that works with individual coordinates supplied as `numeric values` or as
-# #' [`"degminsec"`][BitsnBobs::degminsec] objects, or with lists of such coordinates.  It also accepts, latitude and
-# #' longitude values paired in a [`"latlon"`][BitsnBobs::latlon] object (see examples), or lists of `"latlon"`
-# #' paired coordinates.
-# #'
-# #' @family degreeconvert
-# #'
-# #' @param object a `numeric` or an object of class [`"degminsec"`][degminsec], representing a coordinate of latitude
-# #'   or longitude in degrees, minutes and seconds or a list of `"degminsec"` objects.
-# #'
-# #' @inheritParams degminsec
-# #'
-# #' @inherit decdeg return
-# #'
-# #' @keywords utilities
-# #'
-# #' @export
-# #' @examples
-# #' as_decdeg(49.3246368)
-# #' as_decdeg(4932.46368, .after = "min")
-# #' as_decdeg(493246.368, .after = "sec")
-# #'
-# #' (coord <- degminsec(49.3246368))
-# #' as_decdeg(coord)
-# #'
-# #' (coords <- latlon(c(49.3246368, 18.2354822)))
-# #' as_decdeg(coords)
-# #'
-# #' rm(coord, coords)
-
-# as_decdeg <- function(object, ...) {
-    # UseMethod("as_decdeg")
-# }
-
-# # ========================================
-# #  Convert Degrees, Minutes and Seconds to Decimal Degrees
-# #  S3method as_decdeg.default()
-# #'
-# #' @rdname as_decdeg
-# #' @export
-
-# as_decdeg.default <- function(object, ..., .after = c("deg", "min", "sec")) {
-    # check_dots_empty()
-    # stopifnot(is.numeric(object))
-    # degminsec(object, .after = .after) |>
-        # as_decdeg()
-# }
-
-# # ========================================
-# #  Convert Degrees, Minutes and Seconds in a "degminsec" object to Decimal Degrees
-# #  S3method as_decdeg.degminsec()
-# #'
-# #' @rdname as_decdeg
-# #' @export
-
-# as_decdeg.degminsec <- function(object, ...) {
-    # check_dots_empty()
-    # validate_degminsec(object)
-    # dd <- with(object, deg + min / 60 + sec / 3600)
-    # dd <- (if (object %@% "negative") -dd else dd)
-    # decdeg(dd, .latorlon = object %@% ".latorlon")
-# }
-
-# # ========================================
-# #  Convert Degrees, Minutes and Seconds in a list to Decimal Degrees
-# #  S3method as_decdeg.list()
-# #'
-# #' @rdname as_decdeg
-# #' @export
-
-# as_decdeg.list <- function(object, ...) {
-    # check_dots_empty()
-    # stopifnot(any(
-        # all(map_lgl(object, \(x) (inherits(x, "degminsec")))),
-        # all(map_lgl(object, \(x) (inherits(x, "latlon"))))
-    # ))
-    # lapply(object, as_decdeg)
-# }
-
-# # ========================================
-# #  Convert Degrees, Minutes and Seconds in a latlon to Decimal Degrees
-# #  S3method as_decdeg.latlon()
-# #'
-# #' @rdname as_decdeg
-# #' @export
-
-# as_decdeg.latlon <- function(object, ...) {
-    # check_dots_empty()
-    # stopifnot(attr(object, "degrtype") == "dms")
-    # lapply(object, as_decdeg) |>
-    # new_latlon("dd") |>
-    # validate_latlon()
-# }
-
-
-# ========================================
-#' Convert Decimal Degrees to Degrees, Minutes and Seconds
-#'
-#' @description
-#' Convert decimal degrees to degrees, minutes and seconds. 
-#'
-#' @details
-#' `decdeg_to_dms()` is an S3 function that works with individual coordinates supplied as `numeric values` or as
-#' [`"decdeg"`][BitsnBobs::decdeg] objects, or with lists of such coordinates.  It also accepts, latitude and
-#' longitude values paired in a [`"latlon"`][BitsnBobs::latlon] object (see examples), or lists of `"latlon"`
-#' paired coordinates.
-#'
-#' @family degreeconvert
-#'
-#' @param object a `numeric` or an object of class [`"decdeg"`][decdeg], representing a coordinate of latitude or
-#'   longitude in decimal degrees or a list of `"decdeg"` objects.
-#'
-#' @inheritParams degminsec
-#'
-#' @inherit degminsec return
-#'
-#' @keywords utilities
-#'
-#' @export
-#' @examples
-#' decdeg_to_dms(49.54621, .latorlon = "lat")
-#'
-#' (coord <- decdeg(49.54621, .latorlon = "lat"))
-#' decdeg_to_dms(coord)
-#'
-#' (coords <- latlon_dd(c(49.54621, 18.398562)))
-#' decdeg_to_dms(coords)
-#'
-#' rm(coord, coords)
-
-decdeg_to_dms <- function(object, ...) {
-    UseMethod("decdeg_to_dms")
-}
-
-# ========================================
-#  Convert Decimal Degrees to Degrees, Minutes and Seconds
-#  S3method decdeg_to_dms.default()
-#'
-#' @rdname decdeg_to_dms
-#' @export
-
-decdeg_to_dms.default <- function(object, ..., .latorlon = c(NA, "lat", "lon")) {
-    stopifnot(is.numeric(object))
-    check_dots_empty()
-   .latorlon <- match.arg(.latorlon)    
-    decdeg(object, .latorlon = .latorlon) |>
-    decdeg_to_dms()
-}
-
-# ========================================
-#  Convert Decimal Degrees in a "decdeg" object to Degrees, Minutes and Seconds
-#  S3method decdeg_to_dms.degminsec()
-#'
-#' @rdname decdeg_to_dms
-#' @export
-
-decdeg_to_dms.decdeg <- function(object, ...) {
-    check_dots_empty()
-    negative <- object < 0
-    object <- abs(object)
-    sum(
-        as.integer(object %/% 1),
-        as.integer(((object %% 1) * 60) %/% 1) / 100,
-        as.numeric((((object %% 1) * 60) %% 1) * 3) / 500
-    ) |>
-    new_degminsec(negative, object %@% ".latorlon") |>
-    validate_degminsec()
-}
-
-
-# ========================================
-#  Convert Decimal Degrees in a list to Degrees, Minutes and Seconds
-#  S3method decdeg_to_dms.list()
-#'
-#' @rdname decdeg_to_dms
-#' @export
-
-decdeg_to_dms.list <- function(object, ...) {
-    check_dots_empty()
-    stopifnot(any(
-        all(map_lgl(object, \(x) (inherits(x, "decdeg")))),
-        all(map_lgl(object, \(x) (inherits(x, "latlon"))))
-    ))
-    lapply(object, decdeg_to_dms)
-}
-
-
-# ========================================
-#  Convert Decimal Degrees in a latlon to Degrees, Minutes and Seconds
-#  S3method decdeg_to_dms.latlon()
-#'
-#' @rdname decdeg_to_dms
-#' @export
-
-decdeg_to_dms.latlon <- function(object, ...) {
-    check_dots_empty()
-    stopifnot(attr(object, "degrtype") == "dd")
-    lapply(object, decdeg_to_dms) |>
-    new_latlon("dms") |>
-    validate_latlon()
-}
-
 
 # ========================================
 #  Get decimal multiplied by 100
@@ -687,7 +570,7 @@ decdeg_to_dms.latlon <- function(object, ...) {
 #'
 #' ## degrees, minutes and seconds
 #' latlon(c(49.3246368, 18.2354822))
-#' latlon(c(493246.368, 182354.822), .after = "sec")
+#' latlon(c(493246.368, 182354.822), .fmt = "sec")
 #'
 #' ## Decimal degrees—convenience function
 #' latlon_dd(c(49.54621, 18.398562))
@@ -729,13 +612,13 @@ latlon <- function(object, ...) {
 #' @rdname latlon
 #' @export
 
-latlon.default <- function(object, ..., decimal = FALSE, .after = c("deg", "min", "sec")) {
+latlon.default <- function(object, ..., decimal = FALSE, .fmt = c("deg", "min", "sec")) {
     setNames(object, c("lat", "lon")) |>
     imap(\(x, idx)
         if (decimal)
             decdeg(x, .latorlon = idx)
         else
-            degminsec(x, .after = .after, .latorlon = idx)
+            degminsec(x, .fmt = .fmt, .latorlon = idx)
     ) |>
     new_latlon(if (decimal) "dd" else "dms") |>
     validate_latlon()
@@ -748,13 +631,13 @@ latlon.default <- function(object, ..., decimal = FALSE, .after = c("deg", "min"
 #' @rdname latlon
 #' @export
 
-latlon.matrix <- function(object, ..., decimal = FALSE, .after = c("deg", "min", "sec")) {
+latlon.matrix <- function(object, ..., decimal = FALSE, .fmt = c("deg", "min", "sec")) {
     if (dim(object)[2] != 2)
         stop(
             "`object` must be a matrix of two columns",
             call. = FALSE
         )
-    lapply(seq_len(dim(object)[1]), \(x) latlon(object[x, ], decimal = decimal, .after = .after)) |>
+    lapply(seq_len(dim(object)[1]), \(x) latlon(object[x, ], decimal = decimal, .fmt = .fmt)) |>
     setNames(dimnames(object)[[1]])
 }
 

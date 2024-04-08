@@ -80,7 +80,6 @@ rm(coord, coords)
 }
 \seealso{
 Other degreeconvert: 
-\code{\link{decdeg_to_dms}()},
 \code{\link{degminsec}()},
 \code{\link{latlon}()}
 }
