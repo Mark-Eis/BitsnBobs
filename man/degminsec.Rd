@@ -46,7 +46,7 @@ longitude; must be one of \code{NA} (default), \code{"lat"}, or \code{"lon"}.}
 An object of class \code{"degminsec"}, or if \code{length(object) > 1}, a list of such objects, representing a
 coordinate of latitude or longitude in degrees, minutes and seconds as a named list with components: -
 
-\item{deg}{degrees represented by an integer with maximum absolute value of 180.}
+\item{deg}{degrees represented by a positive integer with maximum value of 180.}
 
 \item{min}{minutes represented by a positive integer with value less than 60.}
 
