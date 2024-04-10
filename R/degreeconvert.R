@@ -139,7 +139,10 @@ as_decdeg <- function(object, ...) {
 as_decdeg.default <- function(object, ..., .fmt = c("deg", "min", "sec")) {
     check_dots_empty()
     stopifnot(is.numeric(object))
-    degminsec(object, .fmt = .fmt) |>
+    if (inherits(object, "decdeg"))
+        validate_decdeg(object)
+    else
+        degminsec(object, .fmt = .fmt) |>
         as_decdeg()
 }
 
