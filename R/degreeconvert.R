@@ -628,6 +628,7 @@ latlon <- function(object, ...) {
 #' @export
 
 latlon.default <- function(object, ..., decimal = FALSE, .fmt = c("deg", "min", "sec")) {
+    check_dots_empty()
     setNames(object, c("lat", "lon")) |>
     imap(\(x, idx)
         if (decimal)
@@ -647,6 +648,7 @@ latlon.default <- function(object, ..., decimal = FALSE, .fmt = c("deg", "min", 
 #' @export
 
 latlon.matrix <- function(object, ..., decimal = FALSE, .fmt = c("deg", "min", "sec")) {
+    check_dots_empty()
     if (dim(object)[2] != 2)
         stop(
             "`object` must be a matrix of two columns",
