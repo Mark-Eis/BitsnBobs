@@ -39,10 +39,10 @@ attribute \code{"degrtype"} indicating which of these two types the object is; o
 of \code{"latlon"} objects.
 }
 \description{
-The function \code{latlon()} is used to create latitude and longitude objects representing paired coordinates in either
-decimal degrees or degrees, minutes and seconds.
+The function \code{latlon()} is used to create \code{"latlon"} objects representing paired coordinates of latitude and
+longitude either in decimal degrees or in degrees, minutes and seconds.
 
-\code{latlon_dd()} creates latitude and longitude objects representing paired coordinates in decimal degrees.
+\code{latlon_dd()} creates \code{"latlon"} objects in decimal degrees.
 }
 \details{
 \code{latlon()} is a generic S3 function. The default method works with a numeric vector of length 2 representing a

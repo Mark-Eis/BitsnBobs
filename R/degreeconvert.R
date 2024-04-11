@@ -545,10 +545,10 @@ print.degminsec <- function(x, ...) {
 #' Create Latitude and Longitude Object
 #'
 #' @description
-#' The function `latlon()` is used to create latitude and longitude objects representing paired coordinates in either
-#' decimal degrees or degrees, minutes and seconds.
+#' The function `latlon()` is used to create `"latlon"` objects representing paired coordinates of latitude and
+#' longitude either in decimal degrees or in degrees, minutes and seconds.
 #'
-#' `latlon_dd()` creates latitude and longitude objects representing paired coordinates in decimal degrees.
+#' `latlon_dd()` creates `"latlon"` objects in decimal degrees.
 #'
 #' @details
 #' `latlon()` is a generic S3 function. The default method works with a numeric vector of length 2 representing a
