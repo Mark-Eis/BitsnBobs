@@ -4,6 +4,7 @@
 \alias{decdeg}
 \alias{as_decdeg}
 \alias{as_decdeg.default}
+\alias{as_decdeg.decdeg}
 \alias{as_decdeg.degminsec}
 \alias{as_decdeg.list}
 \alias{as_decdeg.latlon}
@@ -15,6 +16,8 @@ decdeg(object, .latorlon = c(NA, "lat", "lon"))
 as_decdeg(object, ...)
 
 \method{as_decdeg}{default}(object, ..., .fmt = c("deg", "min", "sec"))
+
+\method{as_decdeg}{decdeg}(object, ...)
 
 \method{as_decdeg}{degminsec}(object, ...)
 

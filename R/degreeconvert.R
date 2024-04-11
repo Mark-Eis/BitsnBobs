@@ -139,11 +139,20 @@ as_decdeg <- function(object, ...) {
 as_decdeg.default <- function(object, ..., .fmt = c("deg", "min", "sec")) {
     check_dots_empty()
     stopifnot(is.numeric(object))
-    if (inherits(object, "decdeg"))
-        validate_decdeg(object)
-    else
-        degminsec(object, .fmt = .fmt) |>
+    degminsec(object, .fmt = .fmt) |>
         as_decdeg()
+}
+
+# ========================================
+#  Convert Decimal Degrees in a "decdeg" object to Decimal Degrees
+#  S3method as_decdeg.decdeg()
+#'
+#' @rdname decdeg
+#' @export
+
+as_decdeg.decdeg <- function(object, ...) {
+    check_dots_empty()
+    validate_decdeg(object)
 }
 
 # ========================================
@@ -407,6 +416,18 @@ as_degminsec.default <- function(object, ..., .latorlon = c(NA, "lat", "lon")) {
    .latorlon <- match.arg(.latorlon)    
     decdeg(object, .latorlon = .latorlon) |>
     as_degminsec()
+}
+
+# ========================================
+#  Convert Degrees, Minutes and Seconds in a "degminsec" object to Degrees, Minutes and Seconds
+#  S3method as_degminsec.degminsec()
+#'
+#' @rdname degminsec
+#' @export
+
+as_degminsec.degminsec <- function(object, ...) {
+    check_dots_empty()
+    validate_degminsec(object)
 }
 
 # ========================================
