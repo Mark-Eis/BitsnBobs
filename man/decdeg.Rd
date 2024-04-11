@@ -55,10 +55,11 @@ The function \code{decdeg()} is used to create (latitude or longitude) coordinat
 \code{decdeg()} works with a numeric (\code{double}) vector representing one or more coordinates of latitude or longitude in
 decimal degrees.
 
-\code{as_decdeg()} is an S3 function that works with individual coordinates supplied as \verb{numeric values} or as
-\code{\link[=degminsec]{"degminsec"}} objects, or with lists of such coordinates.  It also accepts, latitude and
-longitude values paired in a \code{\link[=latlon]{"latlon"}} object (see examples), or lists of \code{"latlon"}
-paired coordinates.
+\code{as_decdeg()} is an S3 function that works with individual coordinates supplied as \verb{numeric values}, with
+\code{\link[=degminsec]{"degminsec"}} objects, or with lists of such coordinates. It also works with latitude and
+longitude coordinates paired in a \code{\link[=latlon]{"latlon"}} object (see examples), or with lists of
+\code{"latlon"} paired coordinates. The S3 method for an existing \code{"decdeg"} object simply validates and returns its
+argument.
 }
 \examples{
 decdeg(49.54621)

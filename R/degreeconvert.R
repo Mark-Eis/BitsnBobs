@@ -19,10 +19,11 @@
 #' `decdeg()` works with a numeric (`double`) vector representing one or more coordinates of latitude or longitude in
 #' decimal degrees.
 #'
-#' `as_decdeg()` is an S3 function that works with individual coordinates supplied as `numeric values` or as
-#' [`"degminsec"`][BitsnBobs::degminsec] objects, or with lists of such coordinates.  It also accepts, latitude and
-#' longitude values paired in a [`"latlon"`][BitsnBobs::latlon] object (see examples), or lists of `"latlon"`
-#' paired coordinates.
+#' `as_decdeg()` is an S3 function that works with individual coordinates supplied as `numeric values`, with
+#' [`"degminsec"`][BitsnBobs::degminsec] objects, or with lists of such coordinates. It also works with latitude and
+#' longitude coordinates paired in a [`"latlon"`][BitsnBobs::latlon] object (see examples), or with lists of
+#' `"latlon"` paired coordinates. The S3 method for an existing `"decdeg"` object simply validates and returns its
+#' argument.
 #'
 #' @family degreeconvert
 #'
@@ -239,10 +240,11 @@ print.decdeg <- function(x, ...) {
 #' degrees, minutes and seconds. The argument `.fmt` indicates the position of the decimal point, which may be placed
 #' after the degrees, the minutes or the (whole) seconds, and by default assumed to be placed after the degrees.
 #'
-#' `as_degminsec()` is an S3 function that works with individual coordinates supplied as `numeric values` or as
-#' [`"decdeg"`][BitsnBobs::decdeg] objects, or with lists of such coordinates.  It also accepts, latitude and
-#' longitude values paired in a [`"latlon"`][BitsnBobs::latlon] object (see examples), or lists of `"latlon"`
-#' paired coordinates.
+#' `as_degminsec()` is an S3 function that works with individual coordinates supplied as `numeric values`, with
+#' [`"decdeg"`][BitsnBobs::decdeg] objects, or with lists of such coordinates. It also works with latitude and
+#' longitude coordinates paired in a [`"latlon"`][BitsnBobs::latlon] object (see examples), or with lists of
+#' `"latlon"` paired coordinates. The S3 method for an existing `"degminsec"` object simply validates and returns its
+#' argument.
 #'
 #' @family degreeconvert
 #'

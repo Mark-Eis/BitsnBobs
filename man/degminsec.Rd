@@ -70,10 +70,11 @@ minutes and seconds.
 degrees, minutes and seconds. The argument \code{.fmt} indicates the position of the decimal point, which may be placed
 after the degrees, the minutes or the (whole) seconds, and by default assumed to be placed after the degrees.
 
-\code{as_degminsec()} is an S3 function that works with individual coordinates supplied as \verb{numeric values} or as
-\code{\link[=decdeg]{"decdeg"}} objects, or with lists of such coordinates.  It also accepts, latitude and
-longitude values paired in a \code{\link[=latlon]{"latlon"}} object (see examples), or lists of \code{"latlon"}
-paired coordinates.
+\code{as_degminsec()} is an S3 function that works with individual coordinates supplied as \verb{numeric values}, with
+\code{\link[=decdeg]{"decdeg"}} objects, or with lists of such coordinates. It also works with latitude and
+longitude coordinates paired in a \code{\link[=latlon]{"latlon"}} object (see examples), or with lists of
+\code{"latlon"} paired coordinates. The S3 method for an existing \code{"degminsec"} object simply validates and returns its
+argument.
 }
 \examples{
 degminsec(49.3246368)
