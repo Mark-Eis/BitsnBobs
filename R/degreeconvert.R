@@ -548,12 +548,14 @@ print.degminsec <- function(x, ...) {
 #' The function `latlon()` is used to create latitude and longitude objects representing paired coordinates in either
 #' decimal degrees or degrees, minutes and seconds.
 #'
-#' `latlon_dd()` is a convenience function, such that `latlon_dd(...)` is equivalent to `latlon(..., decimal = TRUE)`.
+#' `latlon_dd()` creates latitude and longitude objects representing paired coordinates in decimal degrees.
 #'
 #' @details
 #' `latlon()` is a generic S3 function. The default method works with a numeric vector of length 2 representing a
 #' coordinate of paired latitude and longitude values. The method for class `"matrix"` works with a two column
 #' numeric matrix each row of which contains paired latitude and longitude values.
+#'
+#' `latlon_dd()` is a convenience function, such that `latlon_dd(...)` is equivalent to `latlon(..., decimal = TRUE)`.
 #'
 #' @family degreeconvert
 #'

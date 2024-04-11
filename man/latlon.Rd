@@ -42,12 +42,14 @@ of \code{"latlon"} objects.
 The function \code{latlon()} is used to create latitude and longitude objects representing paired coordinates in either
 decimal degrees or degrees, minutes and seconds.
 
-\code{latlon_dd()} is a convenience function, such that \code{latlon_dd(...)} is equivalent to \code{latlon(..., decimal = TRUE)}.
+\code{latlon_dd()} creates latitude and longitude objects representing paired coordinates in decimal degrees.
 }
 \details{
 \code{latlon()} is a generic S3 function. The default method works with a numeric vector of length 2 representing a
 coordinate of paired latitude and longitude values. The method for class \code{"matrix"} works with a two column
 numeric matrix each row of which contains paired latitude and longitude values.
+
+\code{latlon_dd()} is a convenience function, such that \code{latlon_dd(...)} is equivalent to \code{latlon(..., decimal = TRUE)}.
 }
 \examples{
 ## Decimal degrees
