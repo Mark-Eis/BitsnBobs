@@ -125,8 +125,8 @@ fmt_triodos <- function(data, dateformat = "%d/%m/%Y", maxwidth = 50L) { # Four 
     attr(data, "descr") <- data$Description[longs]
 
     data |> mutate(
-        across(Date, \(x) as.Date(x, format = dateformat)),
-        across(c(Amount, Balance), \(x) as.numeric(gsub(",", "", x))),
-        across(Description, \(x) strtrim(x, maxwidth))
+        across("Date", \(x) as.Date(x, format = dateformat)),
+        across(c("Amount", "Balance"), \(x) as.numeric(gsub(",", "", x))),
+        across("Description", \(x) strtrim(x, maxwidth))
     )
 }

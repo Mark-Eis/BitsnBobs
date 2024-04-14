@@ -94,5 +94,6 @@
 #' @importFrom tidyselect starts_with
 #' @importFrom tidyselect where
 #' @importFrom utils methods
+#' @importFrom utils read.csv
 ## usethis namespace: end
 NULL
