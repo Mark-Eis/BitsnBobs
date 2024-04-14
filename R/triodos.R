@@ -13,8 +13,8 @@
 #' @name triodos
 #' @description
 #'
-#' `file_name()` returns a filename string incorporating a date of the form `"Downloadyyyymmdd.csv"` e.g.,
-#' `"Download20240401.csv"`
+#' `file_name()` returns a character string representing the name of a transactions file downloaded from the Triodos
+#' bank website in CSV format.
 #'
 #' `most_recent_fdate()` returns the most recent date as incorporated within such a filename string.
 #'
@@ -23,7 +23,26 @@
 #' `fmt_triodos()` reformats a data frame containing Triodos Bank data.
 #'
 #' @details
-#' To follow...
+#' These four functions facilitate reading and formatting CSV transaction files downloaded from the Triodos bank
+#' website.
+#'
+#' `file_name()` returns a character string representing the name of a transactions file downloaded from the Triodos
+#' bank website in CSV format i.e., concatenating the strings `"Download"`, a date of the form `"yyyymmdd"` and the
+#' extension `".csv"` e.g., `"Download20240401.csv"`
+#'
+#' `most_recent_fdate()` searches the current folder for a filename as returned by `file_name()`, typically
+#' incorporating the current date obtained using the default `.date` argument [`Sys.Date()`][base::Sys.Date]. If no
+#' such file exists, the previous dates are used successively until a corresponding file is found, the search being
+#' discontinued on reaching the date specified in the `earliest` argument.
+#'
+#' `read_triodos()` reads a file downloaded from the Triodos bank website in CSV format and returns the contents as a
+#' data frame.
+#'
+#' `fmt_triodos()` reformats a data frame containing Triodos Bank data obtained using `read_triodos()`, replacing
+#' `character` strings in the `Date` field with `"Date"` objects, and in the `Amount` and `Balance` fields with
+#' `numeric` values. It also truncates `character` strings in the `Description` field to the length specified in the
+#' `maxwidth` argument and saves the full version of any `Description` exceeding `maxwidth` as `attributes`
+#' `"descr_no"` and `"descr"`. 
 #'
 #' @param .date `Date` object, date to be incorporated into a filename string.
 #'

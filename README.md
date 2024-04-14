@@ -1,4 +1,3 @@
-
 # BitsnBobs
 ### R Package For General Bits and Bobs of Code
 
@@ -23,13 +22,14 @@ The **BitsnBobs R package** does this and that using functions: –
 `boxcox3()`, `browse()`, `cat_names()`, `cc_rate()`, `cohens_kappa()`, `const()`, `cor_coef.test()`, `count_lgl()`,
 `data_wizard()`, `decdeg()`, `decdeg_to_dms()`, `degminsec()`, `design_effect()`, `detective()`,
 [`detective<-()`](https://mark-eis.github.io/BitsnBobs/reference/detective.html), `dms_to_decdeg()`, `eff_rate()`,
-`endstop()`, `endstop_data()`, `facet_histo()`,`fct_to_num()`, `formul_pwrseq()`, `get_amortint()`, `get_amortval()`,
-`iterate()`, `j()`, `j2eff_rate()`, `known_s3generics()`, `kwd_cols()`, `kwd_cols<-()`, `latlon()`, `latlon_dd()`,
-`lf()`, `lgl_cols()`, `list_lgl()`, `logit()`, `ls_all()`, `marker()`, `method_info()`, `nom_rate()`, `opt_bc()`,
-`phi_coef()`, `phi_coef.test()`, `power_seq()`, `print_all()`, `print_lf()`, `prob_from_logit()`, `recursive()`,
-`remplacer()`, `retriever()`, `revmat()`, `rm_objects()`, `s3_in_namespace()`, `s3debug()`, `s3mag7()`, `sample_size()`,
-`skew()`,`skew.test()`, `skewness()`, `skewness.test()`, `split_to_cols()`, `split_to_rows()`, `starsig()`, `sum_lgl()`,
-`wizard()`;
+`endstop()`, `endstop_data()`, `facet_histo()`,`fct_to_num()`, `file_name()`, `fmt_triodos()`, `formul_pwrseq()`,
+`get_amortint()`, `get_amortval()`, `iterate()`, `j()`, `j2eff_rate()`, `known_s3generics()`, `kwd_cols()`,
+[`kwd_cols<-()`](https://mark-eis.github.io/BitsnBobs/reference/kwd_cols.html), `latlon()`, `latlon_dd()`, `lf()`,
+`lgl_cols()`, `list_lgl()`, `logit()`, `ls_all()`, `marker()`, `method_info()`, `most_recent_fdate()`, `nom_rate()`,
+`opt_bc()`, `phi_coef()`, `phi_coef.test()`, `power_seq()`, `print_all()`, `print_lf()`, `prob_from_logit()`,
+`read_triodos()`, `recursive()`, `remplacer()`, `retriever()`, `revmat()`, `rm_objects()`, `s3_in_namespace()`,
+`s3debug()`, `s3mag7()`, `sample_size()`, `skew()`,`skew.test()`, `skewness()`, `skewness.test()`, `split_to_cols()`,
+`split_to_rows()`, `starsig()`, `sum_lgl()`, `wizard()`;
 
 infix operators: –
 

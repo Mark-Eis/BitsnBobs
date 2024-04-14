@@ -49,8 +49,8 @@ filename string.}
 \item{\code{fmt_triodos()}}{reformatted Triodos Bank data, as a dataframe.}
 }
 \description{
-\code{file_name()} returns a filename string incorporating a date of the form \code{"Downloadyyyymmdd.csv"} e.g.,
-\code{"Download20240401.csv"}
+\code{file_name()} returns a character string representing the name of a transactions file downloaded from the Triodos
+bank website in CSV format.
 
 \code{most_recent_fdate()} returns the most recent date as incorporated within such a filename string.
 
@@ -59,7 +59,26 @@ filename string.}
 \code{fmt_triodos()} reformats a data frame containing Triodos Bank data.
 }
 \details{
-To follow...
+These four functions facilitate reading and formatting CSV transaction files downloaded from the Triodos bank
+website.
+
+\code{file_name()} returns a character string representing the name of a transactions file downloaded from the Triodos
+bank website in CSV format i.e., concatenating the strings \code{"Download"}, a date of the form \code{"yyyymmdd"} and the
+extension \code{".csv"} e.g., \code{"Download20240401.csv"}
+
+\code{most_recent_fdate()} searches the current folder for a filename as returned by \code{file_name()}, typically
+incorporating the current date obtained using the default \code{.date} argument \code{\link[base:Sys.time]{Sys.Date()}}. If no
+such file exists, the previous dates are used successively until a corresponding file is found, the search being
+discontinued on reaching the date specified in the \code{earliest} argument.
+
+\code{read_triodos()} reads a file downloaded from the Triodos bank website in CSV format and returns the contents as a
+data frame.
+
+\code{fmt_triodos()} reformats a data frame containing Triodos Bank data obtained using \code{read_triodos()}, replacing
+\code{character} strings in the \code{Date} field with \code{"Date"} objects, and in the \code{Amount} and \code{Balance} fields with
+\code{numeric} values. It also truncates \code{character} strings in the \code{Description} field to the length specified in the
+\code{maxwidth} argument and saves the full version of any \code{Description} exceeding \code{maxwidth} as \code{attributes}
+\code{"descr_no"} and \code{"descr"}.
 }
 \examples{
 \dontrun{
