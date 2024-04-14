@@ -10,27 +10,20 @@
 # ========================================
 #' Manage Triodos Bank Account
 #'
+#' @name triodos
 #' @description
 #'
 #' `file_name()` returns a filename string incorporating a date of the form `"Downloadyyyymmdd.csv"` e.g.,
 #' `"Download20240401.csv"`
 #'
-#' `most_recent_fdate()` returns the most recent date incorporated within a specified filename string.
+#' `most_recent_fdate()` returns the most recent date as incorporated within such a filename string.
 #'
-#' `read_triodos()` reads a CSV file as formatted by Triodos Bank and returns as a data frame.
+#' `read_triodos()` reads a CSV file as formatted by Triodos Bank and returns the contents as a data frame.
 #'
 #' `fmt_triodos()` reformats a data frame containing Triodos Bank data.
 #'
-#'
 #' @details
-#' `decdeg()` works with a numeric (`double`) vector representing one or more coordinates of latitude or longitude in
-#' decimal degrees.
-#'
-#' `as_decdeg()` is an S3 function that works with individual coordinates supplied as `numeric values`, with
-#' [`"degminsec"`][BitsnBobs::degminsec] objects, or with lists of such coordinates. It also works with latitude and
-#' longitude coordinates paired in a [`"latlon"`][BitsnBobs::latlon] object (see examples), or with lists of
-#' `"latlon"` paired coordinates. The S3 method for an existing `"decdeg"` object simply validates and returns its
-#' argument.
+#' To follow...
 #'
 #' @param .date `Date` object, date to be incorporated into a filename string.
 #'
@@ -40,24 +33,25 @@
 #'
 #' @param fun `function`, used to incorporate `.date' into a filename search string; default `file_name`.
 #'
-#' @param filename a `character` string, name of the CSV file to be read.
+#' @param filename `character` string, name of the CSV file to be read.
 #'
-#' @param data a data frame, as returned by `read_triodos()`.
+#' @param data data frame, as returned by `read_triodos()`.
 #'
-#' @param dateformat a character string passed as the `format` argument to [`as.Date()`][base::as.Date]; default
+#' @param dateformat `character string`, passed as the `format` argument to [`as.Date()`][base::as.Date]; default
 #'   `"%d/%m/%Y"`.
 #'
 #' @param maxwidth an `integer`, maximum width for printing `Description` field; default `50L`.
 #'
 #' @return
 #'
-#' \item{`file_name()`}{a filename string incorporating a date of the form `"Downloadyyyymmdd.csv"`} 
+#' \item{`file_name()`}{Filename string incorporating a date of the form `"Downloadyyyymmdd.csv"`.} 
 #'
-#' \item{`most_recent_fdate()`}{a `Date` object, the most recent date incorporated within the specified filename string.} 
+#' \item{`most_recent_fdate()`}{`"Date"` object containing the most recent date as incorporated within the specified
+#'   filename string.}
+#'  
+#' \item{`read_triodos()`}{CSV file data formatted by Triodos Bank, as a dataframe.} 
 #'
-#' \item{`read_triodos()`}{a data frame.} 
-#'
-#' \item{`fmt_triodos()`}{a data frame.} 
+#' \item{`fmt_triodos()`}{reformatted Triodos Bank data, as a dataframe.} 
 #'
 #' @keywords utilities
 #'
@@ -66,8 +60,8 @@
 #' \dontrun{
 #'
 #'     filepath <- "/Users/frzmce/Library/CloudStorage/OneDrive-UniversityofBristol/Documents/MCE Admin/MCE Admin Safe/Triodos Bank/Downloads"
-#"     (oldwd <- setwd(filepath))
-#"     getwd() 
+#'     (oldwd <- setwd(filepath))
+#'     getwd() 
 #'     ## __________________________ 
 #'     ## Current account 22245372 
 #'     setwd(paste0(filepath, "/22245372")) 
@@ -76,7 +70,8 @@
 #'     most_recent_fdate() |>
 #'         file_name() |>
 #'         read_triodos() |>
-#'         fmt_triodos()
+#'         fmt_triodos() |>
+#'         _[, -2]
 #'
 #'     setwd(oldwd)
 #'
