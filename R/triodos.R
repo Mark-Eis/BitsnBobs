@@ -44,14 +44,14 @@
 #'
 #' @return
 #'
-#' \item{`file_name()`}{Filename string incorporating a date of the form `"Downloadyyyymmdd.csv"`.} 
+#' \item{`file_name()`}{Filename string incorporating a date of the form `"Downloadyyyymmdd.csv"`.}
 #'
 #' \item{`most_recent_fdate()`}{`"Date"` object containing the most recent date as incorporated within the specified
 #'   filename string.}
-#'  
-#' \item{`read_triodos()`}{CSV file data formatted by Triodos Bank, as a dataframe.} 
 #'
-#' \item{`fmt_triodos()`}{reformatted Triodos Bank data, as a dataframe.} 
+#' \item{`read_triodos()`}{CSV file data formatted by Triodos Bank, as a dataframe.}
+#'
+#' \item{`fmt_triodos()`}{reformatted Triodos Bank data, as a dataframe.}
 #'
 #' @keywords utilities
 #'
@@ -59,14 +59,14 @@
 #' @examples
 #' \dontrun{
 #'
-#'     filepath <- "/Users/frzmce/Library/CloudStorage/OneDrive-UniversityofBristol/Documents/MCE Admin/MCE Admin Safe/Triodos Bank/Downloads"
+#'     filepath <- "/Users/Charlie Chaplin/Triodos Bank/Downloads"
 #'     (oldwd <- setwd(filepath))
-#'     getwd() 
-#'     ## __________________________ 
-#'     ## Current account 22245372 
-#'     setwd(paste0(filepath, "/22245372")) 
-#'     getwd() 
-#'      
+#'     getwd()
+#'     ## __________________________
+#'     ## Current account 22245372
+#'     setwd(paste0(filepath, "/22245372"))
+#'     getwd()
+#'
 #'     most_recent_fdate() |>
 #'         file_name() |>
 #'         read_triodos() |>
@@ -78,7 +78,7 @@
 #' } ## end \dontrun
 
 file_name <- function(.date)
-	paste0("Download", gsub("-", "", as.character(.date)),".csv")
+    paste0("Download", gsub("-", "", as.character(.date)),".csv")
 
 # ========================================
 #  Return date of most recent file
@@ -87,14 +87,14 @@ file_name <- function(.date)
 #' @export
 
 most_recent_fdate <- function(trydate = Sys.Date(), earliest = as.Date("2024-02-01"), fun = file_name) {
-	while(!file.exists(fun(trydate))) {
-		trydate <- trydate - 1
-		if (trydate < earliest)
-			stop(paste("No file available after", trydate))
-	}
-	if (trydate < Sys.Date())
-		cat("Most recent file available is for", as.character(trydate), "\n")
-	trydate
+    while(!file.exists(fun(trydate))) {
+        trydate <- trydate - 1
+        if (trydate < earliest)
+            stop(paste("No file available after", trydate))
+    }
+    if (trydate < Sys.Date())
+        cat("Most recent file available is for", as.character(trydate), "\n")
+    trydate
 }
 
 # ========================================
@@ -104,13 +104,13 @@ most_recent_fdate <- function(trydate = Sys.Date(), earliest = as.Date("2024-02-
 #' @export
 
 read_triodos <- function(filename) {
-	cat("Reading file: <", filename, ">\n")
-	read.csv(
-		filename,
-		header = FALSE,
-		col.names = c("Date", "SortCode", "AccountNo", "Amount", "Code", "Description", "ChequeNo", "Balance"),
-		colClasses = c("character", rep("factor", 2), "character", "factor", rep("character", 2))
-	)
+    cat("Reading file: <", filename, ">\n")
+    read.csv(
+        filename,
+        header = FALSE,
+        col.names = c("Date", "SortCode", "AccountNo", "Amount", "Code", "Description", "ChequeNo", "Balance"),
+        colClasses = c("character", rep("factor", 2), "character", "factor", rep("character", 2))
+    )
 }
 
 # ========================================
@@ -120,13 +120,13 @@ read_triodos <- function(filename) {
 #' @export
 
 fmt_triodos <- function(data, dateformat = "%d/%m/%Y", maxwidth = 50L) { # Four digit years
-	longs <- (data$Description |> nchar() > maxwidth) |> which()
-	attr(data, "descr_no") <- longs
-	attr(data, "descr") <- data$Description[longs]
+    longs <- (data$Description |> nchar() > maxwidth) |> which()
+    attr(data, "descr_no") <- longs
+    attr(data, "descr") <- data$Description[longs]
 
-	data |> mutate(
-		across(Date, \(x) as.Date(x, format = dateformat)),
-		across(c(Amount, Balance), \(x) as.numeric(gsub(",", "", x))),
-		across(Description, \(x) strtrim(x, maxwidth))
-	)
+    data |> mutate(
+        across(Date, \(x) as.Date(x, format = dateformat)),
+        across(c(Amount, Balance), \(x) as.numeric(gsub(",", "", x))),
+        across(Description, \(x) strtrim(x, maxwidth))
+    )
 }
