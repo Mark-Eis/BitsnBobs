@@ -99,6 +99,6 @@ data frame.
 
     setwd(oldwd)
 
-} ## end \dontrun
+}
 }
 \keyword{utilities}

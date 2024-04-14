@@ -94,7 +94,7 @@
 #'
 #'     setwd(oldwd)
 #'
-#' } ## end \dontrun
+#' }
 
 file_name <- function(.date)
     paste0("Download", gsub("-", "", as.character(.date)),".csv")
