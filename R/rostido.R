@@ -83,17 +83,35 @@
 #'     filepath <- "~/Triodos Bank/Downloads"
 #'     (oldwd <- setwd(filepath))
 #'     getwd()
+#'
 #'     ## __________________________
-#'     ## Current account 22245372
-#'     setwd(paste0(filepath, "/22245372"))
+#'     ## Current account 55545372
+#'     setwd(paste0(filepath, "/55545372"))
 #'     getwd()
 #'
-#'     most_recent_fdate() |>
+#'     curracc <- most_recent_fdate() |>
 #'         file_name() |>
 #'         read_triodos_csv() |>
 #'         as_rostido() |>
 #'         _[, -2]
 #'
+#'     ## __________________________
+#'     ## Savings account 55596784
+#'
+#'     setwd(paste0(filepath, "/55596784"))
+#'     getwd()
+#'
+#'     (savacc <- most_recent_fdate() |>
+#'          file_name() |>
+#'          read_triodos_csv() |>
+#'          as_rostido()) |>
+#'         _[, -2]
+#'
+#'     ## ______________
+#'     ## All accounts
+#'     (rbind(curracc, savacc) |> arrange())[, -2]
+#'
+#'     rm(curracc, savacc)
 #'     setwd(oldwd)
 #'
 #' }
