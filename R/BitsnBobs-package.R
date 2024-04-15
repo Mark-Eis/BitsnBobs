@@ -2,7 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @export across bind_rows desc
+#' @export across arrange bind_rows desc
 #' @export all_of any_of contains ends_with everything last_col matches num_range starts_with where
 #' @export boundary coll fixed regex
 #' @export element_text theme_get theme_set theme_update

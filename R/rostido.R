@@ -18,7 +18,7 @@
 #'
 #' `most_recent_fdate()` returns the most recent date incorporated within such a filename in the current folder.
 #'
-#' `read_triodos_csv()` reads a CSV transactions file downloaded from Triodos Bank and returns the contents as a
+#' `read_triodos_csv()` reads a Triodos Bank transactions CSV file and returns the contents as a
 #'  data frame.
 #'
 #' `as_rostido()` reformats a data frame containing downloaded Triodos Bank transaction data.
@@ -36,8 +36,8 @@
 #' such file exists, the previous dates are used successively until a corresponding file is found, the search being
 #' discontinued on reaching the date specified in the `earliest` argument.
 #'
-#' `read_triodos_csv()` reads a file downloaded from the Triodos bank website in CSV format and returns the contents as a
-#' data frame.
+#' `read_triodos_csv()` reads a transactions CSV file downloaded from the Triodos bank website and returns the
+#' contents as a data frame.
 #'
 #' `as_rostido()` reformats a data frame containing Triodos Bank data obtained using `read_triodos_csv()`, replacing
 #' `character` strings in the `Date` field with `"Date"` objects, and in the `Amount` and `Balance` fields with
@@ -119,7 +119,7 @@ most_recent_fdate <- function(trydate = Sys.Date(), earliest = as.Date("2024-02-
 }
 
 # ========================================
-#  Read CSV file formatted by Triodos
+#  Read Triodos CSV transactions file
 #'
 #' @rdname rostido
 #' @export
@@ -135,22 +135,10 @@ read_triodos_csv <- function(filename) {
 }
 
 # ========================================
-#  Reformat data frame with Triodos data
+#  Reformat Triodos transaction data frame
 #'
 #' @rdname rostido
 #' @export
-
-# fmt_rostido <- function(data, dateformat = "%d/%m/%Y", maxwidth = 50L) { # Four digit years
-    # longs <- (data$Description |> nchar() > maxwidth) |> which()
-    # attr(data, "descr_no") <- longs
-    # attr(data, "descr") <- data$Description[longs]
-
-    # data |> mutate(
-        # across("Date", \(x) as.Date(x, format = dateformat)),
-        # across(c("Amount", "Balance"), \(x) as.numeric(gsub(",", "", x))),
-        # across("Description", \(x) strtrim(x, maxwidth))
-    # )
-# }
 
 as_rostido <- function(data, dateformat = "%d/%m/%Y", maxwidth = 50L) { # Four digit years
     longs <- (data$Description |> nchar() > maxwidth) |> which()
@@ -163,4 +151,18 @@ as_rostido <- function(data, dateformat = "%d/%m/%Y", maxwidth = 50L) { # Four d
         across("Description", \(x) strtrim(x, maxwidth))
     ) |>
     structure(class = c("rostido", class(data)))
+}
+
+# ========================================
+#  Sort data frame with Triodos transaction data
+#' S3method arrange.rostido()
+#'
+#' @rdname rostido
+#' @export
+
+arrange.rostido <- function(.data, ..., .by_group = FALSE) {
+    if (...length())
+        NextMethod("arrange")
+    else
+        arrange(.data, .data$Date, .data$AccountNo, .data$Code)
 }
