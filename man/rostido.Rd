@@ -21,15 +21,15 @@ read_triodos_csv(filename)
 as_rostido(data, dateformat = "\%d/\%m/\%Y", maxwidth = 50L)
 }
 \arguments{
-\item{.date}{\code{Date} object, date to be incorporated into a filename string.}
+\item{.date}{\code{Date} object, the date to be incorporated into a filename string.}
 
-\item{trydate}{\code{Date} object, most recent date from which to search for file; default \code{Sys.Date()}.}
+\item{trydate}{\code{Date} object, the most recent date from which to search for file; default \code{Sys.Date()}.}
 
-\item{earliest}{\code{Date} object, date before which search is discontinued; default \code{as.Date("2024-02-01")}.}
+\item{earliest}{\code{Date} object, the date before which the search is discontinued; default \code{as.Date("2024-02-01")}.}
 
 \item{fun}{\code{function}, used to incorporate \verb{.date' into a filename search string; default }file_name`.}
 
-\item{filename}{\code{character} string, name of the CSV file to be read.}
+\item{filename}{\code{character} string, the name of a CSV file to be read.}
 
 \item{data}{data frame, as returned by \code{read_triodos_csv()}.}
 
@@ -46,17 +46,19 @@ filename string.}
 
 \item{\code{read_triodos_csv()}}{CSV file data formatted by Triodos Bank, as a dataframe.}
 
-\item{\code{as_rostido()}}{reformatted Triodos Bank data, as a dataframe.}
+\item{\code{as_rostido()}}{An object of class \code{"rostido"} inheriting from \code{"data.frame"} containign reformatted Triodos
+Bank data.}
 }
 \description{
-\code{file_name()} returns a character string representing the name of a transactions file downloaded from the Triodos
-bank website in CSV format.
+\code{file_name()} returns a character string representing the name of a CSV format transactions file downloaded from
+the Triodos bank website.
 
-\code{most_recent_fdate()} returns the most recent date as incorporated within such a filename string.
+\code{most_recent_fdate()} returns the most recent date incorporated within such a filename in the current folder.
 
-\code{read_triodos_csv()} reads a CSV file as formatted by Triodos Bank and returns the contents as a data frame.
+\code{read_triodos_csv()} reads a CSV transactions file downloaded from Triodos Bank and returns the contents as a
+data frame.
 
-\code{as_rostido()} reformats a data frame containing Triodos Bank data.
+\code{as_rostido()} reformats a data frame containing downloaded Triodos Bank transaction data.
 }
 \details{
 These four functions facilitate reading and formatting CSV transaction files downloaded from the Triodos bank
@@ -83,7 +85,7 @@ data frame.
 \examples{
 \dontrun{
 
-    filepath <- "/Users/Charlie Chaplin/Triodos Bank/Downloads"
+    filepath <- "~/Triodos Bank/Downloads"
     (oldwd <- setwd(filepath))
     getwd()
     ## __________________________

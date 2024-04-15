@@ -13,14 +13,15 @@
 #' @name rostido
 #' @description
 #'
-#' `file_name()` returns a character string representing the name of a transactions file downloaded from the Triodos
-#' bank website in CSV format.
+#' `file_name()` returns a character string representing the name of a CSV format transactions file downloaded from
+#' the Triodos bank website.
 #'
-#' `most_recent_fdate()` returns the most recent date as incorporated within such a filename string.
+#' `most_recent_fdate()` returns the most recent date incorporated within such a filename in the current folder.
 #'
-#' `read_triodos_csv()` reads a CSV file as formatted by Triodos Bank and returns the contents as a data frame.
+#' `read_triodos_csv()` reads a CSV transactions file downloaded from Triodos Bank and returns the contents as a
+#'  data frame.
 #'
-#' `as_rostido()` reformats a data frame containing Triodos Bank data.
+#' `as_rostido()` reformats a data frame containing downloaded Triodos Bank transaction data.
 #'
 #' @details
 #' These four functions facilitate reading and formatting CSV transaction files downloaded from the Triodos bank
@@ -44,15 +45,15 @@
 #' `maxwidth` argument and saves the full version of any `Description` exceeding `maxwidth` as `attributes`
 #' `"descr_no"` and `"descr"`. 
 #'
-#' @param .date `Date` object, date to be incorporated into a filename string.
+#' @param .date `Date` object, the date to be incorporated into a filename string.
 #'
-#' @param trydate `Date` object, most recent date from which to search for file; default `Sys.Date()`.
+#' @param trydate `Date` object, the most recent date from which to search for file; default `Sys.Date()`.
 #'
-#' @param earliest `Date` object, date before which search is discontinued; default `as.Date("2024-02-01")`.
+#' @param earliest `Date` object, the date before which the search is discontinued; default `as.Date("2024-02-01")`.
 #'
 #' @param fun `function`, used to incorporate `.date' into a filename search string; default `file_name`.
 #'
-#' @param filename `character` string, name of the CSV file to be read.
+#' @param filename `character` string, the name of a CSV file to be read.
 #'
 #' @param data data frame, as returned by `read_triodos_csv()`.
 #'
@@ -70,7 +71,8 @@
 #'
 #' \item{`read_triodos_csv()`}{CSV file data formatted by Triodos Bank, as a dataframe.}
 #'
-#' \item{`as_rostido()`}{reformatted Triodos Bank data, as a dataframe.}
+#' \item{`as_rostido()`}{An object of class `"rostido"` inheriting from `"data.frame"` containign reformatted Triodos
+#'   Bank data.}
 #'
 #' @keywords utilities
 #'
@@ -78,7 +80,7 @@
 #' @examples
 #' \dontrun{
 #'
-#'     filepath <- "/Users/Charlie Chaplin/Triodos Bank/Downloads"
+#'     filepath <- "~/Triodos Bank/Downloads"
 #'     (oldwd <- setwd(filepath))
 #'     getwd()
 #'     ## __________________________
