@@ -6,6 +6,7 @@
 \name{reexports}
 \alias{reexports}
 \alias{across}
+\alias{arrange}
 \alias{bind_rows}
 \alias{desc}
 \alias{element_text}
@@ -41,7 +42,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr]{across}}, \code{\link[dplyr]{bind_rows}}, \code{\link[dplyr]{desc}}}
+  \item{dplyr}{\code{\link[dplyr]{across}}, \code{\link[dplyr]{arrange}}, \code{\link[dplyr]{bind_rows}}, \code{\link[dplyr]{desc}}}
 
   \item{ggplot2}{\code{\link[ggplot2:element]{element_text}}, \code{\link[ggplot2]{theme_get}}, \code{\link[ggplot2:theme_get]{theme_set}}, \code{\link[ggplot2:theme_get]{theme_update}}}
 

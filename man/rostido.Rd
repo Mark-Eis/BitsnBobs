@@ -40,6 +40,17 @@ as_rostido(data, dateformat = "\%d/\%m/\%Y", maxwidth = 50L)
 \code{"\%d/\%m/\%Y"}.}
 
 \item{maxwidth}{an \code{integer}, maximum width for printing \code{Description} field; default \code{50L}.}
+
+\item{.data}{A data frame, data frame extension (e.g. a tibble), or a
+lazy data frame (e.g. from dbplyr or dtplyr). See \emph{Methods}, below, for
+more details.}
+
+\item{...}{<\code{\link[rlang:args_data_masking]{data-masking}}> Variables, or
+functions of variables. Use \code{\link[dplyr:desc]{desc()}} to sort a variable in descending
+order.}
+
+\item{.by_group}{If \code{TRUE}, will sort first by grouping variable. Applies to
+grouped data frames only.}
 }
 \value{
 \item{\code{file_name()}}{Filename string incorporating a date of the form \code{"Downloadyyyymmdd.csv"}.}

@@ -61,6 +61,8 @@
 #'   `"%d/%m/%Y"`.
 #'
 #' @param maxwidth an `integer`, maximum width for printing `Description` field; default `50L`.
+#
+#' @inheritParams dplyr::arrange
 #'
 #' @return
 #'
