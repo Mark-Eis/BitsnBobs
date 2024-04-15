@@ -97,10 +97,10 @@ contents as a data frame.
     setwd(paste0(filepath, "/55545372"))
     getwd()
 
-    curracc <- most_recent_fdate() |>
+    (curracc <- most_recent_fdate() |>
         file_name() |>
         read_triodos_csv() |>
-        as_rostido() |>
+        as_rostido()) |>
         _[, -2]
 
     ## __________________________
@@ -113,11 +113,13 @@ contents as a data frame.
          file_name() |>
          read_triodos_csv() |>
          as_rostido()) |>
-        _[, -2]
+         _[, -2]
 
     ## ______________
     ## All accounts
-    (rbind(curracc, savacc) |> arrange())[, -2]
+    rbind(curracc, savacc) |>
+        arrange() |>
+        _[, -2]
 
     rm(curracc, savacc)
     setwd(oldwd)
