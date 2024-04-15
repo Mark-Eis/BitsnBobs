@@ -5,7 +5,7 @@
 \alias{file_name}
 \alias{most_recent_fdate}
 \alias{read_triodos}
-\alias{fmt_triodos}
+\alias{as_triodos}
 \title{Manage Triodos Bank Account}
 \usage{
 file_name(.date)
@@ -18,7 +18,7 @@ most_recent_fdate(
 
 read_triodos(filename)
 
-fmt_triodos(data, dateformat = "\%d/\%m/\%Y", maxwidth = 50L)
+as_triodos(data, dateformat = "\%d/\%m/\%Y", maxwidth = 50L)
 }
 \arguments{
 \item{.date}{\code{Date} object, date to be incorporated into a filename string.}
@@ -46,7 +46,7 @@ filename string.}
 
 \item{\code{read_triodos()}}{CSV file data formatted by Triodos Bank, as a dataframe.}
 
-\item{\code{fmt_triodos()}}{reformatted Triodos Bank data, as a dataframe.}
+\item{\code{as_triodos()}}{reformatted Triodos Bank data, as a dataframe.}
 }
 \description{
 \code{file_name()} returns a character string representing the name of a transactions file downloaded from the Triodos
@@ -56,7 +56,7 @@ bank website in CSV format.
 
 \code{read_triodos()} reads a CSV file as formatted by Triodos Bank and returns the contents as a data frame.
 
-\code{fmt_triodos()} reformats a data frame containing Triodos Bank data.
+\code{as_triodos()} reformats a data frame containing Triodos Bank data.
 }
 \details{
 These four functions facilitate reading and formatting CSV transaction files downloaded from the Triodos bank
@@ -74,7 +74,7 @@ discontinued on reaching the date specified in the \code{earliest} argument.
 \code{read_triodos()} reads a file downloaded from the Triodos bank website in CSV format and returns the contents as a
 data frame.
 
-\code{fmt_triodos()} reformats a data frame containing Triodos Bank data obtained using \code{read_triodos()}, replacing
+\code{as_triodos()} reformats a data frame containing Triodos Bank data obtained using \code{read_triodos()}, replacing
 \code{character} strings in the \code{Date} field with \code{"Date"} objects, and in the \code{Amount} and \code{Balance} fields with
 \code{numeric} values. It also truncates \code{character} strings in the \code{Description} field to the length specified in the
 \code{maxwidth} argument and saves the full version of any \code{Description} exceeding \code{maxwidth} as \code{attributes}
@@ -94,7 +94,7 @@ data frame.
     most_recent_fdate() |>
         file_name() |>
         read_triodos() |>
-        fmt_triodos() |>
+        as_triodos() |>
         _[, -2]
 
     setwd(oldwd)
