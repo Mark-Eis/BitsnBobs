@@ -20,7 +20,7 @@
 #'
 #' `read_triodos()` reads a CSV file as formatted by Triodos Bank and returns the contents as a data frame.
 #'
-#' `fmt_triodos()` reformats a data frame containing Triodos Bank data.
+#' `as_triodos()` reformats a data frame containing Triodos Bank data.
 #'
 #' @details
 #' These four functions facilitate reading and formatting CSV transaction files downloaded from the Triodos bank
@@ -38,7 +38,7 @@
 #' `read_triodos()` reads a file downloaded from the Triodos bank website in CSV format and returns the contents as a
 #' data frame.
 #'
-#' `fmt_triodos()` reformats a data frame containing Triodos Bank data obtained using `read_triodos()`, replacing
+#' `as_triodos()` reformats a data frame containing Triodos Bank data obtained using `read_triodos()`, replacing
 #' `character` strings in the `Date` field with `"Date"` objects, and in the `Amount` and `Balance` fields with
 #' `numeric` values. It also truncates `character` strings in the `Description` field to the length specified in the
 #' `maxwidth` argument and saves the full version of any `Description` exceeding `maxwidth` as `attributes`
@@ -70,7 +70,7 @@
 #'
 #' \item{`read_triodos()`}{CSV file data formatted by Triodos Bank, as a dataframe.}
 #'
-#' \item{`fmt_triodos()`}{reformatted Triodos Bank data, as a dataframe.}
+#' \item{`as_triodos()`}{reformatted Triodos Bank data, as a dataframe.}
 #'
 #' @keywords utilities
 #'
@@ -89,7 +89,7 @@
 #'     most_recent_fdate() |>
 #'         file_name() |>
 #'         read_triodos() |>
-#'         fmt_triodos() |>
+#'         as_triodos() |>
 #'         _[, -2]
 #'
 #'     setwd(oldwd)
@@ -138,7 +138,19 @@ read_triodos <- function(filename) {
 #' @rdname triodos
 #' @export
 
-fmt_triodos <- function(data, dateformat = "%d/%m/%Y", maxwidth = 50L) { # Four digit years
+# fmt_triodos <- function(data, dateformat = "%d/%m/%Y", maxwidth = 50L) { # Four digit years
+    # longs <- (data$Description |> nchar() > maxwidth) |> which()
+    # attr(data, "descr_no") <- longs
+    # attr(data, "descr") <- data$Description[longs]
+
+    # data |> mutate(
+        # across("Date", \(x) as.Date(x, format = dateformat)),
+        # across(c("Amount", "Balance"), \(x) as.numeric(gsub(",", "", x))),
+        # across("Description", \(x) strtrim(x, maxwidth))
+    # )
+# }
+
+as_triodos <- function(data, dateformat = "%d/%m/%Y", maxwidth = 50L) { # Four digit years
     longs <- (data$Description |> nchar() > maxwidth) |> which()
     attr(data, "descr_no") <- longs
     attr(data, "descr") <- data$Description[longs]
@@ -147,5 +159,6 @@ fmt_triodos <- function(data, dateformat = "%d/%m/%Y", maxwidth = 50L) { # Four 
         across("Date", \(x) as.Date(x, format = dateformat)),
         across(c("Amount", "Balance"), \(x) as.numeric(gsub(",", "", x))),
         across("Description", \(x) strtrim(x, maxwidth))
-    )
+    ) |>
+    structure(class = c("triodos", class(data)))
 }
