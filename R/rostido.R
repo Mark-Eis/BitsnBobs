@@ -159,15 +159,11 @@ read_triodos_csv <- function(filename) {
 #' @rdname rostido
 #' @export
 
-as_rostido <- function(data, dateformat = "%d/%m/%Y", maxwidth = 50L) { # Four digit years
-    longs <- (data$Description |> nchar() > maxwidth) |> which()
-    attr(data, "descr_no") <- longs
-    attr(data, "descr") <- data$Description[longs]
 
+as_rostido <- function(data, dateformat = "%d/%m/%Y") { # Four digit years
     data |> mutate(
         across("Date", \(x) as.Date(x, format = dateformat)),
-        across(c("Amount", "Balance"), \(x) as.numeric(gsub(",", "", x))),
-        across("Description", \(x) strtrim(x, maxwidth))
+        across(c("Amount", "Balance"), \(x) as.numeric(gsub(",", "", x)))
     ) |>
     structure(class = c("rostido", class(data)))
 }
@@ -193,11 +189,12 @@ arrange.rostido <- function(.data, ..., .by_group = FALSE) {
 #' @rdname rostido
 #' @export
 
-print.rostido <- function(x, ..., exclude = c("ChequeNo", "SortCode")) {
+print.rostido <- function(x, ..., exclude = c("ChequeNo", "SortCode"), maxwidth = 50L) {
     y <- x
     x <- x |>
-    dplyr::select(!any_of(exclude)) |>
-    dplyr::relocate(Amount, .before = Balance)
+    select(!any_of(exclude)) |>
+    relocate(Amount, .before = Balance) |>
+    mutate(across("Description", \(x) strtrim(x, maxwidth)))
     NextMethod()
     invisible(y)
 }

@@ -18,6 +18,7 @@
 #' @importFrom dplyr group_by
 #' @importFrom dplyr if_else
 #' @importFrom dplyr mutate
+#' @importFrom dplyr relocate
 #' @importFrom dplyr rename_with
 #' @importFrom dplyr select
 #' @importFrom dplyr summarise

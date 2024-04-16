@@ -20,11 +20,11 @@ most_recent_fdate(
 
 read_triodos_csv(filename)
 
-as_rostido(data, dateformat = "\%d/\%m/\%Y", maxwidth = 50L)
+as_rostido(data, dateformat = "\%d/\%m/\%Y")
 
 \method{arrange}{rostido}(.data, ..., .by_group = FALSE)
 
-\method{print}{rostido}(x, ..., exclude = c("ChequeNo", "SortCode"))
+\method{print}{rostido}(x, ..., exclude = c("ChequeNo", "SortCode"), maxwidth = 50L)
 }
 \arguments{
 \item{.date}{\code{Date} object, the date to be incorporated into a filename string.}
@@ -42,8 +42,6 @@ as_rostido(data, dateformat = "\%d/\%m/\%Y", maxwidth = 50L)
 \item{dateformat}{\verb{character string}, passed as the \code{format} argument to \code{\link[base:as.Date]{as.Date()}}; default
 \code{"\%d/\%m/\%Y"}.}
 
-\item{maxwidth}{an \code{integer}, maximum width for printing \code{Description} field; default \code{50L}.}
-
 \item{.data}{A data frame, data frame extension (e.g. a tibble), or a
 lazy data frame (e.g. from dbplyr or dtplyr). See \emph{Methods}, below, for
 more details.}
@@ -54,6 +52,8 @@ order.}
 
 \item{.by_group}{If \code{TRUE}, will sort first by grouping variable. Applies to
 grouped data frames only.}
+
+\item{maxwidth}{an \code{integer}, maximum width for printing \code{Description} field; default \code{50L}.}
 }
 \value{
 \item{\code{file_name()}}{Filename string incorporating a date of the form \code{"Downloadyyyymmdd.csv"}.}
