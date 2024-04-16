@@ -7,6 +7,7 @@
 \alias{read_triodos_csv}
 \alias{as_rostido}
 \alias{arrange.rostido}
+\alias{print.rostido}
 \title{Manage Triodos Bank Account}
 \usage{
 file_name(.date)
@@ -22,6 +23,8 @@ read_triodos_csv(filename)
 as_rostido(data, dateformat = "\%d/\%m/\%Y", maxwidth = 50L)
 
 \method{arrange}{rostido}(.data, ..., .by_group = FALSE)
+
+\method{print}{rostido}(x, ..., exclude = c("ChequeNo", "SortCode"))
 }
 \arguments{
 \item{.date}{\code{Date} object, the date to be incorporated into a filename string.}
@@ -111,8 +114,7 @@ contents as a data frame.
     (curracc <- most_recent_fdate() |>
         file_name() |>
         read_triodos_csv() |>
-        as_rostido()) |>
-        _[, -2]
+        as_rostido())
 
     ## __________________________
     ## Savings account 55596784
@@ -123,14 +125,12 @@ contents as a data frame.
     (savacc <- most_recent_fdate() |>
          file_name() |>
          read_triodos_csv() |>
-         as_rostido()) |>
-         _[, -2]
+         as_rostido())
 
     ## ______________
     ## All accounts
     rbind(curracc, savacc) |>
-        arrange() |>
-        _[, -2]
+        arrange()
 
     rm(curracc, savacc)
     setwd(oldwd)

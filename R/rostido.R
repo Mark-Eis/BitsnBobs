@@ -94,8 +94,7 @@
 #'     (curracc <- most_recent_fdate() |>
 #'         file_name() |>
 #'         read_triodos_csv() |>
-#'         as_rostido()) |>
-#'         _[, -2]
+#'         as_rostido())
 #'
 #'     ## __________________________
 #'     ## Savings account 55596784
@@ -106,14 +105,12 @@
 #'     (savacc <- most_recent_fdate() |>
 #'          file_name() |>
 #'          read_triodos_csv() |>
-#'          as_rostido()) |>
-#'          _[, -2]
+#'          as_rostido())
 #'
 #'     ## ______________
 #'     ## All accounts
 #'     rbind(curracc, savacc) |>
-#'         arrange() |>
-#'         _[, -2]
+#'         arrange()
 #'
 #'     rm(curracc, savacc)
 #'     setwd(oldwd)
@@ -187,4 +184,20 @@ arrange.rostido <- function(.data, ..., .by_group = FALSE) {
         NextMethod("arrange")
     else
         arrange(.data, .data$Date, .data$AccountNo, .data$Code)
+}
+
+# ========================================
+#  Print data frame with Triodos transaction data
+#' S3method print.rostido()
+#'
+#' @rdname rostido
+#' @export
+
+print.rostido <- function(x, ..., exclude = c("ChequeNo", "SortCode")) {
+    y <- x
+    x <- x |>
+    dplyr::select(!any_of(exclude)) |>
+    dplyr::relocate(Amount, .before = Balance)
+    NextMethod()
+    invisible(y)
 }
