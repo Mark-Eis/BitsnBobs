@@ -20,7 +20,7 @@ as_rostido() reformats a data frame containing downloaded Triodos Bank transacti
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.00039</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.00040</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,8 +115,8 @@ discontinued; default <code>as.Date("2024-02-01")</code>.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>for <code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code> S3 method, data frames  of class <code>"rostido"</code> to be combined; for <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> S3 method,
-further arguments passed to or from other methods.</p></dd>
+<dd><p>for  <code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code> S3 method method for class <code>"rostido"</code>, data frames  of class <code>"rostido"</code> to be combined.</p>
+<p>for <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> S3 method for class <code>"rostido"</code>, further arguments passed to or from other methods.</p></dd>
 
 
 <dt>.arrange_by</dt>
@@ -130,7 +130,7 @@ results. Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" cla
 
 <dt>.include</dt>
 <dd><p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; names of variables to be included or excluded when
-printing a <code>"rostido"</code> data frame containing Triodos Bank transaction data.</p></dd>
+printing a <code>"rostido"</code> data frame containing Triodos Bank transaction data; default <code>!c(ChequeNo, SortCode)</code>.</p></dd>
 
 
 <dt>maxwidth</dt>
@@ -153,7 +153,7 @@ filename string.</p></dd>
 
 
 <dt><code>as_rostido()</code></dt>
-<dd><p>An object of class <code>"rostido"</code> inheriting from <code>"data.frame"</code> containign reformatted Triodos
+<dd><p>An object of class <code>"rostido"</code> inheriting from <code>"data.frame"</code> containing reformatted Triodos
 Bank data.</p></dd>
 
 </dl></div>
@@ -188,7 +188,7 @@ with <code>numeric</code> values.</p>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">filepath</span>, <span class="st">"/55545372"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>   <span class="op">(</span><span class="va">curracc</span> <span class="op">&lt;-</span> <span class="fu">most_recent_fdate</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>   <span class="op">(</span><span class="va">curacc</span> <span class="op">&lt;-</span> <span class="fu">most_recent_fdate</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>       <span class="fu">file_name</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>       <span class="fu">read_triodos_csv</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>       <span class="fu">as_rostido</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -208,9 +208,9 @@ with <code>numeric</code> values.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>   <span class="co">## ______________</span></span></span>
 <span class="r-in"><span>   <span class="co">## All accounts</span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curracc</span>, <span class="va">savacc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">curracc</span>, <span class="va">savacc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span><span class="op">)</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">oldwd</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
