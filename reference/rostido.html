@@ -79,7 +79,7 @@ data frame.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">...</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="va">Date</span><span class="op">:</span><span class="va">Code</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for rostido</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, .include <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">ChequeNo</span>, <span class="va">SortCode</span><span class="op">)</span>, maxwidth <span class="op">=</span> <span class="fl">65L</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, .include <span class="op">=</span> <span class="cn">NULL</span>, maxwidth <span class="op">=</span> <span class="fl">65L</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -115,7 +115,7 @@ discontinued; default <code>as.Date("2024-02-01")</code>.</p></dd>
 
 
 <dt>...</dt>
-<dd><p>for  <code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code> S3 method method for class <code>"rostido"</code>, data frames  of class <code>"rostido"</code> to be combined.</p>
+<dd><p>for <code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code> S3 method for class <code>"rostido"</code>, data frames  of class <code>"rostido"</code> to be combined.</p>
 <p>for <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> S3 method for class <code>"rostido"</code>, further arguments passed to or from other methods.</p></dd>
 
 
@@ -130,7 +130,7 @@ results. Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" cla
 
 <dt>.include</dt>
 <dd><p>&lt;<code><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html" class="external-link">tidy-select</a></code>&gt; names of variables to be included or excluded when
-printing a <code>"rostido"</code> data frame containing Triodos Bank transaction data; default <code>!c(ChequeNo, SortCode)</code>.</p></dd>
+printing a <code>"rostido"</code> data frame containing Triodos Bank transaction data; default <code>NULL</code>.</p></dd>
 
 
 <dt>maxwidth</dt>
@@ -149,12 +149,12 @@ filename string.</p></dd>
 
 
 <dt><code>read_triodos_csv()</code></dt>
-<dd><p>CSV file data formatted by Triodos Bank, as a dataframe.</p></dd>
+<dd><p>CSV transaction file data formatted by Triodos Bank, as a dataframe.</p></dd>
 
 
 <dt><code>as_rostido()</code></dt>
 <dd><p>An object of class <code>"rostido"</code> inheriting from <code>"data.frame"</code> containing reformatted Triodos
-Bank data.</p></dd>
+Bank transaction data.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -173,6 +173,12 @@ contents as a data frame.</p>
 <p><code>as_rostido()</code> reformats a data frame containing Triodos Bank transaction data obtained using <code>read_triodos_csv()</code>,
 replacing <code>character</code> strings in the <code>Date</code> field with <code>"Date"</code> objects, and in the <code>Amount</code> and <code>Balance</code> fields
 with <code>numeric</code> values.</p>
+<p>By default, if no <code>.include</code> argument is specified, the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> S3 method for class <code>"rostido"</code> excludes the
+<code>SortCode</code> and <code>ChequeNo</code> columns from the printed output.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
+    <div class="dont-index"><p><code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>, <code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code>.</p></div>
     </div>
 
     <div class="section level2">
@@ -204,7 +210,7 @@ with <code>numeric</code> values.</p>
 <span class="r-in"><span>        <span class="fu">read_triodos_csv</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>        <span class="fu">as_rostido</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>   <span class="va">savacc</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>.include <span class="op">=</span> <span class="va">Description</span><span class="op">:</span><span class="va">Balance</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   <span class="va">savacc</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>.include <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">Description</span>, <span class="va">Code</span>, <span class="va">Amount</span>, <span class="va">Balance</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>   <span class="co">## ______________</span></span></span>
 <span class="r-in"><span>   <span class="co">## All accounts</span></span></span>
