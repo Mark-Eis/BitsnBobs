@@ -8,7 +8,7 @@
 
 
 # ========================================
-#' Manage Triodos Bank Account
+#' Manage Triodos Bank Account Transaction Data
 #'
 #' @name rostido
 #' @description
@@ -116,6 +116,7 @@
 #'         as_rostido())
 #'
 #'    savacc |> print(.include = Description:Balance)
+#'
 #'    ## ______________
 #'    ## All accounts
 #'    rbind(curracc, savacc)
@@ -186,7 +187,9 @@ as_rostido <- function(data, dateformat = "%d/%m/%Y") { # Four digit years
 #' @rdname rostido
 #' @export
 
-rbind.rostido <- function(..., deparse.level = 1, .arrange_by = across(Date:Code)) {
+# rbind.rostido <- function(..., deparse.level = 1, .arrange_by = across(Date:Code)) {
+rbind.rostido <- function(..., .arrange_by = across(Date:Code)) {
+    Date <- Code <- NULL
     base::rbind.data.frame(...) |>
     arrange({{.arrange_by}})
 }
@@ -200,11 +203,12 @@ rbind.rostido <- function(..., deparse.level = 1, .arrange_by = across(Date:Code
 #' @export
 
 print.rostido <- function(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L) {
+    Amount <- Balance <- ChequeNo <- SortCode <- NULL
     y <- x
     .include <- rlang::enquo(.include)
 
     x <- x |>
-    dplyr::relocate(Amount, .before = Balance) |>
+    dplyr::relocate(Code, Amount, .before = Balance) |>
     dplyr::mutate(across("Description", \(dstr) strtrim(dstr, maxwidth)))
 
     x <- x[tidyselect::eval_select(.include, data = x)]

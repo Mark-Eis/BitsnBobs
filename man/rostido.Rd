@@ -8,7 +8,7 @@
 \alias{as_rostido}
 \alias{rbind.rostido}
 \alias{print.rostido}
-\title{Manage Triodos Bank Account}
+\title{Manage Triodos Bank Account Transaction Data}
 \usage{
 file_name(.date)
 
@@ -22,7 +22,7 @@ read_triodos_csv(filename)
 
 as_rostido(data, dateformat = "\%d/\%m/\%Y")
 
-\method{rbind}{rostido}(..., deparse.level = 1, .arrange_by = across(Date:Code))
+\method{rbind}{rostido}(..., .arrange_by = across(Date:Code))
 
 \method{print}{rostido}(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L)
 }
@@ -127,6 +127,7 @@ with \code{numeric} values.
         as_rostido())
 
    savacc |> print(.include = Description:Balance)
+
    ## ______________
    ## All accounts
    rbind(curracc, savacc)
