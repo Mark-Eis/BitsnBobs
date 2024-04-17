@@ -81,7 +81,7 @@
 #'
 #' \item{`read_triodos_csv()`}{CSV file data formatted by Triodos Bank, as a dataframe.}
 #'
-#' \item{`as_rostido()`}{An object of class `"rostido"` inheriting from `"data.frame"` containign reformatted Triodos
+#' \item{`as_rostido()`}{An object of class `"rostido"` inheriting from `"data.frame"` containing reformatted Triodos
 #'   Bank data.}
 #'
 #' @keywords utilities
