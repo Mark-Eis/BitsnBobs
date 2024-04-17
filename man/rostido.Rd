@@ -43,8 +43,9 @@ discontinued; default \code{as.Date("2024-02-01")}.}
 \item{dateformat}{\verb{character string}, passed as the \code{format} argument to \code{\link[base:as.Date]{as.Date()}}; default
 \code{"\%d/\%m/\%Y"}.}
 
-\item{\dots}{for \code{rbind()} S3 method, data frames  of class \code{"rostido"} to be combined; for \code{print()} S3 method,
-further arguments passed to or from other methods.}
+\item{\dots}{for  \code{rbind()} S3 method method for class \code{"rostido"}, data frames  of class \code{"rostido"} to be combined.
+
+for \code{print()} S3 method for class \code{"rostido"}, further arguments passed to or from other methods.}
 
 \item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of column(s) for ordering
 results. Use \code{\link[dplyr:desc]{desc()}} to sort by variables in descending order; default \code{across(Date:Code)}.}
@@ -52,7 +53,7 @@ results. Use \code{\link[dplyr:desc]{desc()}} to sort by variables in descending
 \item{x}{an object used to select a method.}
 
 \item{.include}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> names of variables to be included or excluded when
-printing a \code{"rostido"} data frame containing Triodos Bank transaction data.}
+printing a \code{"rostido"} data frame containing Triodos Bank transaction data; default \code{!c(ChequeNo, SortCode)}.}
 
 \item{maxwidth}{an \code{integer}, maximum width for printing \code{Description} field; default \code{65L}.}
 }
@@ -110,7 +111,7 @@ with \code{numeric} values.
    setwd(paste0(filepath, "/55545372"))
    getwd()
 
-   (curracc <- most_recent_fdate() |>
+   (curacc <- most_recent_fdate() |>
        file_name() |>
        read_triodos_csv() |>
        as_rostido())
@@ -130,9 +131,9 @@ with \code{numeric} values.
 
    ## ______________
    ## All accounts
-   rbind(curracc, savacc)
+   rbind(curacc, savacc)
 
-   rm(curracc, savacc)
+   rm(curacc, savacc)
    setwd(oldwd)
 
 }

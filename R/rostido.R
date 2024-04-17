@@ -204,16 +204,16 @@ rbind.rostido <- function(..., .arrange_by = across(Date:Code)) {
 #' @rdname rostido
 #' @export
 
-print.rostido <- function(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L) {
-    Amount <- Balance <- ChequeNo <- SortCode <- NULL
-    .include <- rlang::enquo(.include)
+ print.rostido <- function(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L) {
+    ChequeNo <- SortCode <- NULL
+    check_dots_empty()
+    .include <- enquo(.include)
 
     y <- x
-    x <- x |>
-    dplyr::relocate(Code, Amount, .before = Balance) |>
-    dplyr::mutate(across("Description", \(dstr) strtrim(dstr, maxwidth)))
+    x <- x[eval_select(.include, x)]
 
-    x <- x[tidyselect::eval_select(.include, data = x)]
+    x <- relocate(x, any_of(c("Code", "Amount")), .before = last_col()) |>
+        mutate(across(any_of("Description"), \(dstr) strtrim(dstr, maxwidth)))
     NextMethod()
     invisible(y)
 }
