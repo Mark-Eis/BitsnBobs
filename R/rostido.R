@@ -213,7 +213,7 @@ print.rostido <- function(x, ..., .include = NULL, maxwidth = 65L) {
     check_dots_empty()
     .include <- enquo(.include)
     if (quo_is_null(.include))
-        .include <- expr(!c("ChequeNo", "SortCode"))
+        .include <- rlang::expr(!any_of(c("ChequeNo", "SortCode")))
 
     y <- x
     x <- x[eval_select(.include, x)]
