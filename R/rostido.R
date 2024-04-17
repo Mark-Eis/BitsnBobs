@@ -204,7 +204,7 @@ rbind.rostido <- function(..., .arrange_by = across(Date:Code)) {
 #' @rdname rostido
 #' @export
 
- print.rostido <- function(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L) {
+print.rostido <- function(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L) {
     ChequeNo <- SortCode <- NULL
     check_dots_empty()
     .include <- enquo(.include)
