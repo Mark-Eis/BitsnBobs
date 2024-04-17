@@ -39,19 +39,18 @@
 #' `read_triodos_csv()` reads a transactions CSV file downloaded from the Triodos bank website and returns the
 #' contents as a data frame.
 #'
-#' `as_rostido()` reformats a data frame containing Triodos Bank data obtained using `read_triodos_csv()`, replacing
-#' `character` strings in the `Date` field with `"Date"` objects, and in the `Amount` and `Balance` fields with
-#' `numeric` values. It also truncates `character` strings in the `Description` field to the length specified in the
-#' `maxwidth` argument and saves the full version of any `Description` exceeding `maxwidth` as `attributes`
-#' `"descr_no"` and `"descr"`. 
+#' `as_rostido()` reformats a data frame containing Triodos Bank transaction data obtained using `read_triodos_csv()`,
+#' replacing `character` strings in the `Date` field with `"Date"` objects, and in the `Amount` and `Balance` fields
+#' with `numeric` values. 
 #'
 #' @param .date `Date` object, the date to be incorporated into a filename string.
 #'
 #' @param trydate `Date` object, the most recent date from which to search for file; default `Sys.Date()`.
 #'
-#' @param earliest `Date` object, the date before which the search is discontinued; default `as.Date("2024-02-01")`.
+#' @param earliest `Date` object, the earliest date to search for within the file name, beyond which the search is
+#'   discontinued; default `as.Date("2024-02-01")`.
 #'
-#' @param fun `function`, used to incorporate `.date' into a filename search string; default `file_name`.
+#' @param fun `function`, used to incorporate `.date` into a filename search string; default `file_name`.
 #'
 #' @param filename `character` string, the name of a CSV file to be read.
 #'
@@ -60,9 +59,18 @@
 #' @param dateformat `character string`, passed as the `format` argument to [`as.Date()`][base::as.Date]; default
 #'   `"%d/%m/%Y"`.
 #'
-#' @param maxwidth an `integer`, maximum width for printing `Description` field; default `50L`.
+#' @param \dots for `rbind()` S3 method, data frames  of class `"rostido"` to be combined; for `print()` S3 method,
+#'   further arguments passed to or from other methods.
+#'
+#' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name(s) of column(s) for ordering  
+#'   results. Use [`desc()`][dplyr::desc] to sort by variables in descending order; default `across(Date:Code)`.
+#'
+#' @param .include <[`tidy-select`][dplyr::dplyr_tidy_select]> names of variables to be included or excluded when
+#'   printing a `"rostido"` data frame containing Triodos Bank transaction data.
+#'
+#' @param maxwidth an `integer`, maximum width for printing `Description` field; default `65L`.
 #
-#' @inheritParams dplyr::arrange
+#' @inheritParams base::print
 #'
 #' @return
 #'
@@ -82,43 +90,44 @@
 #' @examples
 #' \dontrun{
 #'
-#'     filepath <- "~/Triodos Bank/Downloads"
-#'     (oldwd <- setwd(filepath))
-#'     getwd()
+#'    filepath <- "~/Triodos Bank/Downloads"
+#'    (oldwd <- setwd(filepath))
+#'    getwd()
 #'
-#'     ## __________________________
-#'     ## Current account 55545372
-#'     setwd(paste0(filepath, "/55545372"))
-#'     getwd()
+#'    ## __________________________
+#'    ## Current account 55545372
+#'    setwd(paste0(filepath, "/55545372"))
+#'    getwd()
 #'
-#'     (curracc <- most_recent_fdate() |>
+#'    (curracc <- most_recent_fdate() |>
+#'        file_name() |>
+#'        read_triodos_csv() |>
+#'        as_rostido())
+#'
+#'    ## __________________________
+#'    ## Savings account 55596784
+#'
+#'    setwd(paste0(filepath, "/55596784"))
+#'    getwd()
+#'
+#'    (savacc <- most_recent_fdate() |>
 #'         file_name() |>
 #'         read_triodos_csv() |>
 #'         as_rostido())
 #'
-#'     ## __________________________
-#'     ## Savings account 55596784
+#'    savacc |> print(.include = Description:Balance)
+#'    ## ______________
+#'    ## All accounts
+#'    rbind(curracc, savacc)
 #'
-#'     setwd(paste0(filepath, "/55596784"))
-#'     getwd()
-#'
-#'     (savacc <- most_recent_fdate() |>
-#'          file_name() |>
-#'          read_triodos_csv() |>
-#'          as_rostido())
-#'
-#'     ## ______________
-#'     ## All accounts
-#'     rbind(curracc, savacc) |>
-#'         arrange()
-#'
-#'     rm(curracc, savacc)
-#'     setwd(oldwd)
+#'    rm(curracc, savacc)
+#'    setwd(oldwd)
 #'
 #' }
 
 file_name <- function(.date)
     paste0("Download", gsub("-", "", as.character(.date)),".csv")
+
 
 # ========================================
 #  Return date of most recent file
@@ -137,6 +146,7 @@ most_recent_fdate <- function(trydate = Sys.Date(), earliest = as.Date("2024-02-
     trydate
 }
 
+
 # ========================================
 #  Read Triodos CSV transactions file
 #'
@@ -153,12 +163,12 @@ read_triodos_csv <- function(filename) {
     )
 }
 
+
 # ========================================
 #  Reformat Triodos transaction data frame
 #'
 #' @rdname rostido
 #' @export
-
 
 as_rostido <- function(data, dateformat = "%d/%m/%Y") { # Four digit years
     data |> mutate(
@@ -168,19 +178,19 @@ as_rostido <- function(data, dateformat = "%d/%m/%Y") { # Four digit years
     structure(class = c("rostido", class(data)))
 }
 
+
 # ========================================
-#  Sort data frame with Triodos transaction data
-#' S3method arrange.rostido()
+#  Bind rows of Triodos transaction data frames
+#' S3method rbind.rostido()
 #'
 #' @rdname rostido
 #' @export
 
-arrange.rostido <- function(.data, ..., .by_group = FALSE) {
-    if (...length())
-        NextMethod("arrange")
-    else
-        arrange(.data, .data$Date, .data$AccountNo, .data$Code)
+rbind.rostido <- function(..., deparse.level = 1, .arrange_by = across(Date:Code)) {
+    base::rbind.data.frame(...) |>
+    arrange({{.arrange_by}})
 }
+
 
 # ========================================
 #  Print data frame with Triodos transaction data
@@ -189,12 +199,15 @@ arrange.rostido <- function(.data, ..., .by_group = FALSE) {
 #' @rdname rostido
 #' @export
 
-print.rostido <- function(x, ..., exclude = c("ChequeNo", "SortCode"), maxwidth = 50L) {
+print.rostido <- function(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L) {
     y <- x
+    .include <- rlang::enquo(.include)
+
     x <- x |>
-    select(!any_of(exclude)) |>
-    relocate(Amount, .before = Balance) |>
-    mutate(across("Description", \(x) strtrim(x, maxwidth)))
+    dplyr::relocate(Amount, .before = Balance) |>
+    dplyr::mutate(across("Description", \(dstr) strtrim(dstr, maxwidth)))
+
+    x <- x[tidyselect::eval_select(.include, data = x)]
     NextMethod()
     invisible(y)
 }

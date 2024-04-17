@@ -6,7 +6,7 @@
 \alias{most_recent_fdate}
 \alias{read_triodos_csv}
 \alias{as_rostido}
-\alias{arrange.rostido}
+\alias{rbind.rostido}
 \alias{print.rostido}
 \title{Manage Triodos Bank Account}
 \usage{
@@ -22,18 +22,19 @@ read_triodos_csv(filename)
 
 as_rostido(data, dateformat = "\%d/\%m/\%Y")
 
-\method{arrange}{rostido}(.data, ..., .by_group = FALSE)
+\method{rbind}{rostido}(..., deparse.level = 1, .arrange_by = across(Date:Code))
 
-\method{print}{rostido}(x, ..., exclude = c("ChequeNo", "SortCode"), maxwidth = 50L)
+\method{print}{rostido}(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L)
 }
 \arguments{
 \item{.date}{\code{Date} object, the date to be incorporated into a filename string.}
 
 \item{trydate}{\code{Date} object, the most recent date from which to search for file; default \code{Sys.Date()}.}
 
-\item{earliest}{\code{Date} object, the date before which the search is discontinued; default \code{as.Date("2024-02-01")}.}
+\item{earliest}{\code{Date} object, the earliest date to search for within the file name, beyond which the search is
+discontinued; default \code{as.Date("2024-02-01")}.}
 
-\item{fun}{\code{function}, used to incorporate \verb{.date' into a filename search string; default }file_name`.}
+\item{fun}{\code{function}, used to incorporate \code{.date} into a filename search string; default \code{file_name}.}
 
 \item{filename}{\code{character} string, the name of a CSV file to be read.}
 
@@ -42,18 +43,18 @@ as_rostido(data, dateformat = "\%d/\%m/\%Y")
 \item{dateformat}{\verb{character string}, passed as the \code{format} argument to \code{\link[base:as.Date]{as.Date()}}; default
 \code{"\%d/\%m/\%Y"}.}
 
-\item{.data}{A data frame, data frame extension (e.g. a tibble), or a
-lazy data frame (e.g. from dbplyr or dtplyr). See \emph{Methods}, below, for
-more details.}
+\item{\dots}{for \code{rbind()} S3 method, data frames  of class \code{"rostido"} to be combined; for \code{print()} S3 method,
+further arguments passed to or from other methods.}
 
-\item{...}{<\code{\link[rlang:args_data_masking]{data-masking}}> Variables, or
-functions of variables. Use \code{\link[dplyr:desc]{desc()}} to sort a variable in descending
-order.}
+\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of column(s) for ordering
+results. Use \code{\link[dplyr:desc]{desc()}} to sort by variables in descending order; default \code{across(Date:Code)}.}
 
-\item{.by_group}{If \code{TRUE}, will sort first by grouping variable. Applies to
-grouped data frames only.}
+\item{x}{an object used to select a method.}
 
-\item{maxwidth}{an \code{integer}, maximum width for printing \code{Description} field; default \code{50L}.}
+\item{.include}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> names of variables to be included or excluded when
+printing a \code{"rostido"} data frame containing Triodos Bank transaction data.}
+
+\item{maxwidth}{an \code{integer}, maximum width for printing \code{Description} field; default \code{65L}.}
 }
 \value{
 \item{\code{file_name()}}{Filename string incorporating a date of the form \code{"Downloadyyyymmdd.csv"}.}
@@ -93,47 +94,45 @@ discontinued on reaching the date specified in the \code{earliest} argument.
 \code{read_triodos_csv()} reads a transactions CSV file downloaded from the Triodos bank website and returns the
 contents as a data frame.
 
-\code{as_rostido()} reformats a data frame containing Triodos Bank data obtained using \code{read_triodos_csv()}, replacing
-\code{character} strings in the \code{Date} field with \code{"Date"} objects, and in the \code{Amount} and \code{Balance} fields with
-\code{numeric} values. It also truncates \code{character} strings in the \code{Description} field to the length specified in the
-\code{maxwidth} argument and saves the full version of any \code{Description} exceeding \code{maxwidth} as \code{attributes}
-\code{"descr_no"} and \code{"descr"}.
+\code{as_rostido()} reformats a data frame containing Triodos Bank transaction data obtained using \code{read_triodos_csv()},
+replacing \code{character} strings in the \code{Date} field with \code{"Date"} objects, and in the \code{Amount} and \code{Balance} fields
+with \code{numeric} values.
 }
 \examples{
 \dontrun{
 
-    filepath <- "~/Triodos Bank/Downloads"
-    (oldwd <- setwd(filepath))
-    getwd()
+   filepath <- "~/Triodos Bank/Downloads"
+   (oldwd <- setwd(filepath))
+   getwd()
 
-    ## __________________________
-    ## Current account 55545372
-    setwd(paste0(filepath, "/55545372"))
-    getwd()
+   ## __________________________
+   ## Current account 55545372
+   setwd(paste0(filepath, "/55545372"))
+   getwd()
 
-    (curracc <- most_recent_fdate() |>
+   (curracc <- most_recent_fdate() |>
+       file_name() |>
+       read_triodos_csv() |>
+       as_rostido())
+
+   ## __________________________
+   ## Savings account 55596784
+
+   setwd(paste0(filepath, "/55596784"))
+   getwd()
+
+   (savacc <- most_recent_fdate() |>
         file_name() |>
         read_triodos_csv() |>
         as_rostido())
 
-    ## __________________________
-    ## Savings account 55596784
+   savacc |> print(.include = Description:Balance)
+   ## ______________
+   ## All accounts
+   rbind(curracc, savacc)
 
-    setwd(paste0(filepath, "/55596784"))
-    getwd()
-
-    (savacc <- most_recent_fdate() |>
-         file_name() |>
-         read_triodos_csv() |>
-         as_rostido())
-
-    ## ______________
-    ## All accounts
-    rbind(curracc, savacc) |>
-        arrange()
-
-    rm(curracc, savacc)
-    setwd(oldwd)
+   rm(curracc, savacc)
+   setwd(oldwd)
 
 }
 }
