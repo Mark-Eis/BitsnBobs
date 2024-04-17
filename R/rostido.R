@@ -41,7 +41,12 @@
 #'
 #' `as_rostido()` reformats a data frame containing Triodos Bank transaction data obtained using `read_triodos_csv()`,
 #' replacing `character` strings in the `Date` field with `"Date"` objects, and in the `Amount` and `Balance` fields
-#' with `numeric` values. 
+#' with `numeric` values.
+#'
+#' By default, if no `.include` argument is specified, the `print()` S3 method for class `"rostido"` excludes the
+#' `SortCode` and `ChequeNo` columns from the printed output.
+#'
+#' @seealso [`print()`][base::print], [`rbind()`][base::rbind].
 #'
 #' @param .date `Date` object, the date to be incorporated into a filename string.
 #'
@@ -60,7 +65,7 @@
 #'   `"%d/%m/%Y"`.
 #'
 #' @param \dots
-#'   for  `rbind()` S3 method method for class `"rostido"`, data frames  of class `"rostido"` to be combined.
+#'   for `rbind()` S3 method for class `"rostido"`, data frames  of class `"rostido"` to be combined.
 #'
 #'   for `print()` S3 method for class `"rostido"`, further arguments passed to or from other methods.
 #'
@@ -68,7 +73,7 @@
 #'   results. Use [`desc()`][dplyr::desc] to sort by variables in descending order; default `across(Date:Code)`.
 #'
 #' @param .include <[`tidy-select`][dplyr::dplyr_tidy_select]> names of variables to be included or excluded when
-#'   printing a `"rostido"` data frame containing Triodos Bank transaction data; default `!c(ChequeNo, SortCode)`.
+#'   printing a `"rostido"` data frame containing Triodos Bank transaction data; default `NULL`.
 #'
 #' @param maxwidth an `integer`, maximum width for printing `Description` field; default `65L`.
 #
@@ -81,10 +86,10 @@
 #' \item{`most_recent_fdate()`}{`"Date"` object containing the most recent date as incorporated within the specified
 #'   filename string.}
 #'
-#' \item{`read_triodos_csv()`}{CSV file data formatted by Triodos Bank, as a dataframe.}
+#' \item{`read_triodos_csv()`}{CSV transaction file data formatted by Triodos Bank, as a dataframe.}
 #'
 #' \item{`as_rostido()`}{An object of class `"rostido"` inheriting from `"data.frame"` containing reformatted Triodos
-#'   Bank data.}
+#'   Bank transaction data.}
 #'
 #' @keywords utilities
 #'
@@ -117,7 +122,7 @@
 #'         read_triodos_csv() |>
 #'         as_rostido())
 #'
-#'    savacc |> print(.include = Description:Balance)
+#'    savacc |> print(.include = c(Description, Code, Amount, Balance))
 #'
 #'    ## ______________
 #'    ## All accounts
@@ -204,10 +209,11 @@ rbind.rostido <- function(..., .arrange_by = across(Date:Code)) {
 #' @rdname rostido
 #' @export
 
-print.rostido <- function(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L) {
-    ChequeNo <- SortCode <- NULL
+print.rostido <- function(x, ..., .include = NULL, maxwidth = 65L) {
     check_dots_empty()
     .include <- enquo(.include)
+    if (quo_is_null(.include))
+        .include <- expr(!c("ChequeNo", "SortCode"))
 
     y <- x
     x <- x[eval_select(.include, x)]

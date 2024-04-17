@@ -64,6 +64,7 @@
 #' @importFrom rlang exprs
 #' @importFrom rlang f_rhs
 #' @importFrom rlang f_rhs<-
+#' @importFrom rlang quo_is_null
 #' @importFrom rlang set_names
 #' @importFrom stats optimise
 #' @importFrom stats pnorm

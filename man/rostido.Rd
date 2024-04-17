@@ -24,7 +24,7 @@ as_rostido(data, dateformat = "\%d/\%m/\%Y")
 
 \method{rbind}{rostido}(..., .arrange_by = across(Date:Code))
 
-\method{print}{rostido}(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L)
+\method{print}{rostido}(x, ..., .include = NULL, maxwidth = 65L)
 }
 \arguments{
 \item{.date}{\code{Date} object, the date to be incorporated into a filename string.}
@@ -43,7 +43,7 @@ discontinued; default \code{as.Date("2024-02-01")}.}
 \item{dateformat}{\verb{character string}, passed as the \code{format} argument to \code{\link[base:as.Date]{as.Date()}}; default
 \code{"\%d/\%m/\%Y"}.}
 
-\item{\dots}{for  \code{rbind()} S3 method method for class \code{"rostido"}, data frames  of class \code{"rostido"} to be combined.
+\item{\dots}{for \code{rbind()} S3 method for class \code{"rostido"}, data frames  of class \code{"rostido"} to be combined.
 
 for \code{print()} S3 method for class \code{"rostido"}, further arguments passed to or from other methods.}
 
@@ -53,7 +53,7 @@ results. Use \code{\link[dplyr:desc]{desc()}} to sort by variables in descending
 \item{x}{an object used to select a method.}
 
 \item{.include}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> names of variables to be included or excluded when
-printing a \code{"rostido"} data frame containing Triodos Bank transaction data; default \code{!c(ChequeNo, SortCode)}.}
+printing a \code{"rostido"} data frame containing Triodos Bank transaction data; default \code{NULL}.}
 
 \item{maxwidth}{an \code{integer}, maximum width for printing \code{Description} field; default \code{65L}.}
 }
@@ -63,10 +63,10 @@ printing a \code{"rostido"} data frame containing Triodos Bank transaction data;
 \item{\code{most_recent_fdate()}}{\code{"Date"} object containing the most recent date as incorporated within the specified
 filename string.}
 
-\item{\code{read_triodos_csv()}}{CSV file data formatted by Triodos Bank, as a dataframe.}
+\item{\code{read_triodos_csv()}}{CSV transaction file data formatted by Triodos Bank, as a dataframe.}
 
 \item{\code{as_rostido()}}{An object of class \code{"rostido"} inheriting from \code{"data.frame"} containing reformatted Triodos
-Bank data.}
+Bank transaction data.}
 }
 \description{
 \code{file_name()} returns a character string representing the name of a CSV format transactions file downloaded from
@@ -98,6 +98,9 @@ contents as a data frame.
 \code{as_rostido()} reformats a data frame containing Triodos Bank transaction data obtained using \code{read_triodos_csv()},
 replacing \code{character} strings in the \code{Date} field with \code{"Date"} objects, and in the \code{Amount} and \code{Balance} fields
 with \code{numeric} values.
+
+By default, if no \code{.include} argument is specified, the \code{print()} S3 method for class \code{"rostido"} excludes the
+\code{SortCode} and \code{ChequeNo} columns from the printed output.
 }
 \examples{
 \dontrun{
@@ -127,7 +130,7 @@ with \code{numeric} values.
         read_triodos_csv() |>
         as_rostido())
 
-   savacc |> print(.include = Description:Balance)
+   savacc |> print(.include = c(Description, Code, Amount, Balance))
 
    ## ______________
    ## All accounts
@@ -137,5 +140,8 @@ with \code{numeric} values.
    setwd(oldwd)
 
 }
+}
+\seealso{
+\code{\link[base:print]{print()}}, \code{\link[base:cbind]{rbind()}}.
 }
 \keyword{utilities}
