@@ -22,7 +22,7 @@ read_triodos_csv(filename)
 
 as_rostido(data, dateformat = "\%d/\%m/\%Y")
 
-\method{rbind}{rostido}(..., .arrange_by = across(Date:Code))
+\method{rbind}{rostido}(..., .arrange_by = NULL)
 
 \method{print}{rostido}(x, ..., .include = NULL, maxwidth = 65L)
 }

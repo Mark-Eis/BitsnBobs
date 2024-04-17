@@ -194,11 +194,13 @@ as_rostido <- function(data, dateformat = "%d/%m/%Y") { # Four digit years
 #' @rdname rostido
 #' @export
 
-# rbind.rostido <- function(..., deparse.level = 1, .arrange_by = across(Date:Code)) {
-rbind.rostido <- function(..., .arrange_by = across(Date:Code)) {
+rbind.rostido <- function(..., .arrange_by = NULL) {
     Date <- Code <- NULL
+    .arrange_by <- enquo(.arrange_by)
+    if (quo_is_null(.arrange_by))
+	    .arrange_by <- expr(across(Date:Code))
     base::rbind.data.frame(...) |>
-    arrange({{.arrange_by}})
+    arrange(!!.arrange_by)
 }
 
 
