@@ -204,9 +204,9 @@ rbind.rostido <- function(..., .arrange_by = across(Date:Code)) {
 
 print.rostido <- function(x, ..., .include = !c(ChequeNo, SortCode), maxwidth = 65L) {
     Amount <- Balance <- ChequeNo <- SortCode <- NULL
-    y <- x
     .include <- rlang::enquo(.include)
 
+    y <- x
     x <- x |>
     dplyr::relocate(Code, Amount, .before = Balance) |>
     dplyr::mutate(across("Description", \(dstr) strtrim(dstr, maxwidth)))
