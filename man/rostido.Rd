@@ -64,7 +64,7 @@ filename string.}
 
 \item{\code{read_triodos_csv()}}{CSV file data formatted by Triodos Bank, as a dataframe.}
 
-\item{\code{as_rostido()}}{An object of class \code{"rostido"} inheriting from \code{"data.frame"} containign reformatted Triodos
+\item{\code{as_rostido()}}{An object of class \code{"rostido"} inheriting from \code{"data.frame"} containing reformatted Triodos
 Bank data.}
 }
 \description{

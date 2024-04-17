@@ -59,14 +59,16 @@
 #' @param dateformat `character string`, passed as the `format` argument to [`as.Date()`][base::as.Date]; default
 #'   `"%d/%m/%Y"`.
 #'
-#' @param \dots for `rbind()` S3 method, data frames  of class `"rostido"` to be combined; for `print()` S3 method,
-#'   further arguments passed to or from other methods.
+#' @param \dots
+#'   for  `rbind()` S3 method method for class `"rostido"`, data frames  of class `"rostido"` to be combined.
+#'
+#'   for `print()` S3 method for class `"rostido"`, further arguments passed to or from other methods.
 #'
 #' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name(s) of column(s) for ordering  
 #'   results. Use [`desc()`][dplyr::desc] to sort by variables in descending order; default `across(Date:Code)`.
 #'
 #' @param .include <[`tidy-select`][dplyr::dplyr_tidy_select]> names of variables to be included or excluded when
-#'   printing a `"rostido"` data frame containing Triodos Bank transaction data.
+#'   printing a `"rostido"` data frame containing Triodos Bank transaction data; default `!c(ChequeNo, SortCode)`.
 #'
 #' @param maxwidth an `integer`, maximum width for printing `Description` field; default `65L`.
 #
@@ -99,7 +101,7 @@
 #'    setwd(paste0(filepath, "/55545372"))
 #'    getwd()
 #'
-#'    (curracc <- most_recent_fdate() |>
+#'    (curacc <- most_recent_fdate() |>
 #'        file_name() |>
 #'        read_triodos_csv() |>
 #'        as_rostido())
@@ -119,9 +121,9 @@
 #'
 #'    ## ______________
 #'    ## All accounts
-#'    rbind(curracc, savacc)
+#'    rbind(curacc, savacc)
 #'
-#'    rm(curracc, savacc)
+#'    rm(curacc, savacc)
 #'    setwd(oldwd)
 #'
 #' }
