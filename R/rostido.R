@@ -43,6 +43,9 @@
 #' replacing `character` strings in the `Date` field with `"Date"` objects, and in the `Amount` and `Balance` fields
 #' with `numeric` values.
 #'
+#' By default, if no `.arrange_by ` argument is specified, the `rbind()` S3 method for class `"rostido"` orders the
+#'   results by `Date`, `AccountNo` and `Code`.
+#'
 #' By default, if no `.include` argument is specified, the `print()` S3 method for class `"rostido"` excludes the
 #' `SortCode` and `ChequeNo` columns from the printed output.
 #'
@@ -70,7 +73,8 @@
 #'   for `print()` S3 method for class `"rostido"`, further arguments passed to or from other methods.
 #'
 #' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name(s) of column(s) for ordering  
-#'   results. Use [`desc()`][dplyr::desc] to sort by variables in descending order; default `across(Date:Code)`.
+#'   results. Use [`desc()`][dplyr::desc] to sort by variables in descending order; default
+#'   `c(Date, AccountNo, Code)`.
 #'
 #' @param .include <[`tidy-select`][dplyr::dplyr_tidy_select]> names of variables to be included or excluded when
 #'   printing a `"rostido"` data frame containing Triodos Bank transaction data; default `NULL`.
@@ -194,13 +198,10 @@ as_rostido <- function(data, dateformat = "%d/%m/%Y") { # Four digit years
 #' @rdname rostido
 #' @export
 
-rbind.rostido <- function(..., .arrange_by = NULL) {
-    Date <- Code <- NULL
-    .arrange_by <- enquo(.arrange_by)
-    if (quo_is_null(.arrange_by))
-	    .arrange_by <- expr(across(Date:Code))
+rbind.rostido <- function(..., .arrange_by = c(Date, AccountNo, Code)) {
+    Date <- AccountNo <- Code <- NULL
     base::rbind.data.frame(...) |>
-    arrange(!!.arrange_by)
+    arrange(across({{.arrange_by}}))
 }
 
 

@@ -6,7 +6,7 @@
 \alias{most_recent_fdate}
 \alias{read_triodos_csv}
 \alias{as_rostido}
-\alias{rbind.rostido}
+\alias{rbind_rostido}
 \alias{print.rostido}
 \title{Manage Triodos Bank Account Transaction Data}
 \usage{
@@ -22,7 +22,7 @@ read_triodos_csv(filename)
 
 as_rostido(data, dateformat = "\%d/\%m/\%Y")
 
-\method{rbind}{rostido}(..., .arrange_by = NULL)
+rbind_rostido(..., .arrange_by = c(Date, AccountNo, Code))
 
 \method{print}{rostido}(x, ..., .include = NULL, maxwidth = 65L)
 }
@@ -48,7 +48,8 @@ discontinued; default \code{as.Date("2024-02-01")}.}
 for \code{print()} S3 method for class \code{"rostido"}, further arguments passed to or from other methods.}
 
 \item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of column(s) for ordering
-results. Use \code{\link[dplyr:desc]{desc()}} to sort by variables in descending order; default \code{across(Date:Code)}.}
+results. Use \code{\link[dplyr:desc]{desc()}} to sort by variables in descending order; default
+\code{c(Date, AccountNo, Code)}.}
 
 \item{x}{an object used to select a method.}
 
@@ -98,6 +99,9 @@ contents as a data frame.
 \code{as_rostido()} reformats a data frame containing Triodos Bank transaction data obtained using \code{read_triodos_csv()},
 replacing \code{character} strings in the \code{Date} field with \code{"Date"} objects, and in the \code{Amount} and \code{Balance} fields
 with \code{numeric} values.
+
+By default, if no \code{.arrange_by } argument is specified, the \code{rbind()} S3 method for class \code{"rostido"} orders the
+results by \code{Date}, \code{AccountNo} and \code{Code}.
 
 By default, if no \code{.include} argument is specified, the \code{print()} S3 method for class \code{"rostido"} excludes the
 \code{SortCode} and \code{ChequeNo} columns from the printed output.
