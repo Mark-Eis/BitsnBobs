@@ -76,7 +76,7 @@ data frame.</p>
 <span><span class="fu">as_rostido</span><span class="op">(</span><span class="va">data</span>, dateformat <span class="op">=</span> <span class="st">"%d/%m/%Y"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for rostido</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">...</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">AccountNo</span>, <span class="va">Code</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">...</span>, .arrange_by <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for rostido</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span>, .include <span class="op">=</span> <span class="cn">NULL</span>, maxwidth <span class="op">=</span> <span class="fl">65L</span><span class="op">)</span></span></code></pre></div>
@@ -120,9 +120,9 @@ discontinued; default <code>as.Date("2024-02-01")</code>.</p></dd>
 
 
 <dt>.arrange_by</dt>
-<dd><p>&lt;<code><a href="https://rlang.r-lib.org/reference/args_data_masking.html" class="external-link">data-masking</a></code>&gt; quoted name(s) of column(s) for ordering
-results. Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc()</a></code> to sort by variables in descending order; default
-<code>c(Date, AccountNo, Code)</code>.</p></dd>
+<dd><p>a list of expressions containing names of column(s) for ordering rows of the combined
+<code>"rostido"</code> data frame e.g., <code>exprs(Account, Code, desc(Amount))</code>. Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc()</a></code> to sort a
+variable in descending order; default <code>NULL</code>.</p></dd>
 
 
 <dt>x</dt>
@@ -218,6 +218,10 @@ results by <code>Date</code>, <code>AccountNo</code> and <code>Code</code>.</p>
 <span class="r-in"><span>   <span class="co">## ______________</span></span></span>
 <span class="r-in"><span>   <span class="co">## All accounts</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">exprs</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Amount</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">exprs</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">Code</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">exprs</a></span><span class="op">(</span><span class="va">Code</span>, <span class="va">Amount</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">exprs</a></span><span class="op">(</span><span class="va">Code</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Amount</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span><span class="op">)</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">setwd</a></span><span class="op">(</span><span class="va">oldwd</span><span class="op">)</span></span></span>
