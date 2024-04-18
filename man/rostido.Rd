@@ -22,7 +22,7 @@ read_triodos_csv(filename)
 
 as_rostido(data, dateformat = "\%d/\%m/\%Y")
 
-\method{rbind}{rostido}(..., .arrange_by = c(Date, AccountNo, Code))
+\method{rbind}{rostido}(..., .arrange_by = NULL)
 
 \method{print}{rostido}(x, ..., .include = NULL, maxwidth = 65L)
 }
@@ -47,9 +47,9 @@ discontinued; default \code{as.Date("2024-02-01")}.}
 
 for \code{print()} S3 method for class \code{"rostido"}, further arguments passed to or from other methods.}
 
-\item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of column(s) for ordering
-results. Use \code{\link[dplyr:desc]{desc()}} to sort by variables in descending order; default
-\code{c(Date, AccountNo, Code)}.}
+\item{.arrange_by}{a list of expressions containing names of column(s) for ordering rows of the combined
+\code{"rostido"} data frame e.g., \code{exprs(Account, Code, desc(Amount))}. Use \code{\link[dplyr:desc]{desc()}} to sort a
+variable in descending order; default \code{NULL}.}
 
 \item{x}{an object used to select a method.}
 
@@ -139,6 +139,10 @@ By default, if no \code{.include} argument is specified, the \code{print()} S3 m
    ## ______________
    ## All accounts
    rbind(curacc, savacc)
+   rbind(curacc, savacc, .arrange_by = exprs(desc(Amount)))
+   rbind(curacc, savacc, .arrange_by = exprs(Date, Code))
+   rbind(curacc, savacc, .arrange_by = exprs(Code, Amount))
+   rbind(curacc, savacc, .arrange_by = exprs(Code, desc(Amount)))
 
    rm(curacc, savacc)
    setwd(oldwd)

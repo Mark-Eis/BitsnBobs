@@ -72,9 +72,9 @@
 #'
 #'   for `print()` S3 method for class `"rostido"`, further arguments passed to or from other methods.
 #'
-#' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name(s) of column(s) for ordering  
-#'   results. Use [`desc()`][dplyr::desc] to sort by variables in descending order; default
-#'   `c(Date, AccountNo, Code)`.
+#' @param .arrange_by a list of expressions containing names of column(s) for ordering rows of the combined
+#'   `"rostido"` data frame e.g., `exprs(Account, Code, desc(Amount))`. Use [`desc()`][dplyr::desc] to sort a
+#'   variable in descending order; default `NULL`.
 #'
 #' @param .include <[`tidy-select`][dplyr::dplyr_tidy_select]> names of variables to be included or excluded when
 #'   printing a `"rostido"` data frame containing Triodos Bank transaction data; default `NULL`.
@@ -131,6 +131,10 @@
 #'    ## ______________
 #'    ## All accounts
 #'    rbind(curacc, savacc)
+#'    rbind(curacc, savacc, .arrange_by = exprs(desc(Amount)))
+#'    rbind(curacc, savacc, .arrange_by = exprs(Date, Code))
+#'    rbind(curacc, savacc, .arrange_by = exprs(Code, Amount))
+#'    rbind(curacc, savacc, .arrange_by = exprs(Code, desc(Amount)))
 #'
 #'    rm(curacc, savacc)
 #'    setwd(oldwd)
@@ -197,11 +201,14 @@ as_rostido <- function(data, dateformat = "%d/%m/%Y") { # Four digit years
 #'
 #' @rdname rostido
 #' @export
+## NB .arrange_by must be supplied using `exprs()` e.g., exprs(Account, Code, desc(Amount)) as this is
+##    the only known way to reliably pass this argument to arrange without using dots.
 
-rbind.rostido <- function(..., .arrange_by = c(Date, AccountNo, Code)) {
+rbind.rostido <- function(..., .arrange_by = NULL) {
+    .arrange_by <- .arrange_by %||% exprs(Date, AccountNo, Code)
     Date <- AccountNo <- Code <- NULL
     base::rbind.data.frame(...) |>
-    arrange(across({{.arrange_by}}))
+    arrange(!!!.arrange_by)
 }
 
 
