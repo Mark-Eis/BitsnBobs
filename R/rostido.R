@@ -205,8 +205,8 @@ as_rostido <- function(data, dateformat = "%d/%m/%Y") { # Four digit years
 ##    the only known way to reliably pass this argument to arrange without using dots.
 
 rbind.rostido <- function(..., .arrange_by = NULL) {
-    .arrange_by <- .arrange_by %||% exprs(Date, AccountNo, Code)
     Date <- AccountNo <- Code <- NULL
+    .arrange_by <- .arrange_by %||% exprs(Date, AccountNo, Code)
     base::rbind.data.frame(...) |>
     arrange(!!!.arrange_by)
 }
