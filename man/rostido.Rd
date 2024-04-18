@@ -6,7 +6,7 @@
 \alias{most_recent_fdate}
 \alias{read_triodos_csv}
 \alias{as_rostido}
-\alias{rbind_rostido}
+\alias{rbind.rostido}
 \alias{print.rostido}
 \title{Manage Triodos Bank Account Transaction Data}
 \usage{
@@ -22,7 +22,7 @@ read_triodos_csv(filename)
 
 as_rostido(data, dateformat = "\%d/\%m/\%Y")
 
-rbind_rostido(..., .arrange_by = c(Date, AccountNo, Code))
+\method{rbind}{rostido}(..., .arrange_by = c(Date, AccountNo, Code))
 
 \method{print}{rostido}(x, ..., .include = NULL, maxwidth = 65L)
 }
