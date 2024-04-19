@@ -152,14 +152,17 @@ file_name <- function(.date)
 #' @export
 
 most_recent_fdate <- function(trydate = Sys.Date(), earliest = as.Date("2024-02-01"), fun = file_name) {
-    while(!file.exists(fun(trydate))) {
-        trydate <- trydate - 1
+    trydatef <- function(trydate)
         if (trydate < earliest)
-            stop(paste("No file available after", trydate))
-    }
-    if (trydate < Sys.Date())
-        cat("Most recent file available is for", as.character(trydate), "\n")
-    trydate
+            stop(paste("No file available after", trydate), call. = FALSE)
+        else if (file.exists(fun(trydate))) {
+            if (trydate < Sys.Date())
+                cat("Most recent file is", fun(trydate), "for", as.character(trydate), "\n")
+            trydate
+        } else
+            trydatef(trydate - 1)
+
+    trydatef(trydate)
 }
 
 
