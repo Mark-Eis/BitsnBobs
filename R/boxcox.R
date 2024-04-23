@@ -43,8 +43,8 @@
 #'
 #' @inheritParams retriever
 #'
-#' @return Returns a \code{\link[base]{function}} performing Box-Cox transformations on the data \var{x} for
-#' any given value of \eqn{\lambda}.
+#' @return Returns a \code{\link[base]{function}} taking a single argument \eqn{\lambda} that performs the Box-Cox
+#'   transformation on data \var{x}.
 #'
 #' @keywords regression models
 #' @export

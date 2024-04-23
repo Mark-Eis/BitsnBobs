@@ -13,8 +13,8 @@ boxcox3(x, labile_data = TRUE)
 If \code{FALSE}, a copy of \code{data} is saved in the function environment. Default \code{TRUE}.}
 }
 \value{
-Returns a \code{\link[base]{function}} performing Box-Cox transformations on the data \var{x} for
-any given value of \eqn{\lambda}.
+Returns a \code{\link[base]{function}} taking a single argument \eqn{\lambda} that performs the Box-Cox
+transformation on data \var{x}.
 }
 \description{
 Function factory to create functions that take \eqn{\lambda} as an argument for performing the Box-Cox transformation
