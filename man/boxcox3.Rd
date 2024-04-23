@@ -4,10 +4,13 @@
 \alias{boxcox3}
 \title{'Function Factory' for Box-Cox Transformation of Data}
 \usage{
-boxcox3(x)
+boxcox3(x, labile_data = TRUE)
 }
 \arguments{
 \item{x}{a \verb{numeric vector} containing the data to be transformed.}
+
+\item{labile_data}{\code{logical}. If \code{TRUE}, \code{data} are represented in the function environment as a \code{quosure}.
+If \code{FALSE}, a copy of \code{data} is saved in the function environment. Default \code{TRUE}.}
 }
 \value{
 Returns a \code{\link[base]{function}} performing Box-Cox transformations on the data \var{x} for
@@ -15,7 +18,7 @@ any given value of \eqn{\lambda}.
 }
 \description{
 Function factory to create functions that take \eqn{\lambda} as an argument for performing the Box-Cox transformation
-on a given dataset. Taken directly from Wickham (2019)
+on a given dataset. Adapted from Wickham (2019)
 \href{https://adv-r.hadley.nz/function-factories.html#exercises-34}{Section 10.4.4 Exercises}.
 }
 \details{
@@ -30,6 +33,13 @@ if \eqn{\lambda \ne 0}
 if \eqn{\lambda = 0}
 \deqn{y(\lambda) = \log(y)}{%
        y(&lambda;) = log(y)}
+
+If \code{labile_data} is \code{TRUE}, \code{data} are represented in the \code{boxcox3()} function environment as a
+\code{\link[rlang:topic-quosure]{quosure}}, and functions returned by will automatically refer to the current version of
+\code{data} in its original \code{\link[base:environment]{environment}}, usually the calling environment i.e., typically but not
+necessarily the global environment. If \code{labile_data} is \code{FALSE}, returned functions refer to a copy of \code{data}
+saved in the function environment at the time of execution of \code{boxcox3()}, and will not reflect any subsequent
+changes to the original \code{data}.
 }
 \examples{
 ## Create skewed data
@@ -50,7 +60,7 @@ identical(bc_func(0), log(d))
 seq(-3, 3, 1) |>                         ## Create a sequence from -3 to 3
   set_names(\(x) paste("lambda", x)) |>  ## Name sequence vector using rlang::set_names()
   print_lf() |>                          ## Print with line feed
-  map(bc_func) |>                        ## Box-Cox transform data using each lambda value
+  lapply(bc_func) |>                     ## Box-Cox transform data using each lambda value
   print_lf() |>                          ##   in sequence and print the named list
   map_dbl(skewness) |>                   ## Calculate skewness for each element of the list
   print_lf() |>                          ##   and print the numeric vector

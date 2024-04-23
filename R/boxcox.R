@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - Apr 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -10,7 +10,7 @@
 #' 'Function Factory' for Box-Cox Transformation of Data
 #'
 #' Function factory to create functions that take \eqn{\lambda} as an argument for performing the Box-Cox transformation
-#' on a given dataset. Taken directly from Wickham (2019)
+#' on a given dataset. Adapted from Wickham (2019)
 #' \href{https://adv-r.hadley.nz/function-factories.html#exercises-34}{Section 10.4.4 Exercises}.
 #'
 #' A numeric vector containing the data to be transformed is provided as an argument to this 'function factory',
@@ -25,6 +25,14 @@
 #'  \deqn{y(\lambda) = \log(y)}{%
 #'        y(&lambda;) = log(y)}
 #'
+#'
+#' If `labile_data` is `TRUE`, `data` are represented in the `boxcox3()` function environment as a
+#' [`quosure`][rlang::topic-quosure], and functions returned by will automatically refer to the current version of
+#' `data` in its original [`environment`][base::environment], usually the calling environment i.e., typically but not
+#' necessarily the global environment. If `labile_data` is `FALSE`, returned functions refer to a copy of `data`
+#' saved in the function environment at the time of execution of `boxcox3()`, and will not reflect any subsequent
+#' changes to the original `data`. 
+#'
 #' @references
 #'   Wickham, Hadley (2019) \emph{Advanced R 2nd edition}. CRC Press.
 #'   \href{https://adv-r.hadley.nz/index.html}{adv-r.hadley.nz}
@@ -32,6 +40,8 @@
 #' @family boxcox
 #'
 #' @param x a `numeric vector` containing the data to be transformed.
+#'
+#' @inheritParams retriever
 #'
 #' @return Returns a \code{\link[base]{function}} performing Box-Cox transformations on the data \var{x} for
 #' any given value of \eqn{\lambda}.
@@ -57,7 +67,8 @@
 #' seq(-3, 3, 1) |>                         ## Create a sequence from -3 to 3
 #'   set_names(\(x) paste("lambda", x)) |>  ## Name sequence vector using rlang::set_names()
 #'   print_lf() |>                          ## Print with line feed
-#'   map(bc_func) |>                        ## Box-Cox transform data using each lambda value
+# #'   map(bc_func) |>                        ## Box-Cox transform data using each lambda value
+#'   lapply(bc_func) |>                     ## Box-Cox transform data using each lambda value
 #'   print_lf() |>                          ##   in sequence and print the named list
 #'   map_dbl(skewness) |>                   ## Calculate skewness for each element of the list
 #'   print_lf() |>                          ##   and print the numeric vector
@@ -68,15 +79,21 @@
 #'
 #' rm(d, bc_func)
 
-boxcox3 <- function(x) {
-  function(lambda) {
-    if (lambda == 0) {
-      log(x)
-    } else {
-      (x ^ lambda - 1) / lambda
+boxcox3 <- function(x, labile_data = TRUE) {
+    x <- {
+        if (labile_data) enquo(x) else force(x)
     }
-  }  
+
+    function(lambda) {
+        if (labile_data) x <- eval_tidy(x)
+        if (lambda == 0) {
+            log(x)
+        } else {
+            (x ^ lambda - 1) / lambda
+        }
+    }  
 }
+
 
 # ========================================
 #' Optimise the Value of Lambda for a Box-Cox Transformation
