@@ -90,17 +90,13 @@ boxcox3 <- function(x, labile_data = TRUE) {
                     expr(((!!x) ^ lambda - 1) / lambda)
             )
         }  
-
-   } else {
-
+   } else
         function(lambda) {
             if (lambda == 0)
                 log(x)
             else
                 (x ^ lambda - 1) / lambda
-        }  
-
-   }
+        }
 }
 
 
