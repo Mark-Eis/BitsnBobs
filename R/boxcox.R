@@ -67,7 +67,6 @@
 #' seq(-3, 3, 1) |>                         ## Create a sequence from -3 to 3
 #'   set_names(\(x) paste("lambda", x)) |>  ## Name sequence vector using rlang::set_names()
 #'   print_lf() |>                          ## Print with line feed
-# #'   map(bc_func) |>                        ## Box-Cox transform data using each lambda value
 #'   lapply(bc_func) |>                     ## Box-Cox transform data using each lambda value
 #'   print_lf() |>                          ##   in sequence and print the named list
 #'   map_dbl(skewness) |>                   ## Calculate skewness for each element of the list
@@ -79,43 +78,28 @@
 #'
 #' rm(d, bc_func)
 
-# boxcox3 <- function(x, labile_data = TRUE) {
-    # x <- {
-        # if (labile_data) enquo(x) else force(x)
-    # }
-
-    # function(lambda) {
-        # if (labile_data) x <- eval_tidy(x)
-        # if (lambda == 0) {
-            # log(x)
-        # } else {
-            # (x ^ lambda - 1) / lambda
-        # }
-    # }  
-# }
-
 boxcox3 <- function(x, labile_data = TRUE) {
     if (labile_data) {
-	    x <- enquo(x)
+        x <- enquo(x)
 
-	    function(lambda) {
-	        lambda <- enquo(lambda)
-	        if (!!lambda == 0) {
-	            log(!!x)
-	        } else {
-	            (!!x ^ !!lambda - 1) / !!lambda
-	        } |> eval_tidy()
-	    }  
+        function(lambda) {
+            eval_tidy(
+                if (lambda == 0)
+                    expr(log(!!x))
+                else
+                    expr(((!!x) ^ lambda - 1) / lambda)
+            )
+        }  
+
    } else {
 
-	    function(lambda) {
-	        if (lambda == 0) {
-	            log(x)
-	        } else {
-	            (x ^ lambda - 1) / lambda
-	        }
-	    }  
-   	
+        function(lambda) {
+            if (lambda == 0)
+                log(x)
+            else
+                (x ^ lambda - 1) / lambda
+        }  
+
    }
 }
 
