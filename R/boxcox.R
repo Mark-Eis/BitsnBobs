@@ -79,19 +79,44 @@
 #'
 #' rm(d, bc_func)
 
-boxcox3 <- function(x, labile_data = TRUE) {
-    x <- {
-        if (labile_data) enquo(x) else force(x)
-    }
+# boxcox3 <- function(x, labile_data = TRUE) {
+    # x <- {
+        # if (labile_data) enquo(x) else force(x)
+    # }
 
-    function(lambda) {
-        if (labile_data) x <- eval_tidy(x)
-        if (lambda == 0) {
-            log(x)
-        } else {
-            (x ^ lambda - 1) / lambda
-        }
-    }  
+    # function(lambda) {
+        # if (labile_data) x <- eval_tidy(x)
+        # if (lambda == 0) {
+            # log(x)
+        # } else {
+            # (x ^ lambda - 1) / lambda
+        # }
+    # }  
+# }
+
+boxcox3 <- function(x, labile_data = TRUE) {
+    if (labile_data) {
+	    x <- enquo(x)
+
+	    function(lambda) {
+	        lambda <- enquo(lambda)
+	        if (!!lambda == 0) {
+	            log(!!x)
+	        } else {
+	            (!!x ^ !!lambda - 1) / !!lambda
+	        } |> eval_tidy()
+	    }  
+   } else {
+
+	    function(lambda) {
+	        if (lambda == 0) {
+	            log(x)
+	        } else {
+	            (x ^ lambda - 1) / lambda
+	        }
+	    }  
+   	
+   }
 }
 
 
