@@ -12,22 +12,22 @@ skew(x, adjust = TRUE)
 \arguments{
 \item{x}{a \code{numeric} vector.}
 
-\item{adjust}{\code{logical} indicating whether \var{x} is a sample from a population; default \code{TRUE}.}
+\item{adjust}{\code{logical}, indicating whether \code{x} is a sample from a population; default \code{TRUE}.}
 }
 \value{
-A numeric containing the skewness value.
+A \code{numeric} containing the skewness value.
 }
 \description{
-Computes the skewness, \eqn{\gamma_{1}}{&gamma}, of the values in \var{x} with optional adjustment to give
-\eqn{G_{1}}{G<sub>1</sub>}, the expected populaton value of skewness from a sample.
+Computes the skewness, \eqn{\gamma_{1}}{&gamma<sub>1</sub>}, of the values in \code{x} with optional adjustment to
+give \eqn{G_{1}}{G<sub>1</sub>}, the expected populaton value of skewness from a sample.
 }
 \details{
-Moments for samples of size \var{n} are given by: -
+Moments for samples of size \code{n} are given by: -
 
 \deqn{m_{r} = \displaystyle \frac{\sum \left(x - \overline{x} \right)^{r}}{n}}{%
     m<sub>r</sub> = &sum;(x - x)<sup>r</sup>/n}
 
-The skewness (or skew) of a numeric variable \eqn{\gamma_{1}}{&gamma;<sub>1</sub>} is the third moment about the
+The skewness (or skew) \eqn{\gamma_{1}}{&gamma;<sub>1</sub>} of a numeric variable is the third moment about the
 mean rendered dimensionless by dividing by the cube of the square root of the second moment: -
 
 \deqn{\gamma_{1} = \displaystyle \frac{m_3}{{\sqrt{m_{2}}}^3}}{%
@@ -70,6 +70,7 @@ Joanes, D.N., and Gill, C.A. (1998). Comparing measures of sample skewness and k
 \code{\link[stats:Distributions]{distributions}}
 
 Other skewness: 
+\code{\link{kurtosis}()},
 \code{\link{skewness.test}()}
 }
 \concept{skewness}

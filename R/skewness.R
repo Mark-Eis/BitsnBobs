@@ -12,16 +12,16 @@
 #' @aliases skew
 #'
 #' @description
-#' Computes the skewness, \eqn{\gamma_{1}}{&gamma}, of the values in \var{x} with optional adjustment to give
-#' \eqn{G_{1}}{G<sub>1</sub>}, the expected populaton value of skewness from a sample.
+#' Computes the skewness, \eqn{\gamma_{1}}{&gamma<sub>1</sub>}, of the values in `x` with optional adjustment to
+#' give \eqn{G_{1}}{G<sub>1</sub>}, the expected populaton value of skewness from a sample.
 #'
 #' @details
-#' Moments for samples of size \var{n} are given by: -
+#' Moments for samples of size `n` are given by: -
 #'
 #'   \deqn{m_{r} = \displaystyle \frac{\sum \left(x - \overline{x} \right)^{r}}{n}}{%
 #'     m<sub>r</sub> = &sum;(x - x)<sup>r</sup>/n}
 #'
-#' The skewness (or skew) of a numeric variable \eqn{\gamma_{1}}{&gamma;<sub>1</sub>} is the third moment about the
+#' The skewness (or skew) \eqn{\gamma_{1}}{&gamma;<sub>1</sub>} of a numeric variable is the third moment about the
 #' mean rendered dimensionless by dividing by the cube of the square root of the second moment: -
 #'
 #'   \deqn{\gamma_{1} = \displaystyle \frac{m_3}{{\sqrt{m_{2}}}^3}}{%
@@ -32,7 +32,7 @@
 #'   \deqn{G_{1} = \displaystyle \frac{\sqrt{n(n - 1)}}{n-2}\gamma_{1}}{%
 #'     G<sub>1</sub> = (&radic;(n(n-1))/(n-2))&gamma;<sub>1</sub>}
 #'
-#' [`skew`][skew] is an alias for \code{skewness()}.
+#' [`skew`][skew] is an alias for `skewness()`.
 #'
 #' (Adapted from Crawley, 2012, and Joanes and Gill, 1998.)
 #'
@@ -47,11 +47,11 @@
 #' @seealso [`distributions`][stats::distributions]
 #' @family skewness
 #'
-#' @param x a \code{numeric} vector.
+#' @param x a `numeric` vector.
 #'
-#' @param adjust \code{logical} indicating whether \var{x} is a sample from a population; default \code{TRUE}.
+#' @param adjust `logical`, indicating whether `x` is a sample from a population; default \code{TRUE}.
 #'
-#' @return A numeric containing the skewness value.
+#' @return A `numeric` containing the skewness value.
 #'
 #' @keywords univar
 #' @export
@@ -254,3 +254,81 @@ skewness.test <- function(x, alternative = c("two.sided", "less", "greater"), se
 #' @rdname skewness.test
 #' @export
 skew.test <- skewness.test
+
+
+# ========================================
+#' Kurtosis
+#'
+#' @description
+#' Computes the kurtosis, \eqn{\gamma_{2}}{&gamma<sub>2</sub>}, of the values in `x` with optional adjustment to give
+#' \eqn{G_{2}}{G<sub>2</sub>}, the expected populaton value of kurtosis from a sample.
+#'
+#' @details
+#' Moments for samples of size `n` are given by: -
+#'
+#'   \deqn{m_{r} = \displaystyle \frac{\sum \left(x - \overline{x} \right)^{r}}{n}}{%
+#'     m<sub>r</sub> = &sum;(x - x)<sup>r</sup>/n}
+#'
+#' The (excess) kurtosis \eqn{\gamma_{2}}{&gamma;<sub>2</sub>} of a numeric variable is the fourth moment
+#' (\eqn{m_{4}}{m<sub>4</sub>}) about the mean rendered dimensionless by dividing by the square of the second moment
+#' (\eqn{m_{2}}{m<sub>2</sub>}), from which 3, the value of
+#' (\eqn{m_{4}/m_{2}^2}{m<sub>4</sub>/m<sub>2</sub><sup>2</sup>}) for the normal distribution is subtracted: -
+#'
+#'   \deqn{\gamma_{2} = \displaystyle \frac{m_4}{{m_{2}}^2} - 3}{%
+#'     &gamma;<sub>2</sub> = m<sub>4</sub> / (m<sub>2</sub>)<sup>2</sup> - 3}
+#'
+#' The expected population value of (excess) kurtosis \eqn{G_{2}}{G<sub>2</sub>} from a sample is obtained using: -
+#'
+#'   \deqn{G_{2} = \displaystyle \frac{(n - 1)}{(n-2)(n-3)}[(n+1)\gamma_{2} + 6]}{%
+#'     G<sub>2</sub> = ((n-1)/((n-2)(n-3)))[(n+1)&gamma;<sub>2</sub> + 6]}
+#'
+#' (Adapted from Crawley, 2012, and Joanes and Gill, 1998.)
+#'
+#' @references
+#'   Crawley, Michael J. (2012) \emph{The R Book}. John Wiley & Sons, Incorporated. ISBN:9780470973929. p.350-352.
+#'     \href{https://onlinelibrary.wiley.com/doi/book/10.1002/9781118448908}{\doi{10.1002/9781118448908}}
+#'
+#'   Joanes, D.N., and Gill, C.A. (1998). Comparing measures of sample kurtosis and kurtosis.
+#'   \emph{Journal of the Royal Statistical Society. Series D (The Statistician)} \strong{47}(1): 183–189.
+#'   \href{https://doi.org/10.1111/1467-9884.00122}{\doi{10.1111/1467-9884.00122}}
+#'
+#' @seealso [`distributions`][stats::distributions]
+#' @family skewness
+#'
+#' @param x a `numeric` vector.
+#'
+#' @param xs `logical`, indicating whether to calculate excess kurtosis i.e., the difference from the kurtosis of the
+#'   normal distribution; default `TRUE`.
+#'
+#' @inheritParams skewness
+#'
+#' @return A `numeric` containing the kurtosis value.
+#'
+#' @keywords univar
+#' @export
+#' @examples
+#'  ## Heights of 100 randomly selected male university students, adapted from Spiegel and Stephens
+#'  ## (Theory and Problems of Statistics. 4th edn. McGraw-Hill. 1999. ISBN 9780071755498).
+#'  table(heights)
+#'  hist(heights, seq(59.5, 74.5, 3))
+#'  kurtosis(heights) 
+#'  kurtosis(heights, adjust = FALSE)
+#'
+#'  ## Litter sizes in albino rats (n = 815), data from King (1924; Litter production and
+#'  ## the sex ratio in various strains of rats. The Anatomical Record 27(5), 337-366).
+#'  table(litter_sizes)
+#'  hist(litter_sizes, 0:12)
+#'  kurtosis(litter_sizes) 
+#'  kurtosis(litter_sizes, adjust = FALSE)
+#'
+
+kurtosis <- function(x, xs = TRUE, adjust = TRUE) {
+    n <- length(x)
+    krt <- BitsnBobs:::moment(x, 4) / BitsnBobs:::moment(x, 2)^2
+
+    if (adjust){ 
+    	krt <- (n - 1) * ((n + 1) * (krt - 3) + 6) / ((n - 2) * (n - 3))
+        if (xs) krt else krt + 3
+    } else
+    	if (xs) krt - 3 else krt
+}

@@ -132,6 +132,7 @@ kurtosis. \emph{Behavior Research Methods} \strong{43}(1): 8-17.
 \code{\link[stats:Distributions]{distributions}}, \code{\link[stats:TDist]{TDist}}, \code{\link[stats:t.test]{t.test}}
 
 Other skewness: 
+\code{\link{kurtosis}()},
 \code{\link{skewness}()}
 }
 \concept{skewness}
