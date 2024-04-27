@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Mar 2024
+# Mark Eisler - Apr 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -57,7 +57,7 @@
 #'
 #' starwars |> detective(name, .pattern = "Sky")
 #' starwars |> detective(name, .pattern = "Sky", .exclude = "Luke")
-#' starwars |> detective(name, .pattern = "Sky", .arrange_by = desc(name))
+#' starwars |> detective(name, .pattern = regex("WALKER", T), .arrange_by = desc(name))
 #'
 #' starwars |> detective(name, .pattern = "Darth")
 #' starwars |> detective(name, .pattern = "Darth", .exclude = "Vader") <- "Darth The First"
@@ -66,9 +66,7 @@
 #' starwars |> detective(homeworld, species, .pattern = "Human")
 #' starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "S")
 #' starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "s")
-#'
-#' starwars |> detective(name, homeworld, .pattern = "Dar")
-#' starwars |> detective(name, homeworld, .pattern = regex("Dar", ignore_case = TRUE))
+#' starwars |> detective(homeworld, species, .pattern = "Human", .exclude = regex("s", TRUE))
 #'
 #' starwars |> detective(!c(name, contains("color")))
 #' starwars |> detective(

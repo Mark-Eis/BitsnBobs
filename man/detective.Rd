@@ -65,7 +65,7 @@ including use of \code{\link[dplyr:across]{across()}} or \code{\link[dplyr:pick]
 
 starwars |> detective(name, .pattern = "Sky")
 starwars |> detective(name, .pattern = "Sky", .exclude = "Luke")
-starwars |> detective(name, .pattern = "Sky", .arrange_by = desc(name))
+starwars |> detective(name, .pattern = regex("WALKER", T), .arrange_by = desc(name))
 
 starwars |> detective(name, .pattern = "Darth")
 starwars |> detective(name, .pattern = "Darth", .exclude = "Vader") <- "Darth The First"
@@ -74,9 +74,7 @@ starwars |> detective(name, .pattern = "Darth", .arrange_by = desc(name))
 starwars |> detective(homeworld, species, .pattern = "Human")
 starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "S")
 starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "s")
-
-starwars |> detective(name, homeworld, .pattern = "Dar")
-starwars |> detective(name, homeworld, .pattern = regex("Dar", ignore_case = TRUE))
+starwars |> detective(homeworld, species, .pattern = "Human", .exclude = regex("s", TRUE))
 
 starwars |> detective(!c(name, contains("color")))
 starwars |> detective(
