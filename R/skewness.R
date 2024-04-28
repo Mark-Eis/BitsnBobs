@@ -324,7 +324,7 @@ skew.test <- skewness.test
 
 kurtosis <- function(x, xs = TRUE, adjust = TRUE) {
     n <- length(x)
-    krt <- BitsnBobs:::moment(x, 4) / BitsnBobs:::moment(x, 2)^2
+    krt <- moment(x, 4) / moment(x, 2)^2
 
     if (adjust){ 
     	krt <- (n - 1) * ((n + 1) * (krt - 3) + 6) / ((n - 2) * (n - 3))

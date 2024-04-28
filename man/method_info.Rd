@@ -2,7 +2,7 @@
 % Please edit documentation in R/methods.R
 \name{method_info}
 \alias{method_info}
-\title{Info Attribute of {utils} Methods Function}
+\title{Info Attribute of utils::Methods() Function}
 \usage{
 method_info(..., .arrange_by = across(everything()))
 }

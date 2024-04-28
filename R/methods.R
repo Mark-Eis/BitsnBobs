@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler Jan 2024
+# Mark Eisler Apr 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -9,7 +9,7 @@
 
 # ========================================
 #' @title
-#' Info Attribute of {utils} Methods Function
+#' Info Attribute of utils::Methods() Function
 #'
 #' @description
 #' Information on available methods for an S3 and S4 generic function, or all methods for an S3 or S4 class.

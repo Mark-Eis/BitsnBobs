@@ -57,7 +57,7 @@
 #'
 #' starwars |> detective(name, .pattern = "Sky")
 #' starwars |> detective(name, .pattern = "Sky", .exclude = "Luke")
-#' starwars |> detective(name, .pattern = regex("WALKER", T), .arrange_by = desc(name))
+#' starwars |> detective(name, .pattern = regex("WALKER", TRUE), .arrange_by = desc(name))
 #'
 #' starwars |> detective(name, .pattern = "Darth")
 #' starwars |> detective(name, .pattern = "Darth", .exclude = "Vader") <- "Darth The First"
