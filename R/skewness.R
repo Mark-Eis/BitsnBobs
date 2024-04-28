@@ -182,10 +182,10 @@ skew <- skewness
 #'    poisson = rpois(30, lambda = 10),
 #'    negbinom = rnbinom(30, mu = 4, size = 2)
 #'  ) |>
-#'  map(\(distrib)
+#'  lapply(\(distrib)
 #'      c("less", "two.sided","greater") |>
 #'      setNames(nm = _) |>
-#'      map(\(altern)
+#'      lapply(\(altern)
 #'          with(skewness.test(distrib, altern),
 #'              data.frame(
 #'                  Lower = conf.int[1],
