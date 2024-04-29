@@ -9,6 +9,10 @@
  
 # ========================================
 
+#' @importFrom rlang %@%
+#' @export
+rlang::`%@%`
+
 #' @importFrom rlang eval_tidy
 #' @export
 rlang::eval_tidy

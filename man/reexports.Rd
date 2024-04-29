@@ -18,6 +18,7 @@
 \alias{map_chr}
 \alias{map_dbl}
 \alias{map_int}
+\alias{\%@\%}
 \alias{eval_tidy}
 \alias{exprs}
 \alias{set_names}
@@ -49,7 +50,7 @@ below to see their documentation.
 
   \item{purrr}{\code{\link[purrr]{map}}, \code{\link[purrr:map]{map_chr}}, \code{\link[purrr:map]{map_dbl}}, \code{\link[purrr:map]{map_int}}, \code{\link[purrr:map2]{map2_chr}}}
 
-  \item{rlang}{\code{\link[rlang]{eval_tidy}}, \code{\link[rlang:defusing-advanced]{exprs}}, \code{\link[rlang]{set_names}}}
+  \item{rlang}{\code{\link[rlang:op-get-attr]{\%@\%}}, \code{\link[rlang]{eval_tidy}}, \code{\link[rlang:defusing-advanced]{exprs}}, \code{\link[rlang]{set_names}}}
 
   \item{stringr}{\code{\link[stringr:modifiers]{boundary}}, \code{\link[stringr:modifiers]{coll}}, \code{\link[stringr:modifiers]{fixed}}, \code{\link[stringr:modifiers]{regex}}}
 
