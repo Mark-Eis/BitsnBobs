@@ -109,37 +109,39 @@
 #'
 #' @export
 #' @examples
-#' \dontrun{
 #'
-#'    filepath <- "~/Triodos Bank/Downloads"
-#'    (oldwd <- setwd(filepath))
-#'    getwd()
+#'    dnldpath <- "~/Triodos Bank/Downloads"
+#'
+#'    rostido_fname(Sys.Date())
 #'
 #'    ## __________________________
 #'    ## Current account 55545372
-#'    setwd(paste0(filepath, "/55545372"))
-#'    getwd()
 #'
-#'    (curacc <- most_recent_fdate() |>
-#'        file_name() |>
+#'    rostido_fname(Sys.Date(), file.path(dnldpath, 55545372))
+#'
+#' \dontrun{
+#'    (curacc <- file.path(dnldpath, 55545372) |>
+#'        most_recent_fname() |>
 #'        read_triodos_csv() |>
 #'        as_rostido())
+#' }
 #'
 #'    ## __________________________
 #'    ## Savings account 55596784
 #'
-#'    setwd(paste0(filepath, "/55596784"))
-#'    getwd()
-#'
-#'    (savacc <- most_recent_fdate() |>
-#'         file_name() |>
-#'         read_triodos_csv() |>
-#'         as_rostido())
+#' \dontrun{
+#'    (savacc <- file.path(dnldpath, 55596784) |>
+#'        most_recent_fname() |>
+#'        read_triodos_csv() |>
+#'        as_rostido())
 #'
 #'    savacc |> print(.include = c(Description, Code, Amount, Balance))
+#' }
 #'
 #'    ## ______________
 #'    ## All accounts
+#'
+#' \dontrun{
 #'    rbind(curacc, savacc)
 #'    rbind(curacc, savacc, .arrange_by = exprs(desc(Amount)))
 #'    rbind(curacc, savacc, .arrange_by = exprs(Date, Code))
@@ -147,8 +149,6 @@
 #'    rbind(curacc, savacc, .arrange_by = exprs(Code, desc(Amount)))
 #'
 #'    rm(curacc, savacc)
-#'    setwd(oldwd)
-#'
 #' }
 
 rostido_fname <- function(.date, filepath = NULL)
