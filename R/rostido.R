@@ -15,8 +15,8 @@
 #'
 #' `triodos_fname()` returns the name of a Triodos Bank CSV format transactions file as a `character` string.
 #'
-#' `most_recent_fdate()` returns the name of the Triodos Bank CSV format transactions file within a specified folder
-#' incorporating the most recent date.
+#' `most_recent_fname()` finds among the Triodos Bank CSV format transactions files within a specified
+#' folder, the one incorporating the most recent date within its name.
 #'
 #' `read_triodos_csv()` reads a CSV format transactions file downloaded from the Triodos website and returns the
 #'  contents as a data frame.
@@ -31,7 +31,7 @@
 #' from the Triodos website by concatenating the strings `"Download"`, a date of the form `"yyyymmdd"` and the
 #' extension `".csv"` e.g., `"Download20240401.csv"`
 #'
-#' `most_recent_fdate()` searches the current folder or a folder specified using `filepath` for a filename
+#' `most_recent_fname()` searches the current folder or a folder specified using `filepath` for a filename
 #' incorporating a date specified by the `.date` argument, typically the current date obtained using the default 
 #' [`Sys.Date()`][base::Sys.Date]. The filename incorporates the date as specified by `fun`, typically the default
 #' `triodos_fname()` as above. If no such file exists, filenames incorporating earlier dates are searched for
@@ -97,7 +97,7 @@
 #'   `"Downloadyyyymmdd.csv"`, with attributes `"date"`, a `"Date"` object, and `"filepath"`, corresponding to the
 #'   argument of the same name (if supplied).}
 #'
-#' \item{`most_recent_fdate()`}{An object comprising a `character` string representing a filename incorporating a date
+#' \item{`most_recent_fname()`}{An object comprising a `character` string representing a filename incorporating a date
 #'   as specified in `fun`.}
 #'
 #' \item{`read_triodos_csv()`}{CSV transaction file data formatted by Triodos Bank, as a dataframe.}

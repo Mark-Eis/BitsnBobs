@@ -67,7 +67,7 @@ printing a \code{"rostido"} data frame containing Triodos Bank transaction data;
 \code{"Downloadyyyymmdd.csv"}, with attributes \code{"date"}, a \code{"Date"} object, and \code{"filepath"}, corresponding to the
 argument of the same name (if supplied).}
 
-\item{\code{most_recent_fdate()}}{An object comprising a \code{character} string representing a filename incorporating a date
+\item{\code{most_recent_fname()}}{An object comprising a \code{character} string representing a filename incorporating a date
 as specified in \code{fun}.}
 
 \item{\code{read_triodos_csv()}}{CSV transaction file data formatted by Triodos Bank, as a dataframe.}
@@ -78,8 +78,8 @@ Bank transaction data.}
 \description{
 \code{triodos_fname()} returns the name of a Triodos Bank CSV format transactions file as a \code{character} string.
 
-\code{most_recent_fdate()} returns the name of the Triodos Bank CSV format transactions file within a specified folder
-incorporating the most recent date.
+\code{most_recent_fname()} finds among the Triodos Bank CSV format transactions files within a specified
+folder, the one incorporating the most recent date within its name.
 
 \code{read_triodos_csv()} reads a CSV format transactions file downloaded from the Triodos website and returns the
 contents as a data frame.
@@ -94,7 +94,7 @@ website.
 from the Triodos website by concatenating the strings \code{"Download"}, a date of the form \code{"yyyymmdd"} and the
 extension \code{".csv"} e.g., \code{"Download20240401.csv"}
 
-\code{most_recent_fdate()} searches the current folder or a folder specified using \code{filepath} for a filename
+\code{most_recent_fname()} searches the current folder or a folder specified using \code{filepath} for a filename
 incorporating a date specified by the \code{.date} argument, typically the current date obtained using the default
 \code{\link[base:Sys.time]{Sys.Date()}}. The filename incorporates the date as specified by \code{fun}, typically the default
 \code{triodos_fname()} as above. If no such file exists, filenames incorporating earlier dates are searched for
