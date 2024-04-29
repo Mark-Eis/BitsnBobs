@@ -2,7 +2,7 @@
 % Please edit documentation in R/rostido.R
 \name{rostido}
 \alias{rostido}
-\alias{rostido_fname}
+\alias{triodos_fname}
 \alias{most_recent_fname}
 \alias{read_triodos_csv}
 \alias{as_rostido}
@@ -10,13 +10,13 @@
 \alias{print.rostido}
 \title{Manage Triodos Bank Account Transaction Data}
 \usage{
-rostido_fname(.date, filepath = NULL)
+triodos_fname(.date, filepath = NULL)
 
 most_recent_fname(
   filepath = NULL,
   trydate = Sys.Date(),
   earliest = as.Date("2024-02-01"),
-  fun = rostido_fname
+  fun = triodos_fname
 )
 
 read_triodos_csv(filename)
@@ -38,7 +38,7 @@ as_rostido(data, dateformat = "\%d/\%m/\%Y")
 \item{earliest}{\code{Date} object, the earliest date within the file name beyond which the search is discontinued;
 default \code{as.Date("2024-02-01")}.}
 
-\item{fun}{\code{function}, used to incorporate \code{.date} into a filename search string; default \code{rostido_fname}.}
+\item{fun}{\code{function}, used to incorporate \code{.date} into a filename search string; default \code{triodos_fname}.}
 
 \item{filename}{\code{character} string, the name of a CSV file to be read.}
 
@@ -63,7 +63,7 @@ printing a \code{"rostido"} data frame containing Triodos Bank transaction data;
 \item{maxwidth}{an \code{integer}, maximum width for printing \code{Description} field; default \code{65L}.}
 }
 \value{
-\item{\code{rostido_fname()}}{A \code{character} string representing a filename incorporating a date, of the form
+\item{\code{triodos_fname()}}{A \code{character} string representing a filename incorporating a date, of the form
 \code{"Downloadyyyymmdd.csv"}, with attributes \code{"date"}, a \code{"Date"} object, and \code{"filepath"}, corresponding to the
 argument of the same name (if supplied).}
 
@@ -76,7 +76,7 @@ as specified in \code{fun}.}
 Bank transaction data.}
 }
 \description{
-\code{rostido_fname()} returns the name of a Triodos Bank CSV format transactions file as a \code{character} string.
+\code{triodos_fname()} returns the name of a Triodos Bank CSV format transactions file as a \code{character} string.
 
 \code{most_recent_fdate()} returns the name of the Triodos Bank CSV format transactions file within a specified folder
 incorporating the most recent date.
@@ -90,14 +90,14 @@ contents as a data frame.
 These functions facilitate reading, formatting and combining CSV transaction files downloaded from the Triodos
 website.
 
-\code{rostido_fname()} returns a \code{character} string representing the name of a CSV format transactions file downloaded
+\code{triodos_fname()} returns a \code{character} string representing the name of a CSV format transactions file downloaded
 from the Triodos website by concatenating the strings \code{"Download"}, a date of the form \code{"yyyymmdd"} and the
 extension \code{".csv"} e.g., \code{"Download20240401.csv"}
 
 \code{most_recent_fdate()} searches the current folder or a folder specified using \code{filepath} for a filename
 incorporating a date specified by the \code{.date} argument, typically the current date obtained using the default
 \code{\link[base:Sys.time]{Sys.Date()}}. The filename incorporates the date as specified by \code{fun}, typically the default
-\code{rostido_fname()} as above. If no such file exists, filenames incorporating earlier dates are searched for
+\code{triodos_fname()} as above. If no such file exists, filenames incorporating earlier dates are searched for
 successively until either a corresponding file is found or the search is discontinued upon reaching the date
 specified in the \code{earliest} argument.
 
@@ -120,12 +120,12 @@ By default, if no \code{.include} argument is specified, the \code{print()} S3 m
 
    dnldpath <- "~/Triodos Bank/Downloads"
 
-   rostido_fname(Sys.Date())
+   triodos_fname(Sys.Date())
 
    ## __________________________
    ## Current account 55545372
 
-   rostido_fname(Sys.Date(), file.path(dnldpath, 55545372))
+   triodos_fname(Sys.Date(), file.path(dnldpath, 55545372))
 
 \dontrun{
    (curacc <- file.path(dnldpath, 55545372) |>

@@ -13,7 +13,7 @@
 #' @name rostido
 #' @description
 #'
-#' `rostido_fname()` returns the name of a Triodos Bank CSV format transactions file as a `character` string.
+#' `triodos_fname()` returns the name of a Triodos Bank CSV format transactions file as a `character` string.
 #'
 #' `most_recent_fdate()` returns the name of the Triodos Bank CSV format transactions file within a specified folder
 #' incorporating the most recent date.
@@ -27,14 +27,14 @@
 #' These functions facilitate reading, formatting and combining CSV transaction files downloaded from the Triodos
 #'   website.
 #'
-#' `rostido_fname()` returns a `character` string representing the name of a CSV format transactions file downloaded
+#' `triodos_fname()` returns a `character` string representing the name of a CSV format transactions file downloaded
 #' from the Triodos website by concatenating the strings `"Download"`, a date of the form `"yyyymmdd"` and the
 #' extension `".csv"` e.g., `"Download20240401.csv"`
 #'
 #' `most_recent_fdate()` searches the current folder or a folder specified using `filepath` for a filename
 #' incorporating a date specified by the `.date` argument, typically the current date obtained using the default 
 #' [`Sys.Date()`][base::Sys.Date]. The filename incorporates the date as specified by `fun`, typically the default
-#' `rostido_fname()` as above. If no such file exists, filenames incorporating earlier dates are searched for
+#' `triodos_fname()` as above. If no such file exists, filenames incorporating earlier dates are searched for
 #' successively until either a corresponding file is found or the search is discontinued upon reaching the date
 #' specified in the `earliest` argument.
 #'
@@ -66,7 +66,7 @@
 #' @param earliest `Date` object, the earliest date within the file name beyond which the search is discontinued;
 #'   default `as.Date("2024-02-01")`.
 #'
-#' @param fun `function`, used to incorporate `.date` into a filename search string; default `rostido_fname`.
+#' @param fun `function`, used to incorporate `.date` into a filename search string; default `triodos_fname`.
 #'
 #' @param filename `character` string, the name of a CSV file to be read.
 #'
@@ -93,7 +93,7 @@
 #'
 #' @return
 #'
-#' \item{`rostido_fname()`}{A `character` string representing a filename incorporating a date, of the form
+#' \item{`triodos_fname()`}{A `character` string representing a filename incorporating a date, of the form
 #'   `"Downloadyyyymmdd.csv"`, with attributes `"date"`, a `"Date"` object, and `"filepath"`, corresponding to the
 #'   argument of the same name (if supplied).}
 #'
@@ -112,12 +112,12 @@
 #'
 #'    dnldpath <- "~/Triodos Bank/Downloads"
 #'
-#'    rostido_fname(Sys.Date())
+#'    triodos_fname(Sys.Date())
 #'
 #'    ## __________________________
 #'    ## Current account 55545372
 #'
-#'    rostido_fname(Sys.Date(), file.path(dnldpath, 55545372))
+#'    triodos_fname(Sys.Date(), file.path(dnldpath, 55545372))
 #'
 #' \dontrun{
 #'    (curacc <- file.path(dnldpath, 55545372) |>
@@ -151,7 +151,7 @@
 #'    rm(curacc, savacc)
 #' }
 
-rostido_fname <- function(.date, filepath = NULL)
+triodos_fname <- function(.date, filepath = NULL)
     paste0("Download", gsub("-", "", as.character(.date)),".csv") |>
     structure(date = .date, filepath = filepath)
 
@@ -166,7 +166,7 @@ most_recent_fname <- function(
     filepath = NULL,
     trydate = Sys.Date(),
     earliest = as.Date("2024-02-01"),
-    fun = rostido_fname
+    fun = triodos_fname
 ) {
     filepath <- filepath %||% getwd()
 
