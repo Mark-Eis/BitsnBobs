@@ -31,17 +31,17 @@
 #' bank website in CSV format i.e., concatenating the strings `"Download"`, a date of the form `"yyyymmdd"` and the
 #' extension `".csv"` e.g., `"Download20240401.csv"`
 #'
-#' `most_recent_fdate()` searches the current folder for a filename as returned by `file_name()`, typically
-#' incorporating the current date obtained using the default `.date` argument [`Sys.Date()`][base::Sys.Date]. If no
-#' such file exists, the previous dates are used successively until a corresponding file is found, the search being
-#' discontinued on reaching the date specified in the `earliest` argument.
+#' `most_recent_fdate()` searches the current folder or a folder specified using `filepath` for a filename as
+#' returned by `file_name()`, typically incorporating the current date obtained using the default `.date` argument
+#' [`Sys.Date()`][base::Sys.Date]. If no such file exists, the previous dates are used successively until a
+#' corresponding file is found, the search being discontinued on reaching the date specified in the `earliest` argument.
 #'
-#' `read_triodos_csv()` reads a transactions CSV file downloaded from the Triodos bank website and returns the
-#' contents as a data frame.
+#' `read_triodos_csv()` reads a transactions CSV file downloaded from the Triodos bank website using
+#' [`read.csv()`][utils::read.csv] and returns the contents as a data frame.
 #'
 #' `as_rostido()` reformats a data frame containing Triodos Bank transaction data obtained using `read_triodos_csv()`,
-#' replacing `character` strings in the `Date` field with `"Date"` objects, and in the `Amount` and `Balance` fields
-#' with `numeric` values.
+#' replacing `character` strings in the `Date` field with `"Date"` objects, and those in the `Amount` and `Balance`
+#' fields with `numeric` values.
 #'
 #' By default, if no `.arrange_by ` argument is specified, the `rbind()` S3 method for class `"rostido"` orders the
 #'   results by `Date`, `AccountNo` and `Code`.
@@ -49,14 +49,18 @@
 #' By default, if no `.include` argument is specified, the `print()` S3 method for class `"rostido"` excludes the
 #' `SortCode` and `ChequeNo` columns from the printed output.
 #'
-#' @seealso [`print()`][base::print], [`rbind()`][base::rbind].
+#' @seealso [`as.Date()`][base::as.Date], [`print()`][base::print], [`rbind()`][base::rbind],
+#'   [`read.csv()`][utils::read.csv], [`Sys.Date()`][base::Sys.Date].
 #'
 #' @param .date `Date` object, the date to be incorporated into a filename string.
 #'
-#' @param trydate `Date` object, the most recent date from which to search for file; default `Sys.Date()`.
+#' @param filepath `character` string, the path to a folder in which to conduct the file search; default `NULL`.
 #'
-#' @param earliest `Date` object, the earliest date to search for within the file name, beyond which the search is
-#'   discontinued; default `as.Date("2024-02-01")`.
+#' @param trydate `Date` object, the most recent date within the file name from which to start the search; default
+#'   `Sys.Date()`.
+#'
+#' @param earliest `Date` object, the earliest date within the file name beyond which the search is discontinued;
+#'   default `as.Date("2024-02-01")`.
 #'
 #' @param fun `function`, used to incorporate `.date` into a filename search string; default `file_name`.
 #'
@@ -151,11 +155,13 @@ file_name <- function(.date)
 #' @rdname rostido
 #' @export
 
-most_recent_fdate <- function(trydate = Sys.Date(), earliest = as.Date("2024-02-01"), fun = file_name) {
+most_recent_fdate <- function(filepath = NULL, trydate = Sys.Date(), earliest = as.Date("2024-02-01"), fun = file_name) {
+	filepath <- filepath %||% getwd()
+
     trydatef <- function(trydate)
         if (trydate < earliest)
             stop(paste("No file available after", trydate), call. = FALSE)
-        else if (file.exists(fun(trydate))) {
+        else if (file.exists(file.path(filepath, fun(trydate)))) {
             if (trydate < Sys.Date())
                 cat("Most recent file is", fun(trydate), "for", as.character(trydate), "\n")
             trydate

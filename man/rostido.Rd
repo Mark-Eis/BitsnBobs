@@ -13,6 +13,7 @@
 file_name(.date)
 
 most_recent_fdate(
+  filepath = NULL,
   trydate = Sys.Date(),
   earliest = as.Date("2024-02-01"),
   fun = file_name
@@ -29,10 +30,13 @@ as_rostido(data, dateformat = "\%d/\%m/\%Y")
 \arguments{
 \item{.date}{\code{Date} object, the date to be incorporated into a filename string.}
 
-\item{trydate}{\code{Date} object, the most recent date from which to search for file; default \code{Sys.Date()}.}
+\item{filepath}{\code{character} string, the path to a folder in which to conduct the file search; default \code{NULL}.}
 
-\item{earliest}{\code{Date} object, the earliest date to search for within the file name, beyond which the search is
-discontinued; default \code{as.Date("2024-02-01")}.}
+\item{trydate}{\code{Date} object, the most recent date within the file name from which to start the search; default
+\code{Sys.Date()}.}
+
+\item{earliest}{\code{Date} object, the earliest date within the file name beyond which the search is discontinued;
+default \code{as.Date("2024-02-01")}.}
 
 \item{fun}{\code{function}, used to incorporate \code{.date} into a filename search string; default \code{file_name}.}
 
@@ -88,17 +92,17 @@ website.
 bank website in CSV format i.e., concatenating the strings \code{"Download"}, a date of the form \code{"yyyymmdd"} and the
 extension \code{".csv"} e.g., \code{"Download20240401.csv"}
 
-\code{most_recent_fdate()} searches the current folder for a filename as returned by \code{file_name()}, typically
-incorporating the current date obtained using the default \code{.date} argument \code{\link[base:Sys.time]{Sys.Date()}}. If no
-such file exists, the previous dates are used successively until a corresponding file is found, the search being
-discontinued on reaching the date specified in the \code{earliest} argument.
+\code{most_recent_fdate()} searches the current folder or a folder specified using \code{filepath} for a filename as
+returned by \code{file_name()}, typically incorporating the current date obtained using the default \code{.date} argument
+\code{\link[base:Sys.time]{Sys.Date()}}. If no such file exists, the previous dates are used successively until a
+corresponding file is found, the search being discontinued on reaching the date specified in the \code{earliest} argument.
 
-\code{read_triodos_csv()} reads a transactions CSV file downloaded from the Triodos bank website and returns the
-contents as a data frame.
+\code{read_triodos_csv()} reads a transactions CSV file downloaded from the Triodos bank website using
+\code{\link[utils:read.table]{read.csv()}} and returns the contents as a data frame.
 
 \code{as_rostido()} reformats a data frame containing Triodos Bank transaction data obtained using \code{read_triodos_csv()},
-replacing \code{character} strings in the \code{Date} field with \code{"Date"} objects, and in the \code{Amount} and \code{Balance} fields
-with \code{numeric} values.
+replacing \code{character} strings in the \code{Date} field with \code{"Date"} objects, and those in the \code{Amount} and \code{Balance}
+fields with \code{numeric} values.
 
 By default, if no \code{.arrange_by } argument is specified, the \code{rbind()} S3 method for class \code{"rostido"} orders the
 results by \code{Date}, \code{AccountNo} and \code{Code}.
@@ -150,6 +154,7 @@ By default, if no \code{.include} argument is specified, the \code{print()} S3 m
 }
 }
 \seealso{
-\code{\link[base:print]{print()}}, \code{\link[base:cbind]{rbind()}}.
+\code{\link[base:as.Date]{as.Date()}}, \code{\link[base:print]{print()}}, \code{\link[base:cbind]{rbind()}},
+\code{\link[utils:read.table]{read.csv()}}, \code{\link[base:Sys.time]{Sys.Date()}}.
 }
 \keyword{utilities}
