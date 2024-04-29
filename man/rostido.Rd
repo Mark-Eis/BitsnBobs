@@ -2,21 +2,21 @@
 % Please edit documentation in R/rostido.R
 \name{rostido}
 \alias{rostido}
-\alias{file_name}
-\alias{most_recent_fdate}
+\alias{rostido_fname}
+\alias{most_recent_fname}
 \alias{read_triodos_csv}
 \alias{as_rostido}
 \alias{rbind.rostido}
 \alias{print.rostido}
 \title{Manage Triodos Bank Account Transaction Data}
 \usage{
-file_name(.date)
+rostido_fname(.date, filepath = NULL)
 
-most_recent_fdate(
+most_recent_fname(
   filepath = NULL,
   trydate = Sys.Date(),
   earliest = as.Date("2024-02-01"),
-  fun = file_name
+  fun = rostido_fname
 )
 
 read_triodos_csv(filename)
@@ -38,13 +38,13 @@ as_rostido(data, dateformat = "\%d/\%m/\%Y")
 \item{earliest}{\code{Date} object, the earliest date within the file name beyond which the search is discontinued;
 default \code{as.Date("2024-02-01")}.}
 
-\item{fun}{\code{function}, used to incorporate \code{.date} into a filename search string; default \code{file_name}.}
+\item{fun}{\code{function}, used to incorporate \code{.date} into a filename search string; default \code{rostido_fname}.}
 
 \item{filename}{\code{character} string, the name of a CSV file to be read.}
 
 \item{data}{data frame, as returned by \code{read_triodos_csv()}.}
 
-\item{dateformat}{\verb{character string}, passed as the \code{format} argument to \code{\link[base:as.Date]{as.Date()}}; default
+\item{dateformat}{\code{character} string, passed as the \code{format} argument to \code{\link[base:as.Date]{as.Date()}}; default
 \code{"\%d/\%m/\%Y"}.}
 
 \item{\dots}{for \code{rbind()} S3 method for class \code{"rostido"}, data frames  of class \code{"rostido"} to be combined.
@@ -63,10 +63,12 @@ printing a \code{"rostido"} data frame containing Triodos Bank transaction data;
 \item{maxwidth}{an \code{integer}, maximum width for printing \code{Description} field; default \code{65L}.}
 }
 \value{
-\item{\code{file_name()}}{Filename string incorporating a date of the form \code{"Downloadyyyymmdd.csv"}.}
+\item{\code{rostido_fname()}}{A \code{character} string representing a filename incorporating a date, of the form
+\code{"Downloadyyyymmdd.csv"}, with attributes \code{"date"}, a \code{"Date"} object, and \code{"filepath"}, corresponding to the
+argument of the same name (if supplied).}
 
-\item{\code{most_recent_fdate()}}{\code{"Date"} object containing the most recent date as incorporated within the specified
-filename string.}
+\item{\code{most_recent_fdate()}}{An object comprising a \code{character} string representing a filename incorporating a date
+as specified in \code{fun}.}
 
 \item{\code{read_triodos_csv()}}{CSV transaction file data formatted by Triodos Bank, as a dataframe.}
 
@@ -74,31 +76,35 @@ filename string.}
 Bank transaction data.}
 }
 \description{
-\code{file_name()} returns a character string representing the name of a CSV format transactions file downloaded from
-the Triodos bank website.
+\code{rostido_fname()} returns the name of a Triodos Bank CSV format transactions file as a \code{character} string.
 
-\code{most_recent_fdate()} returns the most recent date incorporated within such a filename in the current folder.
+\code{most_recent_fdate()} returns the name of the Triodos Bank CSV format transactions file within a specified folder
+incorporating the most recent date.
 
-\code{read_triodos_csv()} reads a Triodos Bank transactions CSV file and returns the contents as a
-data frame.
+\code{read_triodos_csv()} reads a CSV format transactions file downloaded from the Triodos website and returns the
+contents as a data frame.
 
 \code{as_rostido()} reformats a data frame containing downloaded Triodos Bank transaction data.
 }
 \details{
-These four functions facilitate reading and formatting CSV transaction files downloaded from the Triodos bank
+These functions facilitate reading, formatting and combining CSV transaction files downloaded from the Triodos
 website.
 
-\code{file_name()} returns a character string representing the name of a transactions file downloaded from the Triodos
-bank website in CSV format i.e., concatenating the strings \code{"Download"}, a date of the form \code{"yyyymmdd"} and the
+\code{rostido_fname()} returns a \code{character} string representing the name of a CSV format transactions file downloaded
+from the Triodos website by concatenating the strings \code{"Download"}, a date of the form \code{"yyyymmdd"} and the
 extension \code{".csv"} e.g., \code{"Download20240401.csv"}
 
-\code{most_recent_fdate()} searches the current folder or a folder specified using \code{filepath} for a filename as
-returned by \code{file_name()}, typically incorporating the current date obtained using the default \code{.date} argument
-\code{\link[base:Sys.time]{Sys.Date()}}. If no such file exists, the previous dates are used successively until a
-corresponding file is found, the search being discontinued on reaching the date specified in the \code{earliest} argument.
+\code{most_recent_fdate()} searches the current folder or a folder specified using \code{filepath} for a filename
+incorporating a date specified by the \code{.date} argument, typically the current date obtained using the default
+\code{\link[base:Sys.time]{Sys.Date()}}. The filename incorporates the date as specified by \code{fun}, typically the default
+\code{rostido_fname()} as above. If no such file exists, filenames incorporating earlier dates are searched for
+successively until either a corresponding file is found or the search is discontinued upon reaching the date
+specified in the \code{earliest} argument.
 
-\code{read_triodos_csv()} reads a transactions CSV file downloaded from the Triodos bank website using
-\code{\link[utils:read.table]{read.csv()}} and returns the contents as a data frame.
+\code{read_triodos_csv()} reads a transactions CSV file as downloaded from the Triodos website using
+\code{\link[utils:read.table]{read.csv()}} and returns the contents as a data frame. The file to be read is specified in the
+\code{filename} argument and is located in the folder specified in that argument's \code{"filepath"} attribute if it has one,
+otherwise in the current working directory.
 
 \code{as_rostido()} reformats a data frame containing Triodos Bank transaction data obtained using \code{read_triodos_csv()},
 replacing \code{character} strings in the \code{Date} field with \code{"Date"} objects, and those in the \code{Amount} and \code{Balance}
