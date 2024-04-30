@@ -91,7 +91,7 @@ moment <- function(x, r)
 skew <- skewness
 
 # ========================================
-#' Test For Skewness of a Variable 
+#' Test of Skewness
 #'
 #' @aliases skew.test
 #'
@@ -350,7 +350,7 @@ kurtosis <- function(x, xs = TRUE, adjust = TRUE) {
 
 
 # ========================================
-#' Test For Kurtosis of a Variable 
+#' Test of Kurtosis 
 #'
 #' @aliases kurt.test
 #'

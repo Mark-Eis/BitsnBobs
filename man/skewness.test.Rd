@@ -4,7 +4,7 @@
 \alias{skewness.test}
 \alias{skew.test}
 \alias{stderr_skewness}
-\title{Test For Skewness of a Variable}
+\title{Test of Skewness}
 \usage{
 skewness.test(
   x,

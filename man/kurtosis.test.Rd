@@ -4,7 +4,7 @@
 \alias{kurtosis.test}
 \alias{kurt.test}
 \alias{stderr_kurtosis}
-\title{Test For Kurtosis of a Variable}
+\title{Test of Kurtosis}
 \usage{
 kurtosis.test(
   x,
