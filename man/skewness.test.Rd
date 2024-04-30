@@ -3,6 +3,7 @@
 \name{skewness.test}
 \alias{skewness.test}
 \alias{skew.test}
+\alias{stderr_skewness}
 \title{Test For Skewness of a Variable}
 \usage{
 skewness.test(
@@ -18,6 +19,8 @@ skew.test(
   se_method = c("Cramer", "simple"),
   conf.level = 0.95
 )
+
+stderr_skewness(n, se_method = c("Cramer", "simple"))
 }
 \arguments{
 \item{x}{a \code{numeric} vector.}
@@ -79,13 +82,15 @@ should be used with caution.
  ## (Theory and Problems of Statistics. 4th edn. McGraw-Hill. 1999. ISBN 9780071755498).
  table(heights)
  skewness.test(heights) 
+ length(heights) |> stderr_skewness()
  skewness.test(heights, se_method = "simple")
+ length(heights) |> stderr_skewness(se_method = "simple")
 
  ## Litter sizes in albino rats (n = 815), data from King (1924; Litter production and
  ## the sex ratio in various strains of rats. The Anatomical Record 27(5), 337-366).
  table(litter_sizes)
  skewness.test(litter_sizes) 
- with(skewness.test(litter_sizes), c(stderr = estimate/statistic))
+ length(litter_sizes) |> stderr_skewness()
 
  ## Compare a range of distributions, each with the three possible alternative hypotheses
  list(
@@ -133,6 +138,7 @@ kurtosis. \emph{Behavior Research Methods} \strong{43}(1): 8-17.
 
 Other skewness: 
 \code{\link{kurtosis}()},
+\code{\link{kurtosis.test}()},
 \code{\link{skewness}()}
 }
 \concept{skewness}

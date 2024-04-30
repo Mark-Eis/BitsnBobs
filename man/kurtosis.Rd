@@ -2,6 +2,7 @@
 % Please edit documentation in R/skewness.R
 \name{kurtosis}
 \alias{kurtosis}
+\alias{kurt}
 \title{Kurtosis}
 \usage{
 kurtosis(x, xs = TRUE, adjust = TRUE)
@@ -70,6 +71,7 @@ Joanes, D.N., and Gill, C.A. (1998). Comparing measures of sample kurtosis and k
 \code{\link[stats:Distributions]{distributions}}
 
 Other skewness: 
+\code{\link{kurtosis.test}()},
 \code{\link{skewness}()},
 \code{\link{skewness.test}()}
 }

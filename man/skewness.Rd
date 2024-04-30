@@ -71,6 +71,7 @@ Joanes, D.N., and Gill, C.A. (1998). Comparing measures of sample skewness and k
 
 Other skewness: 
 \code{\link{kurtosis}()},
+\code{\link{kurtosis.test}()},
 \code{\link{skewness.test}()}
 }
 \concept{skewness}
