@@ -1,6 +1,6 @@
 Package: BitsnBobs
 Title: For General Bits and Bobs of Code
-Version: 0.0.6.00001
+Version: 0.0.6.00002
 Date: 2024-04-30
 Authors@R: 
     person("Mark", "Eisler", , "Mark.Eisler@bristol.ac.uk", role = c("aut", "cre", "cph"),
