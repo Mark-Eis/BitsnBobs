@@ -21,11 +21,8 @@
 #' `read_triodos_csv()` reads a CSV format transactions file downloaded from the Triodos website and returns the
 #'  contents as a data frame.
 #'
-#' `as_rostido()` reformats a data frame containing downloaded Triodos Bank transaction data.
-#'
 #' @details
-#' These functions facilitate reading, formatting and combining CSV transaction files downloaded from the Triodos
-#'   website.
+#' These functions facilitate reading CSV transaction files downloaded from the Triodos website.
 #'
 #' `triodos_fname()` returns a `character` string representing the name of a CSV format transactions file downloaded
 #' from the Triodos website by concatenating the strings `"Download"`, a date of the form `"yyyymmdd"` and the
@@ -43,18 +40,8 @@
 #' `filename` argument and is located in the folder specified in that argument's `"filepath"` attribute if it has one,
 #' otherwise in the current working directory.
 #'
-#' `as_rostido()` reformats a data frame containing Triodos Bank transaction data obtained using `read_triodos_csv()`,
-#' replacing `character` strings in the `Date` field with `"Date"` objects, and those in the `Amount` and `Balance`
-#' fields with `numeric` values.
-#'
-#' By default, if no `.arrange_by ` argument is specified, the `rbind()` S3 method for class `"rostido"` orders the
-#'   results by `Date`, `AccountNo` and `Code`.
-#'
-#' By default, if no `.include` argument is specified, the `print()` S3 method for class `"rostido"` excludes the
-#' `SortCode` and `ChequeNo` columns from the printed output.
-#'
-#' @seealso [`as.Date()`][base::as.Date], [`print()`][base::print], [`rbind()`][base::rbind],
-#'   [`read.csv()`][utils::read.csv], [`Sys.Date()`][base::Sys.Date].
+#' @family Triodos
+#' @seealso [`as.Date()`][base::as.Date], [`read.csv()`][utils::read.csv], [`Sys.Date()`][base::Sys.Date].
 #'
 #' @param .date `Date` object, the date to be incorporated into a filename string.
 #'
@@ -70,27 +57,6 @@
 #'
 #' @param filename `character` string, the name of a CSV file to be read.
 #'
-#' @param data data frame, as returned by `read_triodos_csv()`.
-#'
-#' @param dateformat `character` string, passed as the `format` argument to [`as.Date()`][base::as.Date]; default
-#'   `"%d/%m/%Y"`.
-#'
-#' @param \dots
-#'   for `rbind()` S3 method for class `"rostido"`, data frames  of class `"rostido"` to be combined.
-#'
-#'   for `print()` S3 method for class `"rostido"`, further arguments passed to or from other methods.
-#'
-#' @param .arrange_by a list of expressions containing names of column(s) for ordering rows of the combined
-#'   `"rostido"` data frame e.g., `exprs(Account, Code, desc(Amount))`. Use [`desc()`][dplyr::desc] to sort a
-#'   variable in descending order; default `NULL`.
-#'
-#' @param .include <[`tidy-select`][dplyr::dplyr_tidy_select]> names of variables to be included or excluded when
-#'   printing a `"rostido"` data frame containing Triodos Bank transaction data; default `NULL`.
-#'
-#' @param maxwidth an `integer`, maximum width for printing `Description` field; default `65L`.
-#
-#' @inheritParams base::print
-#'
 #' @return
 #'
 #' \item{`triodos_fname()`}{A `character` string representing a filename incorporating a date, of the form
@@ -101,9 +67,6 @@
 #'   as specified in `fun`.}
 #'
 #' \item{`read_triodos_csv()`}{CSV transaction file data formatted by Triodos Bank, as a dataframe.}
-#'
-#' \item{`as_rostido()`}{An object of class `"rostido"` inheriting from `"data.frame"` containing reformatted Triodos
-#'   Bank transaction data.}
 #'
 #' @keywords utilities
 #'
@@ -120,35 +83,20 @@
 #'    triodos_fname(Sys.Date(), file.path(dnldpath, 55545372))
 #'
 #' \dontrun{
-#'    (curacc <- file.path(dnldpath, 55545372) |>
+#'    (file.path(dnldpath, 55545372) |>
 #'        most_recent_fname() |>
-#'        read_triodos_csv() |>
-#'        as_rostido())
+#'        read_triodos_csv())
 #' }
 #'
 #'    ## __________________________
 #'    ## Savings account 55596784
 #'
+#'    triodos_fname(Sys.Date(), file.path(dnldpath, 55596784))
+#'
 #' \dontrun{
 #'    (savacc <- file.path(dnldpath, 55596784) |>
 #'        most_recent_fname() |>
-#'        read_triodos_csv() |>
-#'        as_rostido())
-#'
-#'    savacc |> print(.include = c(Description, Code, Amount, Balance))
-#' }
-#'
-#'    ## ______________
-#'    ## All accounts
-#'
-#' \dontrun{
-#'    rbind(curacc, savacc)
-#'    rbind(curacc, savacc, .arrange_by = exprs(desc(Amount)))
-#'    rbind(curacc, savacc, .arrange_by = exprs(Date, Code))
-#'    rbind(curacc, savacc, .arrange_by = exprs(Code, Amount))
-#'    rbind(curacc, savacc, .arrange_by = exprs(Code, desc(Amount)))
-#'
-#'    rm(curacc, savacc)
+#'        read_triodos_csv())
 #' }
 
 triodos_fname <- function(.date, filepath = NULL)
@@ -210,35 +158,10 @@ read_triodos_csv <- function(filename) {
 #' @name Manage_Triodos
 #' @description
 #'
-#' `triodos_fname()` returns the name of a Triodos Bank CSV format transactions file as a `character` string.
-#'
-#' `most_recent_fname()` finds among the Triodos Bank CSV format transactions files within a specified
-#' folder, the one incorporating the most recent date within its name.
-#'
-#' `read_triodos_csv()` reads a CSV format transactions file downloaded from the Triodos website and returns the
-#'  contents as a data frame.
-#'
 #' `as_rostido()` reformats a data frame containing downloaded Triodos Bank transaction data.
 #'
 #' @details
-#' These functions facilitate reading, formatting and combining CSV transaction files downloaded from the Triodos
-#'   website.
-#'
-#' `triodos_fname()` returns a `character` string representing the name of a CSV format transactions file downloaded
-#' from the Triodos website by concatenating the strings `"Download"`, a date of the form `"yyyymmdd"` and the
-#' extension `".csv"` e.g., `"Download20240401.csv"`
-#'
-#' `most_recent_fname()` searches the current folder or a folder specified using `filepath` for a filename
-#' incorporating a date specified by the `.date` argument, typically the current date obtained using the default 
-#' [`Sys.Date()`][base::Sys.Date]. The filename incorporates the date as specified by `fun`, typically the default
-#' `triodos_fname()` as above. If no such file exists, filenames incorporating earlier dates are searched for
-#' successively until either a corresponding file is found or the search is discontinued upon reaching the date
-#' specified in the `earliest` argument.
-#'
-#' `read_triodos_csv()` reads a transactions CSV file as downloaded from the Triodos website using
-#' [`read.csv()`][utils::read.csv] and returns the contents as a data frame. The file to be read is specified in the
-#' `filename` argument and is located in the folder specified in that argument's `"filepath"` attribute if it has one,
-#' otherwise in the current working directory.
+#' These functions facilitate formatting and combining CSV transaction files downloaded from the Triodos website.
 #'
 #' `as_rostido()` reformats a data frame containing Triodos Bank transaction data obtained using `read_triodos_csv()`,
 #' replacing `character` strings in the `Date` field with `"Date"` objects, and those in the `Amount` and `Balance`
@@ -250,22 +173,8 @@ read_triodos_csv <- function(filename) {
 #' By default, if no `.include` argument is specified, the `print()` S3 method for class `"rostido"` excludes the
 #' `SortCode` and `ChequeNo` columns from the printed output.
 #'
-#' @seealso [`as.Date()`][base::as.Date], [`print()`][base::print], [`rbind()`][base::rbind],
-#'   [`read.csv()`][utils::read.csv], [`Sys.Date()`][base::Sys.Date].
-#'
-#' @param .date `Date` object, the date to be incorporated into a filename string.
-#'
-#' @param filepath `character` string, the path to a folder in which to conduct the file search; default `NULL`.
-#'
-#' @param trydate `Date` object, the most recent date within the file name from which to start the search; default
-#'   `Sys.Date()`.
-#'
-#' @param earliest `Date` object, the earliest date within the file name beyond which the search is discontinued;
-#'   default `as.Date("2024-02-01")`.
-#'
-#' @param fun `function`, used to incorporate `.date` into a filename search string; default `triodos_fname`.
-#'
-#' @param filename `character` string, the name of a CSV file to be read.
+#' @family Triodos
+#' @seealso [`as.Date()`][base::as.Date], [`print()`][base::print], [`rbind()`][base::rbind].
 #'
 #' @param data data frame, as returned by `read_triodos_csv()`.
 #'
@@ -290,15 +199,6 @@ read_triodos_csv <- function(filename) {
 #'
 #' @return
 #'
-#' \item{`triodos_fname()`}{A `character` string representing a filename incorporating a date, of the form
-#'   `"Downloadyyyymmdd.csv"`, with attributes `"date"`, a `"Date"` object, and `"filepath"`, corresponding to the
-#'   argument of the same name (if supplied).}
-#'
-#' \item{`most_recent_fname()`}{An object comprising a `character` string representing a filename incorporating a date
-#'   as specified in `fun`.}
-#'
-#' \item{`read_triodos_csv()`}{CSV transaction file data formatted by Triodos Bank, as a dataframe.}
-#'
 #' \item{`as_rostido()`}{An object of class `"rostido"` inheriting from `"data.frame"` containing reformatted Triodos
 #'   Bank transaction data.}
 #'
@@ -307,38 +207,30 @@ read_triodos_csv <- function(filename) {
 #' @export
 #' @examples
 #'
+#' \dontrun{
 #'    dnldpath <- "~/Triodos Bank/Downloads"
-#'
-#'    triodos_fname(Sys.Date())
 #'
 #'    ## __________________________
 #'    ## Current account 55545372
 #'
-#'    triodos_fname(Sys.Date(), file.path(dnldpath, 55545372))
-#'
-#' \dontrun{
 #'    (curacc <- file.path(dnldpath, 55545372) |>
 #'        most_recent_fname() |>
 #'        read_triodos_csv() |>
 #'        as_rostido())
-#' }
 #'
 #'    ## __________________________
 #'    ## Savings account 55596784
 #'
-#' \dontrun{
 #'    (savacc <- file.path(dnldpath, 55596784) |>
 #'        most_recent_fname() |>
 #'        read_triodos_csv() |>
 #'        as_rostido())
 #'
 #'    savacc |> print(.include = c(Description, Code, Amount, Balance))
-#' }
 #'
 #'    ## ______________
 #'    ## All accounts
 #'
-#' \dontrun{
 #'    rbind(curacc, savacc)
 #'    rbind(curacc, savacc, .arrange_by = exprs(desc(Amount)))
 #'    rbind(curacc, savacc, .arrange_by = exprs(Date, Code))
