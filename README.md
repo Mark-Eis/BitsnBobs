@@ -19,8 +19,9 @@ devtools::install_github("Mark-Eis/BitsnBobs")
 ### BitsnBobs Package Description: –
 The **BitsnBobs R package** does this and that using functions: –
 
-`as_decdeg()`, `as_degminsec()`, `as_rostido()`, `boxcox3()`, `browse()`, `cat_names()`, `cc_rate()`, `cohens_kappa()`, `const()`, `cor_coef.test()`, `count_lgl()`, `data_wizard()`, `decdeg()`, `degminsec()`, `design_effect()`,
-detective()`, [`detective<-()`](https://mark-eis.github.io/BitsnBobs/reference/detective.html), `eff_rate()`,
+`as_decdeg()`, `as_degminsec()`, `as_rostido()`, `boxcox3()`, `browse()`, `cat_names()`, `cc_rate()`, `cohens_kappa()`,
+`const()`, `cor_coef.test()`, `count_lgl()`, `data_wizard()`, `decdeg()`, `degminsec()`, `design_effect()`,
+`detective()`, [`detective<-()`](https://mark-eis.github.io/BitsnBobs/reference/detective.html), `eff_rate()`,
 `endstop()`, `endstop_data()`, `facet_histo()`,`fct_to_num()`, `formul_pwrseq()`, `get_amortint()`, `get_amortval()`,
 `iterate()`, `j()`, `j2eff_rate()`, `known_s3generics()`, `kurt()`, `kurt.test()`, `kurtosis()`, `kurtosis.test()`,
 `kwd_cols()`, [`kwd_cols<-()`](https://mark-eis.github.io/BitsnBobs/reference/kwd_cols.html), `latlon()`,
