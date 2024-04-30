@@ -30,10 +30,12 @@ stderr_skewness(n, se_method = c("Cramer", "simple"))
     \code{"greater"} or \code{"less"}.  You can specify just the initial
     letter.}
 
-\item{se_method}{a character string specifying the method of calculating the standard error; must be one of
+\item{se_method}{a \code{character} string specifying the method of calculating the standard error; must be one of
 \code{"Cramer"} (default), or \code{"simple"}. You can specify just the initial letter.}
 
 \item{conf.level}{the confidence level required; default \var{0.95}.}
+
+\item{n}{an \code{integer}, the number of observations.}
 }
 \value{
 A list with class \code{"htest"} containing the following components: -

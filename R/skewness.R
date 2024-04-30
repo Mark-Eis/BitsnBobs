@@ -132,12 +132,14 @@ skew <- skewness
 #' @seealso [`distributions`][stats::distributions], [`TDist`][stats::pt], [`t.test`][stats::t.test]
 #' @family skewness
 #'
-#' @param x a \code{numeric} vector.
-#'
-#' @param se_method a character string specifying the method of calculating the standard error; must be one of
+#' @param se_method a `character` string specifying the method of calculating the standard error; must be one of
 #'   \code{"Cramer"} (default), or \code{"simple"}. You can specify just the initial letter.
 #'
 #' @param conf.level the confidence level required; default \var{0.95}.
+#'
+#' @param n an `integer`, the number of observations.
+#'
+#' @inheritParams skewness
 #'
 #' @inheritParams stats::t.test
 #'
@@ -310,8 +312,6 @@ stderr_skewness <- function(n, se_method = c("Cramer", "simple")) {
 #' @seealso [`distributions`][stats::distributions]
 #' @family skewness
 #'
-#' @param x a `numeric` vector.
-#'
 #' @param xs `logical`, indicating whether to calculate excess kurtosis i.e., the difference from the kurtosis of the
 #'   normal distribution; default `TRUE`.
 #'
@@ -391,12 +391,7 @@ kurtosis <- function(x, xs = TRUE, adjust = TRUE) {
 #' @seealso [`distributions`][stats::distributions], [`TDist`][stats::pt], [`t.test`][stats::t.test]
 #' @family skewness
 #'
-#' @param x a \code{numeric} vector.
-#'
-#' @param se_method a character string specifying the method of calculating the standard error; must be one of
-#'   \code{"Cramer"} (default), or \code{"simple"}. You can specify just the initial letter.
-#'
-#' @param conf.level the confidence level required; default \var{0.95}.
+#' @inheritParams skewness.test
 #'
 #' @inheritParams stats::t.test
 #'
