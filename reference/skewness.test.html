@@ -12,7 +12,7 @@ skewness(), performs a t-test of its significance and calculates a confidence in
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.00050</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.6.00000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,7 +63,9 @@ skewness(), performs a t-test of its significance and calculates a confidence in
 <span>  alternative <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"two.sided"</span>, <span class="st">"less"</span>, <span class="st">"greater"</span><span class="op">)</span>,</span>
 <span>  se_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cramer"</span>, <span class="st">"simple"</span><span class="op">)</span>,</span>
 <span>  conf.level <span class="op">=</span> <span class="fl">0.95</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">stderr_skewness</span><span class="op">(</span><span class="va">n</span>, se_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cramer"</span>, <span class="st">"simple"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -161,6 +163,7 @@ kurtosis. <em>Behavior Research Methods</em> <strong>43</strong>(1): 8-17.
     <div class="dont-index"><p><code><a href="https://rdrr.io/r/stats/Distributions.html" class="external-link">distributions</a></code>, <code><a href="https://rdrr.io/r/stats/TDist.html" class="external-link">TDist</a></code>, <code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></code></p>
 <p>Other skewness: 
 <code><a href="kurtosis.html">kurtosis</a>()</code>,
+<code>kurtosis.test()</code>,
 <code><a href="skewness.html">skewness</a>()</code></p></div>
     </div>
 
@@ -185,6 +188,8 @@ kurtosis. <em>Behavior Research Methods</em> <strong>43</strong>(1): 8-17.
 <span class="r-out co"><span class="r-pr">#&gt;</span>   skewness </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -0.1098084 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">stderr_skewness</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2413798</span>
 <span class="r-in"><span> <span class="fu">skewness.test</span><span class="op">(</span><span class="va">heights</span>, se_method <span class="op">=</span> <span class="st">"simple"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Skewness with t-test (simple stderr)</span>
@@ -198,6 +203,8 @@ kurtosis. <em>Behavior Research Methods</em> <strong>43</strong>(1): 8-17.
 <span class="r-out co"><span class="r-pr">#&gt;</span>   skewness </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -0.1098084 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">heights</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">stderr_skewness</span><span class="op">(</span>se_method <span class="op">=</span> <span class="st">"simple"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.244949</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="co">## Litter sizes in albino rats (n = 815), data from King (1924; Litter production and</span></span></span>
 <span class="r-in"><span> <span class="co">## the sex ratio in various strains of rats. The Anatomical Record 27(5), 337-366).</span></span></span>
@@ -218,9 +225,8 @@ kurtosis. <em>Behavior Research Methods</em> <strong>43</strong>(1): 8-17.
 <span class="r-out co"><span class="r-pr">#&gt;</span> skewness </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.173038 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="fu">skewness.test</span><span class="op">(</span><span class="va">litter_sizes</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>stderr <span class="op">=</span> <span class="va">estimate</span><span class="op">/</span><span class="va">statistic</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> stderr.skewness </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      0.08564453 </span>
+<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">litter_sizes</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">stderr_skewness</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.08564453</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span> <span class="co">## Compare a range of distributions, each with the three possible alternative hypotheses</span></span></span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
