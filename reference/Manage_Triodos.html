@@ -77,7 +77,7 @@ as_rostido() reformats a data frame containing downloaded Triodos Bank transacti
 
 
 <dt>.arrange_by</dt>
-<dd><p>a list of expressions containing names of column(s) for ordering rows of the combined
+<dd><p>a list of expressions containing names of column(s) for sorting rows of the combined
 <code>"rostido"</code> data frame e.g., <code>exprs(Account, Code, desc(Amount))</code>. Use <code><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc()</a></code> to sort a
 variable in descending order; default <code>NULL</code>.</p></dd>
 
@@ -107,7 +107,7 @@ Bank transaction data.</p></dd>
     <p><code>as_rostido()</code> reformats a data frame containing Triodos Bank transaction data obtained using <code><a href="Import_Triodos.html">read_triodos_csv()</a></code>,
 replacing <code>character</code> strings in the <code>Date</code> field with <code>"Date"</code> objects, and those in the <code>Amount</code> and <code>Balance</code>
 fields with <code>numeric</code> values.</p>
-<p>By default, if no <code>.arrange_by </code> argument is specified, the <code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code> S3 method for class <code>"rostido"</code> orders the
+<p>By default, if no <code>.arrange_by </code> argument is specified, the <code><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind()</a></code> S3 method for class <code>"rostido"</code> sorts the
 results by <code>Date</code>, <code>AccountNo</code> and <code>Code</code>.</p>
 <p>By default, if no <code>.include</code> argument is specified, the <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> S3 method for class <code>"rostido"</code> excludes the
 <code>SortCode</code> and <code>ChequeNo</code> columns from the printed output.</p>
@@ -146,10 +146,9 @@ results by <code>Date</code>, <code>AccountNo</code> and <code>Code</code>.</p>
 <span class="r-in"><span>   <span class="co">## ______________</span></span></span>
 <span class="r-in"><span>   <span class="co">## All accounts</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span><span class="op">)</span> <span class="co">## default sort is by Date, AccountNo and Code.</span></span></span>
+<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">exprs</a></span><span class="op">(</span><span class="va">AccountNo</span>, <span class="va">Date</span>, <span class="va">Code</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">exprs</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Amount</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">exprs</a></span><span class="op">(</span><span class="va">Date</span>, <span class="va">Code</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">exprs</a></span><span class="op">(</span><span class="va">Code</span>, <span class="va">Amount</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://rlang.r-lib.org/reference/defusing-advanced.html" class="external-link">exprs</a></span><span class="op">(</span><span class="va">Code</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">Amount</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>   <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">curacc</span>, <span class="va">savacc</span><span class="op">)</span></span></span>
