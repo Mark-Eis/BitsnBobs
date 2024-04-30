@@ -23,7 +23,7 @@ as_rostido(data, dateformat = "\%d/\%m/\%Y")
 
 for \code{print()} S3 method for class \code{"rostido"}, further arguments passed to or from other methods.}
 
-\item{.arrange_by}{a list of expressions containing names of column(s) for ordering rows of the combined
+\item{.arrange_by}{a list of expressions containing names of column(s) for sorting rows of the combined
 \code{"rostido"} data frame e.g., \code{exprs(Account, Code, desc(Amount))}. Use \code{\link[dplyr:desc]{desc()}} to sort a
 variable in descending order; default \code{NULL}.}
 
@@ -48,7 +48,7 @@ Functions to facilitate formatting and combining CSV transaction data downloaded
 replacing \code{character} strings in the \code{Date} field with \code{"Date"} objects, and those in the \code{Amount} and \code{Balance}
 fields with \code{numeric} values.
 
-By default, if no \code{.arrange_by } argument is specified, the \code{rbind()} S3 method for class \code{"rostido"} orders the
+By default, if no \code{.arrange_by } argument is specified, the \code{rbind()} S3 method for class \code{"rostido"} sorts the
 results by \code{Date}, \code{AccountNo} and \code{Code}.
 
 By default, if no \code{.include} argument is specified, the \code{print()} S3 method for class \code{"rostido"} excludes the
@@ -80,10 +80,9 @@ By default, if no \code{.include} argument is specified, the \code{print()} S3 m
    ## ______________
    ## All accounts
 
-   rbind(curacc, savacc)
+   rbind(curacc, savacc) ## default sort is by Date, AccountNo and Code.
+   rbind(curacc, savacc, .arrange_by = exprs(AccountNo, Date, Code))
    rbind(curacc, savacc, .arrange_by = exprs(desc(Amount)))
-   rbind(curacc, savacc, .arrange_by = exprs(Date, Code))
-   rbind(curacc, savacc, .arrange_by = exprs(Code, Amount))
    rbind(curacc, savacc, .arrange_by = exprs(Code, desc(Amount)))
 
    rm(curacc, savacc)
