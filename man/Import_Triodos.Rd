@@ -44,17 +44,17 @@ as specified in \code{fun}.}
 \item{\code{read_triodos_csv()}}{CSV transaction file data formatted by Triodos Bank, as a dataframe.}
 }
 \description{
+Functions to facilitate reading CSV transaction files downloaded from the Triodos website.
+
 \code{triodos_fname()} returns the name of a Triodos Bank CSV format transactions file as a \code{character} string.
 
-\code{most_recent_fname()} finds among the Triodos Bank CSV format transactions files within a specified
-folder, the one incorporating the most recent date within its name.
+\code{most_recent_fname()} finds the Triodos Bank CSV format transactions file incorporating the most recent date
+within its name among those in a specified folder.
 
 \code{read_triodos_csv()} reads a CSV format transactions file downloaded from the Triodos website and returns the
 contents as a data frame.
 }
 \details{
-These functions facilitate reading CSV transaction files downloaded from the Triodos website.
-
 \code{triodos_fname()} returns a \code{character} string representing the name of a CSV format transactions file downloaded
 from the Triodos website by concatenating the strings \code{"Download"}, a date of the form \code{"yyyymmdd"} and the
 extension \code{".csv"} e.g., \code{"Download20240401.csv"}

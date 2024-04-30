@@ -39,11 +39,11 @@ printing a \code{"rostido"} data frame containing Triodos Bank transaction data;
 Bank transaction data.}
 }
 \description{
+Functions to facilitate formatting and combining CSV transaction data downloaded from the Triodos website.
+
 \code{as_rostido()} reformats a data frame containing downloaded Triodos Bank transaction data.
 }
 \details{
-These functions facilitate formatting and combining CSV transaction files downloaded from the Triodos website.
-
 \code{as_rostido()} reformats a data frame containing Triodos Bank transaction data obtained using \code{read_triodos_csv()},
 replacing \code{character} strings in the \code{Date} field with \code{"Date"} objects, and those in the \code{Amount} and \code{Balance}
 fields with \code{numeric} values.
@@ -88,7 +88,6 @@ By default, if no \code{.include} argument is specified, the \code{print()} S3 m
 
    rm(curacc, savacc)
 }
-
 }
 \seealso{
 \code{\link[base:as.Date]{as.Date()}}, \code{\link[base:print]{print()}}, \code{\link[base:cbind]{rbind()}}.

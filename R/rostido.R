@@ -13,17 +13,17 @@
 #' @name Import_Triodos
 #' @description
 #'
+#' Functions to facilitate reading CSV transaction files downloaded from the Triodos website.
+#'
 #' `triodos_fname()` returns the name of a Triodos Bank CSV format transactions file as a `character` string.
 #'
-#' `most_recent_fname()` finds among the Triodos Bank CSV format transactions files within a specified
-#' folder, the one incorporating the most recent date within its name.
+#' `most_recent_fname()` finds the Triodos Bank CSV format transactions file incorporating the most recent date
+#' within its name among those in a specified folder.
 #'
 #' `read_triodos_csv()` reads a CSV format transactions file downloaded from the Triodos website and returns the
-#'  contents as a data frame.
+#' contents as a data frame.
 #'
 #' @details
-#' These functions facilitate reading CSV transaction files downloaded from the Triodos website.
-#'
 #' `triodos_fname()` returns a `character` string representing the name of a CSV format transactions file downloaded
 #' from the Triodos website by concatenating the strings `"Download"`, a date of the form `"yyyymmdd"` and the
 #' extension `".csv"` e.g., `"Download20240401.csv"`
@@ -158,11 +158,11 @@ read_triodos_csv <- function(filename) {
 #' @name Manage_Triodos
 #' @description
 #'
+#' Functions to facilitate formatting and combining CSV transaction data downloaded from the Triodos website.
+#'
 #' `as_rostido()` reformats a data frame containing downloaded Triodos Bank transaction data.
 #'
 #' @details
-#' These functions facilitate formatting and combining CSV transaction files downloaded from the Triodos website.
-#'
 #' `as_rostido()` reformats a data frame containing Triodos Bank transaction data obtained using `read_triodos_csv()`,
 #' replacing `character` strings in the `Date` field with `"Date"` objects, and those in the `Amount` and `Balance`
 #' fields with `numeric` values.
@@ -239,12 +239,6 @@ read_triodos_csv <- function(filename) {
 #'
 #'    rm(curacc, savacc)
 #' }
-
-# ========================================
-#  Reformat Triodos transaction data frame
-#'
-#' @rdname Manage_Triodos
-#' @export
 
 as_rostido <- function(data, dateformat = "%d/%m/%Y") { # Four digit years
     data |> mutate(
