@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Feb 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -57,7 +57,7 @@ kwd_cols <- function(data, .look_in = Response, value) {
     .look_in <- enquo(.look_in) 
     stopifnot(is.data.frame(data), is.character(eval_tidy(.look_in, data)))
     fns <- setNames(tolower(value), str_to_title(value)) |>
-        map(\(val) \(look_in) str_detect(tolower(look_in), val))
+        lapply(\(val) \(look_in) str_detect(tolower(look_in), val))
     data |> mutate(across(!!.look_in, fns, .names = "{.fn}"))
 }
 
@@ -224,5 +224,5 @@ list_lgl <- function(.data, ...) {
     pos_lgl <- eval_select(expr(where(is.logical)), .data)
     if (!length(pos))
         pos <- seq_along(.data)[-pos_lgl]
-    .data[pos_lgl] |> map(\(x) .data[x, ] |> _[pos])
+    .data[pos_lgl] |> lapply(\(x) .data[x, ] |> _[pos])
 }
