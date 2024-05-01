@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Nov 2023
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -49,7 +49,7 @@
 #'
 #' @param x a `numeric` vector.
 #'
-#' @param adjust `logical`, indicating whether `x` is a sample from a population; default \code{TRUE}.
+#' @param adjust `logical`, indicating whether `x` is a sample from a population; default `TRUE`.
 #'
 #' @return A `numeric` containing the skewness value.
 #'
@@ -97,7 +97,7 @@ skew <- skewness
 #'
 #' @description
 #' Computes \eqn{G_{1}}{G<sub>1</sub>}, the expected population skewness of the values in \var{x} using
-#' \code{skewness()}, performs a \var{t}-test of its significance and calculates a confidence interval.
+#' `skewness()`, performs a \var{t}-test of its significance and calculates a confidence interval.
 #'
 #' @details
 #' The \var{t}-statistic is given by the estimated population [`skewness`][skewness], \eqn{G_{1}}{G<sub>1</sub>},
@@ -110,9 +110,9 @@ skew <- skewness
 #' \eqn{\sqrt (6 / n_x)}, and the associated probability is derived from the \var{t}-distribution with
 #' \eqn{n_{x}-2}{n<sub>x</sub>-2} degrees of freedom. The \var{t}-test is conducted according to Crawley (2012),
 #' except that the default here is a two-tailed test. The corresponding confidence interval is calculated similarly
-#' from the quantiles of the \var{t}-distribution using both the \code{alternative} and \code{conf.level} arguments.
+#' from the quantiles of the \var{t}-distribution using both the `alternative` and `conf.level` arguments.
 #'
-#' [`skew.test()`][skew.test] is an alias for \code{skewness.test()}.
+#' [`skew.test()`][skew.test] is an alias for `skewness.test()`.
 #'
 #' @note The confidence interval is poorly described in the available literature, seems somewhat controversial and
 #' should be used with caution.
@@ -133,7 +133,7 @@ skew <- skewness
 #' @family skewness
 #'
 #' @param se_method a `character` string specifying the method of calculating the standard error; must be one of
-#'   \code{"Cramer"} (default), or \code{"simple"}. You can specify just the initial letter.
+#'   `"Cramer"` (default), or `"simple"`. You can specify just the initial letter.
 #'
 #' @param conf.level the confidence level required; default \var{0.95}.
 #'
@@ -143,7 +143,7 @@ skew <- skewness
 #'
 #' @inheritParams stats::t.test
 #'
-#' @return A list with class \code{"htest"} containing the following components: -
+#' @return A list with class `"htest"` containing the following components: -
 #'
 #' \item{statistic}{the value of the t-statistic.}
 #'
@@ -369,9 +369,9 @@ kurtosis <- function(x, xs = TRUE, adjust = TRUE) {
 #' \eqn{\sqrt (24 / n_x)}, and the associated probability is derived from the \var{t}-distribution with
 #' \eqn{n_{x}-2}{n<sub>x</sub>-2} degrees of freedom. The \var{t}-test is conducted according to Crawley (2012),
 #' except that the default here is a two-tailed test. The corresponding confidence interval is calculated similarly
-#' from the quantiles of the \var{t}-distribution using both the \code{alternative} and \code{conf.level} arguments.
+#' from the quantiles of the \var{t}-distribution using both the `alternative` and `conf.level` arguments.
 #'
-#' [`kurt.test()`][kurt.test] is an alias for \code{kurtosis.test()}.
+#' [`kurt.test()`][kurt.test] is an alias for `kurtosis.test()`.
 #'
 #' @note The confidence interval is poorly described in the available literature, seems somewhat controversial and
 #' should be used with caution.
@@ -395,7 +395,7 @@ kurtosis <- function(x, xs = TRUE, adjust = TRUE) {
 #'
 #' @inheritParams stats::t.test
 #'
-#' @return A list with class \code{"htest"} containing the following components: -
+#' @return A list with class `"htest"` containing the following components: -
 #'
 #' \item{statistic}{the value of the t-statistic.}
 #'
