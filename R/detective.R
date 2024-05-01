@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Apr 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -99,11 +99,11 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
     if (missing(.pattern))
         selrow <- !logical(nrow(.data))
     else {
-        selrow <- pos |> map(\(x) str_detect(.data[[x]], .pattern)) |> pmap_lgl(any)
+        selrow <- pos |> lapply(\(x) str_detect(.data[[x]], .pattern)) |> pmap_lgl(any)
         selrow <- selrow & !is.na(selrow)  ## NA becomes FALSE
     }
     if (!is.null(.exclude)) {
-        exlrow <- pos |> map(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
+        exlrow <- pos |> lapply(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
         exlrow <- exlrow | is.na(exlrow)  ## NA becomes TRUE
         selrow <- selrow & exlrow
     }
@@ -123,7 +123,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
     pos <- eval_select(expr(c(...) & chr_or_fct()), .data)
     posfct <- eval_select(expr(c(...) & where(is.factor)), .data)
     if (!is.null(.exclude)) {
-        exlrow <- pos |> map(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
+        exlrow <- pos |> lapply(\(x) str_detect(.data[[x]], .exclude, TRUE)) |> pmap_lgl(all)
         exlrow <- exlrow | is.na(exlrow)  ## NA becomes TRUE
     } else
         exlrow <- seq_len(nrow(.data))

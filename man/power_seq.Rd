@@ -53,16 +53,6 @@ if (!requireNamespace("lobstr", quietly = TRUE))
   warning("package 'lobstr' must be installed")
 try(lobstr::ast(!!pseq))
 
-## Or without !! (injection operator) by using the unexported function lobstr::ast_tree()
-try(astree <- get("ast_tree", asNamespace("lobstr"), inherits = FALSE))
-
-## …and setting the class attribute to "lobstr_raw", which attribute evokes print.lobstr_raw()
-try(astree(pseq) |> structure(class = "lobstr_raw"))
-
-## or by formatting output directly using paste() and cat()
-try(astree(pseq) |> paste("\n", collapse = "") |> cat(sep = ""))
-
-#######
 (pseq2 <- power_seq(log(x), 5))
 
 x <- 3
@@ -91,7 +81,6 @@ eval_tidy(pseq2)
 rm(x)
 eval_tidy(pseq2)
 
-
 ## Wrapper for log() reporting its execution using marker()
 log <- function(...) {
   marker(msg = "in BitsnBobs Help")
@@ -116,9 +105,8 @@ all(
 
 ## Compare the three abstract syntax trees
 try(expr_ls |> lapply(\(x) lobstr::ast(!!x)))
-try(expr_ls |> lapply(astree)) |> lapply(structure, class = "lobstr_raw")
 
-rm(astree, expr_ls, foo, log, pseq, pseq2, res_ls)
+rm(expr_ls, foo, log, pseq, pseq2, res_ls)
 }
 \seealso{
 \code{\link{call}}, \code{\link[rlang]{eval_tidy}} and \code{\link[rlang]{quosure}}.
