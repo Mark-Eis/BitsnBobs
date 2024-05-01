@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -119,7 +119,7 @@ split_to_cols <- function(data, col_to_split, split_to, pattern, remove_parenth 
 #' @export
 
 split_to_rows <- function(data, col_to_split, pattern) {
-	mutate(data, across({{col_to_split}}, \(x) str_split(x, pattern) |> map(str_trim))) |>
+	mutate(data, across({{col_to_split}}, \(x) str_split(x, pattern) |> lapply(str_trim))) |>
 	tidyr::unnest_longer(col = {{col_to_split}})
 }
 
