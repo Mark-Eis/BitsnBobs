@@ -31,7 +31,12 @@ The probability may be calculated from the odds by the inverse transformation: -
 \examples{
 odds(0.5)
 prob_from_odds(1)
-seq(from = 0, to = 1, by = 0.125) |> print_lf() |> odds() |> print_lf() |> prob_from_odds()
+
+(s <- seq(from = 0, to = 1, by = 0.125))
+(s <- odds(s))
+prob_from_odds(s)
+
+rm(s) 
 }
 \seealso{
 Other odds-logit: 

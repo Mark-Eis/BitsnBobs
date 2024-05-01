@@ -33,10 +33,14 @@ The probability may be calculated from the \code{logit} by the inverse transform
 logit(0.5)
 prob_from_logit(0)
 
-seq(from = 0, to = 1, by = 0.25) |> print_lf() |> logit() |> print_lf() |> prob_from_logit()
-
-(s <- seq(-10, 10, by = 2) |> print_lf() |> prob_from_logit())
+(s <- seq(-10, 10, by = 2))
 s[1:6] + s[11:6]
+
+(s <- prob_from_logit(s))
+s[1:6] + s[11:6]
+
+(s <- logit(s))
+
 rm(s)
 }
 \seealso{

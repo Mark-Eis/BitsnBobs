@@ -38,10 +38,14 @@
 #' logit(0.5)
 #' prob_from_logit(0)
 #'
-#' seq(from = 0, to = 1, by = 0.25) |> print_lf() |> logit() |> print_lf() |> prob_from_logit()
-#'
-#' (s <- seq(-10, 10, by = 2) |> print_lf() |> prob_from_logit())
+#' (s <- seq(-10, 10, by = 2))
 #' s[1:6] + s[11:6]
+#'
+#' (s <- prob_from_logit(s))
+#' s[1:6] + s[11:6]
+#'
+#' (s <- logit(s))
+#'
 #' rm(s)
 
 logit <- function(x)
@@ -84,7 +88,12 @@ prob_from_logit <- function(x) 1 / (1 + 1/exp(x))
 #' @examples
 #' odds(0.5)
 #' prob_from_odds(1)
-#' seq(from = 0, to = 1, by = 0.125) |> print_lf() |> odds() |> print_lf() |> prob_from_odds()
+#' 
+#' (s <- seq(from = 0, to = 1, by = 0.125))
+#' (s <- odds(s))
+#' prob_from_odds(s)
+#' 
+#' rm(s) 
 
 odds <- function(x)
 {
