@@ -11,7 +11,7 @@
 
 #' @importFrom purrr map2_chr
 #' @export
-purrr:: map2_chr
+purrr::map2_chr
 
 #' @importFrom purrr map_chr
 #' @export
@@ -21,6 +21,6 @@ purrr::map_chr
 #' @export
 purrr::map_dbl
 
-#' @importFrom purrr map_int
+# #' @importFrom purrr map_int
 #' @export
 purrr::map_int

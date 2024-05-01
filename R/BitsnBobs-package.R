@@ -2,13 +2,6 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @export %@% eval_tidy exprs set_names
-#' @export across arrange bind_rows desc
-#' @export all_of any_of contains ends_with everything last_col matches num_range starts_with where
-#' @export boundary coll fixed regex
-#' @export element_text theme_get theme_set theme_update
-#' @export map_chr map_dbl map_int map2_chr
-#' @export tibble
 #' @importFrom dplyr across
 #' @importFrom dplyr arrange
 #' @importFrom dplyr bind_rows
@@ -38,7 +31,6 @@
 #' @importFrom ggplot2 theme_update
 #' @importFrom methods formalArgs
 #' @importFrom purrr imap
-#' @importFrom purrr map
 #' @importFrom purrr map_chr
 #' @importFrom purrr map_dbl
 #' @importFrom purrr map_int
