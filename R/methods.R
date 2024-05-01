@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler Apr 2024
+# Mark Eisler May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -298,7 +298,7 @@ ls_all <- function(all.names = TRUE, env = parent.frame(), ...) {
 s3mag7 <- function(env = parent.frame()) {
     sobs <- c(".Class", ".Generic", ".GenericCallEnv", ".GenericDefEnv", ".Group", ".Method") |>
     setNames(nm = _) |>
-    map(\(x) env[[x]])
+    lapply(\(x) env[[x]])
     sobs[[7]] <- formalArgs(match.fun(sobs$.Method))[1]
     sobs[[8]] <- .class2(env[[sobs[[7]]]])
     names(sobs)[7] <- paste(sobs$.Method, "Arg1")
