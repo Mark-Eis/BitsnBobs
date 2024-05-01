@@ -12,7 +12,7 @@ prob_from_logit() converts a logit value to the corresponding probability."><!--
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.6.00003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.6.00004</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -90,21 +90,21 @@ and the <em>Note</em> section of <code><a href="https://rdrr.io/r/stats/Logistic
 <span class="r-in"><span><span class="fu">prob_from_logit</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>from <span class="op">=</span> <span class="fl">0</span>, to <span class="op">=</span> <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="lf.html">print_lf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">logit</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="lf.html">print_lf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">prob_from_logit</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.00 0.25 0.50 0.75 1.00</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1]      -Inf -1.098612  0.000000  1.098612       Inf</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.00 0.25 0.50 0.75 1.00</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="lf.html">print_lf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">prob_from_logit</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">10</span>, <span class="fl">10</span>, by <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -10  -8  -6  -4  -2   0   2   4   6   8  10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span><span class="va">s</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> <span class="op">+</span> <span class="va">s</span><span class="op">[</span><span class="fl">11</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0 0 0 0 0 0</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">prob_from_logit</span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 4.539787e-05 3.353501e-04 2.472623e-03 1.798621e-02 1.192029e-01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [6] 5.000000e-01 8.807971e-01 9.820138e-01 9.975274e-01 9.996646e-01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [11] 9.999546e-01</span>
 <span class="r-in"><span><span class="va">s</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span> <span class="op">+</span> <span class="va">s</span><span class="op">[</span><span class="fl">11</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 1 1 1 1 1</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">s</span> <span class="op">&lt;-</span> <span class="fu">logit</span><span class="op">(</span><span class="va">s</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -10  -8  -6  -4  -2   0   2   4   6   8  10</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">s</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
