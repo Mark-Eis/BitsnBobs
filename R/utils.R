@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler Jan 2024
+# Mark Eisler May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -147,11 +147,11 @@ revmat <- function(x, type = c("byrow", "bycolumn", "byboth")) {
 #' @name op-min-max
 #'
 #' @description
-#' Vectorised infix functions implementing pmin() and pmax().
+#' Vectorised infix functions implementing `pmin()` and `pmax()`.
 #'
 #' @details
 #' The vectorised infix functions `%:<%` and `%>:%` may be useful in implementing [`pmin()`][base::pmin] and,
-#' [`pmax()`][base::pmax] and was inspired by [`%||%`][rlang::op-null-default] in the \pkg{\link[rlang]{rlang}} package.
+#' [`pmax()`][base::pmax] and was inspired by the null coalescing operator [`%||%`][base::Control].
 #'
 #' @family utils
 #' @seealso [`%||%`][rlang::op-null-default], [`pmin()`][base::pmin] and [`pmax()`][base::pmax].
@@ -160,17 +160,17 @@ revmat <- function(x, type = c("byrow", "bycolumn", "byboth")) {
 #'
 #' @inherit base::max note
 #'
-#' @return As for [`pmin()`][base::pmin] and [`pmax()`][base::pmax], a vector of length the longest of the input vectors,
-#'   or length zero if one of the inputs had zero length.
+#' @return A vector of length the longest of the input vectors as returned by `pmin()` and `pmax()`, or of length zero
+#'   if one of the inputs had zero length.
 #'
 #' @keywords univar arith
 #' @export
 #' @examples
 #' 1:10 %:<% 10:1
-#' c(1:10, NA) %:<% c(NA, 10:1)
+#' c(1:9, NA) %:<% c(NA, 9:1)
 #'
 #' 1:10 %>:% 10:1
-#' c(1:10, NA) %>:% c(NA, 10:1)
+#' c(1:9, NA) %>:% c(NA, 9:1)
 #'
 
 `%:<%` <-  function (x, y) 

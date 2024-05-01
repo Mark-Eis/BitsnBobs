@@ -14,15 +14,15 @@ x \%>:\% y
 \item{x, y}{numeric or character arguments (see Note).}
 }
 \value{
-As for \code{\link[base:Extremes]{pmin()}} and \code{\link[base:Extremes]{pmax()}}, a vector of length the longest of the input vectors,
-or length zero if one of the inputs had zero length.
+A vector of length the longest of the input vectors as returned by \code{pmin()} and \code{pmax()}, or of length zero
+if one of the inputs had zero length.
 }
 \description{
-Vectorised infix functions implementing pmin() and pmax().
+Vectorised infix functions implementing \code{pmin()} and \code{pmax()}.
 }
 \details{
 The vectorised infix functions \verb{\%:<\%} and \verb{\%>:\%} may be useful in implementing \code{\link[base:Extremes]{pmin()}} and,
-\code{\link[base:Extremes]{pmax()}} and was inspired by \code{\link[rlang:op-null-default]{\%||\%}} in the \pkg{\link[rlang]{rlang}} package.
+\code{\link[base:Extremes]{pmax()}} and was inspired by the null coalescing operator \code{\link[base:Control]{\%||\%}}.
 }
 \note{
 \sQuote{Numeric} arguments are vectors of type integer and numeric,
@@ -35,10 +35,10 @@ The vectorised infix functions \verb{\%:<\%} and \verb{\%>:\%} may be useful in 
 }
 \examples{
 1:10 \%:<\% 10:1
-c(1:10, NA) \%:<\% c(NA, 10:1)
+c(1:9, NA) \%:<\% c(NA, 9:1)
 
 1:10 \%>:\% 10:1
-c(1:10, NA) \%>:\% c(NA, 10:1)
+c(1:9, NA) \%>:\% c(NA, 9:1)
 
 }
 \seealso{
