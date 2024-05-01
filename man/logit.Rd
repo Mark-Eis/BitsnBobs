@@ -35,7 +35,7 @@ prob_from_logit(0)
 
 seq(from = 0, to = 1, by = 0.25) |> print_lf() |> logit() |> print_lf() |> prob_from_logit()
 
-s <- seq(-10, 10, by = 2) |> print_lf() |> prob_from_logit() |> print()
+(s <- seq(-10, 10, by = 2) |> print_lf() |> prob_from_logit())
 s[1:6] + s[11:6]
 rm(s)
 }

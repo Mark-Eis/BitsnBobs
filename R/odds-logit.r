@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -40,7 +40,7 @@
 #'
 #' seq(from = 0, to = 1, by = 0.25) |> print_lf() |> logit() |> print_lf() |> prob_from_logit()
 #'
-#' s <- seq(-10, 10, by = 2) |> print_lf() |> prob_from_logit() |> print()
+#' (s <- seq(-10, 10, by = 2) |> print_lf() |> prob_from_logit())
 #' s[1:6] + s[11:6]
 #' rm(s)
 
