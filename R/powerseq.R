@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Mar 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -37,7 +37,7 @@
 #'
 #' @export
 #' @examples
-#' pseq <- power_seq(a + b, 3) |> print()
+#' (pseq <- power_seq(a + b, 3))
 #' ## pseq is a "call" object
 #' typeof(pseq)
 #' class(pseq)
@@ -64,7 +64,7 @@
 #' try(astree(pseq) |> paste("\n", collapse = "") |> cat(sep = ""))
 #'
 #' #######
-#' pseq2 <- power_seq(log(x), 5) |> print()
+#' (pseq2 <- power_seq(log(x), 5))
 #'
 #' x <- 3
 #' eval_tidy(pseq2)  ## Uses x from the global environment
@@ -101,12 +101,12 @@
 #'
 #' ## Compare the three options for type 
 #' ## log() invoked just once, on execution of power_seq() with type = "evaluate"
-#' expr_ls <- c("simple", "evaluate", "replicate") |> setNames(nm = _) |>
-#'     map(\(x) power_seq(log(3), 5, x)) |> print()
+#' (expr_ls <- c("simple", "evaluate", "replicate") |> setNames(nm = _) |>
+#'     lapply(\(x) power_seq(log(3), 5, x)))
 #'
 #' ## log() invoked once on evaluation of expression from power_seq() with type = "simple" and
 #' ## five times on evaluation of expression from power_seq() with type = "replicate"
-#' res_ls <- expr_ls |> map(eval_tidy) |> print()
+#' (res_ls <- expr_ls |> lapply(eval_tidy))
 #'
 #' ## All three types evaluate identically: -
 #' all(
@@ -116,8 +116,8 @@
 #' )
 #'
 #' ## Compare the three abstract syntax trees
-#' try(expr_ls |> map(\(x) lobstr::ast(!!x)))
-#' try(expr_ls |> map(astree)) |> map(structure, class = "lobstr_raw")
+#' try(expr_ls |> lapply(\(x) lobstr::ast(!!x)))
+#' try(expr_ls |> lapply(astree)) |> lapply(structure, class = "lobstr_raw")
 #'
 #' rm(astree, expr_ls, foo, log, pseq, pseq2, res_ls)
 
@@ -127,8 +127,8 @@ power_seq <- function(base_expr, n, type = c("simple", "evaluate", "replicate"))
 		base_expr <- enquo(base_expr)
 	if(type %in% c("evaluate", "replicate")) {
 	    new_expr <- base_expr
-	    map(seq_len(n)[-1], ~{
-	        new_expr <<- expr(!!new_expr + (!!base_expr)^!!.)
+	    lapply(seq_len(n)[-1], \(x){
+	        new_expr <<- expr(!!new_expr + (!!base_expr)^!!x)
 	    })
 	    new_expr
 	} else {
@@ -163,8 +163,8 @@ power_seq <- function(base_expr, n, type = c("simple", "evaluate", "replicate"))
 
 formul_pwrseq <- function(base_fla, n, ...) {
 	new_fla <- base_fla
-	map(seq_len(n)[-1], ~ {f_rhs(new_fla) <<- expr(!!f_rhs(new_fla) + I(`^`(!!f_rhs(base_fla), !!.)))})
+	lapply(seq_len(n)[-1], ~ {f_rhs(new_fla) <<- expr(!!f_rhs(new_fla) + I(`^`(!!f_rhs(base_fla), !!.)))})
 	if (...length())
-		enexprs(...) |> map(~ {f_rhs(new_fla) <<- expr(!!f_rhs(new_fla) + !!.)})
+		enexprs(...) |> lapply(~ {f_rhs(new_fla) <<- expr(!!f_rhs(new_fla) + !!.)})
 	new_fla
 }

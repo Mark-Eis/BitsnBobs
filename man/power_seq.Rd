@@ -36,7 +36,7 @@ object. This results in \var{base_expr} being evaluated \var{n} times on evaluat
 evaluation may be acceptable in simple cases but might be slow and inefficient for complex expressions.
 }
 \examples{
-pseq <- power_seq(a + b, 3) |> print()
+(pseq <- power_seq(a + b, 3))
 ## pseq is a "call" object
 typeof(pseq)
 class(pseq)
@@ -63,7 +63,7 @@ try(astree(pseq) |> structure(class = "lobstr_raw"))
 try(astree(pseq) |> paste("\n", collapse = "") |> cat(sep = ""))
 
 #######
-pseq2 <- power_seq(log(x), 5) |> print()
+(pseq2 <- power_seq(log(x), 5))
 
 x <- 3
 eval_tidy(pseq2)  ## Uses x from the global environment
@@ -100,12 +100,12 @@ log <- function(...) {
 
 ## Compare the three options for type 
 ## log() invoked just once, on execution of power_seq() with type = "evaluate"
-expr_ls <- c("simple", "evaluate", "replicate") |> setNames(nm = _) |>
-    map(\(x) power_seq(log(3), 5, x)) |> print()
+(expr_ls <- c("simple", "evaluate", "replicate") |> setNames(nm = _) |>
+    lapply(\(x) power_seq(log(3), 5, x)))
 
 ## log() invoked once on evaluation of expression from power_seq() with type = "simple" and
 ## five times on evaluation of expression from power_seq() with type = "replicate"
-res_ls <- expr_ls |> map(eval_tidy) |> print()
+(res_ls <- expr_ls |> lapply(eval_tidy))
 
 ## All three types evaluate identically: -
 all(
@@ -115,8 +115,8 @@ all(
 )
 
 ## Compare the three abstract syntax trees
-try(expr_ls |> map(\(x) lobstr::ast(!!x)))
-try(expr_ls |> map(astree)) |> map(structure, class = "lobstr_raw")
+try(expr_ls |> lapply(\(x) lobstr::ast(!!x)))
+try(expr_ls |> lapply(astree)) |> lapply(structure, class = "lobstr_raw")
 
 rm(astree, expr_ls, foo, log, pseq, pseq2, res_ls)
 }
