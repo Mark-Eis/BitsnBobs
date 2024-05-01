@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -31,12 +31,12 @@
 #' @export
 #' @examples
 #' ## Create sequence of numeric values as a factor
-#' f <- factor(2001:2020) |> print()
+#' (f <- factor(2001:2020))
 #'
 #' ## Seemingly numeric levels are actually character strings!
 #' levels(f) |> str()
 #'
-#' ## Return codes for factor levels, not what was expected
+#' ## Returns codes for factor levels, not what was expected
 #' f |> as.numeric()
 #'
 #' ## Returns numeric values equivalent to factor levels
