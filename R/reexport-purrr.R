@@ -9,10 +9,6 @@
 
 # ========================================
 
-#' @importFrom purrr map
-#' @export
-purrr::map
-
 #' @importFrom purrr map2_chr
 #' @export
 purrr:: map2_chr

@@ -13,7 +13,6 @@
 \alias{theme_get}
 \alias{theme_set}
 \alias{theme_update}
-\alias{map}
 \alias{map2_chr}
 \alias{map_chr}
 \alias{map_dbl}
@@ -48,7 +47,7 @@ below to see their documentation.
 
   \item{ggplot2}{\code{\link[ggplot2:element]{element_text}}, \code{\link[ggplot2]{theme_get}}, \code{\link[ggplot2:theme_get]{theme_set}}, \code{\link[ggplot2:theme_get]{theme_update}}}
 
-  \item{purrr}{\code{\link[purrr]{map}}, \code{\link[purrr:map]{map_chr}}, \code{\link[purrr:map]{map_dbl}}, \code{\link[purrr:map]{map_int}}, \code{\link[purrr:map2]{map2_chr}}}
+  \item{purrr}{\code{\link[purrr:map]{map_chr}}, \code{\link[purrr:map]{map_dbl}}, \code{\link[purrr:map]{map_int}}, \code{\link[purrr:map2]{map2_chr}}}
 
   \item{rlang}{\code{\link[rlang:op-get-attr]{\%@\%}}, \code{\link[rlang]{eval_tidy}}, \code{\link[rlang:defusing-advanced]{exprs}}, \code{\link[rlang]{set_names}}}
 

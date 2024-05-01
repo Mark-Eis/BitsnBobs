@@ -2,11 +2,11 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @export %@% eval_tidy exprs set_names
 #' @export across arrange bind_rows desc
 #' @export all_of any_of contains ends_with everything last_col matches num_range starts_with where
 #' @export boundary coll fixed regex
 #' @export element_text theme_get theme_set theme_update
-#' @export %@% eval_tidy exprs set_names
 #' @export map_chr map_dbl map_int map2_chr
 #' @export tibble
 #' @importFrom dplyr across
