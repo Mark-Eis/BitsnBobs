@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -21,6 +21,6 @@ purrr::map_chr
 #' @export
 purrr::map_dbl
 
-# #' @importFrom purrr map_int
+#' @importFrom purrr map_int
 #' @export
 purrr::map_int
