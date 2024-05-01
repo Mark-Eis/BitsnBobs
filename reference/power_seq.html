@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.6.00002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.6.00003</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -95,7 +95,7 @@ evaluation may be acceptable in simple cases but might be slow and inefficient f
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">pseq</span> <span class="op">&lt;-</span> <span class="fu">power_seq</span><span class="op">(</span><span class="va">a</span> <span class="op">+</span> <span class="va">b</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="op">(</span><span class="va">pseq</span> <span class="op">&lt;-</span> <span class="fu">power_seq</span><span class="op">(</span><span class="va">a</span> <span class="op">+</span> <span class="va">b</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sum((~a + b)^seq_len(~3))</span>
 <span class="r-in"><span><span class="co">## pseq is a "call" object</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/typeof.html" class="external-link">typeof</a></span><span class="op">(</span><span class="va">pseq</span><span class="op">)</span></span></span>
@@ -122,7 +122,7 @@ evaluation may be acceptable in simple cases but might be slow and inefficient f
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">&lt;quosure&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> expr: <span style="color: #0000BB;">^a + b</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> env:  <span style="color: #0000BB;">0x556dbadf1b10</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> env:  <span style="color: #0000BB;">0x55de72840fc8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[3]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> seq_len(~3)</span>
@@ -151,31 +151,7 @@ evaluation may be acceptable in simple cases but might be slow and inefficient f
 <span class="r-out co"><span class="r-pr">#&gt;</span>   └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">seq_len</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     └─3 </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## Or without !! (injection operator) by using the unexported function lobstr::ast_tree()</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">astree</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/get.html" class="external-link">get</a></span><span class="op">(</span><span class="st">"ast_tree"</span>, <span class="fu"><a href="https://rdrr.io/r/base/ns-internal.html" class="external-link">asNamespace</a></span><span class="op">(</span><span class="st">"lobstr"</span><span class="op">)</span>, inherits <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## …and setting the class attribute to "lobstr_raw", which attribute evokes print.lobstr_raw()</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">astree</span><span class="op">(</span><span class="va">pseq</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/structure.html" class="external-link">structure</a></span><span class="op">(</span>class <span class="op">=</span> <span class="st">"lobstr_raw"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">sum</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`+`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   │ ├─<span style="color: #BB00BB; font-weight: bold;">a</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   │ └─<span style="color: #BB00BB; font-weight: bold;">b</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">seq_len</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     └─3 </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">## or by formatting output directly using paste() and cat()</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="fu">astree</span><span class="op">(</span><span class="va">pseq</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"\n"</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span>sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">sum</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`+`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   │ ├─<span style="color: #BB00BB; font-weight: bold;">a</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   │ └─<span style="color: #BB00BB; font-weight: bold;">b</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">seq_len</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     └─3 </span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#######</span></span></span>
-<span class="r-in"><span><span class="va">pseq2</span> <span class="op">&lt;-</span> <span class="fu">power_seq</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">pseq2</span> <span class="op">&lt;-</span> <span class="fu">power_seq</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sum((~log(x))^seq_len(~5))</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fl">3</span></span></span>
@@ -211,7 +187,6 @@ evaluation may be acceptable in simple cases but might be slow and inefficient f
 <span class="r-in"><span><span class="fu"><a href="https://rlang.r-lib.org/reference/eval_tidy.html" class="external-link">eval_tidy</a></span><span class="op">(</span><span class="va">pseq2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 112.6486</span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Wrapper for log() reporting its execution using marker()</span></span></span>
 <span class="r-in"><span><span class="va">log</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">...</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="marker.html">marker</a></span><span class="op">(</span>msg <span class="op">=</span> <span class="st">"in BitsnBobs Help"</span><span class="op">)</span></span></span>
@@ -220,8 +195,8 @@ evaluation may be acceptable in simple cases but might be slow and inefficient f
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Compare the three options for type </span></span></span>
 <span class="r-in"><span><span class="co">## log() invoked just once, on execution of power_seq() with type = "evaluate"</span></span></span>
-<span class="r-in"><span><span class="va">expr_ls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"simple"</span>, <span class="st">"evaluate"</span>, <span class="st">"replicate"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span>nm <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">power_seq</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, <span class="fl">5</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">expr_ls</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"simple"</span>, <span class="st">"evaluate"</span>, <span class="st">"replicate"</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span>nm <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">power_seq</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span>, <span class="fl">5</span>, <span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> log running in BitsnBobs Help </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $simple</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> sum((~log(3))^seq_len(~5))</span>
@@ -236,7 +211,7 @@ evaluation may be acceptable in simple cases but might be slow and inefficient f
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## log() invoked once on evaluation of expression from power_seq() with type = "simple" and</span></span></span>
 <span class="r-in"><span><span class="co">## five times on evaluation of expression from power_seq() with type = "replicate"</span></span></span>
-<span class="r-in"><span><span class="va">res_ls</span> <span class="op">&lt;-</span> <span class="va">expr_ls</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">eval_tidy</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">res_ls</span> <span class="op">&lt;-</span> <span class="va">expr_ls</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">eval_tidy</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> log running in BitsnBobs Help </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> log running in BitsnBobs Help </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> log running in BitsnBobs Help </span>
@@ -262,59 +237,7 @@ evaluation may be acceptable in simple cases but might be slow and inefficient f
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Compare the three abstract syntax trees</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">expr_ls</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">lobstr</span><span class="fu">::</span><span class="fu"><a href="https://lobstr.r-lib.org/reference/ast.html" class="external-link">ast</a></span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $simple</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">sum</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">log</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   │ └─3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">seq_len</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     └─5 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $evaluate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`+`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`+`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`+`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`+`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ │ ├─1.09861228866811 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ │ └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ │   ├─1.09861228866811 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ │   └─2L </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │   ├─1.09861228866811 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │   └─3L </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├─1.09861228866811 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   └─4L </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ├─1.09861228866811 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   └─5L </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $replicate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`+`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`+`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`+`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`+`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ │ ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">log</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ │ │ └─3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ │ └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ │   ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">log</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ │   │ └─3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ │   └─2L </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │ └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │   ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">log</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │   │ └─3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ │   └─3L </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │ └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">log</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   │ └─3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> │   └─4L </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ├─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">log</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   │ └─3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   └─5L </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">expr_ls</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">astree</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">structure</span>, class <span class="op">=</span> <span class="st">"lobstr_raw"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">expr_ls</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu">lobstr</span><span class="fu">::</span><span class="fu"><a href="https://lobstr.r-lib.org/reference/ast.html" class="external-link">ast</a></span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $simple</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">sum</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> └─<span style="color: #FFAF00;">█</span>─<span style="color: #BB00BB; font-weight: bold;">`^`</span> </span>
@@ -367,7 +290,7 @@ evaluation may be acceptable in simple cases but might be slow and inefficient f
 <span class="r-out co"><span class="r-pr">#&gt;</span>   └─5L </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">astree</span>, <span class="va">expr_ls</span>, <span class="va">foo</span>, <span class="va">log</span>, <span class="va">pseq</span>, <span class="va">pseq2</span>, <span class="va">res_ls</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">expr_ls</span>, <span class="va">foo</span>, <span class="va">log</span>, <span class="va">pseq</span>, <span class="va">pseq2</span>, <span class="va">res_ls</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
