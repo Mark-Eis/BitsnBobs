@@ -4,14 +4,14 @@
 \alias{sample_size}
 \title{Sample Size Calculaton}
 \usage{
-sample_size(Pexp = 0.5, d, N = NULL, conf_level = 0.95)
+sample_size(Pexp = 0.5, d = 0.05, N = NULL, conf_level = 0.95)
 }
 \arguments{
 \item{Pexp}{\code{numeric} (or \verb{numeric vector} with all values) between 0 and 1 representing the expected prevalence;
 default \var{0.5}.}
 
 \item{d}{a positive \code{numeric} (or \verb{numeric vector} with all values) greater than zero representing the desired
-absolute precision.}
+absolute precision; default \var{0.05} .}
 
 \item{N}{either \code{NULL} for a large (theoretically infinite) population or a positive \code{integer} (or \verb{integer vector}
 with all values) greater than zero representing the population size; default \code{NULL}.}
@@ -45,15 +45,15 @@ For relatively small study populations of size \var{N}, the value of \var{n} may
 }
 \examples{
 ## Infinite population
-sample_size(d = 0.05)
-sample_size(d = 0.1)
+sample_size()         ## desired absolute precision 0.05 (default)
+sample_size(d = 0.1)  ## desired absolute precision 0.1
 
 ## Population = 500, 750 or 1000
-sample_size(d = 0.05, N = c(500L, 750L, 1000L))
+sample_size(N = c(500L, 750L, 1000L))
 
 ## Expected prevalence = 0.125, 0.25, 0.50, 0.75 or 0.875
 ## Note symmetry of resulting sample sizes
-sample_size(Pexp = c(0.125, 0.25, 0.50, 0.75, 0.875), d = 0.05)
+sample_size(Pexp = c(0.125, 0.25, 0.50, 0.75, 0.875))
 
 ## Desired absolute precision = 1\%, 5\%, 10\%, 20\%
 sample_size(d = c(0.01, 0.05, 0.1, 0.2))
