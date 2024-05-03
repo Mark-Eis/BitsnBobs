@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -89,7 +89,7 @@ design_effect <- function(m, ri)
 #'   default \var{0.5}.
 #'
 #' @param d a positive `numeric` (or `numeric vector` with all values) greater than zero representing the desired
-#'   absolute precision.
+#'   absolute precision; default \var{0.05} .
 #'
 #' @param N either `NULL` for a large (theoretically infinite) population or a positive `integer` (or `integer vector`
 #'   with all values) greater than zero representing the population size; default \code{NULL}.
@@ -102,20 +102,20 @@ design_effect <- function(m, ri)
 #' @export
 #' @examples
 #' ## Infinite population
-#' sample_size(d = 0.05)
-#' sample_size(d = 0.1)
+#' sample_size()         ## desired absolute precision 0.05 (default)
+#' sample_size(d = 0.1)  ## desired absolute precision 0.1
 #' 
 #' ## Population = 500, 750 or 1000
-#' sample_size(d = 0.05, N = c(500L, 750L, 1000L))
+#' sample_size(N = c(500L, 750L, 1000L))
 #' 
 #' ## Expected prevalence = 0.125, 0.25, 0.50, 0.75 or 0.875
 #' ## Note symmetry of resulting sample sizes
-#' sample_size(Pexp = c(0.125, 0.25, 0.50, 0.75, 0.875), d = 0.05)
+#' sample_size(Pexp = c(0.125, 0.25, 0.50, 0.75, 0.875))
 #' 
 #' ## Desired absolute precision = 1%, 5%, 10%, 20%
 #' sample_size(d = c(0.01, 0.05, 0.1, 0.2))
 
-sample_size <- function(Pexp = 0.5, d, N = NULL, conf_level = 0.95) {
+sample_size <- function(Pexp = 0.5, d = 0.05, N = NULL, conf_level = 0.95) {
     stopifnot(is.integer(N %||% 1L), N > 0, d > 0, Pexp > 0, Pexp <= 1, conf_level >= 0, conf_level <= 1) 
     n <- qnorm((1 + conf_level)/2) ^ 2 * Pexp * (1 - Pexp) / d ^ 2
     if (is.null(N))
