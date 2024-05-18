@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Mar 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -202,7 +202,7 @@ phi_coef.test <- function(x, alternative = c("two.sided", "less", "greater"), co
             null.value = NVAL,
             alternative = alternative,
             method = "Phi correlation coefficient with confidence interval",
-            data.name = deparse(substitute(x))
+            data.name = deparse1(substitute(x))
         ),
         class = "htest"
     )
@@ -328,7 +328,7 @@ cor_coef.test <- function(r, n, alternative = c("two.sided", "less", "greater"),
       null.value = NVAL,
       alternative = alternative,
       method = "Pearson's product-moment correlation",
-      data.name = deparse(substitute(r))
+      data.name = deparse1(substitute(r))
     ),
     class = "htest"
   )

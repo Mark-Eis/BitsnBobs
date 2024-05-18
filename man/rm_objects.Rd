@@ -7,7 +7,7 @@
 rm_objects(basename, suffixes, envir = parent.frame())
 }
 \arguments{
-\item{basename}{Common base name (quoted) of the series of objects.}
+\item{basename}{Common base name (quoted or unquoted) of the series of objects.}
 
 \item{suffixes}{A numeric or character vector representing the suffixes of the series of objects.}
 

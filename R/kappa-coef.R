@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Apr 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -154,7 +154,7 @@ cohens_kappa <- function (x, se_method = c("Fleiss", "Cohen"), conf.level = 0.95
       observed = x, 
       expected = EXPECTED,
       agreements = AGREEMENTS,
-      data.name = deparse(substitute(x)),
+      data.name = deparse1(substitute(x)),
       method = paste0("Cohen's kappa coefficient of agreement (", attr(se, "method"), " stderr)")
    ),
    # class = "htest"

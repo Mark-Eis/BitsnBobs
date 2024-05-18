@@ -140,7 +140,7 @@ known_s3generics <- function(.arrange_by = across(Generic:Namespace)) {
 
 s3_in_namespace <- function(namespace, .arrange_by = Method) {
     Method <- NULL
-    namespace_name <- deparse(substitute(namespace))
+    namespace_name <- deparse1(substitute(namespace))
     ns_S3methods <- getNamespace(namespace_name) |> getNamespaceInfo("S3methods")
     dimnames(ns_S3methods)[2] <- list(c("Generic", "Class", "Method", "Unknown"))
     as.data.frame(ns_S3methods[, -4]) |>

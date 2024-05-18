@@ -244,7 +244,7 @@ skewness.test <- function(x, alternative = c("two.sided", "less", "greater"), se
             null.value = nval,
             alternative = alternative,
             method = paste0("Skewness with t-test (", attr(tstat, "method"), " stderr)"),
-            data.name = deparse(substitute(x))
+            data.name = deparse1(substitute(x))
         ),
         class = "htest"
     )
@@ -430,34 +430,6 @@ kurtosis <- function(x, xs = TRUE, adjust = TRUE) {
 #'  kurtosis.test(litter_sizes) 
 #'  length(litter_sizes) |> stderr_kurtosis()
 #'
-#'  ## Compare a range of distributions, each with the three possible alternative hypotheses
-#'  list(
-#'    uniform = runif(30),
-#'    normal = rnorm(30),
-#'    lognormal = rlnorm(30),
-#'    poisson = rpois(30, lambda = 10),
-#'    negbinom = rnbinom(30, mu = 4, size = 2)
-#'  ) |>
-#'  lapply(\(distrib)
-#'      c("less", "two.sided","greater") |>
-#'      setNames(nm = _) |>
-#'      lapply(\(altern)
-#'          with(kurtosis.test(distrib, altern),
-#'              data.frame(
-#'                  Lower = conf.int[1],
-#'                  Upper = conf.int[2],
-#'                  Skewness = estimate,
-#'                  t = statistic,
-#'                  df = parameter,
-#'                  p = p.value,
-#'                  sig = starsig(p.value),
-#'                  row.names = NULL
-#'              )
-#'          )
-#'      ) |>
-#'      bind_rows(.id = "Alternative")) |>
-#'  bind_rows(.id = "Distribution")
-#'
 
 kurtosis.test <- function(x, alternative = c("two.sided", "less", "greater"), se_method = c("Cramer", "simple"),
     conf.level = 0.95) {
@@ -496,7 +468,7 @@ kurtosis.test <- function(x, alternative = c("two.sided", "less", "greater"), se
             null.value = nval,
             alternative = alternative,
             method = paste0("Kurtosis with t-test (", attr(tstat, "method"), " stderr)"),
-            data.name = deparse(substitute(x))
+            data.name = deparse1(substitute(x))
         ),
         class = "htest"
   )
