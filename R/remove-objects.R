@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - Jan 2024
+# Mark Eisler - May 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -21,7 +21,7 @@
 #'
 #' @seealso [`environment`][base::environment], [`ls()`][base::ls] and [`rm()`][base::rm].
 #'
-#' @param basename Common base name (quoted) of the series of objects.
+#' @param basename Common base name (quoted or unquoted) of the series of objects.
 #'
 #' @param suffixes A numeric or character vector representing the suffixes of the series of objects.
 #'
@@ -62,7 +62,9 @@
 #'  rm_objects(model, c(4, "_d"))
 
 rm_objects <- function(basename, suffixes, envir = parent.frame()) {
-    basename <- deparse(substitute(basename)) 
+    basename <- substitute(basename)
+    if (!is.character(basename))
+        basename <- deparse1(basename)
     intro <- paste0("Objects matching \"", as.symbol(basename), "\u2026\"")
     envirname <- if (identical(envir, globalenv())) "global" else environmentName(envir)
     if (!nchar(envirname))
@@ -74,8 +76,8 @@ rm_objects <- function(basename, suffixes, envir = parent.frame()) {
     cat(intro, "found", envstr, if(length(found)) found else "Zilch\u2014better luck next time!", "\n")
     if(length(found)) {
         rm(list = vapply(suffixes, \(x) paste0(as.symbol(basename), x), vector("character", 1)), envir = envir)
-	    found <- eval(objs)
-	    cat(intro, "remaining", envstr,  if(length(found)) found else "All gone!", "\n")
+        found <- eval(objs)
+        cat(intro, "remaining", envstr,  if(length(found)) found else "All gone!", "\n")
     }
     invisible(found)
 }
