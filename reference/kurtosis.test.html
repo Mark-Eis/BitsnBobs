@@ -12,7 +12,7 @@ kurtosis(), performs a t-test of its significance and calculates a confidence in
     
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.6.00006</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.6.00007</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -231,66 +231,6 @@ kurtosis. <em>Behavior Research Methods</em> <strong>43</strong>(1): 8-17.
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">litter_sizes</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">stderr_kurtosis</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1710811</span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span> <span class="co">## Compare a range of distributions, each with the three possible alternative hypotheses</span></span></span>
-<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>   uniform <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">30</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>   normal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">30</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>   lognormal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">30</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>   poisson <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">30</span>, lambda <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>   negbinom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/NegBinomial.html" class="external-link">rnbinom</a></span><span class="op">(</span><span class="fl">30</span>, mu <span class="op">=</span> <span class="fl">4</span>, size <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">distrib</span><span class="op">)</span></span></span>
-<span class="r-in"><span>     <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"less"</span>, <span class="st">"two.sided"</span>,<span class="st">"greater"</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>     <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span>nm <span class="op">=</span> <span class="va">_</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>     <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">altern</span><span class="op">)</span></span></span>
-<span class="r-in"><span>         <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="fu">kurtosis.test</span><span class="op">(</span><span class="va">distrib</span>, <span class="va">altern</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>             <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>                 Lower <span class="op">=</span> <span class="va">conf.int</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>,</span></span>
-<span class="r-in"><span>                 Upper <span class="op">=</span> <span class="va">conf.int</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>,</span></span>
-<span class="r-in"><span>                 Skewness <span class="op">=</span> <span class="va">estimate</span>,</span></span>
-<span class="r-in"><span>                 t <span class="op">=</span> <span class="va">statistic</span>,</span></span>
-<span class="r-in"><span>                 df <span class="op">=</span> <span class="va">parameter</span>,</span></span>
-<span class="r-in"><span>                 p <span class="op">=</span> <span class="va">p.value</span>,</span></span>
-<span class="r-in"><span>                 sig <span class="op">=</span> <span class="fu"><a href="starsig.html">starsig</a></span><span class="op">(</span><span class="va">p.value</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>                 row.names <span class="op">=</span> <span class="cn">NULL</span></span></span>
-<span class="r-in"><span>             <span class="op">)</span></span></span>
-<span class="r-in"><span>         <span class="op">)</span></span></span>
-<span class="r-in"><span>     <span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span>.id <span class="op">=</span> <span class="st">"Alternative"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind_rows.html" class="external-link">bind_rows</a></span><span class="op">(</span>.id <span class="op">=</span> <span class="st">"Distribution"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Distribution Alternative       Lower     Upper   Skewness          t df</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       uniform        less        -Inf 0.5890784 -0.8275309 -0.9937380 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2       uniform   two.sided -2.53333301 0.8782711 -0.8275309 -0.9937380 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3       uniform     greater -2.24414027       Inf -0.8275309 -0.9937380 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4        normal        less        -Inf 2.9206371  1.5040278  1.8061071 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5        normal   two.sided -0.20177430 3.2098298  1.5040278  1.8061071 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6        normal     greater  0.08741844       Inf  1.5040278  1.8061071 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7     lognormal        less        -Inf 5.4421540  4.0255447  4.8340629 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     lognormal   two.sided  2.31974263 5.7313468  4.0255447  4.8340629 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     lognormal     greater  2.60893537       Inf  4.0255447  4.8340629 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10      poisson        less        -Inf 1.1685612 -0.2480481 -0.2978678 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11      poisson   two.sided -1.95385017 1.4577540 -0.2480481 -0.2978678 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12      poisson     greater -1.66465743       Inf -0.2480481 -0.2978678 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13     negbinom        less        -Inf 2.5845827  1.1679734  1.4025572 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14     negbinom   two.sided -0.53782870 2.8737754  1.1679734  1.4025572 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15     negbinom     greater -0.24863596       Inf  1.1679734  1.4025572 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               p sig</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1  1.644306e-01  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  3.288612e-01  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  8.355694e-01  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4  9.591686e-01  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  8.166284e-02   .</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6  4.083142e-02   *</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7  9.999782e-01  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8  4.365629e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9  2.182815e-05 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 3.840016e-01  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 7.680031e-01  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 12 6.159984e-01  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 13 9.141301e-01  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 14 1.717398e-01  NS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 8.586990e-02   .</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
