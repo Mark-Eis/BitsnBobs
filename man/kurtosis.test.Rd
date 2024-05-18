@@ -94,34 +94,6 @@ should be used with caution.
  kurtosis.test(litter_sizes) 
  length(litter_sizes) |> stderr_kurtosis()
 
- ## Compare a range of distributions, each with the three possible alternative hypotheses
- list(
-   uniform = runif(30),
-   normal = rnorm(30),
-   lognormal = rlnorm(30),
-   poisson = rpois(30, lambda = 10),
-   negbinom = rnbinom(30, mu = 4, size = 2)
- ) |>
- lapply(\(distrib)
-     c("less", "two.sided","greater") |>
-     setNames(nm = _) |>
-     lapply(\(altern)
-         with(kurtosis.test(distrib, altern),
-             data.frame(
-                 Lower = conf.int[1],
-                 Upper = conf.int[2],
-                 Skewness = estimate,
-                 t = statistic,
-                 df = parameter,
-                 p = p.value,
-                 sig = starsig(p.value),
-                 row.names = NULL
-             )
-         )
-     ) |>
-     bind_rows(.id = "Alternative")) |>
- bind_rows(.id = "Distribution")
-
 }
 \references{
 Crawley, Michael J. (2012) \emph{The R Book}. John Wiley & Sons, Incorporated. ISBN:9780470973929. p.350-352.
