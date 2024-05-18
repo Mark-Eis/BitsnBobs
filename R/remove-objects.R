@@ -73,11 +73,11 @@ rm_objects <- function(basename, suffixes, envir = parent.frame()) {
     objs <- quote(ls(envir, pattern = as.symbol(basename)))
 
     found <- eval(objs)
-    cat(intro, "found", envstr, if(length(found)) found else "Zilch\u2014better luck next time!", "\n")
+    cat(intro, "found", envstr, if (length(found)) found else "Zilch\u2014better luck next time!", "\n")
     if(length(found)) {
         rm(list = vapply(suffixes, \(x) paste0(as.symbol(basename), x), vector("character", 1)), envir = envir)
         found <- eval(objs)
-        cat(intro, "remaining", envstr,  if(length(found)) found else "All gone!", "\n")
+        cat(intro, "remaining", envstr,  if (length(found)) found else "All gone!", "\n")
     }
     invisible(found)
 }
