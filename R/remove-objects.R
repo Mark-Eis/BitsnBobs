@@ -65,17 +65,17 @@ rm_objects <- function(basename, suffixes, envir = parent.frame()) {
     basename <- substitute(basename)
     if (!is.character(basename))
         basename <- deparse1(basename)
-    intro <- paste0("Objects matching \"", as.symbol(basename), "\u2026\"")
+    intro <- paste0("Objects matching \"", basename, "\u2026\"")
     envirname <- if (identical(envir, globalenv())) "global" else environmentName(envir)
     if (!nchar(envirname))
         envirname <- "(unnamed)"
     envstr <- paste("in", envirname, "environment: \u2013\n\t")
-    objs <- quote(ls(envir, pattern = as.symbol(basename)))
+    objs <- quote(ls(envir, pattern = basename))
 
     found <- eval(objs)
     cat(intro, "found", envstr, if (length(found)) found else "Zilch\u2014better luck next time!", "\n")
-    if(length(found)) {
-        rm(list = vapply(suffixes, \(x) paste0(as.symbol(basename), x), vector("character", 1)), envir = envir)
+    if (length(found)) {
+        rm(list = vapply(suffixes, \(x) paste0(basename, x), vector("character", 1)), envir = envir)
         found <- eval(objs)
         cat(intro, "remaining", envstr,  if (length(found)) found else "All gone!", "\n")
     }
