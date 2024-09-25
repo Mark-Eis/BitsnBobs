@@ -62,6 +62,9 @@
 #' ## Use regex() to make case insensitive
 #' starwars |> detective(regex("WALKER", TRUE), name, .arrange_by = desc(name))
 #'
+#' ## Use | for alternatives
+#' starwars |> detective("Kenobi|Walker", name)
+#'
 #' ## Replace strings containing a specified pattern
 #' starwars |> detective("Darth", name)
 #' starwars |> detective("Darth", name, .exclude = "Vader") <- "Darth The First"
