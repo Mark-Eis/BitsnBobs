@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - May 2024
+# Mark Eisler - Sep 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
