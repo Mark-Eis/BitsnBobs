@@ -63,11 +63,11 @@
 
 rm_objects <- function(basename, suffixes, envir = parent.frame()) {
     basename <- substitute(basename)
-    if (!is.character(basename))
+    if(!is.character(basename))
         basename <- deparse1(basename)
     intro <- paste0("Objects matching \"", basename, "\u2026\"")
-    envirname <- if (identical(envir, globalenv())) "global" else environmentName(envir)
-    if (!nchar(envirname))
+    envirname <- if(identical(envir, globalenv())) "global" else environmentName(envir)
+    if(!nchar(envirname))
         envirname <- "(unnamed)"
     envstr <- paste("in", envirname, "environment: \u2013\n\t")
     objs <- quote(ls(envir, pattern = basename))
