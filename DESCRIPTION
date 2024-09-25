@@ -1,7 +1,7 @@
 Package: BitsnBobs
 Title: For General Bits and Bobs of Code
-Version: 0.0.6.00009
-Date: 2024-05-18
+Version: 0.0.6.00011
+Date: 2024-09-25
 Authors@R: 
     person("Mark", "Eisler", , "Mark.Eisler@bristol.ac.uk", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-6843-3345"))
@@ -49,4 +49,4 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
-VersonName: Dios te salve, Maria
+VersonName: Algunos ajustes
