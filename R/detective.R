@@ -75,7 +75,6 @@
 #'
 #' ## Select columns using <tidy-select> syntax from {dplyr},
 #' ## including use of “selection helpers”
-#' starwars |> detective(glob2rx("*"), !c(name, contains("color")))
 #' starwars |> detective(
 #'         "brown", contains("color"), species,
 #'         .arrange_by = across(contains("color"))
@@ -94,6 +93,22 @@
 #' starwars |> detective("brown", name, contains("color"), species)
 #'
 #' starwars |> detective("chestnut", name, contains("color"), species)
+#'
+#' ## Use {utils} glob2rx() to create regular expression, in this instance 
+#' ## a wildcard * finding every character except a new line
+#' starwars |> detective(glob2rx("*"), !c(name, contains("color")))
+#'
+#' ## Equivalent using {stringr} regex(".")
+#' identical(
+#'     starwars |> detective(glob2rx("*"), !c(name, contains("color"))),
+#'     starwars |> detective(regex("."), !c(name, contains("color")))
+#' )
+#'
+#' ## Equivalent using caret "^" in pattern string
+#' identical(
+#'     starwars |> detective(glob2rx("*"), !c(name, contains("color"))),
+#'     starwars |> detective("^", !c(name, contains("color")))
+#' )
 #'
 #' \dontshow{rm(starwars)}
 #'
