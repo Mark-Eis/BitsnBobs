@@ -1,192 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/404.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/articles/Using-wizard.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/index.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/BitsnBobs-package.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/Import_Rostido.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/Manage_Rostido.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/S3Gen_Meth.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/S3_Method_Debug.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/boxcox3.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/cat_names.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/catapult.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/cohens_kappa.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/const.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/cor_coef.test.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/count_lgl.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/decdeg.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/degminsec.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/design_effect.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/detective.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/eff_rate.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/endstop.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/facet_histo.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/fct_to_num.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/formul_pwrseq.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/get_amortval.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/heights.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/iterate.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/j.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/kurtosis.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/kurtosis.test.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/kwd_cols.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/latlon.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/lf.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/list_lgl.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/litter_sizes.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/logit.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/marker.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/method_info.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/odds.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/op-min-max.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/opt_bc.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/phi_coef.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/phi_coef.test.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/power_seq.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/print_all.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/retriever.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/revmat.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/rm_objects.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/sample_size.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/skewness.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/skewness.test.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/split_to_cols.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/starsig.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/starwars2.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/starwars3.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/tidyeval.html</loc>
-  </url>
-  <url>
-    <loc>https://mark-eis.github.io/BitsnBobs/reference/wizard.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://mark-eis.github.io/BitsnBobs/404.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/LICENSE-text.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/LICENSE.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/articles/Using-wizard.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/articles/index.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/authors.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/index.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/BitsnBobs-package.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/Import_Rostido.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/Manage_Rostido.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/S3Gen_Meth.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/S3_Method_Debug.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/boxcox3.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/cat_names.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/catapult.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/cohens_kappa.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/const.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/cor_coef.test.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/count_lgl.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/decdeg.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/degminsec.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/design_effect.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/detective.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/eff_rate.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/endstop.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/facet_histo.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/fct_to_num.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/formul_pwrseq.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/get_amortval.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/heights.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/index.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/iterate.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/j.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/kurtosis.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/kurtosis.test.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/kwd_cols.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/latlon.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/lf.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/list_lgl.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/litter_sizes.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/logit.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/marker.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/method_info.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/odds.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/op-min-max.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/opt_bc.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/phi_coef.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/phi_coef.test.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/power_seq.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/print_all.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/reexports.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/retriever.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/revmat.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/rm_objects.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/sample_size.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/skewness.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/skewness.test.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/split_to_cols.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/starsig.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/starwars2.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/starwars3.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/tidyeval.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/wizard.html</loc></url>
 </urlset>
+
