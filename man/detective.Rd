@@ -63,23 +63,30 @@ including use of \code{\link[dplyr:across]{across()}} or \code{\link[dplyr:pick]
 \examples{
 \dontshow{starwars <- (\() dplyr::starwars)()}
 
+## Find strings containing a specified pattern in a data frame
 starwars |> detective("Sky", name)
 starwars |> detective("Sky", name, .exclude = "Luke")
+
+## Use regex() to make case insensitive
 starwars |> detective(regex("WALKER", TRUE), name, .arrange_by = desc(name))
 
+## Replace strings containing a specified pattern
 starwars |> detective("Darth", name)
 starwars |> detective("Darth", name, .exclude = "Vader") <- "Darth The First"
 starwars |> detective("Darth", name, .arrange_by = desc(name))
 
+## Exclude strings containing unwanted patterns 
 starwars |> detective("Human", homeworld, species)
 starwars |> detective("Human", homeworld, species, .exclude = "S")
 starwars |> detective("Human", homeworld, species,.exclude = "s")
 starwars |> detective("Human", homeworld, species, .exclude = regex("s", TRUE))
 
-starwars |> detective(NULL, !c(name, contains("color")))
+## Select columns using <tidy-select> syntax from {dplyr},
+## including use of “selection helpers”
+starwars |> detective(glob2rx("*"), !c(name, contains("color")))
 starwars |> detective(
         "brown", contains("color"), species,
-       .arrange_by = across(contains("color"))
+        .arrange_by = across(contains("color"))
     )
 
 starwars |> detective(

@@ -78,7 +78,7 @@
 #' starwars |> detective(glob2rx("*"), !c(name, contains("color")))
 #' starwars |> detective(
 #'         "brown", contains("color"), species,
-#'        .arrange_by = across(contains("color"))
+#'         .arrange_by = across(contains("color"))
 #'     )
 #'
 #' starwars |> detective(
