@@ -57,13 +57,12 @@
 #'
 #' ## Find strings containing a specified pattern in a data frame
 #' starwars |> detective("Sky", name)
-#' starwars |> detective("Sky", name, .exclude = "Luke")
 #'
 #' ## Use regex() to make case insensitive
 #' starwars |> detective(regex("WALKER", TRUE), name, .arrange_by = desc(name))
 #'
 #' ## Use | for alternatives
-#' starwars |> detective("Kenobi|Walker", name)
+#' starwars |> detective("Sky|Organa", name)
 #'
 #' ## Replace strings containing a specified pattern
 #' starwars |> detective("Darth", name)
@@ -71,9 +70,11 @@
 #' starwars |> detective("Darth", name, .arrange_by = desc(name))
 #'
 #' ## Exclude strings containing unwanted patterns 
+#' starwars |> detective("Sky", name, .exclude = "Luke")
+#'
+#' ## Return multiple columns 
 #' starwars |> detective("Human", homeworld, species)
-#' starwars |> detective("Human", homeworld, species, .exclude = "S")
-#' starwars |> detective("Human", homeworld, species,.exclude = "s")
+#' starwars |> detective("Human", homeworld, species, .exclude = "s")
 #' starwars |> detective("Human", homeworld, species, .exclude = regex("s", TRUE))
 #'
 #' ## Select columns using <tidy-select> syntax from {dplyr},
