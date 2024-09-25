@@ -5,17 +5,14 @@
 \alias{detective<-}
 \title{Search for Pattern in a Data Frame Character Column}
 \usage{
-detective(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(n))
+detective(.data, pattern, ..., .exclude = NULL, .arrange_by = desc(n))
 
-detective(.data, ..., .pattern, .exclude = NULL) <- value
+detective(.data, pattern, ..., .exclude = NULL) <- value
 }
 \arguments{
 \item{.data}{a data frame, or a data frame extension (e.g. a \code{\link[tibble:tibble-package]{tibble}}).}
 
-\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> \code{character} or \code{factor} columns to search and
-return.}
-
-\item{.pattern}{Pattern to look for.
+\item{pattern}{Pattern to look for.
 
 The default interpretation is a regular expression, as described in
 \code{vignette("regular-expressions")}. Use \code{\link[stringr:regex]{regex()}} for finer control of the
@@ -30,7 +27,10 @@ Match character, word, line and sentence boundaries with
 \code{\link[stringr:boundary]{boundary()}}. An empty pattern, "", is equivalent to
 \code{boundary("character")}.}
 
-\item{.exclude}{a single \code{character} string signifying items to be excluded, interpreted as for \code{.pattern};
+\item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> \code{character} or \code{factor} columns to search and
+return.}
+
+\item{.exclude}{a single \code{character} string signifying items to be excluded, interpreted as for \code{pattern};
 default \code{NULL}.}
 
 \item{.arrange_by}{<\code{\link[rlang:args_data_masking]{data-masking}}> quoted name(s) of column(s) for ordering
@@ -46,10 +46,10 @@ results. Use \code{\link[dplyr:desc]{desc()}} to sort by variables in descending
 Find and modify strings containing a specified pattern in a data frame character column.
 }
 \details{
-\code{detective()} finds and counts strings matching \code{.pattern} but not matching \code{.exclude} in selected
+\code{detective()} finds and counts strings matching \code{pattern} but not matching \code{.exclude} in selected
 columns in \code{.data}, while \verb{detective()<-} is the equivalent replacement function. Both functions forms
-allow use of the various possibilities for the \code{.pattern} argument of \code{\link[stringr:str_detect]{str_detect}}.
-Use \code{.pattern = regex("xyz", ignore_case = TRUE)} for a case insensitive search. Use \pkg{\link[utils]{utils}}
+allow use of the various possibilities for the \code{pattern} argument of \code{\link[stringr:str_detect]{str_detect}}.
+Use \code{pattern = regex("xyz", ignore_case = TRUE)} for a case insensitive search. Use \pkg{\link[utils]{utils}}
 package \code{\link[utils:glob2rx]{glob2rx()}} to change a wildcard or globbing pattern into a regular expression.
 
 \code{character} or \code{factor} columns in \code{.data} are selected using \code{\dots} with the
@@ -63,37 +63,37 @@ including use of \code{\link[dplyr:across]{across()}} or \code{\link[dplyr:pick]
 \examples{
 \dontshow{starwars <- (\() dplyr::starwars)()}
 
-starwars |> detective(name, .pattern = "Sky")
-starwars |> detective(name, .pattern = "Sky", .exclude = "Luke")
-starwars |> detective(name, .pattern = regex("WALKER", TRUE), .arrange_by = desc(name))
+starwars |> detective("Sky", name)
+starwars |> detective("Sky", name, .exclude = "Luke")
+starwars |> detective(regex("WALKER", TRUE), name, .arrange_by = desc(name))
 
-starwars |> detective(name, .pattern = "Darth")
-starwars |> detective(name, .pattern = "Darth", .exclude = "Vader") <- "Darth The First"
-starwars |> detective(name, .pattern = "Darth", .arrange_by = desc(name))
+starwars |> detective("Darth", name)
+starwars |> detective("Darth", name, .exclude = "Vader") <- "Darth The First"
+starwars |> detective("Darth", name, .arrange_by = desc(name))
 
-starwars |> detective(homeworld, species, .pattern = "Human")
-starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "S")
-starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "s")
-starwars |> detective(homeworld, species, .pattern = "Human", .exclude = regex("s", TRUE))
+starwars |> detective("Human", homeworld, species)
+starwars |> detective("Human", homeworld, species, .exclude = "S")
+starwars |> detective("Human", homeworld, species,.exclude = "s")
+starwars |> detective("Human", homeworld, species, .exclude = regex("s", TRUE))
 
-starwars |> detective(!c(name, contains("color")))
+starwars |> detective(NULL, !c(name, contains("color")))
 starwars |> detective(
-        contains("color"), species, .pattern = "brown",
+        "brown", contains("color"), species,
        .arrange_by = across(contains("color"))
     )
 
 starwars |> detective(
-         name, contains("color"), species, .pattern = "brown",
+        "brown", name, contains("color"), species,
         .exclude = "Human", .arrange_by = across(contains("color"))
     )
 
 starwars |> detective(
-        contains("color"), species, .pattern = "brown",
+        "brown", contains("color"), species,
     ) <- "chestnut"
 
-starwars |> detective(name, contains("color"), species, .pattern = "brown")
+starwars |> detective("brown", name, contains("color"), species)
 
-starwars |> detective(name, contains("color"), species, .pattern = "chestnut")
+starwars |> detective("chestnut", name, contains("color"), species)
 
 \dontshow{rm(starwars)}
 

@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - May 2024
+# Mark Eisler - Sep 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -14,10 +14,10 @@
 #' Find and modify strings containing a specified pattern in a data frame character column.
 #'
 #' @details
-#' `detective()` finds and counts strings matching `.pattern` but not matching `.exclude` in selected
+#' `detective()` finds and counts strings matching `pattern` but not matching `.exclude` in selected
 #' columns in `.data`, while `detective()<-` is the equivalent replacement function. Both functions forms
-#' allow use of the various possibilities for the `.pattern` argument of [`str_detect`][stringr::str_detect].
-#' Use `.pattern = regex("xyz", ignore_case = TRUE)` for a case insensitive search. Use \pkg{\link[utils]{utils}}
+#' allow use of the various possibilities for the `pattern` argument of [`str_detect`][stringr::str_detect].
+#' Use `pattern = regex("xyz", ignore_case = TRUE)` for a case insensitive search. Use \pkg{\link[utils]{utils}}
 #' package [`glob2rx()`][utils::glob2rx] to change a wildcard or globbing pattern into a regular expression.
 #'
 #' `character` or `factor` columns in `.data` are selected using \code{\dots} with the
@@ -38,7 +38,7 @@
 #' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> `character` or `factor` columns to search and
 #'   return.
 #'
-#' @param .exclude a single `character` string signifying items to be excluded, interpreted as for `.pattern`;
+#' @param .exclude a single `character` string signifying items to be excluded, interpreted as for `pattern`;
 #'   default `NULL`.  
 #'
 #' @param .arrange_by <[`data-masking`][rlang::args_data_masking]> quoted name(s) of column(s) for ordering  
@@ -55,51 +55,58 @@
 #' @examples
 #' \dontshow{starwars <- (\() dplyr::starwars)()}
 #'
-#' starwars |> detective(name, .pattern = "Sky")
-#' starwars |> detective(name, .pattern = "Sky", .exclude = "Luke")
-#' starwars |> detective(name, .pattern = regex("WALKER", TRUE), .arrange_by = desc(name))
+#' ## Find strings containing a specified pattern in a data frame
+#' starwars |> detective("Sky", name)
+#' starwars |> detective("Sky", name, .exclude = "Luke")
 #'
-#' starwars |> detective(name, .pattern = "Darth")
-#' starwars |> detective(name, .pattern = "Darth", .exclude = "Vader") <- "Darth The First"
-#' starwars |> detective(name, .pattern = "Darth", .arrange_by = desc(name))
+#' ## Use regex() to make case insensitive
+#' starwars |> detective(regex("WALKER", TRUE), name, .arrange_by = desc(name))
 #'
-#' starwars |> detective(homeworld, species, .pattern = "Human")
-#' starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "S")
-#' starwars |> detective(homeworld, species, .pattern = "Human", .exclude = "s")
-#' starwars |> detective(homeworld, species, .pattern = "Human", .exclude = regex("s", TRUE))
+#' ## Replace strings containing a specified pattern
+#' starwars |> detective("Darth", name)
+#' starwars |> detective("Darth", name, .exclude = "Vader") <- "Darth The First"
+#' starwars |> detective("Darth", name, .arrange_by = desc(name))
 #'
-#' starwars |> detective(!c(name, contains("color")))
+#' ## Exclude strings containing unwanted patterns 
+#' starwars |> detective("Human", homeworld, species)
+#' starwars |> detective("Human", homeworld, species, .exclude = "S")
+#' starwars |> detective("Human", homeworld, species,.exclude = "s")
+#' starwars |> detective("Human", homeworld, species, .exclude = regex("s", TRUE))
+#'
+#' ## Select columns using <tidy-select> syntax from {dplyr},
+#' ## including use of “selection helpers”
+#' starwars |> detective(glob2rx("*"), !c(name, contains("color")))
 #' starwars |> detective(
-#'         contains("color"), species, .pattern = "brown",
+#'         "brown", contains("color"), species,
 #'        .arrange_by = across(contains("color"))
 #'     )
 #'
 #' starwars |> detective(
-#'          name, contains("color"), species, .pattern = "brown",
+#'         "brown", name, contains("color"), species,
 #'         .exclude = "Human", .arrange_by = across(contains("color"))
 #'     )
 #'
 #' starwars |> detective(
-#'         contains("color"), species, .pattern = "brown",
+#'         "brown", contains("color"), species,
 #          .exclude = "Human"
 #'     ) <- "chestnut"
 #'
-#' starwars |> detective(name, contains("color"), species, .pattern = "brown")
+#' starwars |> detective("brown", name, contains("color"), species)
 #'
-#' starwars |> detective(name, contains("color"), species, .pattern = "chestnut")
+#' starwars |> detective("chestnut", name, contains("color"), species)
 #'
 #' \dontshow{rm(starwars)}
 #'
 
-detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(n)) {
+detective <- function(.data, pattern, ..., .exclude = NULL, .arrange_by = desc(n)) {
     n <- NULL
     pos <- eval_select(expr(c(...) & chr_or_fct()), .data)
     if (!length(pos))
         pos <- eval_select(expr(chr_or_fct()), .data)
-    if (missing(.pattern))
+    if (missing(pattern))
         selrow <- !logical(nrow(.data))
     else {
-        selrow <- pos |> lapply(\(x) str_detect(.data[[x]], .pattern)) |> pmap_lgl(any)
+        selrow <- pos |> lapply(\(x) str_detect(.data[[x]], pattern)) |> pmap_lgl(any)
         selrow <- selrow & !is.na(selrow)  ## NA becomes FALSE
     }
     if (!is.null(.exclude)) {
@@ -118,7 +125,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
 #' @rdname detective
 #' @export
 
-`detective<-` <- function(.data, ..., .pattern, .exclude = NULL, value) {
+`detective<-` <- function(.data, pattern, ..., .exclude = NULL, value) {
     stopifnot(is.data.frame(.data))
     pos <- eval_select(expr(c(...) & chr_or_fct()), .data)
     posfct <- eval_select(expr(c(...) & where(is.factor)), .data)
@@ -136,7 +143,7 @@ detective <- function(.data, ..., .pattern, .exclude = NULL, .arrange_by = desc(
                 fct_relevel(sort)
             }),
             across(all_of(pos), \(x) modify_at(x, exlrow, \(y) 
-                if (str_detect(y, .pattern) & !is.na(y))
+                if (str_detect(y, pattern) & !is.na(y))
                     value
                 else
                     y
