@@ -250,11 +250,14 @@ as_degminsec.numeric <- function(
 
     switch(.degrtype,
         decdeg = sum(
-           object %/% 1,
-           (object %% 1 * 60) %/% 1 / 100,
-           (object %% 1 * 60) %% 1 * 3 / 500
+            object %/% 1,
+            (object %% 1 * 60) %/% 1 / 100,
+            (object %% 1 * 60) %% 1 * 3 / 500
         ),
-        degmin = sum(deg, as.integer(min) / 100, min %% 1 * 3 / 500),
+        degmin = sum(
+            (object * 100) %/% 1 / 100,
+            (object * 100) %% 1 * 3 / 500
+        ),
         degminsec = object,
         stop("Invalid `.degrtype`", call. = FALSE)
     )
