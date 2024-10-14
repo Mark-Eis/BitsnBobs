@@ -314,13 +314,45 @@ as__degmin.decdeg <- function(object, ...) {
 
 as__degmin.degmin <- function(object, ...) {
     check_dots_empty()
-    object |>
+    with(object, deg + min / 100) |>
     as.numeric()
 }
 
 as__degmin.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min %/% 1 / 100 + min %% 1 * 3 / 500) |>
+    with(object, deg + (min + sec / 60) / 100) |>
+    as.numeric()
+}
+
+# To avoid conflict with BitsnBobs::as_decdeg()
+as__decdeg <- function(object, ...) {
+    UseMethod("as__decdeg")
+}
+
+as__decdeg.coord <- function(object, ...) {
+    check_dots_empty()
+
+    NextMethod() |>
+    swapsign(object %@% "negative") |>
+    coord("decdeg", .latorlon = object %@% "latorlon")
+}
+
+
+as__decdeg.decdeg <- function(object, ...) {
+    check_dots_empty()
+    with(object, deg) |>
+    as.numeric()
+}
+
+as__decdeg.degmin <- function(object, ...) {
+    check_dots_empty()
+    with(object, deg + min / 60) |>
+    as.numeric()
+}
+
+as__decdeg.degminsec <- function(object, ...) {
+    check_dots_empty()
+    with(object, deg + min / 60 + sec / 3600) |>
     as.numeric()
 }
 
