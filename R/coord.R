@@ -214,7 +214,6 @@ validate_coord <- function(object) {
 print.coord <- function(x, ...) {
     check_dots_empty()
     if (all(x %@% "degrtype" == "decdeg", x %@% "negative"))
-        # cat("-")
         x$deg <- -x$deg
      lapply(x, format)
     if (x %@% "degrtype" == "decdeg") {
