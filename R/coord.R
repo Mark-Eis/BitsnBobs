@@ -143,8 +143,12 @@ coord <- function(
     if (length(x) > 1) rv else rv[[1]]
 }
 
+# # new_coord <- function(x, degrtype, latorlon = NA, negative = FALSE) {
+    # structure(x, class = "coord", degrtype = degrtype, latorlon = latorlon, negative = negative)
+# }
+
 new_coord <- function(x, degrtype, latorlon = NA, negative = FALSE) {
-    structure(x, class = "coord", degrtype = degrtype, latorlon = latorlon, negative = negative)
+    structure(x, class = c("coord", degrtype), degrtype = degrtype, latorlon = latorlon, negative = negative)
 }
 
 validate_coord <- function(object) {
@@ -156,11 +160,13 @@ validate_coord <- function(object) {
         )
 
     if (with(object,
-            switch(object %@% "degrtype",
+            # switch(object %@% "degrtype",
+            switch(class(object)[2],
                 decdeg = deg,
                 degmin = deg + min / 60,
                 degminsec = deg + min / 60 + sec / 3600,
-                stop("Invalid `degrtype` attribute", call. = FALSE)
+                # stop("Invalid `degrtype` attribute", call. = FALSE)
+                stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
             ) > 180
         ))
         stop(
@@ -235,8 +241,13 @@ print.coord <- function(x, ...) {
         unname()
 }
 
+# To avoid conflict with BitsnBobs::as_degminsec()
+as__degminsec <- function(object, ...) {
+    UseMethod("as__degminsec")
+}
+
 # Vectorised conversion method
-as_degminsec.numeric <- function(
+as__degminsec.numeric <- function(
     object,
     ...,
     .degrtype = c("decdeg", "degmin", "degminsec"),
@@ -260,23 +271,51 @@ as_degminsec.numeric <- function(
 }
 
 
-as_degminsec.coord <- function(object, ...) {
+# as_degminsec.coord <- function(object, ...) {
+    # check_dots_empty()
+
+    # with(object,
+        # switch(object %@% degrtype,
+            # decdeg = (deg %/% 1 + (deg %% 1 * 60) %/% 1 / 100 + (deg %% 1 * 60) %% 1 * 3 / 500) |>
+                # as.numeric() |>
+                # swapsign(object %@% "negative") |>
+                # coord("degminsec", .latorlon = object %@% "latorlon"),
+            # degmin = (deg + min %/% 1 / 100 + min %% 1 * 3 / 500) |>
+                # as.numeric() |>
+                # swapsign(object %@% "negative") |>
+                # coord("degminsec", .latorlon = object %@% "latorlon"),
+            # degminsec = object,
+            # stop("Invalid `.degrtype`", call. = FALSE)
+        # )
+    # )
+# }
+
+
+as__degminsec.coord <- function(object, ...) {
     check_dots_empty()
 
-    with(object,
-        switch(object %@% degrtype,
-            decdeg = (deg %/% 1 + (deg %% 1 * 60) %/% 1 / 100 + (deg %% 1 * 60) %% 1 * 3 / 500) |>
-                as.numeric() |>
-                swapsign(object %@% "negative") |>
-                coord("degminsec", .latorlon = object %@% "latorlon"),
-            degmin = (deg + min %/% 1 / 100 + min %% 1 * 3 / 500) |>
-                as.numeric() |>
-                swapsign(object %@% "negative") |>
-                coord("degminsec", .latorlon = object %@% "latorlon"),
-            degminsec = object,
-            stop("Invalid `.degrtype`", call. = FALSE)
-        )
-    )
+    NextMethod() |>
+    swapsign(object %@% "negative") |>
+    coord("degminsec", .latorlon = object %@% "latorlon")
+}
+
+
+as__degminsec.decdeg <- function(object, ...) {
+    check_dots_empty()
+    with(object, deg %/% 1 + (deg %% 1 * 60) %/% 1 / 100 + (deg %% 1 * 60) %% 1 * 3 / 500) |>
+    as.numeric()
+}
+
+as__degminsec.degmin <- function(object, ...) {
+    check_dots_empty()
+    with(object, deg + min %/% 1 / 100 + min %% 1 * 3 / 500) |>
+    as.numeric()
+}
+
+as__degminsec.degminsec <- function(object, ...) {
+    check_dots_empty()
+    object |>
+    as.numeric()
 }
 
 
