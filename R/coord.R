@@ -143,12 +143,9 @@ coord <- function(
     if (length(x) > 1) rv else rv[[1]]
 }
 
-# # new_coord <- function(x, degrtype, latorlon = NA, negative = FALSE) {
-    # structure(x, class = "coord", degrtype = degrtype, latorlon = latorlon, negative = negative)
-# }
-
 new_coord <- function(x, degrtype, latorlon = NA, negative = FALSE) {
-    structure(x, class = c("coord", degrtype), degrtype = degrtype, latorlon = latorlon, negative = negative)
+    # structure(x, class = c("coord", degrtype), degrtype = degrtype, latorlon = latorlon, negative = negative)
+    structure(x, class = c("coord", degrtype), latorlon = latorlon, negative = negative)
 }
 
 validate_coord <- function(object) {
@@ -160,12 +157,10 @@ validate_coord <- function(object) {
         )
 
     if (with(object,
-            # switch(object %@% "degrtype",
             switch(class(object)[2],
                 decdeg = deg,
                 degmin = deg + min / 60,
                 degminsec = deg + min / 60 + sec / 3600,
-                # stop("Invalid `degrtype` attribute", call. = FALSE)
                 stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
             ) > 180
         ))
@@ -175,11 +170,13 @@ validate_coord <- function(object) {
         )
 
     if (with(object,
-            switch(object %@% "degrtype",
-                decdeg = 0,
+            # switch(object %@% "degrtype",
+            switch(class(object)[2],
+               decdeg = 0,
                 degmin = min,
                 degminsec = min + sec / 60,
-                stop("Invalid `degrtype` attribute", call. = FALSE)
+                # stop("Invalid `degrtype` attribute", call. = FALSE)
+                stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
             ) >= 60
         ))
         stop(
@@ -195,11 +192,13 @@ validate_coord <- function(object) {
 
     if (with(object,
             all(object %@% "latorlon" %in% "lat",
-                switch(object %@% "degrtype",
+                # switch(object %@% "degrtype",
+                switch(class(object)[2],
                     decdeg = deg,
                     degmin = deg + min / 60,
                     degminsec = deg + min / 60 + sec / 3600,
-                    stop("Invalid `degrtype` attribute", call. = FALSE)
+                    # stop("Invalid `degrtype` attribute", call. = FALSE)
+                    stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
                 ) > 90
             )
         ))
@@ -219,10 +218,12 @@ validate_coord <- function(object) {
 
 print.coord <- function(x, ...) {
     check_dots_empty()
-    if (all(x %@% "degrtype" == "decdeg", x %@% "negative"))
+    # if (all(x %@% "degrtype" == "decdeg", x %@% "negative"))
+    if (all(class(x)[2] == "decdeg", x %@% "negative"))
         x$deg <- -x$deg
      lapply(x, format)
-    if (x %@% "degrtype" == "decdeg") {
+    # if (x %@% "degrtype" == "decdeg") {
+    if (class(x)[2] == "decdeg") {
         if (!is.na(x %@% "latorlon")) cat(" ", x %@% "latorlon", sep = "")
     } else
         cat(" ", .cmppnt(x %@% "latorlon", x %@% "negative"), sep = "")
