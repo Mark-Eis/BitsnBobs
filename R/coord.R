@@ -264,18 +264,18 @@ as_degminsec.coord <- function(object, ...) {
     check_dots_empty()
 
     with(object,
-	    switch(object %@% degrtype,
-	        decdeg = (deg %/% 1 + (deg %% 1 * 60) %/% 1 / 100 + (deg %% 1 * 60) %% 1 * 3 / 500) |>
-		        	as.numeric() |>
+        switch(object %@% degrtype,
+            decdeg = (deg %/% 1 + (deg %% 1 * 60) %/% 1 / 100 + (deg %% 1 * 60) %% 1 * 3 / 500) |>
+                as.numeric() |>
                 swapsign(object %@% "negative") |>
-		        	coord("degminsec", .latorlon = object %@% "latorlon"),
-	        degmin = (deg + min %/% 1 / 100 + min %% 1 * 3 / 500) |>
-		        	as.numeric() |>
+                coord("degminsec", .latorlon = object %@% "latorlon"),
+            degmin = (deg + min %/% 1 / 100 + min %% 1 * 3 / 500) |>
+                as.numeric() |>
                 swapsign(object %@% "negative") |>
-		        	coord("degminsec", .latorlon = object %@% "latorlon"),
-	        degminsec = object,
-	        stop("Invalid `.degrtype`", call. = FALSE)
-		)
+                coord("degminsec", .latorlon = object %@% "latorlon"),
+            degminsec = object,
+            stop("Invalid `.degrtype`", call. = FALSE)
+        )
     )
 }
 
@@ -301,6 +301,6 @@ fmtdeg <- function(x, .degrtype = c("decdeg", "degmin", "degminsec"), .fmt = c("
 
 # Vectorised conditional sign change function
 swapsign <- function(x, negate) {
-	stopifnot(length(x) == length(negate))
-	ifelse(negate, -x, x)
+    stopifnot(length(x) == length(negate))
+    ifelse(negate, -x, x)
 }
