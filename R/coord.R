@@ -95,7 +95,7 @@ format.minxint <- function(x, ...) {
 
 format.secxdec <- function(x, ...) {
     check_dots_empty()
-    c(formatC(x, digits = 3, width = 6, format = "f", flag = "0"), "\"")
+    c(formatC(x, digits = 2, width = 5, format = "f", flag = "0"), "\"")
 }
 
 format.coordpart <- function(x, ...) {
@@ -235,7 +235,7 @@ print.coord <- function(x, ...) {
         unname()
 }
 
-
+# Vectorised conversion method
 as_degminsec.numeric <- function(
     object,
     ...,
@@ -265,15 +265,14 @@ as_degminsec.coord <- function(object, ...) {
 
     with(object,
 	    switch(object %@% degrtype,
-	        decdeg = deg |>
+	        decdeg = (deg %/% 1 + (deg %% 1 * 60) %/% 1 / 100 + (deg %% 1 * 60) %% 1 * 3 / 500) |>
 		        	as.numeric() |>
                 swapsign(object %@% "negative") |>
-		        	as_degminsec() |>
 		        	coord("degminsec", .latorlon = object %@% "latorlon"),
-	        degmin = sum(
-	            (object * 100) %/% 1 / 100,
-	            (object * 100) %% 1 * 3 / 500
-	        ),
+	        degmin = (deg + min %/% 1 / 100 + min %% 1 * 3 / 500) |>
+		        	as.numeric() |>
+                swapsign(object %@% "negative") |>
+		        	coord("degminsec", .latorlon = object %@% "latorlon"),
 	        degminsec = object,
 	        stop("Invalid `.degrtype`", call. = FALSE)
 		)
@@ -300,5 +299,8 @@ fmtdeg <- function(x, .degrtype = c("decdeg", "degmin", "degminsec"), .fmt = c("
     )
 }
 
-# Vectorised conditional change sign function
-swapsign <- function(x, negate) ifelse(negate, -x, x)
+# Vectorised conditional sign change function
+swapsign <- function(x, negate) {
+	stopifnot(length(x) == length(negate))
+	ifelse(negate, -x, x)
+}
