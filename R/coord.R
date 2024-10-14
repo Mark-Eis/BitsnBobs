@@ -75,12 +75,12 @@ validate_coordpart <- function(object) {
 
 format.degxdec <- function(x, ...) {
     check_dots_empty()
-    c(formatC(x, digits = 6, width = 10, format = "f", flag = " "), "\u00B0")
+    c(formatC(x, digits = 6, width = 11, format = "f", flag = " "), "\u00B0")
 }
 
 format.degxint <- function(x, ...) {
     check_dots_empty()
-    c(formatC(x, digits = 0, width = 3, format = "f", flag = " "), "\u00B0")
+    c(formatC(x, digits = 0, width = 3, format = "f"), "\u00B0")
 }
 
 format.minxdec <- function(x, ...) {
@@ -214,7 +214,8 @@ validate_coord <- function(object) {
 print.coord <- function(x, ...) {
     check_dots_empty()
     if (all(x %@% "degrtype" == "decdeg", x %@% "negative"))
-        cat("-")
+        # cat("-")
+        x$deg <- -x$deg
      lapply(x, format)
     if (x %@% "degrtype" == "decdeg") {
         if (!is.na(x %@% "latorlon")) cat(" ", x %@% "latorlon", sep = "")
