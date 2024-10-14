@@ -247,19 +247,36 @@ as_degminsec.numeric <- function(
     .fmt <- match.arg(.fmt)
 
     object <- fmtdeg(object, .degrtype, .fmt)
+    wasneg <- object < 0
+    object <- abs(object)
 
     switch(.degrtype,
-        decdeg = sum(
-            object %/% 1,
-            (object %% 1 * 60) %/% 1 / 100,
-            (object %% 1 * 60) %% 1 * 3 / 500
-        ),
-        degmin = sum(
-            (object * 100) %/% 1 / 100,
-            (object * 100) %% 1 * 3 / 500
-        ),
+        decdeg = object %/% 1 + (object %% 1 * 60) %/% 1 / 100 + (object %% 1 * 60) %% 1 * 3 / 500,
+        degmin = (object * 100) %/% 1 / 100 + (object * 100) %% 1 * 3 / 500,
         degminsec = object,
         stop("Invalid `.degrtype`", call. = FALSE)
+    ) |>
+    swapsign(wasneg)
+}
+
+
+as_degminsec.coord <- function(object, ...) {
+    check_dots_empty()
+
+    with(object,
+	    switch(object %@% degrtype,
+	        decdeg = deg |>
+		        	as.numeric() |>
+                swapsign(object %@% "negative") |>
+		        	as_degminsec() |>
+		        	coord("degminsec", .latorlon = object %@% "latorlon"),
+	        degmin = sum(
+	            (object * 100) %/% 1 / 100,
+	            (object * 100) %% 1 * 3 / 500
+	        ),
+	        degminsec = object,
+	        stop("Invalid `.degrtype`", call. = FALSE)
+		)
     )
 }
 
@@ -282,3 +299,6 @@ fmtdeg <- function(x, .degrtype = c("decdeg", "degmin", "degminsec"), .fmt = c("
         stop("Invalid `.fmt` value", call. = FALSE) 
     )
 }
+
+# Vectorised conditional change sign function
+swapsign <- function(x, negate) ifelse(negate, -x, x)
