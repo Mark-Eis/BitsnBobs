@@ -130,13 +130,11 @@ coord <- function(
             decdeg = list(deg = coordpart(y, "degxdec")),
             degmin = list(
                 deg = coordpart(as.integer(y), "degxint"),
-                # min = coordpart(.up2(y), "minxdec")
                 min = coordpart(round(.up2(y), 4), "minxdec")
             ),
             degminsec = list(
                 deg = coordpart(as.integer(y), "degxint"),
                 min = coordpart(as.integer(.up2(y)), "minxint"),
-                # sec = coordpart(.up2(.up2(y)), "secxdec")
                 sec = coordpart(round(.up2(.up2(y)), 2), "secxdec")
             ),
             stop("Invalid `.degrtype` value", call. = FALSE)
