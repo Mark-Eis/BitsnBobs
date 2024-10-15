@@ -157,29 +157,37 @@ validate_coord <- function(object) {
             call. = FALSE
         )
 
-    if (with(object,
-            switch(class(object)[2],
-                decdeg = deg,
-                degmin = deg + min / 60,
-                degminsec = deg + min / 60 + sec / 3600,
-                stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
-            ) > 180
-        ))
+    # if (with(object,
+            # switch(class(object)[2],
+                # decdeg = deg,
+                # degmin = deg + min / 60,
+                # degminsec = deg + min / 60 + sec / 3600,
+                # stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
+            # ) > 180
+        # ))
+    if (sum_degminsec(object) > 180)
         stop(
             "`object` must not be greater than 180\u00B0",
             call. = FALSE
         )
 
-    if (with(object,
-            switch(class(object)[2],
-                decdeg = 0,
-                degmin = min,
-                degminsec = min + sec / 60,
-                stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
-            ) >= 60
-        ))
+    # if (with(object,
+            # switch(class(object)[2],
+                # decdeg = 0,
+                # degmin = min,
+                # degminsec = min + sec / 60,
+                # stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
+            # ) >= 60
+        # ))
+    if (sum_minsec(object) >= 60)
         stop(
             "`object$min` must be less than 60\'",
+            call. = FALSE
+        )
+
+    if (sum_sec(object) >= 60)
+        stop(
+            "`object$sec` must be less than 60\'",
             call. = FALSE
         )
 
@@ -213,7 +221,8 @@ validate_coord <- function(object) {
     object
 }
 
-# Calculate total degrees, including minutes and seconds, as decimal
+# __________________________________________________________
+# Total degrees, including minutes and seconds, as decimal
 sum_degminsec <- function(object, ...) {
     UseMethod("sum_degminsec")
 }
@@ -239,7 +248,8 @@ sum_degminsec.degminsec <- function(object, ...) {
     with(object, deg + min / 60 + sec / 3600)
 }
 
-# Calculate total minutes, including seconds, as decimal
+# ______________________________________________
+# Total minutes, including seconds, as decimal
 sum_minsec <- function(object, ...) {
     UseMethod("sum_minsec")
 }
@@ -265,8 +275,35 @@ sum_minsec.degminsec <- function(object, ...) {
     with(object, min + sec / 60)
 }
 
+# _____________________________
+# Seconds, if any, as decimal
+sum_sec <- function(object, ...) {
+    UseMethod("sum_sec")
+}
 
+sum_sec.coord <- function(object, ...) {
+    check_dots_empty()
+    NextMethod() |>
+    as.numeric()
+}
 
+sum_sec.decdeg <- function(object, ...) {
+    check_dots_empty()
+    0
+}
+
+sum_sec.degmin <- function(object, ...) {
+    check_dots_empty()
+    0
+}
+
+sum_sec.degminsec <- function(object, ...) {
+    check_dots_empty()
+    with(object, sec)
+}
+
+# _______________________________________
+# S3 print() method for `"Coord"` class
 print.coord <- function(x, ...) {
     check_dots_empty()
     if (all(class(x)[2] == "decdeg", x %@% "negative"))
