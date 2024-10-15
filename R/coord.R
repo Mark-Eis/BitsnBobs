@@ -434,21 +434,6 @@ as__decdeg.coord <- function(object, ...) {
 }
 
 
-# # as__decdeg.decdeg <- function(object, ...) {
-    # check_dots_empty()
-    # with(object, deg)
-# }
-
-# as__decdeg.degmin <- function(object, ...) {
-    # check_dots_empty()
-    # with(object, deg + min / 60)
-# }
-
-# as__decdeg.degminsec <- function(object, ...) {
-    # check_dots_empty()
-    # with(object, deg + min / 60 + sec / 3600)
-# }
-
 # Convert numeric decimal degrees, degrees and minutes, and degrees minutes and seconds to "canonical form"
 # i.e. with decimal point after integer degrees
 fmtdeg <- function(x, .degrtype = c("decdeg", "degmin", "degminsec"), .fmt = c("deg", "min", "sec")) {
