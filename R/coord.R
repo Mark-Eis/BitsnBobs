@@ -323,6 +323,29 @@ as__degminsec <- function(object, ...) {
 }
 
 # Vectorised conversion method
+# as__degminsec.numeric <- function(
+    # object,
+    # ...,
+    # .degrtype = c("decdeg", "degmin", "degminsec"),
+    # .fmt = c("deg", "min", "sec")
+# ) {
+    # check_dots_empty()
+    # .degrtype <- match.arg(.degrtype)
+    # .fmt <- match.arg(.fmt)
+
+    # object <- fmtdeg(object, .degrtype, .fmt)
+    # wasneg <- object < 0
+    # object <- abs(object)
+
+    # switch(.degrtype,
+        # decdeg = object %/% 1 + (object %% 1 * 60) %/% 1 / 100 + (object %% 1 * 60) %% 1 * 3 / 500,
+        # degmin = (object * 100) %/% 1 / 100 + (object * 100) %% 1 * 3 / 500,
+        # degminsec = object,
+        # stop("Invalid `.degrtype`", call. = FALSE)
+    # ) |>
+    # swapsign(wasneg)
+# }
+
 as__degminsec.numeric <- function(
     object,
     ...,
@@ -333,17 +356,8 @@ as__degminsec.numeric <- function(
     .degrtype <- match.arg(.degrtype)
     .fmt <- match.arg(.fmt)
 
-    object <- fmtdeg(object, .degrtype, .fmt)
-    wasneg <- object < 0
-    object <- abs(object)
-
-    switch(.degrtype,
-        decdeg = object %/% 1 + (object %% 1 * 60) %/% 1 / 100 + (object %% 1 * 60) %% 1 * 3 / 500,
-        degmin = (object * 100) %/% 1 / 100 + (object * 100) %% 1 * 3 / 500,
-        degminsec = object,
-        stop("Invalid `.degrtype`", call. = FALSE)
-    ) |>
-    swapsign(wasneg)
+	coord(object, .degrtype, .fmt) |>
+	lapply(as__degminsec)
 }
 
 as__degminsec.coord <- function(object, ...) {
