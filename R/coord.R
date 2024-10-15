@@ -405,27 +405,28 @@ as__decdeg <- function(object, ...) {
 as__decdeg.coord <- function(object, ...) {
     check_dots_empty()
 
-    NextMethod() |>
+    # NextMethod() |>
+    sum_degminsec(object) |>
     as.numeric() |>
     swapsign(object %@% "negative") |>
     coord("decdeg", .latorlon = object %@% "latorlon")
 }
 
 
-as__decdeg.decdeg <- function(object, ...) {
-    check_dots_empty()
-    with(object, deg)
-}
+# # as__decdeg.decdeg <- function(object, ...) {
+    # check_dots_empty()
+    # with(object, deg)
+# }
 
-as__decdeg.degmin <- function(object, ...) {
-    check_dots_empty()
-    with(object, deg + min / 60)
-}
+# as__decdeg.degmin <- function(object, ...) {
+    # check_dots_empty()
+    # with(object, deg + min / 60)
+# }
 
-as__decdeg.degminsec <- function(object, ...) {
-    check_dots_empty()
-    with(object, deg + min / 60 + sec / 3600)
-}
+# as__decdeg.degminsec <- function(object, ...) {
+    # check_dots_empty()
+    # with(object, deg + min / 60 + sec / 3600)
+# }
 
 # Convert numeric decimal degrees, degrees and minutes, and degrees minutes and seconds to "canonical form"
 # i.e. with decimal point after integer degrees
