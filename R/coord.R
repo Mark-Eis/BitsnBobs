@@ -110,6 +110,7 @@ format.coordpart <- function(x, ...) {
 # Coordinate class
 # Coord class contains a list with one, two or three values named
 # "deg", "min", "sec"
+#' @export
 
 coord <- function(
     x,
@@ -288,6 +289,8 @@ sum_sec.degminsec <- function(object, ...) {
 
 # _______________________________________
 # S3 print() method for `"Coord"` class
+#' @export
+
 print.coord <- function(x, ...) {
     check_dots_empty()
     if (all(class(x)[2] == "decdeg", x %@% "negative"))
@@ -313,6 +316,8 @@ print.coord <- function(x, ...) {
 }
 
 # To avoid conflict with BitsnBobs::as_degminsec()
+#' @export
+
 as__degminsec <- function(object, ...) {
     UseMethod("as__degminsec")
 }
@@ -341,7 +346,6 @@ as__degminsec.numeric <- function(
     swapsign(wasneg)
 }
 
-
 as__degminsec.coord <- function(object, ...) {
     check_dots_empty()
 
@@ -350,7 +354,6 @@ as__degminsec.coord <- function(object, ...) {
     swapsign(object %@% "negative") |>
     coord("degminsec", .latorlon = object %@% "latorlon")
 }
-
 
 as__degminsec.decdeg <- function(object, ...) {
     check_dots_empty()
@@ -368,6 +371,8 @@ as__degminsec.degminsec <- function(object, ...) {
 }
 
 # For consistency (no conflict with BitsnBobs)
+#' @export
+
 as__degmin <- function(object, ...) {
     UseMethod("as__degmin")
 }
@@ -398,6 +403,8 @@ as__degmin.degminsec <- function(object, ...) {
 }
 
 # To avoid conflict with BitsnBobs::as_decdeg()
+#' @export
+
 as__decdeg <- function(object, ...) {
     UseMethod("as__decdeg")
 }
