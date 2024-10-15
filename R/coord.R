@@ -303,6 +303,12 @@ print.coord <- function(x, ...) {
     invisible(x)
 }
 
+as.double.coord <- function(object, ...) {
+    check_dots_empty()
+	BitsnBobs::marker()
+	object
+}
+
 .cmppnt <- function(latorlon, negative) {
     if (is.na(latorlon))
         if (negative) "(W/S)" else "(N/E)"
@@ -350,14 +356,18 @@ as__degminsec.numeric <- function(
     object,
     ...,
     .degrtype = c("decdeg", "degmin", "degminsec"),
-    .fmt = c("deg", "min", "sec")
+    .fmt = c("deg", "min", "sec"),
+    .as_numeric = FALSE
 ) {
     check_dots_empty()
     .degrtype <- match.arg(.degrtype)
     .fmt <- match.arg(.fmt)
 
-	coord(object, .degrtype, .fmt) |>
+	rv <- coord(object, .degrtype, .fmt) |>
 	lapply(as__degminsec)
+
+	rv <- if (.as_numeric) lapply(rv, as.double)
+    if (length(rv) > 1) rv else rv[[1]]
 }
 
 as__degminsec.coord <- function(object, ...) {
