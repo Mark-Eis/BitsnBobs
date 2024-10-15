@@ -426,7 +426,6 @@ as__decdeg <- function(object, ...) {
 as__decdeg.coord <- function(object, ...) {
     check_dots_empty()
 
-    # NextMethod() |>
     sum_degminsec(object) |>
     as.numeric() |>
     swapsign(object %@% "negative") |>
