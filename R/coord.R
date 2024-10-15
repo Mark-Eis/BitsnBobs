@@ -87,7 +87,7 @@ format.degxint <- function(x, ...) {
 
 format.minxdec <- function(x, ...) {
     check_dots_empty()
-    c(formatC(x, digits = 3, width = 6, format = "f", flag = "0"), "\'")
+    c(formatC(x, digits = 4, width = 7, format = "f", flag = "0"), "\'")
 }
 
 format.minxint <- function(x, ...) {
@@ -130,12 +130,14 @@ coord <- function(
             decdeg = list(deg = coordpart(y, "degxdec")),
             degmin = list(
                 deg = coordpart(as.integer(y), "degxint"),
-                min = coordpart(.up2(y), "minxdec")
+                # min = coordpart(.up2(y), "minxdec")
+                min = coordpart(round(.up2(y), 4), "minxdec")
             ),
             degminsec = list(
                 deg = coordpart(as.integer(y), "degxint"),
                 min = coordpart(as.integer(.up2(y)), "minxint"),
-                sec = coordpart(.up2(.up2(y)), "secxdec")
+                # sec = coordpart(.up2(.up2(y)), "secxdec")
+                sec = coordpart(round(.up2(.up2(y)), 2), "secxdec")
             ),
             stop("Invalid `.degrtype` value", call. = FALSE)
         ) |>
@@ -157,28 +159,12 @@ validate_coord <- function(object) {
             call. = FALSE
         )
 
-    # if (with(object,
-            # switch(class(object)[2],
-                # decdeg = deg,
-                # degmin = deg + min / 60,
-                # degminsec = deg + min / 60 + sec / 3600,
-                # stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
-            # ) > 180
-        # ))
     if (sum_degminsec(object) > 180)
         stop(
             "`object` must not be greater than 180\u00B0",
             call. = FALSE
         )
 
-    # if (with(object,
-            # switch(class(object)[2],
-                # decdeg = 0,
-                # degmin = min,
-                # degminsec = min + sec / 60,
-                # stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
-            # ) >= 60
-        # ))
     if (sum_minsec(object) >= 60)
         stop(
             "`object$min` must be less than 60\'",
