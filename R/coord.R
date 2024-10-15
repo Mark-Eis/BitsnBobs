@@ -10,6 +10,8 @@
 # Remove once in package BitsnBobs
 .up2 <- \(...) BitsnBobs:::.up2(...)
 
+`%@%` <- \(...) rlang:::`%@%`(...)
+
 check_dots_used <- \(...) rlang:::check_dots_used()
 
 check_dots_empty <- \(...) rlang::: check_dots_empty()
@@ -170,7 +172,7 @@ validate_coord <- function(object) {
 
     if (with(object,
             switch(class(object)[2],
-               decdeg = 0,
+                decdeg = 0,
                 degmin = min,
                 degminsec = min + sec / 60,
                 stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
@@ -210,6 +212,60 @@ validate_coord <- function(object) {
 
     object
 }
+
+# Calculate total degrees, including minutes and seconds, as decimal
+sum_degminsec <- function(object, ...) {
+    UseMethod("sum_degminsec")
+}
+
+sum_degminsec.coord <- function(object, ...) {
+    check_dots_empty()
+    NextMethod() |>
+    as.numeric()
+}
+
+sum_degminsec.decdeg <- function(object, ...) {
+    check_dots_empty()
+    with(object, deg)
+}
+
+sum_degminsec.degmin <- function(object, ...) {
+    check_dots_empty()
+    with(object, deg + min / 60)
+}
+
+sum_degminsec.degminsec <- function(object, ...) {
+    check_dots_empty()
+    with(object, deg + min / 60 + sec / 3600)
+}
+
+# Calculate total minutes, including seconds, as decimal
+sum_minsec <- function(object, ...) {
+    UseMethod("sum_minsec")
+}
+
+sum_minsec.coord <- function(object, ...) {
+    check_dots_empty()
+    NextMethod() |>
+    as.numeric()
+}
+
+sum_minsec.decdeg <- function(object, ...) {
+    check_dots_empty()
+    0
+}
+
+sum_minsec.degmin <- function(object, ...) {
+    check_dots_empty()
+    with(object, min)
+}
+
+sum_minsec.degminsec <- function(object, ...) {
+    check_dots_empty()
+    with(object, min + sec / 60)
+}
+
+
 
 print.coord <- function(x, ...) {
     check_dots_empty()
@@ -269,6 +325,7 @@ as__degminsec.coord <- function(object, ...) {
     check_dots_empty()
 
     NextMethod() |>
+    as.numeric() |>
     swapsign(object %@% "negative") |>
     coord("degminsec", .latorlon = object %@% "latorlon")
 }
@@ -276,20 +333,17 @@ as__degminsec.coord <- function(object, ...) {
 
 as__degminsec.decdeg <- function(object, ...) {
     check_dots_empty()
-    with(object, deg %/% 1 + (deg %% 1 * 60) %/% 1 / 100 + (deg %% 1 * 60) %% 1 * 3 / 500) |>
-    as.numeric()
+    with(object, deg %/% 1 + (deg %% 1 * 60) %/% 1 / 100 + (deg %% 1 * 60) %% 1 * 3 / 500)
 }
 
 as__degminsec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min %/% 1 / 100 + min %% 1 * 3 / 500) |>
-    as.numeric()
+    with(object, deg + min %/% 1 / 100 + min %% 1 * 3 / 500)
 }
 
 as__degminsec.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min / 100 + sec / 1e4) |>
-    as.numeric()
+    with(object, deg + min / 100 + sec / 1e4)
 }
 
 # For consistency (no conflict with BitsnBobs)
@@ -301,6 +355,7 @@ as__degmin.coord <- function(object, ...) {
     check_dots_empty()
 
     NextMethod() |>
+    as.numeric() |>
     swapsign(object %@% "negative") |>
     coord("degmin", .latorlon = object %@% "latorlon")
 }
@@ -308,20 +363,17 @@ as__degmin.coord <- function(object, ...) {
 
 as__degmin.decdeg <- function(object, ...) {
     check_dots_empty()
-    with(object, deg %/% 1 + deg %% 1 * 3 / 5) |>
-    as.numeric()
+    with(object, deg %/% 1 + deg %% 1 * 3 / 5)
 }
 
 as__degmin.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min / 100) |>
-    as.numeric()
+    with(object, deg + min / 100)
 }
 
 as__degmin.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + (min + sec / 60) / 100) |>
-    as.numeric()
+    with(object, deg + (min + sec / 60) / 100)
 }
 
 # To avoid conflict with BitsnBobs::as_decdeg()
@@ -333,6 +385,7 @@ as__decdeg.coord <- function(object, ...) {
     check_dots_empty()
 
     NextMethod() |>
+    as.numeric() |>
     swapsign(object %@% "negative") |>
     coord("decdeg", .latorlon = object %@% "latorlon")
 }
@@ -340,23 +393,21 @@ as__decdeg.coord <- function(object, ...) {
 
 as__decdeg.decdeg <- function(object, ...) {
     check_dots_empty()
-    with(object, deg) |>
-    as.numeric()
+    with(object, deg)
 }
 
 as__decdeg.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min / 60) |>
-    as.numeric()
+    with(object, deg + min / 60)
 }
 
 as__decdeg.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min / 60 + sec / 3600) |>
-    as.numeric()
+    with(object, deg + min / 60 + sec / 3600)
 }
 
-
+# Convert numeric decimal degrees, degrees and minutes, and degrees minutes and seconds to "canonical form"
+# i.e. with decimal point after integer degrees
 fmtdeg <- function(x, .degrtype = c("decdeg", "degmin", "degminsec"), .fmt = c("deg", "min", "sec")) {
     .degrtype <- match.arg(.degrtype)
     .fmt <- match.arg(.fmt)
