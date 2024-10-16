@@ -305,7 +305,6 @@ print.coord <- function(x, ...) {
 
 as.double.coord <- function(object, ...) {
     check_dots_empty()
-    BitsnBobs::marker()
     
     NextMethod() |>
     as.numeric() |>
@@ -315,14 +314,13 @@ as.double.coord <- function(object, ...) {
 
 as.double.degminsec <- function(object, ...) {
     check_dots_empty()
-    # BitsnBobs::marker()
     with(object, deg + min / 100 + sec / 1e4)
 }
 
 as.double.degmin <- function(object, ...) {
     check_dots_empty()
     BitsnBobs::marker()
-    with(object, deg + min / 100 + sec / 1e4)
+    with(object, deg + min / 100)
 }
 
 as.double.decdeg <- function(object, ...) {
@@ -350,28 +348,26 @@ as__degminsec <- function(object, ...) {
     UseMethod("as__degminsec")
 }
 
-# Vectorised conversion method
 # as__degminsec.numeric <- function(
     # object,
     # ...,
     # .degrtype = c("decdeg", "degmin", "degminsec"),
-    # .fmt = c("deg", "min", "sec")
+    # .fmt = c("deg", "min", "sec"),
+    # .as_numeric = FALSE
 # ) {
     # check_dots_empty()
     # .degrtype <- match.arg(.degrtype)
     # .fmt <- match.arg(.fmt)
 
-    # object <- fmtdeg(object, .degrtype, .fmt)
-    # wasneg <- object < 0
-    # object <- abs(object)
-
-    # switch(.degrtype,
-        # decdeg = object %/% 1 + (object %% 1 * 60) %/% 1 / 100 + (object %% 1 * 60) %% 1 * 3 / 500,
-        # degmin = (object * 100) %/% 1 / 100 + (object * 100) %% 1 * 3 / 500,
-        # degminsec = object,
-        # stop("Invalid `.degrtype`", call. = FALSE)
-    # ) |>
-    # swapsign(wasneg)
+    # rv <- coord(object, .degrtype, .fmt)
+    # if (length(object) == 1)
+        # rv <- list(rv)
+    # rv <- lapply(rv, as__degminsec)
+        
+    # if (.as_numeric) {
+        # vapply(rv, as.double, numeric(1))
+    # } else 
+        # if (length(rv) > 1) rv else rv[[1]]
 # }
 
 as__degminsec.numeric <- function(
@@ -385,15 +381,7 @@ as__degminsec.numeric <- function(
     .degrtype <- match.arg(.degrtype)
     .fmt <- match.arg(.fmt)
 
-    rv <- coord(object, .degrtype, .fmt)
-    if (length(object) == 1)
-        rv <- list(rv)
-    rv <- lapply(rv, as__degminsec)
-        
-    if (.as_numeric) {
-        vapply(rv, as.double, numeric(1))
-    } else 
-        if (length(rv) > 1) rv else rv[[1]]
+    degconvert_numeric(object, as__degminsec, .degrtype, .fmt, .as_numeric)
 }
 
 as__degminsec.coord <- function(object, ...) {
@@ -468,7 +456,24 @@ as__decdeg.coord <- function(object, ...) {
     coord("decdeg", .latorlon = object %@% "latorlon")
 }
 
+# ________________________________________________________________________________
+# Powers as__degminsec.numeric(), as__degmins.numeric() and as__decdeg.numeric()
+# Not exported
+degconvert_numeric <- function(object, fun, .degrtype, .fmt, .as_numeric) {
+    fun <- match.fun(fun)
 
+    rv <- coord(object, .degrtype, .fmt)
+    if (length(object) == 1)
+        rv <- list(rv)
+    rv <- lapply(rv, fun)
+        
+    if (.as_numeric) {
+        vapply(rv, as.double, numeric(1))
+    } else 
+        if (length(rv) > 1) rv else rv[[1]]
+}
+
+# ___________________________________________________________________________________________________________
 # Convert numeric decimal degrees, degrees and minutes, and degrees minutes and seconds to "canonical form"
 # i.e. with decimal point after integer degrees
 fmtdeg <- function(x, .degrtype = c("decdeg", "degmin", "degminsec"), .fmt = c("deg", "min", "sec")) {
