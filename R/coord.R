@@ -305,8 +305,30 @@ print.coord <- function(x, ...) {
 
 as.double.coord <- function(object, ...) {
     check_dots_empty()
-	BitsnBobs::marker()
-	object
+    BitsnBobs::marker()
+    
+    NextMethod() |>
+    as.numeric() |>
+    unlist() |>
+    swapsign(object %@% "negative")
+}
+
+as.double.degminsec <- function(object, ...) {
+    check_dots_empty()
+    BitsnBobs::marker()
+    with(object, deg + min / 100 + sec / 1e4)
+}
+
+as.double.degmin <- function(object, ...) {
+    check_dots_empty()
+    BitsnBobs::marker()
+    with(object, deg + min / 100 + sec / 1e4)
+}
+
+as.double.decdeg <- function(object, ...) {
+    check_dots_empty()
+    BitsnBobs::marker()
+    with(object, deg)
 }
 
 .cmppnt <- function(latorlon, negative) {
@@ -363,11 +385,16 @@ as__degminsec.numeric <- function(
     .degrtype <- match.arg(.degrtype)
     .fmt <- match.arg(.fmt)
 
-	rv <- coord(object, .degrtype, .fmt) |>
-	lapply(as__degminsec)
-
-	rv <- if (.as_numeric) lapply(rv, as.double)
-    if (length(rv) > 1) rv else rv[[1]]
+    rv <- coord(object, .degrtype, .fmt)
+    if (length(rv) == 1)
+		rv <- list(rv)
+    rv <- lapply(rv, as__degminsec)
+    
+    if (.as_numeric) {
+        rv <- vapply(rv, as.double, numeric(1))
+    } else 
+        rv <- if (length(rv) > 1) rv else rv[[1]]
+    rv
 }
 
 as__degminsec.coord <- function(object, ...) {
