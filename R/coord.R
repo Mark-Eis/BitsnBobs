@@ -315,7 +315,7 @@ as.double.coord <- function(object, ...) {
 
 as.double.degminsec <- function(object, ...) {
     check_dots_empty()
-    BitsnBobs::marker()
+    # BitsnBobs::marker()
     with(object, deg + min / 100 + sec / 1e4)
 }
 
@@ -386,15 +386,14 @@ as__degminsec.numeric <- function(
     .fmt <- match.arg(.fmt)
 
     rv <- coord(object, .degrtype, .fmt)
-    if (length(rv) == 1)
-		rv <- list(rv)
+    if (length(object) == 1)
+        rv <- list(rv)
     rv <- lapply(rv, as__degminsec)
-    
+        
     if (.as_numeric) {
-        rv <- vapply(rv, as.double, numeric(1))
+        vapply(rv, as.double, numeric(1))
     } else 
-        rv <- if (length(rv) > 1) rv else rv[[1]]
-    rv
+        if (length(rv) > 1) rv else rv[[1]]
 }
 
 as__degminsec.coord <- function(object, ...) {
