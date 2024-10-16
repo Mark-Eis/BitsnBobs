@@ -319,13 +319,11 @@ as.double.degminsec <- function(object, ...) {
 
 as.double.degmin <- function(object, ...) {
     check_dots_empty()
-    BitsnBobs::marker()
     with(object, deg + min / 100)
 }
 
 as.double.decdeg <- function(object, ...) {
     check_dots_empty()
-    BitsnBobs::marker()
     with(object, deg)
 }
 
@@ -418,6 +416,20 @@ as__degmin.degminsec <- function(object, ...) {
     with(object, deg + (min + sec / 60) / 100)
 }
 
+as__degmin.numeric <- function(
+    object,
+    ...,
+    .degrtype = c("decdeg", "degmin", "degminsec"),
+    .fmt = c("deg", "min", "sec"),
+    .as_numeric = FALSE
+) {
+    check_dots_empty()
+    .degrtype <- match.arg(.degrtype)
+    .fmt <- match.arg(.fmt)
+
+    degconvert_numeric(object, as__degmin, .degrtype, .fmt, .as_numeric)
+}
+
 # To avoid conflict with BitsnBobs::as_decdeg()
 #' @export
 
@@ -432,6 +444,20 @@ as__decdeg.coord <- function(object, ...) {
     as.numeric() |>
     swapsign(object %@% "negative") |>
     coord("decdeg", .latorlon = object %@% "latorlon")
+}
+
+as__decdeg.numeric <- function(
+    object,
+    ...,
+    .degrtype = c("decdeg", "degmin", "degminsec"),
+    .fmt = c("deg", "min", "sec"),
+    .as_numeric = FALSE
+) {
+    check_dots_empty()
+    .degrtype <- match.arg(.degrtype)
+    .fmt <- match.arg(.fmt)
+
+    degconvert_numeric(object, as__decdeg, .degrtype, .fmt, .as_numeric)
 }
 
 # ________________________________________________________________________________
