@@ -348,42 +348,6 @@ as__degminsec <- function(object, ...) {
     UseMethod("as__degminsec")
 }
 
-# as__degminsec.numeric <- function(
-    # object,
-    # ...,
-    # .degrtype = c("decdeg", "degmin", "degminsec"),
-    # .fmt = c("deg", "min", "sec"),
-    # .as_numeric = FALSE
-# ) {
-    # check_dots_empty()
-    # .degrtype <- match.arg(.degrtype)
-    # .fmt <- match.arg(.fmt)
-
-    # rv <- coord(object, .degrtype, .fmt)
-    # if (length(object) == 1)
-        # rv <- list(rv)
-    # rv <- lapply(rv, as__degminsec)
-        
-    # if (.as_numeric) {
-        # vapply(rv, as.double, numeric(1))
-    # } else 
-        # if (length(rv) > 1) rv else rv[[1]]
-# }
-
-as__degminsec.numeric <- function(
-    object,
-    ...,
-    .degrtype = c("decdeg", "degmin", "degminsec"),
-    .fmt = c("deg", "min", "sec"),
-    .as_numeric = FALSE
-) {
-    check_dots_empty()
-    .degrtype <- match.arg(.degrtype)
-    .fmt <- match.arg(.fmt)
-
-    degconvert_numeric(object, as__degminsec, .degrtype, .fmt, .as_numeric)
-}
-
 as__degminsec.coord <- function(object, ...) {
     check_dots_empty()
 
@@ -406,6 +370,20 @@ as__degminsec.degmin <- function(object, ...) {
 as__degminsec.degminsec <- function(object, ...) {
     check_dots_empty()
     with(object, deg + min / 100 + sec / 1e4)
+}
+
+as__degminsec.numeric <- function(
+    object,
+    ...,
+    .degrtype = c("decdeg", "degmin", "degminsec"),
+    .fmt = c("deg", "min", "sec"),
+    .as_numeric = FALSE
+) {
+    check_dots_empty()
+    .degrtype <- match.arg(.degrtype)
+    .fmt <- match.arg(.fmt)
+
+    degconvert_numeric(object, as__degminsec, .degrtype, .fmt, .as_numeric)
 }
 
 # For consistency (no conflict with BitsnBobs)
