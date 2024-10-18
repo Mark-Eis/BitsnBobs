@@ -396,6 +396,8 @@ as__degminsec <- function(object, ...) {
     UseMethod("as__degminsec")
 }
 
+#' @exportS3Method BitsnBobs::as__degminsec
+
 as__degminsec.coord <- function(object, ...) {
     check_dots_empty()
 
@@ -405,20 +407,28 @@ as__degminsec.coord <- function(object, ...) {
     coord("degminsec", .latorlon = object %@% "latorlon")
 }
 
+#' @exportS3Method BitsnBobs::as__degminsec
+
 as__degminsec.decdeg <- function(object, ...) {
     check_dots_empty()
     with(object, deg %/% 1 + (deg %% 1 * 60) %/% 1 / 100 + (deg %% 1 * 60) %% 1 * 3 / 500)
 }
+
+#' @exportS3Method BitsnBobs::as__degminsec
 
 as__degminsec.degmin <- function(object, ...) {
     check_dots_empty()
     with(object, deg + min %/% 1 / 100 + min %% 1 * 3 / 500)
 }
 
+#' @exportS3Method BitsnBobs::as__degminsec
+
 as__degminsec.degminsec <- function(object, ...) {
     check_dots_empty()
     with(object, deg + min / 100 + sec / 1e4)
 }
+
+#' @exportS3Method BitsnBobs::as__degminsec
 
 as__degminsec.numeric <- function(
     object,
@@ -441,6 +451,8 @@ as__degmin <- function(object, ...) {
     UseMethod("as__degmin")
 }
 
+#' @exportS3Method BitsnBobs::as__degmin
+
 as__degmin.coord <- function(object, ...) {
     check_dots_empty()
 
@@ -450,21 +462,28 @@ as__degmin.coord <- function(object, ...) {
     coord("degmin", .latorlon = object %@% "latorlon")
 }
 
+#' @exportS3Method BitsnBobs::as__degmin
 
 as__degmin.decdeg <- function(object, ...) {
     check_dots_empty()
     with(object, deg %/% 1 + deg %% 1 * 3 / 5)
 }
 
+#' @exportS3Method BitsnBobs::as__degmin
+
 as__degmin.degmin <- function(object, ...) {
     check_dots_empty()
     with(object, deg + min / 100)
 }
 
+#' @exportS3Method BitsnBobs::as__degmin
+
 as__degmin.degminsec <- function(object, ...) {
     check_dots_empty()
     with(object, deg + (min + sec / 60) / 100)
 }
+
+#' @exportS3Method BitsnBobs::as__degmin
 
 as__degmin.numeric <- function(
     object,
@@ -487,6 +506,8 @@ as__decdeg <- function(object, ...) {
     UseMethod("as__decdeg")
 }
 
+#' @exportS3Method BitsnBobs::as__decdeg
+
 as__decdeg.coord <- function(object, ...) {
     check_dots_empty()
 
@@ -495,6 +516,8 @@ as__decdeg.coord <- function(object, ...) {
     swapsign(object %@% "negative") |>
     coord("decdeg", .latorlon = object %@% "latorlon")
 }
+
+#' @exportS3Method BitsnBobs::as__decdeg
 
 as__decdeg.numeric <- function(
     object,
