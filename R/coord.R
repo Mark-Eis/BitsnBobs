@@ -295,7 +295,7 @@ print.coord <- function(x, ...) {
     check_dots_empty()
     if (all(class(x)[2] == "decdeg", x %@% "negative"))
         x$deg <- -x$deg
-     lapply(x, format)
+    lapply(x, format)
     if (class(x)[2] == "decdeg") {
         if (!is.na(x %@% "latorlon")) cat(" ", x %@% "latorlon", sep = "")
     } else
@@ -499,6 +499,7 @@ fmtdeg <- function(x, .degrtype = c("decdeg", "degmin", "degminsec"), .fmt = c("
     )
 }
 
+# _____________________________________________
 # Vectorised conditional sign change function
 swapsign <- function(x, negate) {
     stopifnot(length(x) == length(negate))
