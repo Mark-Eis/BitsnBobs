@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler Apr 2024
+# Mark Eisler Oct 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -303,6 +303,8 @@ print.coord <- function(x, ...) {
     invisible(x)
 }
 
+#' @exportS3method
+
 as.double.coord <- function(object, ...) {
     check_dots_empty()
     
@@ -312,15 +314,21 @@ as.double.coord <- function(object, ...) {
     swapsign(object %@% "negative")
 }
 
+#' @exportS3method
+
 as.double.degminsec <- function(object, ...) {
     check_dots_empty()
     with(object, deg + min / 100 + sec / 1e4)
 }
 
+#' @exportS3method
+
 as.double.degmin <- function(object, ...) {
     check_dots_empty()
     with(object, deg + min / 100)
 }
+
+#' @exportS3method
 
 as.double.decdeg <- function(object, ...) {
     check_dots_empty()
