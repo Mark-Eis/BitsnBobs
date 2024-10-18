@@ -224,21 +224,29 @@ sum_degminsec <- function(object, ...) {
     UseMethod("sum_degminsec")
 }
 
+#' @exportS3Method BitnBobs::sum_degminsec
+
 sum_degminsec.coord <- function(object, ...) {
     check_dots_empty()
     NextMethod() |>
     as.numeric()
 }
 
+#' @exportS3Method BitnBobs::sum_degminsec
+
 sum_degminsec.decdeg <- function(object, ...) {
     check_dots_empty()
     with(object, deg)
 }
 
+#' @exportS3Method BitnBobs::sum_degminsec
+
 sum_degminsec.degmin <- function(object, ...) {
     check_dots_empty()
     with(object, deg + min / 60)
 }
+
+#' @exportS3Method BitnBobs::sum_degminsec
 
 sum_degminsec.degminsec <- function(object, ...) {
     check_dots_empty()
@@ -247,9 +255,12 @@ sum_degminsec.degminsec <- function(object, ...) {
 
 # ______________________________________________
 # Total minutes, including seconds, as decimal
+
 sum_minsec <- function(object, ...) {
     UseMethod("sum_minsec")
 }
+
+#' @exportS3Method BitnBobs::sum_minsec
 
 sum_minsec.coord <- function(object, ...) {
     check_dots_empty()
@@ -257,15 +268,21 @@ sum_minsec.coord <- function(object, ...) {
     as.numeric()
 }
 
+#' @exportS3Method BitnBobs::sum_minsec
+
 sum_minsec.decdeg <- function(object, ...) {
     check_dots_empty()
     0
 }
 
+#' @exportS3Method BitnBobs::sum_minsec
+
 sum_minsec.degmin <- function(object, ...) {
     check_dots_empty()
     with(object, min)
 }
+
+#' @exportS3Method BitnBobs::sum_minsec
 
 sum_minsec.degminsec <- function(object, ...) {
     check_dots_empty()
@@ -278,21 +295,29 @@ sum_sec <- function(object, ...) {
     UseMethod("sum_sec")
 }
 
+#' @exportS3Method BitnBobs::sum_sec
+
 sum_sec.coord <- function(object, ...) {
     check_dots_empty()
     NextMethod() |>
     as.numeric()
 }
 
+#' @exportS3Method BitnBobs::sum_sec
+
 sum_sec.decdeg <- function(object, ...) {
     check_dots_empty()
     0
 }
 
+#' @exportS3Method BitnBobs::sum_sec
+
 sum_sec.degmin <- function(object, ...) {
     check_dots_empty()
     0
 }
+
+#' @exportS3Method BitnBobs::sum_sec
 
 sum_sec.degminsec <- function(object, ...) {
     check_dots_empty()
