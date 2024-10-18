@@ -397,7 +397,7 @@ as__degminsec <- function(object, ...) {
     UseMethod("as__degminsec")
 }
 
-#' @exportS3Method BitsnBobs::as__degminsec
+#' @export
 
 as__degminsec.coord <- function(object, ...) {
     check_dots_empty()
@@ -452,7 +452,7 @@ as__degmin <- function(object, ...) {
     UseMethod("as__degmin")
 }
 
-#' @exportS3Method BitsnBobs::as__degmin
+#' @export
 
 as__degmin.coord <- function(object, ...) {
     check_dots_empty()
@@ -507,7 +507,7 @@ as__decdeg <- function(object, ...) {
     UseMethod("as__decdeg")
 }
 
-#' @exportS3Method BitsnBobs::as__decdeg
+#' @export
 
 as__decdeg.coord <- function(object, ...) {
     check_dots_empty()
