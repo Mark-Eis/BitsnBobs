@@ -75,30 +75,42 @@ validate_coordpart <- function(object) {
     object
 }
 
+#' @exportS3Method base::format
+
 format.degxdec <- function(x, ...) {
     check_dots_empty()
     c(formatC(x, digits = 6, width = 11, format = "f", flag = " "), "\u00B0")
 }
+
+#' @exportS3Method base::format
 
 format.degxint <- function(x, ...) {
     check_dots_empty()
     c(formatC(x, digits = 0, width = 3, format = "f"), "\u00B0")
 }
 
+#' @exportS3Method base::format
+
 format.minxdec <- function(x, ...) {
     check_dots_empty()
     c(formatC(x, digits = 4, width = 7, format = "f", flag = "0"), "\'")
 }
+
+#' @exportS3Method base::format
 
 format.minxint <- function(x, ...) {
     check_dots_empty()
     c(formatC(x, digits = 0, width = 2, format = "f", flag = "0"), "\'")
 }
 
+#' @exportS3Method base::format
+
 format.secxdec <- function(x, ...) {
     check_dots_empty()
     c(formatC(x, digits = 2, width = 5, format = "f", flag = "0"), "\"")
 }
+
+#' @exportS3Method base::format
 
 format.coordpart <- function(x, ...) {
     check_dots_empty()
