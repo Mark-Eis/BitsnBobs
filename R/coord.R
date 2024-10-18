@@ -303,7 +303,7 @@ print.coord <- function(x, ...) {
     invisible(x)
 }
 
-#' @exportS3method
+#' @export
 
 as.double.coord <- function(object, ...) {
     check_dots_empty()
@@ -314,21 +314,21 @@ as.double.coord <- function(object, ...) {
     swapsign(object %@% "negative")
 }
 
-#' @exportS3method
+#' @exportS3Method base::as.double
 
 as.double.degminsec <- function(object, ...) {
     check_dots_empty()
     with(object, deg + min / 100 + sec / 1e4)
 }
 
-#' @exportS3method
+#' @exportS3Method base::as.double
 
 as.double.degmin <- function(object, ...) {
     check_dots_empty()
     with(object, deg + min / 100)
 }
 
-#' @exportS3method
+#' @exportS3Method base::as.double
 
 as.double.decdeg <- function(object, ...) {
     check_dots_empty()
