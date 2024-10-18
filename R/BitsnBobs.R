@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler - May 2024
+# Mark Eisler - Oct 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -78,3 +78,32 @@ starsig <- function(p) {
     `levels<-`(c("***", "**", "*", ".", "NS"))
 }
 
+
+# ========================================
+#' @title
+#' Vectorised conditional sign change
+#'
+#' @description
+#' Vectorised function that changes sign of elements of a numeric vector, dependent on values of a
+#' logical argument of the same length.
+#'
+#' @param x A numeric vector.
+#' 
+#' @param negate A logical vector of the same length as `x`.
+#' 
+#' @return A numeric vector, length of `x`.
+#' 
+#' @export
+#' @examples
+#' 
+#' swapsign(1:10, rep(c(FALSE, TRUE), 5))
+#' 
+#' swapsign(1:10, rep(c(1, 0), 5))
+#' 
+
+
+swapsign <- function(x, negate) {
+    stopifnot(length(x) == length(negate))
+    stopifnot(is.logical(negate))
+    ifelse(negate, -x, x)
+}
