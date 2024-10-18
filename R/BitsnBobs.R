@@ -93,6 +93,7 @@ starsig <- function(p) {
 #' 
 #' @return A numeric vector, length of `x`.
 #' 
+#' @keywords category math
 #' @export
 #' @examples
 #' 
