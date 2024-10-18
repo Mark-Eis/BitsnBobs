@@ -220,6 +220,8 @@ validate_coord <- function(object) {
 
 # __________________________________________________________
 # Total degrees, including minutes and seconds, as decimal
+#' @export
+
 sum_degminsec <- function(object, ...) {
     UseMethod("sum_degminsec")
 }
@@ -255,6 +257,7 @@ sum_degminsec.degminsec <- function(object, ...) {
 
 # ______________________________________________
 # Total minutes, including seconds, as decimal
+#' @export
 
 sum_minsec <- function(object, ...) {
     UseMethod("sum_minsec")
@@ -291,6 +294,8 @@ sum_minsec.degminsec <- function(object, ...) {
 
 # _____________________________
 # Seconds, if any, as decimal
+#' @export
+
 sum_sec <- function(object, ...) {
     UseMethod("sum_sec")
 }
