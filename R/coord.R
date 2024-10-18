@@ -226,7 +226,7 @@ sum_degminsec <- function(object, ...) {
     UseMethod("sum_degminsec")
 }
 
-#' @exportS3Method BitnBobs::sum_degminsec
+#' @export
 
 sum_degminsec.coord <- function(object, ...) {
     check_dots_empty()
@@ -263,7 +263,7 @@ sum_minsec <- function(object, ...) {
     UseMethod("sum_minsec")
 }
 
-#' @exportS3Method BitnBobs::sum_minsec
+#' @export
 
 sum_minsec.coord <- function(object, ...) {
     check_dots_empty()
@@ -300,7 +300,7 @@ sum_sec <- function(object, ...) {
     UseMethod("sum_sec")
 }
 
-#' @exportS3Method BitnBobs::sum_sec
+#' @export
 
 sum_sec.coord <- function(object, ...) {
     check_dots_empty()
