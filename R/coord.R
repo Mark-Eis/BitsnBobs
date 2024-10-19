@@ -445,21 +445,21 @@ as__degminsec.coord <- function(object, ...) {
 
 as__degminsec.decdeg <- function(object, ...) {
     check_dots_empty()
-    with(object, deg %/% 1 + (deg %% 1 * 60) %/% 1 / 100 + (deg %% 1 * 60) %% 1 * 3 / 500)
+    with(object, (deg %/% 1 * 1e2 + (deg %% 1 * 60) %/% 1) * 1e2 + (deg %% 1 * 60) %% 1 * 60)
 }
 
 #' @exportS3Method BitsnBobs::as__degminsec
 
 as__degminsec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min %/% 1 / 100 + min %% 1 * 3 / 500)
+    with(object, (deg * 1e2 + min %/% 1) * 100 + min %% 1 * 60)
 }
 
 #' @exportS3Method BitsnBobs::as__degminsec
 
 as__degminsec.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min / 100 + sec / 1e4)
+    with(object, (deg * 1e2 + min) * 1e2 + sec)
 }
 
 #' @exportS3Method BitsnBobs::as__degminsec
@@ -468,14 +468,15 @@ as__degminsec.numeric <- function(
     object,
     ...,
     .fmt = c("decdeg", "degmin", "degminsec"),
-    .dpos = c("deg", "min", "sec"),
+    # .dpos = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
     .fmt <- match.arg(.fmt)
-    .dpos <- match.arg(.dpos)
+    # .dpos <- match.arg(.dpos)
 
-    degconvert_numeric(object, as__degminsec, .fmt, .dpos, .as_numeric)
+    # degconvert_numeric(object, as__degminsec, .fmt, .dpos, .as_numeric)
+    degconvert_numeric(object, as__degminsec, .fmt, .as_numeric)
 }
 
 # For consistency (no conflict with BitsnBobs)
@@ -500,21 +501,21 @@ as__degmin.coord <- function(object, ...) {
 
 as__degmin.decdeg <- function(object, ...) {
     check_dots_empty()
-    with(object, deg %/% 1 + deg %% 1 * 3 / 5)
+    with(object, deg %/% 1 * 1e2 + deg %% 1 * 60)
 }
 
 #' @exportS3Method BitsnBobs::as__degmin
 
 as__degmin.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min / 100)
+    with(object, deg * 1e2 + min)
 }
 
 #' @exportS3Method BitsnBobs::as__degmin
 
 as__degmin.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + (min + sec / 60) / 100)
+    with(object, deg * 1e2 + min + sec / 60)
 }
 
 #' @exportS3Method BitsnBobs::as__degmin
@@ -523,14 +524,15 @@ as__degmin.numeric <- function(
     object,
     ...,
     .fmt = c("decdeg", "degmin", "degminsec"),
-    .dpos = c("deg", "min", "sec"),
+    # .dpos = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
     .fmt <- match.arg(.fmt)
-    .dpos <- match.arg(.dpos)
+    # .dpos <- match.arg(.dpos)
 
-    degconvert_numeric(object, as__degmin, .fmt, .dpos, .as_numeric)
+    # degconvert_numeric(object, as__degmin, .fmt, .dpos, .as_numeric)
+    degconvert_numeric(object, as__degmin, .fmt, .as_numeric)
 }
 
 # To avoid conflict with BitsnBobs::as_decdeg()
@@ -557,23 +559,39 @@ as__decdeg.numeric <- function(
     object,
     ...,
     .fmt = c("decdeg", "degmin", "degminsec"),
-    .dpos = c("deg", "min", "sec"),
+    # .dpos = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
     .fmt <- match.arg(.fmt)
-    .dpos <- match.arg(.dpos)
+    # .dpos <- match.arg(.dpos)
 
-    degconvert_numeric(object, as__decdeg, .fmt, .dpos, .as_numeric)
+    # degconvert_numeric(object, as__decdeg, .fmt, .dpos, .as_numeric)
+    degconvert_numeric(object, as__decdeg, .fmt, .as_numeric)
 }
 
 # ________________________________________________________________________________
 # Powers as__degminsec.numeric(), as__degmins.numeric() and as__decdeg.numeric()
 # Not exported
-degconvert_numeric <- function(object, fun, .fmt, .dpos, .as_numeric) {
+
+# degconvert_numeric <- function(object, fun, .fmt, .dpos, .as_numeric) {
+    # fun <- match.fun(fun)
+
+    # rv <- coord(object, .fmt, .dpos)
+    # if (length(object) == 1)
+        # rv <- list(rv)
+    # rv <- lapply(rv, fun)
+        
+    # if (.as_numeric) {
+        # vapply(rv, as.double, numeric(1))
+    # } else 
+        # if (length(rv) > 1) rv else rv[[1]]
+# }
+
+degconvert_numeric <- function(object, fun, .fmt, .as_numeric) {
     fun <- match.fun(fun)
 
-    rv <- coord(object, .fmt, .dpos)
+    rv <- coord(object, .fmt)
     if (length(object) == 1)
         rv <- list(rv)
     rv <- lapply(rv, fun)
@@ -583,11 +601,3 @@ degconvert_numeric <- function(object, fun, .fmt, .dpos, .as_numeric) {
     } else 
         if (length(rv) > 1) rv else rv[[1]]
 }
-
-
-# # _____________________________________________
-# # Vectorised conditional sign change function
-# swapsign <- function(x, negate) {
-    # stopifnot(length(x) == length(negate))
-    # ifelse(negate, -x, x)
-# }
