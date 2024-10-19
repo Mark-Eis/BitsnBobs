@@ -125,7 +125,6 @@ format.coordpart <- function(x, ...) {
 #' Geographic or GPS coordinate class
 #'
 #' @details
-#XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
 #' `coord()` creates a robust representation of a geographic or GPS cordinate based on the value of
 #' `x` or, if `length(x) > 1`, a number of such coordinates instatiated as objects of class
 #' `"coord"`. Objects of `"coord"` class contain a `list` with one, two or three numeric values
@@ -239,7 +238,7 @@ validate_coord <- function(object) {
             )
         ))
         stop(
-            "`object` for latitude must not be greater than 90\u00B0",
+            "Latitude must not be greater than 90\u00B0",
             call. = FALSE
         )
 
@@ -468,14 +467,11 @@ as__degminsec.numeric <- function(
     object,
     ...,
     .fmt = c("decdeg", "degmin", "degminsec"),
-    # .dpos = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
     .fmt <- match.arg(.fmt)
-    # .dpos <- match.arg(.dpos)
 
-    # degconvert_numeric(object, as__degminsec, .fmt, .dpos, .as_numeric)
     degconvert_numeric(object, as__degminsec, .fmt, .as_numeric)
 }
 
@@ -524,14 +520,11 @@ as__degmin.numeric <- function(
     object,
     ...,
     .fmt = c("decdeg", "degmin", "degminsec"),
-    # .dpos = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
     .fmt <- match.arg(.fmt)
-    # .dpos <- match.arg(.dpos)
 
-    # degconvert_numeric(object, as__degmin, .fmt, .dpos, .as_numeric)
     degconvert_numeric(object, as__degmin, .fmt, .as_numeric)
 }
 
@@ -559,34 +552,17 @@ as__decdeg.numeric <- function(
     object,
     ...,
     .fmt = c("decdeg", "degmin", "degminsec"),
-    # .dpos = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
     .fmt <- match.arg(.fmt)
-    # .dpos <- match.arg(.dpos)
 
-    # degconvert_numeric(object, as__decdeg, .fmt, .dpos, .as_numeric)
     degconvert_numeric(object, as__decdeg, .fmt, .as_numeric)
 }
 
 # ________________________________________________________________________________
 # Powers as__degminsec.numeric(), as__degmins.numeric() and as__decdeg.numeric()
 # Not exported
-
-# degconvert_numeric <- function(object, fun, .fmt, .dpos, .as_numeric) {
-    # fun <- match.fun(fun)
-
-    # rv <- coord(object, .fmt, .dpos)
-    # if (length(object) == 1)
-        # rv <- list(rv)
-    # rv <- lapply(rv, fun)
-        
-    # if (.as_numeric) {
-        # vapply(rv, as.double, numeric(1))
-    # } else 
-        # if (length(rv) > 1) rv else rv[[1]]
-# }
 
 degconvert_numeric <- function(object, fun, .fmt, .as_numeric) {
     fun <- match.fun(fun)
