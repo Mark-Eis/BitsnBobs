@@ -131,7 +131,7 @@ format.coordpart <- function(x, ...) {
 #'
 #' @param x `numeric`, representing one or more coordinates.
 #'
-#' @param .degrtype `character` string indicating the format of argument `x`; must be one of
+#' @param .cdnfmt `character` string indicating the format of argument `x`; must be one of
 #'   `"decdeg"` (default), `"degmin"` or `"degminsec"`.
 #'
 #' @param .fmt a `character` string indicating the position of the decimal point in `x`; must
@@ -159,20 +159,20 @@ format.coordpart <- function(x, ...) {
 
 coord <- function(
     x,
-    .degrtype = c("decdeg", "degmin", "degminsec"),
+    .cdnfmt = c("decdeg", "degmin", "degminsec"),
     .fmt = c("deg", "min", "sec"),
     .latorlon = c(NA, "lat", "lon")
 ) {
-    .degrtype <- match.arg(.degrtype)
+    .cdnfmt <- match.arg(.cdnfmt)
     .fmt <- match.arg(.fmt)
     .latorlon <- match.arg(.latorlon)    
 
-    x <- fmtdeg(x, .degrtype, .fmt)
+    x <- fmtdeg(x, .cdnfmt, .fmt)
 
     rv <- lapply(x, \(y) {
         negative <- y < 0
         y <- abs(y)
-        switch(.degrtype,
+        switch(.cdnfmt,
             decdeg = list(deg = coordpart(y, "degxdec")),
             degmin = list(
                 deg = coordpart(as.integer(y), "degxint"),
@@ -183,16 +183,16 @@ coord <- function(
                 min = coordpart(as.integer(.up2(y)), "minxint"),
                 sec = coordpart(round(.up2(.up2(y)), 2), "secxdec")
             ),
-            stop("Invalid `.degrtype` value", call. = FALSE)
+            stop("Invalid `.cdnfmt` value", call. = FALSE)
         ) |>
-        new_coord(.degrtype, .latorlon, negative) |>
+        new_coord(.cdnfmt, .latorlon, negative) |>
         validate_coord()
     })
     if (length(x) > 1) rv else rv[[1]]
 }
 
-new_coord <- function(x, degrtype, latorlon = NA, negative = FALSE) {
-    structure(x, class = c("coord", degrtype), latorlon = latorlon, negative = negative)
+new_coord <- function(x, cdnfmt, latorlon = NA, negative = FALSE) {
+    structure(x, class = c("coord", cdnfmt), latorlon = latorlon, negative = negative)
 }
 
 validate_coord <- function(object) {
@@ -466,15 +466,15 @@ as__degminsec.degminsec <- function(object, ...) {
 as__degminsec.numeric <- function(
     object,
     ...,
-    .degrtype = c("decdeg", "degmin", "degminsec"),
+    .cdnfmt = c("decdeg", "degmin", "degminsec"),
     .fmt = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
-    .degrtype <- match.arg(.degrtype)
+    .cdnfmt <- match.arg(.cdnfmt)
     .fmt <- match.arg(.fmt)
 
-    degconvert_numeric(object, as__degminsec, .degrtype, .fmt, .as_numeric)
+    degconvert_numeric(object, as__degminsec, .cdnfmt, .fmt, .as_numeric)
 }
 
 # For consistency (no conflict with BitsnBobs)
@@ -521,15 +521,15 @@ as__degmin.degminsec <- function(object, ...) {
 as__degmin.numeric <- function(
     object,
     ...,
-    .degrtype = c("decdeg", "degmin", "degminsec"),
+    .cdnfmt = c("decdeg", "degmin", "degminsec"),
     .fmt = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
-    .degrtype <- match.arg(.degrtype)
+    .cdnfmt <- match.arg(.cdnfmt)
     .fmt <- match.arg(.fmt)
 
-    degconvert_numeric(object, as__degmin, .degrtype, .fmt, .as_numeric)
+    degconvert_numeric(object, as__degmin, .cdnfmt, .fmt, .as_numeric)
 }
 
 # To avoid conflict with BitsnBobs::as_decdeg()
@@ -555,24 +555,24 @@ as__decdeg.coord <- function(object, ...) {
 as__decdeg.numeric <- function(
     object,
     ...,
-    .degrtype = c("decdeg", "degmin", "degminsec"),
+    .cdnfmt = c("decdeg", "degmin", "degminsec"),
     .fmt = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
-    .degrtype <- match.arg(.degrtype)
+    .cdnfmt <- match.arg(.cdnfmt)
     .fmt <- match.arg(.fmt)
 
-    degconvert_numeric(object, as__decdeg, .degrtype, .fmt, .as_numeric)
+    degconvert_numeric(object, as__decdeg, .cdnfmt, .fmt, .as_numeric)
 }
 
 # ________________________________________________________________________________
 # Powers as__degminsec.numeric(), as__degmins.numeric() and as__decdeg.numeric()
 # Not exported
-degconvert_numeric <- function(object, fun, .degrtype, .fmt, .as_numeric) {
+degconvert_numeric <- function(object, fun, .cdnfmt, .fmt, .as_numeric) {
     fun <- match.fun(fun)
 
-    rv <- coord(object, .degrtype, .fmt)
+    rv <- coord(object, .cdnfmt, .fmt)
     if (length(object) == 1)
         rv <- list(rv)
     rv <- lapply(rv, fun)
@@ -586,20 +586,20 @@ degconvert_numeric <- function(object, fun, .degrtype, .fmt, .as_numeric) {
 # ___________________________________________________________________________________________________________
 # Convert numeric decimal degrees, degrees and minutes, and degrees minutes and seconds to "canonical form"
 # i.e. with decimal point after integer degrees
-fmtdeg <- function(x, .degrtype = c("decdeg", "degmin", "degminsec"), .fmt = c("deg", "min", "sec")) {
-    .degrtype <- match.arg(.degrtype)
+fmtdeg <- function(x, .cdnfmt = c("decdeg", "degmin", "degminsec"), .fmt = c("deg", "min", "sec")) {
+    .cdnfmt <- match.arg(.cdnfmt)
     .fmt <- match.arg(.fmt)
 
     switch(.fmt,
         deg = x,
-        min = switch(.degrtype,
+        min = switch(.cdnfmt,
             degmin =,
             degminsec = x / 1e2L,
-            stop(".fmt \"min\" only meaningful with .degrtype of \"degmin\" or \"degminsec\"", call. = FALSE)
+            stop(".fmt \"min\" only meaningful with .cdnfmt of \"degmin\" or \"degminsec\"", call. = FALSE)
         ),
-        sec = switch(.degrtype,
+        sec = switch(.cdnfmt,
             "degminsec" = x / 1e4L,
-            stop(".fmt \"sec\" only meaningful with .degrtype of \"degminsec\"", call. = FALSE)
+            stop(".fmt \"sec\" only meaningful with .cdnfmt of \"degminsec\"", call. = FALSE)
         ),
         stop("Invalid `.fmt` value", call. = FALSE) 
     )
