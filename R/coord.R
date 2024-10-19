@@ -119,9 +119,42 @@ format.coordpart <- function(x, ...) {
 
 
 # ____________________
-# Coordinate class
-# Coord class contains a list with one, two or three values named
-# "deg", "min", "sec"
+#' @title Geographic or GPS Coordinate
+#'
+#' @description
+#' Geographic or GPS coordinate class
+#'
+#' @details
+#' `"Coord"` class contains a list with one, two or three numeric values named  "deg", "min", "sec", depending whether the cordinate is represented in decimal degrees, (integer) degrees and (decimal) minutes, or  (integer) degrees and minutes, and (decimal) seconds
+#'
+#' @family coord
+#'
+#' @param x `numeric`, representing one or more coordinates.
+#'
+#' @param .degrtype `character` string indicating the format of argument `x`; must be one of
+#'   `"decdeg"` (default), `"degmin"` or `"degminsec"`.
+#'
+#' @param .fmt a `character` string indicating the position of the decimal point in `x`; must
+#'   be one of `"deg"` (default), `"min"`, or `"sec"`. You can specify just the initial letter.
+#'
+#' @param .latorlon a `character` string, either `"lat"`, or `"lon"` indicating whether the
+#'   coordinate(s) represented are of latitude or longitude; otherwise it must be `NA` (the default).
+#'
+#XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+#' @return An object of class `"coord"`, or if `length(x) > 1`, a list of such objects, each
+#'   instantiating a coordinate. Objects of `"coord"` class contain a `list` with one, two or three
+#'   numeric values named  "deg", "min", "sec", depending on whether the cordinate in question is
+#'   represented in decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer)
+#'   degrees, (integer) minutes, and (decimal) seconds.
+#'
+#' of latitude or longitude
+#'
+#'   in decimal degrees, degrees and minutes or degrees, minutes and seconds
+#'   represented by a numeric of type `double` ...
+#'   ...represented by a numeric of type `double` with maximum absolute value of \var{180˚}.
+#'   Attribute `".latorlon"` indicates whether the object is a coordinate of latitude or longitude;
+#'   if latitude, the  maximum absolute value is \var{90˚}.
+#'
 #' @export
 
 coord <- function(
@@ -301,7 +334,6 @@ sum_sec <- function(object, ...) {
 }
 
 #' @export
-# #' @exportS3Method BitsnBobs::sum_sec
 
 sum_sec.coord <- function(object, ...) {
     check_dots_empty()
