@@ -7,7 +7,6 @@
 coord(
   x,
   .fmt = c("decdeg", "degmin", "degminsec"),
-  .dpos = c("deg", "min", "sec"),
   .latorlon = c(NA, "lat", "lon")
 )
 }
@@ -17,31 +16,39 @@ coord(
 \item{.fmt}{\code{character} string indicating the format of argument \code{x}; must be one of
 \code{"decdeg"} (default), \code{"degmin"} or \code{"degminsec"}.}
 
-\item{.dpos}{a \code{character} string indicating the position of the decimal point in \code{x}; must
-be one of \code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
-
 \item{.latorlon}{a \code{character} string, either \code{"lat"}, or \code{"lon"} indicating whether the
 coordinate(s) represented are of latitude or longitude; otherwise it must be \code{NA} (the default).}
+
+\item{.dpos}{a \code{character} string indicating the position of the decimal point in \code{x}; must
+be one of \code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
 }
 \value{
-An object of class \code{"coord"}, or if \code{length(x) > 1}, a list of such objects, each
-instantiating a coordinate. Objects of \code{"coord"} class contain a \code{list} with one, two or three
-numeric values named  "deg", "min", "sec", depending on whether the cordinate in question is
-represented in decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer)
-degrees, (integer) minutes, and (decimal) seconds.
-
-of latitude or longitude
-
-in decimal degrees, degrees and minutes or degrees, minutes and seconds
-represented by a numeric of type \code{double} ...
-...represented by a numeric of type \code{double} with maximum absolute value of \var{180˚}.
-Attribute \code{".latorlon"} indicates whether the object is a coordinate of latitude or longitude;
-if latitude, the  maximum absolute value is \var{90˚}.
+An object of class \code{"coord"} or, if \code{length(x) > 1}, a list of such objects, each
+instantiating a coordinate. See \emph{Details}.
 }
 \description{
 Geographic or GPS coordinate class
 }
 \details{
-\code{"Coord"} class contains a list with one, two or three numeric values named  "deg", "min", "sec", depending whether the cordinate is represented in decimal degrees, (integer) degrees and (decimal) minutes, or  (integer) degrees and minutes, and (decimal) seconds
+\code{coord()} creates a robust representation of a geographic or GPS cordinate based on the value of
+\code{x} or, if \code{length(x) > 1}, a number of such coordinates instatiated as objects of class
+\code{"coord"}. Objects of \code{"coord"} class contain a \code{list} with one, two or three numeric values named
+"deg", "min", "sec", depending on whether the cordinate in question is represented in decimal
+degrees, in (integer) degrees and (decimal) minutes, or else in (integer) degrees, (integer)
+minutes, and (decimal) seconds.
+
+The value provided in argument \code{x} should normally have a decimal point after the integer number
+of degrees, and naturally this must be so in the case of decimal degrees. However, for degrees and minutes and degrees minutes and seconds other number formats are permissible.
+, after the integer number of minutes in the case of
+degrees and minutes, and after the integer number of seconds in the case of degrees, minutes and seconds
+
+\code{"coord"} objects have \code{character} attribute \code{latorlon}, which may be \verb{'lat"} for latitude,
+\code{"lon"} for longitude or \code{NA}, and \code{logical} attribute \code{"negative"}, when \code{TRUE} signifying a
+negative coordinate i.e., S or W rather than N or E.
+
+The total value in degrees, minutes and seconds may not be greater than \var{180˚}, while the
+minutes and seconds components (if present) must be less than  \var{60˚}. If latitude is
+represented, as indicated by character string \verb{'lat"} for the \code{latorlon} attribute, the  maximum
+absolute value is \var{90˚}.
 }
 \concept{coord}

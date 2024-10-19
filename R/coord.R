@@ -6,21 +6,21 @@
 #
 # coord.R
 
-# __________________________________
-# Remove once in package BitsnBobs
-.up2 <- \(...) BitsnBobs:::.up2(...)
+# # __________________________________
+# # Remove once in package BitsnBobs
+# .up2 <- \(...) BitsnBobs:::.up2(...)
 
-`%@%` <- \(...) rlang:::`%@%`(...)
+# `%@%` <- \(...) rlang:::`%@%`(...)
 
-check_dots_used <- \(...) rlang:::check_dots_used()
+# check_dots_used <- \(...) rlang:::check_dots_used()
 
-check_dots_empty <- \(...) rlang::: check_dots_empty()
-# Ends - remove once in package BitsnBobs
+# check_dots_empty <- \(...) rlang::: check_dots_empty()
+# # Ends - remove once in package BitsnBobs
 
-# ____________________
+# _____________________
 # `"Coordpart"` class
-# `"Coordpart"` class contains a list with one, two or three objects of
-# classes `"degxdec"`, `"degxint"`, `"minxint"`, `"minxdec"`, `"secxdec"`
+# Comprises a numeric value (either integer or double) with classes `"Coordpart"` and one of
+# `"degxdec"`, `"degxint"`, `"minxint"`, `"minxdec"`, `"secxdec"`
 
 coordpart <- function(x, typex = c("degxdec", "degxint", "minxdec", "minxint", "secxdec")) {
     typex <- match.arg(typex)
@@ -125,7 +125,27 @@ format.coordpart <- function(x, ...) {
 #' Geographic or GPS coordinate class
 #'
 #' @details
-#' `"Coord"` class contains a list with one, two or three numeric values named  "deg", "min", "sec", depending whether the cordinate is represented in decimal degrees, (integer) degrees and (decimal) minutes, or  (integer) degrees and minutes, and (decimal) seconds
+#XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+#' `coord()` creates a robust representation of a geographic or GPS cordinate based on the value of
+#' `x` or, if `length(x) > 1`, a number of such coordinates instatiated as objects of class
+#' `"coord"`. Objects of `"coord"` class contain a `list` with one, two or three numeric values
+#' named "deg", "min", "sec", depending on whether the cordinate in question is represented in
+#' decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer) degrees,
+#' (integer) minutes, and (decimal) seconds.
+#'
+#' The value provided in argument `x` should have a decimal point after the integer number
+#' of degrees in the case of decimal degrees, after the integer number of minutes in the case of
+#' degrees and minutes, and after the integer number of seconds in the case of degrees, minutes and
+#' seconds
+#'
+#' `"coord"` objects have `character` attribute `latorlon`, which may be `'lat"` for latitude,
+#' `"lon"` for longitude or `NA`, and `logical` attribute `"negative"`, when `TRUE` signifying a
+#' negative coordinate i.e., S or W rather than N or E.
+#'
+#' The total value in degrees, minutes and seconds may not be greater than \var{180˚}, while the
+#' minutes and seconds components (if present) must be less than  \var{60˚}. If latitude is
+#' represented, as indicated by character string `'lat"` for the `latorlon` attribute, the  maximum
+#' absolute value is \var{90˚}.
 #'
 #' @family coord
 #'
@@ -134,40 +154,21 @@ format.coordpart <- function(x, ...) {
 #' @param .fmt `character` string indicating the format of argument `x`; must be one of
 #'   `"decdeg"` (default), `"degmin"` or `"degminsec"`.
 #'
-#' @param .dpos a `character` string indicating the position of the decimal point in `x`; must
-#'   be one of `"deg"` (default), `"min"`, or `"sec"`. You can specify just the initial letter.
-#'
 #' @param .latorlon a `character` string, either `"lat"`, or `"lon"` indicating whether the
 #'   coordinate(s) represented are of latitude or longitude; otherwise it must be `NA` (the default).
 #'
-#XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
-#' @return An object of class `"coord"`, or if `length(x) > 1`, a list of such objects, each
-#'   instantiating a coordinate. Objects of `"coord"` class contain a `list` with one, two or three
-#'   numeric values named  "deg", "min", "sec", depending on whether the cordinate in question is
-#'   represented in decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer)
-#'   degrees, (integer) minutes, and (decimal) seconds.
-#'
-#' of latitude or longitude
-#'
-#'   in decimal degrees, degrees and minutes or degrees, minutes and seconds
-#'   represented by a numeric of type `double` ...
-#'   ...represented by a numeric of type `double` with maximum absolute value of \var{180˚}.
-#'   Attribute `".latorlon"` indicates whether the object is a coordinate of latitude or longitude;
-#'   if latitude, the  maximum absolute value is \var{90˚}.
+#' @return An object of class `"coord"` or, if `length(x) > 1`, a list of such objects, each
+#'   instantiating a coordinate. See \emph{Details}.
 #'
 #' @export
 
 coord <- function(
     x,
     .fmt = c("decdeg", "degmin", "degminsec"),
-    .dpos = c("deg", "min", "sec"),
     .latorlon = c(NA, "lat", "lon")
 ) {
     .fmt <- match.arg(.fmt)
-    .dpos <- match.arg(.dpos)
     .latorlon <- match.arg(.latorlon)    
-
-    x <- .canonical(x, .fmt, .dpos)
 
     rv <- lapply(x, \(y) {
         negative <- y < 0
@@ -175,13 +176,13 @@ coord <- function(
         switch(.fmt,
             decdeg = list(deg = coordpart(y, "degxdec")),
             degmin = list(
-                deg = coordpart(as.integer(y), "degxint"),
-                min = coordpart(round(.up2(y), 4), "minxdec")
+                deg = coordpart(as.integer(y %/% 1e2), "degxint"),
+                min = coordpart(round(y %% 1e2, 4), "minxdec")
             ),
             degminsec = list(
-                deg = coordpart(as.integer(y), "degxint"),
-                min = coordpart(as.integer(.up2(y)), "minxint"),
-                sec = coordpart(round(.up2(.up2(y)), 2), "secxdec")
+                deg = coordpart(as.integer(y %/% 1e4), "degxint"),
+                min = coordpart(as.integer((y %% 1e4) %/% 1e2), "minxint"),
+                sec = coordpart(round((y %% 1e4) %% 1e2, 2), "secxdec")
             ),
             stop("Invalid `.fmt` value", call. = FALSE)
         ) |>
@@ -583,27 +584,6 @@ degconvert_numeric <- function(object, fun, .fmt, .dpos, .as_numeric) {
         if (length(rv) > 1) rv else rv[[1]]
 }
 
-# ___________________________________________________________________________________________________________
-# Convert numeric decimal degrees, degrees and minutes, and degrees minutes and seconds to "canonical form"
-# i.e. with decimal point after integer degrees
-.canonical <- function(x, .fmt = c("decdeg", "degmin", "degminsec"), .dpos = c("deg", "min", "sec")) {
-    .fmt <- match.arg(.fmt)
-    .dpos <- match.arg(.dpos)
-
-    switch(.dpos,
-        deg = x,
-        min = switch(.fmt,
-            degmin =,
-            degminsec = x / 1e2L,
-            stop(".dpos \"min\" only meaningful with .fmt of \"degmin\" or \"degminsec\"", call. = FALSE)
-        ),
-        sec = switch(.fmt,
-            "degminsec" = x / 1e4L,
-            stop(".dpos \"sec\" only meaningful with .fmt of \"degminsec\"", call. = FALSE)
-        ),
-        stop("Invalid `.dpos` value", call. = FALSE) 
-    )
-}
 
 # # _____________________________________________
 # # Vectorised conditional sign change function
