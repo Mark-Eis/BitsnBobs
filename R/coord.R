@@ -167,7 +167,7 @@ coord <- function(
     .dpos <- match.arg(.dpos)
     .latorlon <- match.arg(.latorlon)    
 
-    x <- fmtdeg(x, .cdnfmt, .dpos)
+    x <- .canonical(x, .cdnfmt, .dpos)
 
     rv <- lapply(x, \(y) {
         negative <- y < 0
@@ -586,7 +586,7 @@ degconvert_numeric <- function(object, fun, .cdnfmt, .dpos, .as_numeric) {
 # ___________________________________________________________________________________________________________
 # Convert numeric decimal degrees, degrees and minutes, and degrees minutes and seconds to "canonical form"
 # i.e. with decimal point after integer degrees
-fmtdeg <- function(x, .cdnfmt = c("decdeg", "degmin", "degminsec"), .dpos = c("deg", "min", "sec")) {
+.canonical <- function(x, .cdnfmt = c("decdeg", "degmin", "degminsec"), .dpos = c("deg", "min", "sec")) {
     .cdnfmt <- match.arg(.cdnfmt)
     .dpos <- match.arg(.dpos)
 
