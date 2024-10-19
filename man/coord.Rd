@@ -6,29 +6,29 @@
 \usage{
 coord(
   x,
-  .degrtype = c("decdeg", "degmin", "degminsec"),
-  .fmt = c("deg", "min", "sec"),
+  .fmt = c("decdeg", "degmin", "degminsec"),
+  .dpos = c("deg", "min", "sec"),
   .latorlon = c(NA, "lat", "lon")
 )
 }
 \arguments{
-\item{x}{\code{numeric}, representing one or more coordinates of latitude or longitude.}
+\item{x}{\code{numeric}, representing one or more coordinates.}
 
-\item{.degrtype}{\code{character} string indicating the format of argument \code{x}; must be one of
+\item{.fmt}{\code{character} string indicating the format of argument \code{x}; must be one of
 \code{"decdeg"} (default), \code{"degmin"} or \code{"degminsec"}.}
 
-\item{.fmt}{a \code{character} string indicating the position of the decimal point in \code{x}; must
+\item{.dpos}{a \code{character} string indicating the position of the decimal point in \code{x}; must
 be one of \code{"deg"} (default), \code{"min"}, or \code{"sec"}. You can specify just the initial letter.}
 
 \item{.latorlon}{a \code{character} string, either \code{"lat"}, or \code{"lon"} indicating whether the
 coordinate(s) represented are of latitude or longitude; otherwise it must be \code{NA} (the default).}
 }
 \value{
-An object of class \code{"coord"}, or if \code{length(object) > 1}, a list of such objects,
-each instantiating a coordinate. Objects of \code{"coord"} class contain a \code{list} with one, two or
-three numeric values named  "deg", "min", "sec", depending on whether the cordinate in question
-is represented in decimal degrees, in (integer) degrees and (decimal) minutes, or else in
-(integer) degrees, (integer) minutes, and (decimal) seconds.
+An object of class \code{"coord"}, or if \code{length(x) > 1}, a list of such objects, each
+instantiating a coordinate. Objects of \code{"coord"} class contain a \code{list} with one, two or three
+numeric values named  "deg", "min", "sec", depending on whether the cordinate in question is
+represented in decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer)
+degrees, (integer) minutes, and (decimal) seconds.
 
 of latitude or longitude
 
