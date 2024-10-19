@@ -134,7 +134,7 @@ format.coordpart <- function(x, ...) {
 #' @param .cdnfmt `character` string indicating the format of argument `x`; must be one of
 #'   `"decdeg"` (default), `"degmin"` or `"degminsec"`.
 #'
-#' @param .fmt a `character` string indicating the position of the decimal point in `x`; must
+#' @param .dpos a `character` string indicating the position of the decimal point in `x`; must
 #'   be one of `"deg"` (default), `"min"`, or `"sec"`. You can specify just the initial letter.
 #'
 #' @param .latorlon a `character` string, either `"lat"`, or `"lon"` indicating whether the
@@ -160,14 +160,14 @@ format.coordpart <- function(x, ...) {
 coord <- function(
     x,
     .cdnfmt = c("decdeg", "degmin", "degminsec"),
-    .fmt = c("deg", "min", "sec"),
+    .dpos = c("deg", "min", "sec"),
     .latorlon = c(NA, "lat", "lon")
 ) {
     .cdnfmt <- match.arg(.cdnfmt)
-    .fmt <- match.arg(.fmt)
+    .dpos <- match.arg(.dpos)
     .latorlon <- match.arg(.latorlon)    
 
-    x <- fmtdeg(x, .cdnfmt, .fmt)
+    x <- fmtdeg(x, .cdnfmt, .dpos)
 
     rv <- lapply(x, \(y) {
         negative <- y < 0
@@ -467,14 +467,14 @@ as__degminsec.numeric <- function(
     object,
     ...,
     .cdnfmt = c("decdeg", "degmin", "degminsec"),
-    .fmt = c("deg", "min", "sec"),
+    .dpos = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
     .cdnfmt <- match.arg(.cdnfmt)
-    .fmt <- match.arg(.fmt)
+    .dpos <- match.arg(.dpos)
 
-    degconvert_numeric(object, as__degminsec, .cdnfmt, .fmt, .as_numeric)
+    degconvert_numeric(object, as__degminsec, .cdnfmt, .dpos, .as_numeric)
 }
 
 # For consistency (no conflict with BitsnBobs)
@@ -522,14 +522,14 @@ as__degmin.numeric <- function(
     object,
     ...,
     .cdnfmt = c("decdeg", "degmin", "degminsec"),
-    .fmt = c("deg", "min", "sec"),
+    .dpos = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
     .cdnfmt <- match.arg(.cdnfmt)
-    .fmt <- match.arg(.fmt)
+    .dpos <- match.arg(.dpos)
 
-    degconvert_numeric(object, as__degmin, .cdnfmt, .fmt, .as_numeric)
+    degconvert_numeric(object, as__degmin, .cdnfmt, .dpos, .as_numeric)
 }
 
 # To avoid conflict with BitsnBobs::as_decdeg()
@@ -556,23 +556,23 @@ as__decdeg.numeric <- function(
     object,
     ...,
     .cdnfmt = c("decdeg", "degmin", "degminsec"),
-    .fmt = c("deg", "min", "sec"),
+    .dpos = c("deg", "min", "sec"),
     .as_numeric = FALSE
 ) {
     check_dots_empty()
     .cdnfmt <- match.arg(.cdnfmt)
-    .fmt <- match.arg(.fmt)
+    .dpos <- match.arg(.dpos)
 
-    degconvert_numeric(object, as__decdeg, .cdnfmt, .fmt, .as_numeric)
+    degconvert_numeric(object, as__decdeg, .cdnfmt, .dpos, .as_numeric)
 }
 
 # ________________________________________________________________________________
 # Powers as__degminsec.numeric(), as__degmins.numeric() and as__decdeg.numeric()
 # Not exported
-degconvert_numeric <- function(object, fun, .cdnfmt, .fmt, .as_numeric) {
+degconvert_numeric <- function(object, fun, .cdnfmt, .dpos, .as_numeric) {
     fun <- match.fun(fun)
 
-    rv <- coord(object, .cdnfmt, .fmt)
+    rv <- coord(object, .cdnfmt, .dpos)
     if (length(object) == 1)
         rv <- list(rv)
     rv <- lapply(rv, fun)
@@ -586,22 +586,22 @@ degconvert_numeric <- function(object, fun, .cdnfmt, .fmt, .as_numeric) {
 # ___________________________________________________________________________________________________________
 # Convert numeric decimal degrees, degrees and minutes, and degrees minutes and seconds to "canonical form"
 # i.e. with decimal point after integer degrees
-fmtdeg <- function(x, .cdnfmt = c("decdeg", "degmin", "degminsec"), .fmt = c("deg", "min", "sec")) {
+fmtdeg <- function(x, .cdnfmt = c("decdeg", "degmin", "degminsec"), .dpos = c("deg", "min", "sec")) {
     .cdnfmt <- match.arg(.cdnfmt)
-    .fmt <- match.arg(.fmt)
+    .dpos <- match.arg(.dpos)
 
-    switch(.fmt,
+    switch(.dpos,
         deg = x,
         min = switch(.cdnfmt,
             degmin =,
             degminsec = x / 1e2L,
-            stop(".fmt \"min\" only meaningful with .cdnfmt of \"degmin\" or \"degminsec\"", call. = FALSE)
+            stop(".dpos \"min\" only meaningful with .cdnfmt of \"degmin\" or \"degminsec\"", call. = FALSE)
         ),
         sec = switch(.cdnfmt,
             "degminsec" = x / 1e4L,
-            stop(".fmt \"sec\" only meaningful with .cdnfmt of \"degminsec\"", call. = FALSE)
+            stop(".dpos \"sec\" only meaningful with .cdnfmt of \"degminsec\"", call. = FALSE)
         ),
-        stop("Invalid `.fmt` value", call. = FALSE) 
+        stop("Invalid `.dpos` value", call. = FALSE) 
     )
 }
 
