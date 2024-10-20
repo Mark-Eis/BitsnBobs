@@ -164,7 +164,7 @@ coord <- function(
     .fmt <- match.arg(.fmt)
     .latorlon <- match.arg(.latorlon)
     if (all(!is.na(.latorlon), .latorlon == "both", length(x) != 2))
-        stop("If `.latorlon` is \"both\", `x` must be of length 2.", call. = FALSE)
+        stop("`x` not of length 2 [`.latorlon` = \"both\"]", call. = FALSE)
 
     rv <- lapply(x, \(y) {
         negative <- y < 0
@@ -210,19 +210,19 @@ validate_coord <- function(object) {
 
     if (sum_degminsec(object) > 180)
         stop(
-            "`object` must not be greater than 180\u00B0",
+            "`coord` must not be greater than 180\u00B0",
             call. = FALSE
         )
 
     if (sum_minsec(object) >= 60)
         stop(
-            "`object$min` must be less than 60\'",
+            "`coord$min` must be less than 60\'",
             call. = FALSE
         )
 
     if (sum_sec(object) >= 60)
         stop(
-            "`object$sec` must be less than 60\'",
+            "`coord$sec` must be less than 60\'",
             call. = FALSE
         )
 
@@ -254,6 +254,52 @@ validate_coord <- function(object) {
         )    
 
     object
+}
+
+# _______________________________________
+# S3 format() method for `"coord"` class
+#' @exportS3Method base::format
+
+format.coord <- function(x, ...) {
+    check_dots_empty()
+    if (all(class(x)[2] == "decdeg", x %@% "negative"))
+        x$deg <- -x$deg
+    lapply(x, format)
+    if (class(x)[2] == "decdeg") {
+        if (!is.na(x %@% "latorlon")) cat(" ", x %@% "latorlon", sep = "")
+    } else
+        cat(" ", .cmppnt(x %@% "latorlon", x %@% "negative"), sep = "")
+}
+
+# _______________________________________
+# S3 print() method for `"coord"` class
+#' @export
+
+print.coord <- function(x, ...) {
+    check_dots_empty()
+    format(x)
+    invisible(x)
+}
+
+# _______________________________________
+# S3 format() method for `"latnlon"` class
+#' @exportS3Method base::format
+
+format.latnlon <- function(x, ...) {
+    check_dots_empty()
+    format(x[[1]])
+	cat("  ")
+    format(x[[2]])
+}
+
+# _______________________________________
+# S3 print() method for `"latnlon"` class
+#' @export
+
+print.latnlon <- function(x, ...) {
+    check_dots_empty()
+    format(x)
+    invisible(x)
 }
 
 # __________________________________________________________
@@ -365,22 +411,6 @@ sum_sec.degmin <- function(object, ...) {
 sum_sec.degminsec <- function(object, ...) {
     check_dots_empty()
     with(object, sec)
-}
-
-# _______________________________________
-# S3 print() method for `"Coord"` class
-#' @export
-
-print.coord <- function(x, ...) {
-    check_dots_empty()
-    if (all(class(x)[2] == "decdeg", x %@% "negative"))
-        x$deg <- -x$deg
-    lapply(x, format)
-    if (class(x)[2] == "decdeg") {
-        if (!is.na(x %@% "latorlon")) cat(" ", x %@% "latorlon", sep = "")
-    } else
-        cat(" ", .cmppnt(x %@% "latorlon", x %@% "negative"), sep = "")
-    invisible(x)
 }
 
 #' @export
