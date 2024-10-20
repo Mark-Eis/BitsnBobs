@@ -352,13 +352,12 @@ print.latnlon <- function(x, ...) {
 
 # __________________________________________________________
 # Total degrees, including minutes and seconds, as decimal
-#' @export
 
 sum_degminsec <- function(object, ...) {
     UseMethod("sum_degminsec")
 }
 
-#' @export
+#' @exportS3Method BitsnBobs::sum_degminsec
 
 sum_degminsec.coord <- function(object, ...) {
     check_dots_empty()
@@ -389,13 +388,12 @@ sum_degminsec.degminsec <- function(object, ...) {
 
 # ______________________________________________
 # Total minutes, including seconds, as decimal
-#' @export
 
 sum_minsec <- function(object, ...) {
     UseMethod("sum_minsec")
 }
 
-#' @export
+#' @exportS3Method BitsnBobs::sum_minsec
 
 sum_minsec.coord <- function(object, ...) {
     check_dots_empty()
@@ -426,13 +424,12 @@ sum_minsec.degminsec <- function(object, ...) {
 
 # _____________________________
 # Seconds, if any, as decimal
-#' @export
 
 sum_sec <- function(object, ...) {
     UseMethod("sum_sec")
 }
 
-#' @export
+#' @exportS3Method BitsnBobs::sum_sec
 
 sum_sec.coord <- function(object, ...) {
     check_dots_empty()
