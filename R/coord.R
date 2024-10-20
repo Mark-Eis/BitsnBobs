@@ -6,17 +6,6 @@
 #
 # coord.R
 
-# # __________________________________
-# # Remove once in package BitsnBobs
-# .up2 <- \(...) BitsnBobs:::.up2(...)
-
-# `%@%` <- \(...) rlang:::`%@%`(...)
-
-# check_dots_used <- \(...) rlang:::check_dots_used()
-
-# check_dots_empty <- \(...) rlang::: check_dots_empty()
-# # Ends - remove once in package BitsnBobs
-
 # _____________________
 # `"Coordpart"` class
 # Comprises a numeric value (either integer or double) with classes `"Coordpart"` and one of
