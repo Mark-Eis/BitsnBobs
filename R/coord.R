@@ -151,7 +151,7 @@ format.coordpart <- function(x, ...) {
 #'   coordinate(s) represented are of latitude or longitude or `"both"` indicating a pair of
 #'   of latitude and longitude coordinates; otherwise it must be `NA` (the default).
 #'
-#' @return An object of class `"coord"` or, if `length(x) > 1`, or a list of such objects, each
+#' @return An object of class `"coord"` or if `length(x) > 1`, a list of such objects, each
 #'   instantiating a coordinate. See \emph{Details}.
 #'
 #' @export
@@ -164,7 +164,7 @@ coord <- function(
     .fmt <- match.arg(.fmt)
     .latorlon <- match.arg(.latorlon)
     if (all(!is.na(.latorlon), .latorlon == "both", length(x) != 2))
-    		stop("If `.latorlon` is \"both\", `x` must be of length 2", call. = FALSE)
+        stop("If `.latorlon` is \"both\", `x` must be of length 2.", call. = FALSE)
 
     rv <- lapply(x, \(y) {
         negative <- y < 0
@@ -185,18 +185,14 @@ coord <- function(
         new_coord(.fmt, .latorlon, negative)
     })
 
-    if (length(x) == 1)
-        rv[[1]] |>
-        validate_coord()
-    else {
-        if (all(!is.na(.latorlon), .latorlon == "both", length(x) == 2)) {
-            rv[[1]] %@% "latorlon" <- "lat"
-            rv[[2]] %@% "latorlon" <- "lon"
-            lapply(rv, validate_coord) |>
-            structure(rv, class = "latnlon")
-        } else
-            rv |>
-            lapply(validate_coord)
+    if (all(!is.na(.latorlon), .latorlon == "both", length(x) == 2)) {
+        rv[[1]] %@% "latorlon" <- "lat"
+        rv[[2]] %@% "latorlon" <- "lon"
+        lapply(rv, validate_coord) |>
+        structure(class = "latnlon")
+    } else {
+        rv <- lapply(rv, validate_coord)
+        if (length(rv) > 1) rv else rv[[1]]
     }
 }
 

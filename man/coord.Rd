@@ -21,7 +21,7 @@ coordinate(s) represented are of latitude or longitude or \code{"both"} indicati
 of latitude and longitude coordinates; otherwise it must be \code{NA} (the default).}
 }
 \value{
-An object of class \code{"coord"} or, if \code{length(x) > 1}, or a list of such objects, each
+An object of class \code{"coord"} or if \code{length(x) > 1}, a list of such objects, each
 instantiating a coordinate. See \emph{Details}.
 }
 \description{
