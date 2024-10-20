@@ -116,9 +116,9 @@ format.coordpart <- function(x, ...) {
 #' @details
 #' `coord()` creates a robust representation of a geographic or GPS cordinate based on the value of
 #' `x` or, if `length(x) > 1`, a number of such coordinates instatiated as objects of class
-#' `"coord"`. Objects of `"coord"` class contain a `list` with one, two or three numeric values
-#' named "deg", "min", "sec", depending on whether the cordinate in question is represented in
-#' decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer) degrees,
+#' `"coord"`. Objects of `"coord"` class contain a `list` with one, two or three `numeric` values
+#' named `"deg"`, `"min"`, `"sec"`, depending on whether the cordinate in question is represented
+#' in decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer) degrees,
 #' (integer) minutes, and (decimal) seconds.
 #'
 #' The value provided in argument `x` should have a decimal point after the integer number
@@ -126,14 +126,19 @@ format.coordpart <- function(x, ...) {
 #' degrees and minutes, and after the integer number of seconds in the case of degrees, minutes and
 #' seconds
 #'
-#' `"coord"` objects have `character` attribute `latorlon`, which may be `'lat"` for latitude,
-#' `"lon"` for longitude or `NA`, and `logical` attribute `"negative"`, when `TRUE` signifying a
-#' negative coordinate i.e., S or W rather than N or E.
+#' `"coord"` objects have `character` attribute `latorlon`, which may be `"lat"` for latitude,
+#' `"lon"` for longitude or `NA`, and a `logical` attribute `"negative"`, which when `TRUE`
+#' signifies a negative coordinate i.e., S or W rather than N or E.
 #'
-#' The total value in degrees, minutes and seconds may not be greater than \var{180˚}, while the
-#' minutes and seconds components (if present) must be less than  \var{60˚}. If latitude is
-#' represented, as indicated by character string `'lat"` for the `latorlon` attribute, the  maximum
-#' absolute value is \var{90˚}.
+#' If `length(x) > 1`, a list of `"coord"` objects is returned, all of which will have the same
+#' `latorlon` attribute (i.e., either all `'lat"` or all `"lon"`). The exception is the case in
+#' which argument `.latorlon` is `both` and `length(x) = 2`, when a list of two `"coord"` objects
+#' is returned, having `latorlon` attributes one each of `"lat"` and `"lon"`; the list itself is an
+#' object of class `"latnlon"`.
+#'
+#' The total value in degrees, minutes and seconds may not be greater than `180˚`, while the
+#' minutes and seconds components (if present) must be less than  `60˚`. If latitude is
+#' represented, (i.e., `latorlon` attribute is `"lat"`), its  maximum absolute value is `90˚`.
 #'
 #' @family coord
 #'
@@ -142,10 +147,11 @@ format.coordpart <- function(x, ...) {
 #' @param .fmt `character` string indicating the format of argument `x`; must be one of
 #'   `"decdeg"` (default), `"degmin"` or `"degminsec"`.
 #'
-#' @param .latorlon a `character` string, either `"lat"`, or `"lon"` indicating whether the
-#'   coordinate(s) represented are of latitude or longitude; otherwise it must be `NA` (the default).
+#' @param .latorlon a `character` string, either `"lat"` or `"lon"` indicating whether the
+#'   coordinate(s) represented are of latitude or longitude or `"both"` indicating a pair of
+#'   of latitude and longitude coordinates; otherwise it must be `NA` (the default).
 #'
-#' @return An object of class `"coord"` or, if `length(x) > 1`, a list of such objects, each
+#' @return An object of class `"coord"` or, if `length(x) > 1`, or a list of such objects, each
 #'   instantiating a coordinate. See \emph{Details}.
 #'
 #' @export
@@ -153,10 +159,12 @@ format.coordpart <- function(x, ...) {
 coord <- function(
     x,
     .fmt = c("decdeg", "degmin", "degminsec"),
-    .latorlon = c(NA, "lat", "lon")
+    .latorlon = c(NA, "lat", "lon", "both")
 ) {
     .fmt <- match.arg(.fmt)
-    .latorlon <- match.arg(.latorlon)    
+    .latorlon <- match.arg(.latorlon)
+    if (all(!is.na(.latorlon), .latorlon == "both", length(x) != 2))
+    		stop("If `.latorlon` is \"both\", `x` must be of length 2", call. = FALSE)
 
     rv <- lapply(x, \(y) {
         negative <- y < 0
@@ -174,10 +182,22 @@ coord <- function(
             ),
             stop("Invalid `.fmt` value", call. = FALSE)
         ) |>
-        new_coord(.fmt, .latorlon, negative) |>
-        validate_coord()
+        new_coord(.fmt, .latorlon, negative)
     })
-    if (length(x) > 1) rv else rv[[1]]
+
+    if (length(x) == 1)
+        rv[[1]] |>
+        validate_coord()
+    else {
+        if (all(!is.na(.latorlon), .latorlon == "both", length(x) == 2)) {
+            rv[[1]] %@% "latorlon" <- "lat"
+            rv[[2]] %@% "latorlon" <- "lon"
+            lapply(rv, validate_coord) |>
+            structure(rv, class = "latnlon")
+        } else
+            rv |>
+            lapply(validate_coord)
+    }
 }
 
 new_coord <- function(x, fmt, latorlon = NA, negative = FALSE) {

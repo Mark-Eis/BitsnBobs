@@ -7,7 +7,7 @@
 coord(
   x,
   .fmt = c("decdeg", "degmin", "degminsec"),
-  .latorlon = c(NA, "lat", "lon")
+  .latorlon = c(NA, "lat", "lon", "both")
 )
 }
 \arguments{
@@ -16,11 +16,12 @@ coord(
 \item{.fmt}{\code{character} string indicating the format of argument \code{x}; must be one of
 \code{"decdeg"} (default), \code{"degmin"} or \code{"degminsec"}.}
 
-\item{.latorlon}{a \code{character} string, either \code{"lat"}, or \code{"lon"} indicating whether the
-coordinate(s) represented are of latitude or longitude; otherwise it must be \code{NA} (the default).}
+\item{.latorlon}{a \code{character} string, either \code{"lat"} or \code{"lon"} indicating whether the
+coordinate(s) represented are of latitude or longitude or \code{"both"} indicating a pair of
+of latitude and longitude coordinates; otherwise it must be \code{NA} (the default).}
 }
 \value{
-An object of class \code{"coord"} or, if \code{length(x) > 1}, a list of such objects, each
+An object of class \code{"coord"} or, if \code{length(x) > 1}, or a list of such objects, each
 instantiating a coordinate. See \emph{Details}.
 }
 \description{
@@ -29,9 +30,9 @@ Geographic or GPS coordinate class
 \details{
 \code{coord()} creates a robust representation of a geographic or GPS cordinate based on the value of
 \code{x} or, if \code{length(x) > 1}, a number of such coordinates instatiated as objects of class
-\code{"coord"}. Objects of \code{"coord"} class contain a \code{list} with one, two or three numeric values
-named "deg", "min", "sec", depending on whether the cordinate in question is represented in
-decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer) degrees,
+\code{"coord"}. Objects of \code{"coord"} class contain a \code{list} with one, two or three \code{numeric} values
+named \code{"deg"}, \code{"min"}, \code{"sec"}, depending on whether the cordinate in question is represented
+in decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer) degrees,
 (integer) minutes, and (decimal) seconds.
 
 The value provided in argument \code{x} should have a decimal point after the integer number
@@ -39,13 +40,18 @@ of degrees in the case of decimal degrees, after the integer number of minutes i
 degrees and minutes, and after the integer number of seconds in the case of degrees, minutes and
 seconds
 
-\code{"coord"} objects have \code{character} attribute \code{latorlon}, which may be \verb{'lat"} for latitude,
-\code{"lon"} for longitude or \code{NA}, and \code{logical} attribute \code{"negative"}, when \code{TRUE} signifying a
-negative coordinate i.e., S or W rather than N or E.
+\code{"coord"} objects have \code{character} attribute \code{latorlon}, which may be \code{"lat"} for latitude,
+\code{"lon"} for longitude or \code{NA}, and a \code{logical} attribute \code{"negative"}, which when \code{TRUE}
+signifies a negative coordinate i.e., S or W rather than N or E.
 
-The total value in degrees, minutes and seconds may not be greater than \var{180˚}, while the
-minutes and seconds components (if present) must be less than  \var{60˚}. If latitude is
-represented, as indicated by character string \verb{'lat"} for the \code{latorlon} attribute, the  maximum
-absolute value is \var{90˚}.
+If \code{length(x) > 1}, a list of \code{"coord"} objects is returned, all of which will have the same
+\code{latorlon} attribute (i.e., either all \verb{'lat"} or all \code{"lon"}). The exception is the case in
+which argument \code{.latorlon} is \code{both} and \code{length(x) = 2}, when a list of two \code{"coord"} objects
+is returned, having \code{latorlon} attributes one each of \code{"lat"} and \code{"lon"}; the list itself is an
+object of class \code{"latnlon"}.
+
+The total value in degrees, minutes and seconds may not be greater than \verb{180˚}, while the
+minutes and seconds components (if present) must be less than  \verb{60˚}. If latitude is
+represented, (i.e., \code{latorlon} attribute is \code{"lat"}), its  maximum absolute value is \verb{90˚}.
 }
 \concept{coord}
