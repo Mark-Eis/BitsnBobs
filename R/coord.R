@@ -321,7 +321,7 @@ print.coord <- function(x, ...) {
 format.latnlon <- function(x, ...) {
     check_dots_empty()
     format(x[[1]])
-	cat("  ")
+    cat("  ")
     format(x[[2]])
 }
 
@@ -626,7 +626,7 @@ as__degminsec.degminsec <- function(object, ...) {
 #' @exportS3Method BitsnBobs::as__degminsec
 
 as__degminsec.latnlon <- function(object, ...) {
-	lapply(object, as__degminsec) |>
+    lapply(object, as__degminsec) |>
     structure(class = "latnlon") 
 }
 
@@ -697,7 +697,7 @@ as__degmin.degminsec <- function(object, ...) {
 #' @exportS3Method BitsnBobs::as__degmin
 
 as__degmin.latnlon <- function(object, ...) {
-	lapply(object, as__degmin) |>
+    lapply(object, as__degmin) |>
     structure(class = "latnlon") 
 }
 
@@ -747,7 +747,7 @@ as__decdeg.coord <- function(object, ...) {
 #' @exportS3Method BitsnBobs::as__decdeg
 
 as__decdeg.latnlon <- function(object, ...) {
-	lapply(object, as__decdeg) |>
+    lapply(object, as__decdeg) |>
     structure(class = "latnlon") 
 }
 
