@@ -13,7 +13,7 @@ coord(
 \arguments{
 \item{x}{\code{numeric}, representing one or more coordinates.}
 
-\item{.fmt}{\code{character} string indicating the format of argument \code{x}; must be one of
+\item{.fmt}{\code{character} string indicating the format of \code{x}; must be one of
 \code{"decdeg"} (default), \code{"degmin"} or \code{"degminsec"}.}
 
 \item{.latorlon}{a \code{character} string, either \code{"lat"} or \code{"lon"} indicating whether the
@@ -62,13 +62,14 @@ coord(51.507765,, "lat")
 coord(-0.127924,, "lon")
 coord(c(51.507765, -0.127924),, "both")
 coord(
-      c(51.507765, 49.546210, 48.107232, 38.889494, 0.000000, -37.111740, -53.104781),,
-     "lat"
+    c(51.507765, 49.546210, 48.107232, 38.889494, 0.000000, -37.111740, -53.104781),,
+    "lat"
 )
 coord(
-      c(-0.127924, 18.398562, -122.778671, -77.035242, 0.000000, -12.28863, 73.517283),,
-     "lon"
+    c(-0.127924, 18.398562, -122.778671, -77.035242, 0.000000, -12.28863, 73.517283),,
+    "lon"
 )
+
 ## Degrees and minutes
 coord(5130.4659, "degmin")
 coord(-7.6754, "degmin")
@@ -76,14 +77,14 @@ coord(5130.4659, "degmin", "lat")
 coord(-7.6754, "degmin", "lon")
 coord(c(5130.4659, -7.6754), "degmin", "both")
 coord(
-      c(5130.4659, 4932.7726, 4806.4339, 3853.3696, 0.0000, -3706.7044, -5306.2869),
-      "degmin",
-      "lat"
+    c(5130.4659, 4932.7726, 4806.4339, 3853.3696, 0.0000, -3706.7044, -5306.2869),
+    "degmin",
+    "lat"
 )
 coord(
-      c(-7.6754, 1823.9137, -12246.7203, -7702.1145, 0.0000, -1217.3178, 7331.0370),
-      "degmin",
-      "lon"
+    c(-7.6754, 1823.9137, -12246.7203, -7702.1145, 0.0000, -1217.3178, 7331.0370),
+    "degmin",
+    "lon"
 )
 
 ## Degrees, minutes and seconds
@@ -93,14 +94,18 @@ coord(513027.95, "degminsec", "lat")
 coord(-740.53, "degminsec", "lon")
 coord(c(513027.95, -740.53), "degminsec", "both")
 coord(
-      c(513027.95, 493246.36, 480626.04, 385322.18, 0.00, -370642.26, -530617.21),
-      "degminsec",
-      "lat"
+    c(513027.95, 493246.36, 480626.04, 385322.18, 0.00, -370642.26, -530617.21),
+    "degminsec",
+    "lat"
 )
 coord(
-      c(-740.53, 182354.82, -1224643.22, -770206.87, 0.00, -121719.07, 733102.22),
-      "degminsec",
-      "lon"
+    c(-740.53, 182354.82, -1224643.22, -770206.87, 0.00, -121719.07, 733102.22),
+    "degminsec",
+    "lon"
 )
+}
+\seealso{
+Other coord: 
+\code{\link{as__degminsec}()}
 }
 \concept{coord}

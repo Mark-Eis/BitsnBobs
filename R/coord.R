@@ -144,7 +144,7 @@ format.coordpart <- function(x, ...) {
 #'
 #' @param x `numeric`, representing one or more coordinates.
 #'
-#' @param .fmt `character` string indicating the format of argument `x`; must be one of
+#' @param .fmt `character` string indicating the format of `x`; must be one of
 #'   `"decdeg"` (default), `"degmin"` or `"degminsec"`.
 #'
 #' @param .latorlon a `character` string, either `"lat"` or `"lon"` indicating whether the
@@ -163,13 +163,14 @@ format.coordpart <- function(x, ...) {
 #' coord(-0.127924,, "lon")
 #' coord(c(51.507765, -0.127924),, "both")
 #' coord(
-#'       c(51.507765, 49.546210, 48.107232, 38.889494, 0.000000, -37.111740, -53.104781),,
-#'      "lat"
+#'     c(51.507765, 49.546210, 48.107232, 38.889494, 0.000000, -37.111740, -53.104781),,
+#'     "lat"
 #' )
 #' coord(
-#'       c(-0.127924, 18.398562, -122.778671, -77.035242, 0.000000, -12.28863, 73.517283),,
-#'      "lon"
+#'     c(-0.127924, 18.398562, -122.778671, -77.035242, 0.000000, -12.28863, 73.517283),,
+#'     "lon"
 #' )
+#'
 #' ## Degrees and minutes
 #' coord(5130.4659, "degmin")
 #' coord(-7.6754, "degmin")
@@ -177,14 +178,14 @@ format.coordpart <- function(x, ...) {
 #' coord(-7.6754, "degmin", "lon")
 #' coord(c(5130.4659, -7.6754), "degmin", "both")
 #' coord(
-#'       c(5130.4659, 4932.7726, 4806.4339, 3853.3696, 0.0000, -3706.7044, -5306.2869),
-#'       "degmin",
-#'       "lat"
+#'     c(5130.4659, 4932.7726, 4806.4339, 3853.3696, 0.0000, -3706.7044, -5306.2869),
+#'     "degmin",
+#'     "lat"
 #' )
 #' coord(
-#'       c(-7.6754, 1823.9137, -12246.7203, -7702.1145, 0.0000, -1217.3178, 7331.0370),
-#'       "degmin",
-#'       "lon"
+#'     c(-7.6754, 1823.9137, -12246.7203, -7702.1145, 0.0000, -1217.3178, 7331.0370),
+#'     "degmin",
+#'     "lon"
 #' )
 #'
 #' ## Degrees, minutes and seconds
@@ -194,14 +195,14 @@ format.coordpart <- function(x, ...) {
 #' coord(-740.53, "degminsec", "lon")
 #' coord(c(513027.95, -740.53), "degminsec", "both")
 #' coord(
-#'       c(513027.95, 493246.36, 480626.04, 385322.18, 0.00, -370642.26, -530617.21),
-#'       "degminsec",
-#'       "lat"
+#'     c(513027.95, 493246.36, 480626.04, 385322.18, 0.00, -370642.26, -530617.21),
+#'     "degminsec",
+#'     "lat"
 #' )
 #' coord(
-#'       c(-740.53, 182354.82, -1224643.22, -770206.87, 0.00, -121719.07, 733102.22),
-#'       "degminsec",
-#'       "lon"
+#'     c(-740.53, 182354.82, -1224643.22, -770206.87, 0.00, -121719.07, 733102.22),
+#'     "degminsec",
+#'     "lon"
 #' )
 
 coord <- function(
@@ -506,7 +507,83 @@ as.double.decdeg <- function(x, ...) {
 }
 
 # To avoid conflict with BitsnBobs::as_degminsec()
+# ========================================
+#' @title
+#' Convert Coordinate to Degrees, Minutes and Seconds
+#'
+#' @description
+#' Convert the format of a geographic or GPS coordinate to degrees, minutes and seconds.
+#'
+#' @details
+#' Converts between coordinates represented in decimal degrees ("decdeg"), integer degrees and
+#' decimal minutes ("degmin"), and integer degrees, integer minutes, and decimal seconds
+#' ("degminsec"). Works with individual [`"coord"`][coord] objects returned using the
+#' [`coord()`][coord] function, or with vectors of simple numeric values.
+#' See [`"coord"`][coord] for further details.
+#'
+#' @family coord
+#'
+#' @param object a `"coord"` object or a `numeric` vector.
+#'
+#' @param ... further arguments passed to or from other methods.
+#'
+#' @param .fmt `character` string indicating the format of `object`; must be one of
+#'   `"decdeg"` (default), `"degmin"` or `"degminsec"`.
+#'
+#' @param .as_numeric logical, signifying whether to return a `numeric` value, if `TRUE`, or a
+#'   `"coord"` object, if `FALSE`, the default.
+#'
+#' @return
+#' A [`"coord"`][coord] object or `numeric` value in the desired format.
+#'
 #' @export
+#' @examples
+#' ## `"coord"` objects in decimal degrees; in degrees and minutes;
+#' ##   and in degrees, minutes, and seconds
+#' (coord_dd <- coord(51.507765, "decdeg"))
+#' (coord_dm <- coord(5130.4659, "degmin") |> as__degminsec())
+#' (coord_dms <- coord(513027.95, "degminsec") |> as__degmin())
+#'
+#' ## as__degminsec
+#' coord_dd |> as__degminsec()
+#' coord_dm |> as__degminsec()
+#'
+#' ## as__degmin
+#' coord_dd |> as__degmin()
+#' coord_dms |> as__degmin()
+#'
+#' ## as__decdeg
+#' coord_dm |> as__decdeg()
+#' coord_dms |> as__decdeg()
+#'
+#' ## Numeric vectors in decimal degrees; in degrees and minutes;
+#' ##   and in degrees, minutes, and seconds
+#' (num_dd <- c(51.507765, 49.546210, 48.107232, 38.889494, 0.000000, -37.111740, -53.104781))
+#' (num_dm <- c(5130.4659, 4932.7726, 4806.4339, 3853.3696, 0.0000, -3706.7044, -5306.2869))
+#' (num_dms <- c(513027.95, 493246.36, 480626.04, 385322.18, 0.00, -370642.26, -530617.21))
+#'
+#' ## as__degminsec
+#' num_dd |> as__degminsec(.fmt = "decdeg")
+#' num_dm |> as__degminsec(.fmt = "degmin")
+#'
+#' num_dd |> as__degminsec(.fmt = "decdeg", .as_numeric = TRUE)
+#' num_dm |> as__degminsec(.fmt = "degmin", .as_numeric = TRUE)
+#'
+#' ## as__degmin
+#' num_dd |> as__degmin(.fmt = "decdeg")
+#' num_dms |> as__degmin(.fmt = "degminsec")
+#'
+#' num_dd |> as__degmin(.fmt = "decdeg", .as_numeric = TRUE)
+#' num_dms |> as__degmin(.fmt = "degminsec", .as_numeric = TRUE)
+#'
+#' ## as__decdeg
+#' num_dm |> as__decdeg(.fmt = "degmin")
+#' num_dms |> as__decdeg(.fmt = "degminsec")
+#'
+#' num_dm |> as__decdeg(.fmt = "degmin", .as_numeric = TRUE)
+#' num_dms |> as__decdeg(.fmt = "degminsec", .as_numeric = TRUE)
+#'
+#' rm(coord_dd, coord_dm, coord_dms, num_dd, num_dm, num_dms)
 
 as__degminsec <- function(object, ...) {
     UseMethod("as__degminsec")
@@ -544,7 +621,14 @@ as__degminsec.degminsec <- function(object, ...) {
     with(object, (deg * 1e2 + min) * 1e2 + sec)
 }
 
-#' @exportS3Method BitsnBobs::as__degminsec
+# #' @exportS3Method BitsnBobs::as__degminsec
+
+# ========================================
+#  Convert Coordinate to Degrees, Minutes and Seconds
+#  S3method as__degminsec.numeric()
+#'
+#' @rdname as__degminsec
+#' @export
 
 as__degminsec.numeric <- function(
     object,
@@ -559,6 +643,12 @@ as__degminsec.numeric <- function(
 }
 
 # For consistency (no conflict with BitsnBobs)
+
+# ========================================
+#  Convert Coordinate to Degrees and Minutes
+#  S3generic as__degmin()
+#'
+#' @rdname as__degminsec
 #' @export
 
 as__degmin <- function(object, ...) {
@@ -597,7 +687,14 @@ as__degmin.degminsec <- function(object, ...) {
     with(object, deg * 1e2 + min + sec / 60)
 }
 
-#' @exportS3Method BitsnBobs::as__degmin
+# #' @exportS3Method BitsnBobs::as__degmin
+
+# ========================================
+#  Convert Coordinate to Degrees and Minutes
+#  S3method as__degmin.numeric()
+#'
+#' @rdname as__degminsec
+#' @export
 
 as__degmin.numeric <- function(
     object,
@@ -612,6 +709,12 @@ as__degmin.numeric <- function(
 }
 
 # To avoid conflict with BitsnBobs::as_decdeg()
+
+# ========================================
+#  Convert Coordinate to Decimal Degrees
+#  S3generic as__decdeg()
+#'
+#' @rdname as__degminsec
 #' @export
 
 as__decdeg <- function(object, ...) {
@@ -629,7 +732,14 @@ as__decdeg.coord <- function(object, ...) {
     coord("decdeg", .latorlon = object %@% "latorlon")
 }
 
-#' @exportS3Method BitsnBobs::as__decdeg
+# #' @exportS3Method BitsnBobs::as__decdeg
+
+# ========================================
+#  Convert Numeric to Decimal Degrees
+#  S3method as__decdeg.numeric()
+#'
+#' @rdname as__degminsec
+#' @export
 
 as__decdeg.numeric <- function(
     object,
