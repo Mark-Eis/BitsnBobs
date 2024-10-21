@@ -41,11 +41,11 @@ as__decdeg(object, ...)
 
 \item{...}{further arguments passed to or from other methods.}
 
-\item{.fmt}{\code{character} string indicating the format of \code{object}; must be one of
-\code{"decdeg"} (default), \code{"degmin"} or \code{"degminsec"}.}
+\item{.fmt}{\code{character} string indicating the format of \code{object}; must be one of \code{"decdeg"}
+(default), \code{"degmin"} or \code{"degminsec"}.}
 
-\item{.as_numeric}{logical, signifying whether to return a \code{numeric} value, if \code{TRUE}, or a
-\code{"coord"} object, if \code{FALSE}, the default.}
+\item{.as_numeric}{logical, signifying whether to return a \code{"coord"} object or a \code{numeric} value;
+default \code{FALSE}, the former.}
 }
 \value{
 A \code{\link[=coord]{"coord"}} object or \code{numeric} value in the desired format.
@@ -64,8 +64,8 @@ See \code{\link[=coord]{"coord"}} for further details.
 ## `"coord"` objects in decimal degrees; in degrees and minutes;
 ##   and in degrees, minutes, and seconds
 (coord_dd <- coord(51.507765, "decdeg"))
-(coord_dm <- coord(5130.4659, "degmin") |> as__degminsec())
-(coord_dms <- coord(513027.95, "degminsec") |> as__degmin())
+(coord_dm <- coord(5130.4659, "degmin"))
+(coord_dms <- coord(513027.95, "degminsec"))
 
 ## as__degminsec
 coord_dd |> as__degminsec()
@@ -78,6 +78,24 @@ coord_dms |> as__degmin()
 ## as__decdeg
 coord_dm |> as__decdeg()
 coord_dms |> as__decdeg()
+
+## `"latnlon"` objects in decimal degrees; in degrees and minutes;
+##   and in degrees, minutes, and seconds
+(latnlon_dd <- coord(c(51.507765, -0.127924), "decdeg", "both"))
+(latnlon_dm <- coord(c(5130.4659, -7.6754), "degmin", "both"))
+(latnlon_dms <- coord(c(513027.95, -740.53), "degminsec", "both"))
+
+## as__degminsec
+latnlon_dd |> as__degminsec()
+latnlon_dm |> as__degminsec()
+
+## as__degmin
+latnlon_dd |> as__degmin()
+latnlon_dms |> as__degmin()
+
+## as__decdeg
+latnlon_dm |> as__decdeg()
+latnlon_dms |> as__decdeg()
 
 ## Numeric vectors in decimal degrees; in degrees and minutes;
 ##   and in degrees, minutes, and seconds
