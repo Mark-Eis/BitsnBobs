@@ -7,7 +7,7 @@
 \alias{as__degmin.numeric}
 \alias{as__decdeg}
 \alias{as__decdeg.numeric}
-\title{Convert Coordinate to Degrees, Minutes and Seconds}
+\title{Convert Coordinate Format}
 \usage{
 as__degminsec(object, ...)
 
@@ -51,7 +51,8 @@ default \code{FALSE}, the former.}
 A \code{\link[=coord]{"coord"}} object or \code{numeric} value in the desired format.
 }
 \description{
-Convert the format of a geographic or GPS coordinate to degrees, minutes and seconds.
+Convert the format of geographic or GPS coordinates to decimal degrees, to degrees and minutes
+or to degrees, minutes and seconds.
 }
 \details{
 Converts between coordinates represented in decimal degrees ("decdeg"), integer degrees and
