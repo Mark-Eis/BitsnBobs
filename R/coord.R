@@ -614,7 +614,7 @@ as__degminsec.decdeg <- function(object, ...) {
 
 as__degminsec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, (deg * 1e2 + min %/% 1) * 100 + min %% 1 * 60)
+    with(object, (deg * 1e2 + min %/% 1) * 1e2 + min %% 1 * 60)
 }
 
 #' @exportS3Method BitsnBobs::as__degminsec
