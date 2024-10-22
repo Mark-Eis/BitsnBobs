@@ -29,9 +29,9 @@
 #'
 #' @param data a data frame, or a data frame extension (e.g. a tibble).
 #'
-#' @param .firstname quoted name of column containing first names; default \code{Firstname}.
+#' @param firstname quoted name of column containing first names; default \code{Firstname}.
 #'
-#' @param .surname quoted name of column containing surnames; default \code{Surname}.
+#' @param surname quoted name of column containing surnames; default \code{Surname}.
 #'
 #' @param \dots <[`tidy-select`][dplyr::dplyr_tidy_select]> names of variables to group by.
 #'
@@ -59,21 +59,21 @@
 #'   print_all()
 #' 
 
-cat_names <- function(data, .firstname = Firstname, .surname = Surname, ..., .delimiter = ", ") {
+cat_names <- function(data, firstname = Firstname, surname = Surname, ..., .delimiter = ", ") {
     Firstname <- Surname <- NULL
-    .firstname = enquo(.firstname)
-    .surname = enquo(.surname)
+    firstname = enquo(firstname)
+    surname = enquo(surname)
 
     stopifnot(
         is.data.frame(data),
-        !is.null(data[[as_name(.firstname)]]), !is.null(data[[as_name(.surname)]]),
-        is.character(eval_tidy(.firstname, data)), is.character(eval_tidy(.surname, data))
+        !is.null(data[[as_name(firstname)]]), !is.null(data[[as_name(surname)]]),
+        is.character(eval_tidy(firstname, data)), is.character(eval_tidy(surname, data))
     )
 
     pos <- eval_select(expr(c(...)), data)
 
-    data[c(eval_select(expr(c(!!.firstname, !!.surname)), data), pos)] |>
-        mutate(Names = paste(!!.firstname, !!.surname, collapse = .delimiter), .by = names(pos), .keep = "unused") |>
+    data[c(eval_select(expr(c(!!firstname, !!surname)), data), pos)] |>
+        mutate(Names = paste(!!firstname, !!surname, collapse = .delimiter), .by = names(pos), .keep = "unused") |>
         unique() |>
         arrange(...)
 }

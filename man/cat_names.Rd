@@ -6,8 +6,8 @@
 \usage{
 cat_names(
   data,
-  .firstname = Firstname,
-  .surname = Surname,
+  firstname = Firstname,
+  surname = Surname,
   ...,
   .delimiter = ", "
 )
@@ -15,9 +15,9 @@ cat_names(
 \arguments{
 \item{data}{a data frame, or a data frame extension (e.g. a tibble).}
 
-\item{.firstname}{quoted name of column containing first names; default \code{Firstname}.}
+\item{firstname}{quoted name of column containing first names; default \code{Firstname}.}
 
-\item{.surname}{quoted name of column containing surnames; default \code{Surname}.}
+\item{surname}{quoted name of column containing surnames; default \code{Surname}.}
 
 \item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> names of variables to group by.}
 
