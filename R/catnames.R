@@ -63,7 +63,6 @@ cat_names <- function(data, firstname = Firstname, surname = Surname, ..., .deli
     Firstname <- Surname <- NULL
     firstname = enquo(firstname)
     surname = enquo(surname)
-    check_dots_used()
 
     stopifnot(
         is.data.frame(data),
