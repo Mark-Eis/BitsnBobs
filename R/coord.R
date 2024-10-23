@@ -250,16 +250,7 @@ validate_coord <- function(object) {
             call. = FALSE
         )    
 
-    if (with(object,
-            all(object %@% "latorlon" %in% "lat",
-                switch(class(object)[2],
-                    decdeg = deg,
-                    degmin = deg + min / 60,
-                    degminsec = deg + min / 60 + sec / 3600,
-                    stop("Invalid `Coord` subclass: ", class(object)[2], call. = FALSE)
-                ) > 90
-            )
-        ))
+    if (with(object, all(object %@% "latorlon" %in% "lat", sum_degminsec(object) > 90)))
         stop(
             "Latitude must not be greater than 90\u00B0",
             call. = FALSE
@@ -280,10 +271,10 @@ validate_coord <- function(object) {
 
 format.coord <- function(x, ...) {
     check_dots_empty()
-    if (all(class(x)[2] == "decdeg", x %@% "negative"))
+    if (all(inherits(x, "decdeg"), x %@% "negative"))
         x$deg <- -x$deg
     lapply(x, format)
-    if (class(x)[2] == "decdeg") {
+    if (inherits(x, "decdeg")) {
         if (!is.na(x %@% "latorlon")) cat(" ", x %@% "latorlon", sep = "")
     } else
         cat(" ", .cmppnt(x %@% "latorlon", x %@% "negative"), sep = "")
