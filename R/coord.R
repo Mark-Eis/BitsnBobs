@@ -597,34 +597,13 @@ as__degminsec <- function(object, ...) {
 as__degminsec.coord <- function(object, ...) {
     check_dots_empty()
 
-    NextMethod() |>
-    as.numeric() |>
-    swapsign(object %@% "negative") |>
-    coord("degminsec", .latorlon = object %@% "latorlon")
-}
-
-#' @exportS3Method BitsnBobs::as__degminsec
-
-as__degminsec.decdeg <- function(object, ...) {
-    check_dots_empty()
     crossprod(
         c(1e4, 1e2, 6e1),
         c(sum_degminsec(object) %/% 1, + sum_minsec(object) %/% 1, sum_minsec(object) %% 1)
-    )
-}
-
-#' @exportS3Method BitsnBobs::as__degminsec
-
-as__degminsec.degmin <- function(object, ...) {
-    check_dots_empty()
-    with(object, (deg * 1e2 + min %/% 1) * 1e2 + min %% 1 * 60)
-}
-
-#' @exportS3Method BitsnBobs::as__degminsec
-
-as__degminsec.degminsec <- function(object, ...) {
-    check_dots_empty()
-    with(object, (deg * 1e2 + min) * 1e2 + sec)
+    ) |>
+    as.numeric() |>
+    swapsign(object %@% "negative") |>
+    coord("degminsec", .latorlon = object %@% "latorlon")
 }
 
 #' @exportS3Method BitsnBobs::as__degminsec
