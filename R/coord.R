@@ -26,7 +26,7 @@ validate_coordpart <- function(object) {
     if (
         !all(
             inherits(object, "coordpart"),
-	        inherits(object, c("degxdec", "degxint", "minxdec", "minxint", "secxdec"))
+            inherits(object, c("degxdec", "degxint", "minxdec", "minxint", "secxdec"))
         )
     )
         stop(
@@ -320,31 +320,26 @@ sum_degminsec <- function(object, ...) {
 
 #' @exportS3Method BitsnBobs::sum_degminsec
 
-sum_degminsec.coord <- function(object, ...) {
-    check_dots_empty()
-    NextMethod() |>
-    as.numeric()
-}
-
-#' @exportS3Method BitsnBobs::sum_degminsec
-
 sum_degminsec.decdeg <- function(object, ...) {
     check_dots_empty()
-    with(object, deg)
+    with(object, deg) |>
+    as.numeric()
 }
 
 #' @exportS3Method BitsnBobs::sum_degminsec
 
 sum_degminsec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min / 60)
+    with(object, deg + min / 60) |>
+    as.numeric()
 }
 
 #' @exportS3Method BitsnBobs::sum_degminsec
 
 sum_degminsec.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, deg) + sum_minsec(object) / 60 
+    (with(object, deg) + sum_minsec(object) / 60) |>
+    as.numeric() 
 }
 
 # ______________________________________________
@@ -356,31 +351,26 @@ sum_minsec <- function(object, ...) {
 
 #' @exportS3Method BitsnBobs::sum_minsec
 
-sum_minsec.coord <- function(object, ...) {
-    check_dots_empty()
-    NextMethod() |>
-    as.numeric()
-}
-
-#' @exportS3Method BitsnBobs::sum_minsec
-
 sum_minsec.decdeg <- function(object, ...) {
     check_dots_empty()
-    sum_degminsec(object) %% 1 * 60
+    (sum_degminsec(object) %% 1 * 60) |>
+    as.numeric()
 }
 
 #' @exportS3Method BitsnBobs::sum_minsec
 
 sum_minsec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, min)
+    with(object, min) |>
+    as.numeric()
 }
 
 #' @exportS3Method BitsnBobs::sum_minsec
 
 sum_minsec.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, min + sec / 60)
+    with(object, min + sec / 60) |>
+    as.numeric()
 }
 
 # _____________________________
@@ -392,31 +382,26 @@ sum_sec <- function(object, ...) {
 
 #' @exportS3Method BitsnBobs::sum_sec
 
-sum_sec.coord <- function(object, ...) {
-    check_dots_empty()
-    NextMethod() |>
-    as.numeric()
-}
-
-#' @exportS3Method BitsnBobs::sum_sec
-
 sum_sec.decdeg <- function(object, ...) {
     check_dots_empty()
-    sum_minsec(object) %% 1 * 60
+    (sum_minsec(object) %% 1 * 60) |>
+    as.numeric()
 }
 
 #' @exportS3Method BitsnBobs::sum_sec
 
 sum_sec.degmin <- function(object, ...) {
     check_dots_empty()
-    sum_minsec(object) %% 1 * 60
+    (sum_minsec(object) %% 1 * 60) |>
+    as.numeric()
 }
 
 #' @exportS3Method BitsnBobs::sum_sec
 
 sum_sec.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, sec)
+    with(object, sec) |>
+    as.numeric()
 }
 
 # _____________________________
