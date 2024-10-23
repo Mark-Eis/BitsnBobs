@@ -388,9 +388,14 @@ sum_minsec.coord <- function(object, ...) {
 
 #' @exportS3Method BitsnBobs::sum_minsec
 
+# # sum_minsec.decdeg <- function(object, ...) {
+    # check_dots_empty()
+    # 0
+# }
+
 sum_minsec.decdeg <- function(object, ...) {
     check_dots_empty()
-    0
+    with(object, (deg %% 1 * 60) %/% 1) * 1e2 + (deg %% 1 * 60) %% 1 * 60))
 }
 
 #' @exportS3Method BitsnBobs::sum_minsec
@@ -424,16 +429,26 @@ sum_sec.coord <- function(object, ...) {
 
 #' @exportS3Method BitsnBobs::sum_sec
 
+# sum_sec.decdeg <- function(object, ...) {
+    # check_dots_empty()
+    # 0
+# }
+
 sum_sec.decdeg <- function(object, ...) {
     check_dots_empty()
-    0
+    with(object, (deg %% 1 * 60) %% 1 * 60))
 }
 
 #' @exportS3Method BitsnBobs::sum_sec
 
+# # sum_sec.degmin <- function(object, ...) {
+    # check_dots_empty()
+    # 0
+# }
+
 sum_sec.degmin <- function(object, ...) {
     check_dots_empty()
-    0
+    with(object, min %% 1 * 60))
 }
 
 #' @exportS3Method BitsnBobs::sum_sec
