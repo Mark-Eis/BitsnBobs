@@ -64,46 +64,30 @@ validate_coordpart <- function(object) {
     object
 }
 
-#' @exportS3Method base::format
 
-format.degxdec <- function(x, ...) {
-    check_dots_empty()
-    c(formatC(x, digits = 6, width = 11, format = "f", flag = " "), "\u00B0")
-}
+# See R Packages (2e) 7.4 Internal state
+# https://r-pkgs.org/data.html#sec-data-state
+the <- new.env(parent = emptyenv())
 
-#' @exportS3Method base::format
-
-format.degxint <- function(x, ...) {
-    check_dots_empty()
-    c(formatC(x, digits = 0, width = 3, format = "f"), "\u00B0")
-}
-
-#' @exportS3Method base::format
-
-format.minxdec <- function(x, ...) {
-    check_dots_empty()
-    c(formatC(x, digits = 4, width = 7, format = "f", flag = "0"), "\'")
-}
-
-#' @exportS3Method base::format
-
-format.minxint <- function(x, ...) {
-    check_dots_empty()
-    c(formatC(x, digits = 0, width = 2, format = "f", flag = "0"), "\'")
-}
-
-#' @exportS3Method base::format
-
-format.secxdec <- function(x, ...) {
-    check_dots_empty()
-    c(formatC(x, digits = 2, width = 5, format = "f", flag = "0"), "\"")
-}
+# Formatting information for use by format.coordpart()
+the$crdprtfmt <- data.frame(
+    name = c("degxdec", "degxint", "minxdec", "minxint", "secxdec"),
+    digits = c(6, 0, 4, 0, 2),
+    width = c(11, 3, 7, 2, 5),
+    format = rep("f", 5),
+    flag = c(" ", "", rep("0", 3)),
+    endchr = rep(c("\u00b0", "\'", "\""), c(2, 2, 1))
+)
 
 #' @exportS3Method base::format
 
 format.coordpart <- function(x, ...) {
-    check_dots_empty()
-    cat(NextMethod(), sep = "")
+    fmtlst <- as.list(c(x = x, the$crdprtfmt[the$crdprtfmt$name == class(x)[2], 2:6]))
+    cat(
+        do.call(formatC, fmtlst[-6]),
+        fmtlst$endchr,
+        sep = ""
+    )
 }
 
 
