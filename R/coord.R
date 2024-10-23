@@ -490,7 +490,7 @@ as.double.decdeg <- function(x, ...) {
         unname()
 }
 
-# To avoid conflict with BitsnBobs::as_degminsec()
+# Named as__degminsec() to avoid conflict with BitsnBobs::as_degminsec()
 # ========================================
 #' @title
 #' Convert Coordinate Format
@@ -632,8 +632,7 @@ as__degminsec.numeric <- function(
     degconvert_numeric(object, as__degminsec, .fmt, .as_numeric)
 }
 
-# For consistency (no conflict with BitsnBobs)
-
+# Named as__degmin() for consistency (no conflict with BitsnBobs)
 # ========================================
 #  Convert Coordinate to Degrees and Minutes
 #  S3generic as__degmin()
@@ -650,31 +649,10 @@ as__degmin <- function(object, ...) {
 as__degmin.coord <- function(object, ...) {
     check_dots_empty()
 
-    NextMethod() |>
+    (sum_degminsec(object) %/% 1 * 1e2 + sum_minsec(object)) |>
     as.numeric() |>
     swapsign(object %@% "negative") |>
     coord("degmin", .latorlon = object %@% "latorlon")
-}
-
-#' @exportS3Method BitsnBobs::as__degmin
-
-as__degmin.decdeg <- function(object, ...) {
-    check_dots_empty()
-    with(object, deg %/% 1 * 1e2 + deg %% 1 * 60)
-}
-
-#' @exportS3Method BitsnBobs::as__degmin
-
-as__degmin.degmin <- function(object, ...) {
-    check_dots_empty()
-    with(object, deg * 1e2 + min)
-}
-
-#' @exportS3Method BitsnBobs::as__degmin
-
-as__degmin.degminsec <- function(object, ...) {
-    check_dots_empty()
-    with(object, deg * 1e2 + min + sec / 60)
 }
 
 #' @exportS3Method BitsnBobs::as__degmin
@@ -703,8 +681,7 @@ as__degmin.numeric <- function(
     degconvert_numeric(object, as__degmin, .fmt, .as_numeric)
 }
 
-# To avoid conflict with BitsnBobs::as_decdeg()
-
+# Named as__decdeg() to avoid conflict with BitsnBobs::as_decdeg()
 # ========================================
 #  Convert Coordinate to Decimal Degrees
 #  S3generic as__decdeg()
