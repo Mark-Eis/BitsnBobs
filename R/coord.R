@@ -433,7 +433,6 @@ sum_sec.decdeg <- function(object, ...) {
 
 sum_sec.degmin <- function(object, ...) {
     check_dots_empty()
-    # with(object, min %% 1 * 60)
     sum_minsec(object) %% 1 * 60
 }
 
@@ -608,7 +607,10 @@ as__degminsec.coord <- function(object, ...) {
 
 as__degminsec.decdeg <- function(object, ...) {
     check_dots_empty()
-    with(object, (deg %/% 1 * 1e2 + (deg %% 1 * 60) %/% 1) * 1e2 + (deg %% 1 * 60) %% 1 * 60)
+    crossprod(
+        c(1e4, 1e2, 6e1),
+        c(sum_degminsec(object) %/% 1, + sum_minsec(object) %/% 1, sum_minsec(object) %% 1)
+    )
 }
 
 #' @exportS3Method BitsnBobs::as__degminsec
