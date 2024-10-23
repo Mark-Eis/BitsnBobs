@@ -18,25 +18,24 @@ coordpart <- function(x, typex = c("degxdec", "degxint", "minxdec", "minxint", "
 }
 
 new_coordpart <- function(x, typex) {
-    structure(x, class = c("coordpart", typex))
+    structure(x, class = c(typex, "coordpart"))
 }
 
 validate_coordpart <- function(object) {
 
-    if (!inherits(object, "coordpart"))
-        stop(
-            "`object` must be of class `\"coordpart\"`",
-            call. = FALSE
+    if (
+        !all(
+            inherits(object, "coordpart"),
+	        inherits(object, c("degxdec", "degxint", "minxdec", "minxint", "secxdec"))
         )
-
-    if (!class(object)[2] %in% c("degxdec", "degxint", "minxdec", "minxint", "secxdec"))
+    )
         stop(
-            "`class(object)[2]` must be one of `\"degxdec\"`, `\"degxint\"`, `\"minxdec\"`,",
+            "`object` must be of class `\"coordpart\"` and one of `\"degxdec\"`, `\"degxint\"`, `\"minxdec\"`,",
             "`\"minxdec\"`, `\"secxdec\"`",
             call. = FALSE
         )
 
-    if (all(!is.integer(object), class(object)[2] %in% c("degxint", "minxint")))
+    if (all(!is.integer(object), inherits(object, c("degxint", "minxint"))))
         stop(
             "Object of class `\"degxint\"` or `\"minxint\"` must be of type `integer`",
             call. = FALSE
@@ -44,23 +43,24 @@ validate_coordpart <- function(object) {
 
     if (object < 0)
         stop(
-            "Object of class `\"coordpart\"` must not have value less than zero",
+            "Object of class `\"coordpart\"` must not be negative",
             call. = FALSE
         )
     
-    if (unclass(object) > switch(
-            class(object)[2],
-            "degxdec" =,
-            "degxint" = 180, 
-            "minxdec" =,
-            "minxint" =,
-            "secxdec" = 60 - 1e-14
-        )) {
+    if (all(inherits(object, c("degxdec", "degxint")), unclass(object > 180))) {
         stop(
-            "Values must be <= 180\u00B0 and < 60 for minutes and seconds",
+            "Object of class `\"degxdec\"` or `\"degxint\"` must not be > 180\u00B0",
             call. = FALSE
         )
     }
+
+    if (all(inherits(object, c("minxdec", "minxint", "secxdec")), unclass(object > (60 - 1e-14)))) {
+        stop(
+            "Object of class `\"minxdec\"`, `\"minxint\"` or `\"secxdec\"` must be < 60 minutes or seconds",
+            call. = FALSE
+        )
+    }
+
     object
 }
 
@@ -82,7 +82,8 @@ the$crdprtfmt <- data.frame(
 #' @exportS3Method base::format
 
 format.coordpart <- function(x, ...) {
-    fmtlst <- as.list(c(x = x, the$crdprtfmt[the$crdprtfmt$name == class(x)[2], 2:6]))
+    # fmtlst <- as.list(c(x = x, the$crdprtfmt[the$crdprtfmt$name == class(x)[2], 2:6]))
+    fmtlst <- as.list(c(x = x, the$crdprtfmt[the$crdprtfmt$name == class(x)[1], 2:6]))
     cat(
         do.call(formatC, fmtlst[-6]),
         fmtlst$endchr,
