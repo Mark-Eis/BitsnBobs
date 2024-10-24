@@ -404,73 +404,39 @@ sum_sec.degminsec <- function(object, ...) {
     as.numeric()
 }
 
-# # _____________________________
-# # as.numeric() / as.double methods()
-
-# #' @export
-
-# as.double.coord <- function(x, ...) {
-    # check_dots_empty()
-    
-    # NextMethod() |>
-    # as.numeric() |>
-    # unlist() |>
-    # swapsign(x %@% "negative")
-# }
-
-# #' @exportS3Method base::as.double
-
-# as.double.degminsec <- function(x, ...) {
-    # check_dots_empty()
-    # with(x, (deg * 1e2 + min) * 1e2 + sec)
-# }
-
-# #' @exportS3Method base::as.double
-
-# as.double.degmin <- function(x, ...) {
-    # check_dots_empty()
-    # with(x, deg * 1e2 + min)
-# }
-
-# #' @exportS3Method base::as.double
-
-# as.double.decdeg <- function(x, ...) {
-    # check_dots_empty()
-    # with(x, deg)
-# }
 # _____________________________
 # as.numeric() / as.double methods()
-
 
 #' @exportS3Method base::as.double
 
 as.double.degminsec <- function(x, ...) {
     check_dots_empty()
-    NextMethod(y = with(x, (deg * 1e2 + min) * 1e2 + sec))
+    x$tmp <- with(x, (deg * 1e2 + min) * 1e2 + sec)
+    NextMethod()
 }
-
 
 #' @exportS3Method base::as.double
 
 as.double.degmin <- function(x, ...) {
     check_dots_empty()
-    NextMethod(y = with(x, deg * 1e2 + min))
+    x$tmp <- with(x, deg * 1e2 + min)
+    NextMethod()
 }
-
 
 #' @exportS3Method base::as.double
 
 as.double.decdeg <- function(x, ...) {
     check_dots_empty()
-    NextMethod(y = with(x, deg))
+    x$tmp <- with(x, deg)
+    NextMethod()
 }
 
 #' @exportS3Method base::as.double
 
-as.double.coord <- function(x, ..., y) {
+as.double.coord <- function(x, ...) {
     check_dots_empty()
     
-    y |>
+    x$tmp |>
     as.numeric() |>
     unlist() |>
     swapsign(x %@% "negative")
