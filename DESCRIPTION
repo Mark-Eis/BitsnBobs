@@ -1,7 +1,7 @@
 Package: BitsnBobs
 Title: For General Bits and Bobs of Code
-Version: 0.0.6.00017
-Date: 2024-10-23
+Version: 0.0.7.00000
+Date: 2024-10-24
 Authors@R: 
     person("Mark", "Eisler", , "Mark.Eisler@bristol.ac.uk", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-6843-3345"))
@@ -13,7 +13,7 @@ Description: Does this and that using functions: as_decdeg(), as_degmin(),
     facet_histo(), fct_to_num(), formul_pwrseq(), get_amortint(),
     get_amortval(), iterate(), j(), j2eff_rate(), known_s3generics(),
     kurt(), kurt.test(), kurtosis(), kurtosis.test(), kwd_cols(),
-    kwd_cols()<-, latlon(), latlon_dd(), lf(), lgl_cols(), list_lgl(),
+    kwd_cols()<-, lf(), lgl_cols(), list_lgl(),
     logit(), ls_all(), marker(), method_info(), most_recent_fname(),
     nom_rate(), opt_bc(), phi_coef(), phi_coef.test(), power_seq(),
     print_all(), print_lf(), prob_from_logit(), read_triodos_csv(),
