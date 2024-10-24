@@ -90,6 +90,6 @@ c(-740.53, 182354.82, -1224643.22, -770206.87, 0.00, -121719.07, 733102.22) |>
 }
 \seealso{
 Other coord: 
-\code{\link{as__degminsec}()}
+\code{\link{as_degminsec}()}
 }
 \concept{coord}
