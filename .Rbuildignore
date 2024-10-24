@@ -5,4 +5,4 @@
 ^docs$
 ^pkgdown$
 ^vignettes/articles$
-^R/degreeconvert\.R
+
