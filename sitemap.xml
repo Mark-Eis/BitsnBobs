@@ -11,7 +11,7 @@
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/Manage_Rostido.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/S3Gen_Meth.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/S3_Method_Debug.html</loc></url>
-<url><loc>https://mark-eis.github.io/BitsnBobs/reference/as__degminsec.html</loc></url>
+<url><loc>https://mark-eis.github.io/BitsnBobs/reference/as_degminsec.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/boxcox3.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/cat_names.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/catapult.html</loc></url>
@@ -20,8 +20,6 @@
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/coord.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/cor_coef.test.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/count_lgl.html</loc></url>
-<url><loc>https://mark-eis.github.io/BitsnBobs/reference/decdeg.html</loc></url>
-<url><loc>https://mark-eis.github.io/BitsnBobs/reference/degminsec.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/design_effect.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/detective.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/eff_rate.html</loc></url>
@@ -37,7 +35,6 @@
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/kurtosis.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/kurtosis.test.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/kwd_cols.html</loc></url>
-<url><loc>https://mark-eis.github.io/BitsnBobs/reference/latlon.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/lf.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/list_lgl.html</loc></url>
 <url><loc>https://mark-eis.github.io/BitsnBobs/reference/litter_sizes.html</loc></url>
