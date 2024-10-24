@@ -80,10 +80,8 @@ the$crdprtfmt <- data.frame(
 )
 
 #' @exportS3Method base::format
-
 format.coordpart <- function(x, ...) {
-    # fmtlst <- as.list(c(x = x, the$crdprtfmt[the$crdprtfmt$name == class(x)[2], 2:6]))
-    fmtlst <- as.list(c(x = x, the$crdprtfmt[the$crdprtfmt$name == class(x)[1], 2:6]))
+    fmtlst <- as.list(c(x = x, the$crdprtfmt[vapply(the$crdprtfmt$name, inherits, logical(1), x = x), 2:6]))
     cat(
         do.call(formatC, fmtlst[-6]),
         fmtlst$endchr,
@@ -268,7 +266,6 @@ validate_coord <- function(object) {
 # _______________________________________
 # S3 format() method for `"coord"` class
 #' @exportS3Method base::format
-
 format.coord <- function(x, ...) {
     check_dots_empty()
     if (all(inherits(x, "decdeg"), x %@% "negative"))
@@ -293,7 +290,6 @@ print.coord <- function(x, ...) {
 # _______________________________________
 # S3 format() method for `"latnlon"` class
 #' @exportS3Method base::format
-
 format.latnlon <- function(x, ...) {
     check_dots_empty()
     format(x[[1]])
