@@ -99,8 +99,6 @@ starsig <- function(p) {
 #' 
 #' swapsign(1:10, rep(c(FALSE, TRUE), 5))
 #' 
-#' swapsign(1:10, rep(c(1, 0), 5))
-#' 
 
 
 swapsign <- function(x, negate) {
