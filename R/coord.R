@@ -489,7 +489,6 @@ as.double.coord <- function(x, ..., y) {
         unname()
 }
 
-# Named as_degminsec() to avoid conflict with BitsnBobs::as_degminsec()
 # ========================================
 #' @title
 #' Convert Coordinate Format
@@ -631,7 +630,6 @@ as_degminsec.numeric <- function(
     degconvert_numeric(object, as_degminsec, .fmt, .as_numeric)
 }
 
-# Named as_degmin() for consistency (no conflict with BitsnBobs)
 # ========================================
 #  Convert Coordinate to Degrees and Minutes
 #  S3generic as_degmin()
@@ -680,7 +678,6 @@ as_degmin.numeric <- function(
     degconvert_numeric(object, as_degmin, .fmt, .as_numeric)
 }
 
-# Named as_decdeg() to avoid conflict with BitsnBobs::as_decdeg()
 # ========================================
 #  Convert Coordinate to Decimal Degrees
 #  S3generic as_decdeg()
