@@ -248,7 +248,7 @@ validate_coord <- function(object) {
             call. = FALSE
         )    
 
-    if (with(object, all(object %@% "latorlon" %in% "lat", sum_degminsec(object) > 90)))
+    if (all(object %@% "latorlon" %in% "lat", sum_degminsec(object) > 90))
         stop(
             "Latitude must not be greater than 90\u00B0",
             call. = FALSE
@@ -272,9 +272,9 @@ format.coord <- function(x, ...) {
         x$deg <- -x$deg
     lapply(x, format)
     if (inherits(x, "decdeg")) {
-        if (!is.na(x %@% "latorlon")) cat(" ", x %@% "latorlon", sep = "")
+        if (!is.na(x %@% "latorlon")) cat("", x %@% "latorlon")
     } else
-        cat(" ", .cmppnt(x %@% "latorlon", x %@% "negative"), sep = "")
+        cat("", .cmppnt(x %@% "latorlon", x %@% "negative"))
 }
 
 # _______________________________________
