@@ -307,8 +307,8 @@ print.latnlon <- function(x, ...) {
     invisible(x)
 }
 
-# __________________________________________________________
-# Total degrees, including minutes and seconds, as decimal
+# __________________________________________________________________
+# Total degrees, including minutes and seconds, as decimal degrees
 
 sum_degminsec <- function(object, ...) {
     UseMethod("sum_degminsec")
@@ -326,7 +326,7 @@ sum_degminsec.decdeg <- function(object, ...) {
 
 sum_degminsec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + min / 60) |>
+    with(object, deg + sum_minsec(object)) |>
     as.numeric()
 }
 
@@ -334,12 +334,12 @@ sum_degminsec.degmin <- function(object, ...) {
 
 sum_degminsec.degminsec <- function(object, ...) {
     check_dots_empty()
-    (with(object, deg) + sum_minsec(object) / 60) |>
+    with(object, deg + sum_minsec(object)) |>
     as.numeric() 
 }
 
-# ______________________________________________
-# Total minutes, including seconds, as decimal
+# ______________________________________________________
+# Total minutes, including seconds, as decimal degrees
 
 sum_minsec <- function(object, ...) {
     UseMethod("sum_minsec")
@@ -349,7 +349,7 @@ sum_minsec <- function(object, ...) {
 
 sum_minsec.decdeg <- function(object, ...) {
     check_dots_empty()
-    (sum_degminsec(object) %% 1 * 60) |>
+    with(object, deg %% 1) |>
     as.numeric()
 }
 
@@ -357,7 +357,7 @@ sum_minsec.decdeg <- function(object, ...) {
 
 sum_minsec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, min) |>
+    with(object, min / 60) |>
     as.numeric()
 }
 
@@ -365,12 +365,12 @@ sum_minsec.degmin <- function(object, ...) {
 
 sum_minsec.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, min + sec / 60) |>
+    with(object, min / 60 + sum_sec(object)) |>
     as.numeric()
 }
 
-# _____________________________
-# Seconds, if any, as decimal
+# _____________________________________
+# Seconds, if any, as decimal degrees
 
 sum_sec <- function(object, ...) {
     UseMethod("sum_sec")
@@ -380,7 +380,7 @@ sum_sec <- function(object, ...) {
 
 sum_sec.decdeg <- function(object, ...) {
     check_dots_empty()
-    (sum_minsec(object) %% 1 * 60) |>
+    with(object, deg %% (1/60)) |>
     as.numeric()
 }
 
@@ -388,7 +388,7 @@ sum_sec.decdeg <- function(object, ...) {
 
 sum_sec.degmin <- function(object, ...) {
     check_dots_empty()
-    (sum_minsec(object) %% 1 * 60) |>
+    with(object, min %% (1/60)) |>
     as.numeric()
 }
 
@@ -396,7 +396,7 @@ sum_sec.degmin <- function(object, ...) {
 
 sum_sec.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, sec) |>
+    with(object, sec / 3600) |>
     as.numeric()
 }
 
