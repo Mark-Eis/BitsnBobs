@@ -388,7 +388,7 @@ sum_sec.decdeg <- function(object, ...) {
 
 sum_sec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, min %% (1/60)) |>
+    with(object, min %% 1 / 60) |>
     as.numeric()
 }
 
@@ -558,8 +558,8 @@ as_degminsec.coord <- function(object, ...) {
     check_dots_empty()
 
     crossprod(
-        c(1e4, 1e2, 6e1),
-        c(sum_degminsec(object) %/% 1, + sum_minsec(object) %/% 1, sum_minsec(object) %% 1)
+        c(1e4, 1e2, 6e1^2),
+        c(sum_degminsec(object) %/% 1, + sum_minsec(object) %/% (1/60), sum_sec(object))
     ) |>
     as.numeric() |>
     swapsign(object %@% "negative") |>
@@ -608,7 +608,11 @@ as_degmin <- function(object, ...) {
 as_degmin.coord <- function(object, ...) {
     check_dots_empty()
 
-    (sum_degminsec(object) %/% 1 * 1e2 + sum_minsec(object)) |>
+    # (sum_degminsec(object) %/% 1 * 1e2 + sum_minsec(object) * 60) |>
+    crossprod(
+        c(1e2, 6e1),
+        c(sum_degminsec(object) %/% 1, sum_minsec(object))
+    ) |>
     as.numeric() |>
     swapsign(object %@% "negative") |>
     coord("degmin", .latorlon = object %@% "latorlon")
