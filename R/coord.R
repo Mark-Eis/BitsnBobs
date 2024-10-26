@@ -230,13 +230,13 @@ validate_coord <- function(object) {
             call. = FALSE
         )
 
-    if (sum_minsec(object) >= 60)
+    if (sum_minsec(object) >= 1)
         stop(
             "`coord$min` must be less than 60\'",
             call. = FALSE
         )
 
-    if (sum_sec(object) >= 60)
+    if (sum_sec(object) * 60 >= 1)
         stop(
             "`coord$sec` must be less than 60\'",
             call. = FALSE
