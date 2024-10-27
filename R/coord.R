@@ -383,7 +383,7 @@ sum_sec <- function(object, ...) {
 
 sum_sec.decdeg <- function(object, ...) {
     check_dots_empty()
-    with(object, deg %% (1/60)) |>
+    sum_minsec(object) %% (1/60) |>    ## Prevents rounding up error!
     as.numeric()
 }
 
