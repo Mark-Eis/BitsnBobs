@@ -557,9 +557,13 @@ as_degminsec <- function(object, ...) {
 as_degminsec.coord <- function(object, ...) {
     check_dots_empty()
 
+    # crossprod(
+        # c(1e4, 1e2, 6e1^2),
+        # c(sum_degminsec(object) %/% 1, (sum_minsec(object) * 60) %/% 1, sum_sec(object))
+    # ) |>
     crossprod(
-        c(1e4, 1e2, 6e1^2),
-        c(sum_degminsec(object) %/% 1, + sum_minsec(object) %/% (1/60), sum_sec(object))
+        c(1e4, 1e2, 6e1),
+        c(sum_degminsec(object) %/% 1, (sum_minsec(object) * 60) %/% 1, (sum_minsec(object) * 60) %% 1
     ) |>
     as.numeric() |>
     swapsign(object %@% "negative") |>
