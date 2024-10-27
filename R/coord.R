@@ -350,7 +350,7 @@ sum_minsec <- function(object, ...) {
 sum_minsec.decdeg <- function(object, ...) {
     check_dots_empty()
     with(object, deg %% 1) |>
-    as.numeric()
+    sum_minsec_polish()
 }
 
 #' @exportS3Method BitsnBobs::sum_minsec
@@ -358,7 +358,7 @@ sum_minsec.decdeg <- function(object, ...) {
 sum_minsec.degmin <- function(object, ...) {
     check_dots_empty()
     with(object, min / 60) |>
-    as.numeric()
+    sum_minsec_polish()
 }
 
 #' @exportS3Method BitsnBobs::sum_minsec
@@ -366,8 +366,11 @@ sum_minsec.degmin <- function(object, ...) {
 sum_minsec.degminsec <- function(object, ...) {
     check_dots_empty()
     with(object, min / 60 + sum_sec(object)) |>
-    as.numeric()
+    sum_minsec_polish()
 }
+
+sum_minsec_polish <- function(x)
+    round(as.numeric(x), 7)
 
 # _____________________________________
 # Seconds, if any, as decimal degrees
@@ -557,13 +560,9 @@ as_degminsec <- function(object, ...) {
 as_degminsec.coord <- function(object, ...) {
     check_dots_empty()
 
-    # crossprod(
-        # c(1e4, 1e2, 6e1^2),
-        # c(sum_degminsec(object) %/% 1, (sum_minsec(object) * 60) %/% 1, sum_sec(object))
-    # ) |>
     crossprod(
         c(1e4, 1e2, 6e1),
-        c(sum_degminsec(object) %/% 1, (sum_minsec(object) * 60) %/% 1, (sum_minsec(object) * 60) %% 1
+        c(sum_degminsec(object) %/% 1, (sum_minsec(object) * 60) %/% 1, (sum_minsec(object) * 60) %% 1)
     ) |>
     as.numeric() |>
     swapsign(object %@% "negative") |>
