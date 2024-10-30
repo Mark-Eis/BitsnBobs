@@ -221,6 +221,107 @@ coord <- function(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon
     validate_coord()
 }
 
+# ========================================
+#' @title
+#' Convert Coordinate or Numeric to Another Coordinate Format
+#'
+#' @description
+#XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+#' Convert the format of geographic or GPS coordinates represented by `"coord"` objects or `numeric`
+#' values among decimal degrees, degrees and minutes, and degrees, minutes and seconds.
+#'
+#' @details
+#' Converts between coordinates represented in decimal degrees ("decdeg"), integer degrees and
+#' decimal minutes ("degmin"), and integer degrees, integer minutes, and decimal seconds
+#' ("degminsec"). Works with individual [`"coord"`][coord] objects returned using the
+#' [`coord()`][coord] function, or with vectors of simple numeric values.
+#' See [`"coord"`][coord] for further details.
+#'
+#' @family coord
+#'
+#' @param object a `"coord"` object or a `numeric` vector.
+#'
+#' @param ... further arguments passed to or from other methods.
+#'
+#' @param .fmt `character` string indicating the format of `object`; must be one of `"decdeg"`
+#'   (default), `"degmin"` or `"degminsec"`.
+#'
+#' @param .as_numeric logical, signifying whether to return a `"coord"` object or a `numeric` value;
+#'   default `FALSE`, the former.
+#'
+#' @return
+#' A [`"coord"`][coord] object or `numeric` value in the desired format.
+#'
+#' @export
+#' @examples
+#' ## `"coord"` objects in decimal degrees; in degrees and minutes;
+#' ##   and in degrees, minutes, and seconds
+#' (coord_dd <- coord(51.507765, "decdeg"))
+#' (coord_dm <- coord(5130.4659, "degmin"))
+#' (coord_dms <- coord(513027.95, "degminsec"))
+
+as_coord <- function(object, ...) {
+	UseMethod("as_coord")
+}
+
+# ========================================
+#  Convert Coord to Coord of another format
+#  S3method as_coord.coord()
+#'
+#' @rdname as_coord
+#' @export
+
+as_coord.coord <- function(object, ..., .fmt = c("decdeg", "degmin", "degminsec")) {
+    check_dots_empty()
+    .fmt <- match.arg(.fmt)
+	
+    if (inherits(object, .fmt))
+        object
+   	else {
+   	    switch(.fmt,
+   	       "decdeg" = coord(sum_degminsec(object), .latorlon = object %@% latorlon),
+   	       "degmin" = coord(as.integer(object$deg), sum_minsec(object), .latorlon = object %@% latorlon),
+   	       "degminsec" = coord(
+   	           as.integer(object$deg),
+   	           as.integer(sum_minsec(object) %/% 1),
+   	           sum_minsec(object) %% 1,
+   	           .latorlon = object %@% latorlon),
+            stop("Invalid `.fmt` value", call. = FALSE)
+   	    )
+   	}
+   	
+}
+
+# ========================================
+#  Convert Numeric to Coord
+#  S3method as_coord.numeric()
+#'
+#' @rdname as_coord
+#' @export
+
+as_coord.numeric <- function(
+    object,
+    ...,
+    .fmt = c("decdeg", "degmin", "degminsec"), 
+    .latorlon = c(NA, "lat", "lon"),
+    .as_numeric = FALSE
+) {
+    check_dots_empty()
+    .fmt <- match.arg(.fmt)
+    .latorlon <- match.arg(.latorlon)	
+
+	# makes coord from a numeric
+	# .fmt show what's wanted
+    object
+}
+
+
+
+
+
+
+
+
 validate_coord <- function(object) {
 
     if (!inherits(object, "coord"))
@@ -235,13 +336,13 @@ validate_coord <- function(object) {
             call. = FALSE
         )
 
-    if (sum_minsec(object) >= 1)
+    if (sum_minsec(object) >= 60)
         stop(
             "`coord$min` must be less than 60\'",
             call. = FALSE
         )
 
-    if (sum_sec(object) * 60 >= 1)
+    if (sum_sec(object) >= 60)
         stop(
             "`coord$sec` must be less than 60\'",
             call. = FALSE
@@ -331,7 +432,7 @@ sum_degminsec.decdeg <- function(object, ...) {
 
 sum_degminsec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + sum_minsec(object)) |>
+    with(object, deg + sum_minsec(object) / 60) |>
     as.numeric()
 }
 
@@ -339,12 +440,12 @@ sum_degminsec.degmin <- function(object, ...) {
 
 sum_degminsec.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, deg + sum_minsec(object)) |>
+    with(object, deg + sum_minsec(object) / 60) |>
     as.numeric() 
 }
 
 # ______________________________________________________
-# Total minutes, including seconds, as decimal degrees
+# Total minutes, including seconds, as decimal minutes
 
 sum_minsec <- function(object, ...) {
     UseMethod("sum_minsec")
@@ -354,7 +455,7 @@ sum_minsec <- function(object, ...) {
 
 sum_minsec.decdeg <- function(object, ...) {
     check_dots_empty()
-    with(object, deg %% 1) |>
+    with(object, deg %% 1 * 60) |>
     sum_minsec_polish()
 }
 
@@ -362,7 +463,7 @@ sum_minsec.decdeg <- function(object, ...) {
 
 sum_minsec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, min / 60) |>
+    with(object, min) |>
     sum_minsec_polish()
 }
 
@@ -370,15 +471,15 @@ sum_minsec.degmin <- function(object, ...) {
 
 sum_minsec.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, min / 60 + sum_sec(object)) |>
+    with(object, min + sum_sec(object) / 60) |>
     sum_minsec_polish()
 }
 
 sum_minsec_polish <- function(x)
-    round(as.numeric(x), 7)
+    round(as.numeric(x), 10)
 
 # _____________________________________
-# Seconds, if any, as decimal degrees
+# Seconds, if any, as decimal seconds
 
 sum_sec <- function(object, ...) {
     UseMethod("sum_sec")
@@ -388,23 +489,21 @@ sum_sec <- function(object, ...) {
 
 sum_sec.decdeg <- function(object, ...) {
     check_dots_empty()
-    sum_minsec(object) %% (1/60) |>    ## Prevents rounding up error!
-    as.numeric()
+    sum_minsec(object) %% 1 * 60    ## Prevents rounding up error!
 }
 
 #' @exportS3Method BitsnBobs::sum_sec
 
 sum_sec.degmin <- function(object, ...) {
     check_dots_empty()
-    with(object, min %% 1 / 60) |>
-    as.numeric()
+    sum_minsec(object) %% 1 * 60    ## Prevents rounding up error!
 }
 
 #' @exportS3Method BitsnBobs::sum_sec
 
 sum_sec.degminsec <- function(object, ...) {
     check_dots_empty()
-    with(object, sec / 3600) |>
+    with(object, sec) |>
     as.numeric()
 }
 
@@ -556,164 +655,164 @@ as.double.coord <- function(x, ...) {
 #'
 #' rm(coord_dd, coord_dm, coord_dms, num_dd, num_dm, num_dms)
 
-as_degminsec <- function(object, ...) {
-    UseMethod("as_degminsec")
-}
+# as_degminsec <- function(object, ...) {
+    # UseMethod("as_degminsec")
+# }
 
-#' @export
+# #' @export
 
-as_degminsec.coord <- function(object, ...) {
-    check_dots_empty()
+# as_degminsec.coord <- function(object, ...) {
+    # check_dots_empty()
 
-    crossprod(
-        c(1e4, 1e2, 6e1),
-        c(sum_degminsec(object) %/% 1, (sum_minsec(object) * 60) %/% 1, (sum_minsec(object) * 60) %% 1)
-    ) |>
-    as.numeric() |>
-    swapsign(object %@% "negative") |>
-    coord("degminsec", .latorlon = object %@% "latorlon")
-}
+    # crossprod(
+        # c(1e4, 1e2, 6e1),
+        # c(sum_degminsec(object) %/% 1, (sum_minsec(object) * 60) %/% 1, (sum_minsec(object) * 60) %% 1)
+    # ) |>
+    # as.numeric() |>
+    # swapsign(object %@% "negative") |>
+    # coord("degminsec", .latorlon = object %@% "latorlon")
+# }
 
-#' @exportS3Method BitsnBobs::as_degminsec
+# #' @exportS3Method BitsnBobs::as_degminsec
 
-as_degminsec.latnlon <- function(object, ...) {
-    lapply(object, as_degminsec) |>
-    structure(class = "latnlon") 
-}
+# as_degminsec.latnlon <- function(object, ...) {
+    # lapply(object, as_degminsec) |>
+    # structure(class = "latnlon") 
+# }
 
-# ========================================
-#  Convert Coordinate to Degrees, Minutes and Seconds
-#  S3method as_degminsec.numeric()
-#'
-#' @rdname as_degminsec
-#' @export
+# # ========================================
+# #  Convert Coordinate to Degrees, Minutes and Seconds
+# #  S3method as_degminsec.numeric()
+# #'
+# #' @rdname as_degminsec
+# #' @export
 
-as_degminsec.numeric <- function(
-    object,
-    ...,
-    .fmt = c("decdeg", "degmin", "degminsec"),
-    .as_numeric = FALSE
-) {
-    check_dots_empty()
-    .fmt <- match.arg(.fmt)
+# as_degminsec.numeric <- function(
+    # object,
+    # ...,
+    # .fmt = c("decdeg", "degmin", "degminsec"),
+    # .as_numeric = FALSE
+# ) {
+    # check_dots_empty()
+    # .fmt <- match.arg(.fmt)
 
-    degconvert_numeric(object, as_degminsec, .fmt, .as_numeric)
-}
+    # degconvert_numeric(object, as_degminsec, .fmt, .as_numeric)
+# }
 
-# ========================================
-#  Convert Coordinate to Degrees and Minutes
-#  S3generic as_degmin()
-#'
-#' @rdname as_degminsec
-#' @export
+# # ========================================
+# #  Convert Coordinate to Degrees and Minutes
+# #  S3generic as_degmin()
+# #'
+# #' @rdname as_degminsec
+# #' @export
 
-as_degmin <- function(object, ...) {
-    UseMethod("as_degmin")
-}
+# as_degmin <- function(object, ...) {
+    # UseMethod("as_degmin")
+# }
 
-#' @export
+# #' @export
 
-as_degmin.coord <- function(object, ...) {
-    check_dots_empty()
+# as_degmin.coord <- function(object, ...) {
+    # check_dots_empty()
 
-    # (sum_degminsec(object) %/% 1 * 1e2 + sum_minsec(object) * 60) |>
-    crossprod(
-        c(1e2, 6e1),
-        c(sum_degminsec(object) %/% 1, sum_minsec(object))
-    ) |>
-    as.numeric() |>
-    swapsign(object %@% "negative") |>
-    coord("degmin", .latorlon = object %@% "latorlon")
-}
+    # # (sum_degminsec(object) %/% 1 * 1e2 + sum_minsec(object) * 60) |>
+    # crossprod(
+        # c(1e2, 6e1),
+        # c(sum_degminsec(object) %/% 1, sum_minsec(object))
+    # ) |>
+    # as.numeric() |>
+    # swapsign(object %@% "negative") |>
+    # coord("degmin", .latorlon = object %@% "latorlon")
+# }
 
-#' @exportS3Method BitsnBobs::as_degmin
+# #' @exportS3Method BitsnBobs::as_degmin
 
-as_degmin.latnlon <- function(object, ...) {
-    lapply(object, as_degmin) |>
-    structure(class = "latnlon") 
-}
+# as_degmin.latnlon <- function(object, ...) {
+    # lapply(object, as_degmin) |>
+    # structure(class = "latnlon") 
+# }
 
-# ========================================
-#  Convert Coordinate to Degrees and Minutes
-#  S3method as_degmin.numeric()
-#'
-#' @rdname as_degminsec
-#' @export
+# # ========================================
+# #  Convert Coordinate to Degrees and Minutes
+# #  S3method as_degmin.numeric()
+# #'
+# #' @rdname as_degminsec
+# #' @export
 
-as_degmin.numeric <- function(
-    object,
-    ...,
-    .fmt = c("decdeg", "degmin", "degminsec"),
-    .as_numeric = FALSE
-) {
-    check_dots_empty()
-    .fmt <- match.arg(.fmt)
+# as_degmin.numeric <- function(
+    # object,
+    # ...,
+    # .fmt = c("decdeg", "degmin", "degminsec"),
+    # .as_numeric = FALSE
+# ) {
+    # check_dots_empty()
+    # .fmt <- match.arg(.fmt)
 
-    degconvert_numeric(object, as_degmin, .fmt, .as_numeric)
-}
+    # degconvert_numeric(object, as_degmin, .fmt, .as_numeric)
+# }
 
-# ========================================
-#  Convert Coordinate to Decimal Degrees
-#  S3generic as_decdeg()
-#'
-#' @rdname as_degminsec
-#' @export
+# # ========================================
+# #  Convert Coordinate to Decimal Degrees
+# #  S3generic as_decdeg()
+# #'
+# #' @rdname as_degminsec
+# #' @export
 
-as_decdeg <- function(object, ...) {
-    UseMethod("as_decdeg")
-}
+# as_decdeg <- function(object, ...) {
+    # UseMethod("as_decdeg")
+# }
 
-#' @export
+# #' @export
 
-as_decdeg.coord <- function(object, ...) {
-    check_dots_empty()
+# as_decdeg.coord <- function(object, ...) {
+    # check_dots_empty()
 
-    sum_degminsec(object) |>
-    as.numeric() |>
-    swapsign(object %@% "negative") |>
-    coord("decdeg", .latorlon = object %@% "latorlon")
-}
+    # sum_degminsec(object) |>
+    # as.numeric() |>
+    # swapsign(object %@% "negative") |>
+    # coord("decdeg", .latorlon = object %@% "latorlon")
+# }
 
-#' @exportS3Method BitsnBobs::as_decdeg
+# #' @exportS3Method BitsnBobs::as_decdeg
 
-as_decdeg.latnlon <- function(object, ...) {
-    lapply(object, as_decdeg) |>
-    structure(class = "latnlon") 
-}
+# as_decdeg.latnlon <- function(object, ...) {
+    # lapply(object, as_decdeg) |>
+    # structure(class = "latnlon") 
+# }
 
-# ========================================
-#  Convert Numeric to Decimal Degrees
-#  S3method as_decdeg.numeric()
-#'
-#' @rdname as_degminsec
-#' @export
+# # ========================================
+# #  Convert Numeric to Decimal Degrees
+# #  S3method as_decdeg.numeric()
+# #'
+# #' @rdname as_degminsec
+# #' @export
 
-as_decdeg.numeric <- function(
-    object,
-    ...,
-    .fmt = c("decdeg", "degmin", "degminsec"),
-    .as_numeric = FALSE
-) {
-    check_dots_empty()
-    .fmt <- match.arg(.fmt)
+# as_decdeg.numeric <- function(
+    # object,
+    # ...,
+    # .fmt = c("decdeg", "degmin", "degminsec"),
+    # .as_numeric = FALSE
+# ) {
+    # check_dots_empty()
+    # .fmt <- match.arg(.fmt)
 
-    degconvert_numeric(object, as_decdeg, .fmt, .as_numeric)
-}
+    # degconvert_numeric(object, as_decdeg, .fmt, .as_numeric)
+# }
 
-# ________________________________________________________________________________
-# Powers as_degminsec.numeric(), as_degmins.numeric() and as_decdeg.numeric()
-# Not exported
+# # ________________________________________________________________________________
+# # Powers as_degminsec.numeric(), as_degmins.numeric() and as_decdeg.numeric()
+# # Not exported
 
-degconvert_numeric <- function(object, fun, .fmt, .as_numeric) {
-    fun <- match.fun(fun)
+# degconvert_numeric <- function(object, fun, .fmt, .as_numeric) {
+    # fun <- match.fun(fun)
 
-    rv <- coord(object, .fmt)
-    if (length(object) == 1)
-        rv <- list(rv)
-    rv <- lapply(rv, fun)
+    # rv <- coord(object, .fmt)
+    # if (length(object) == 1)
+        # rv <- list(rv)
+    # rv <- lapply(rv, fun)
         
-    if (.as_numeric) {
-        vapply(rv, as.double, numeric(1))
-    } else 
-        if (length(rv) > 1) rv else rv[[1]]
-}
+    # if (.as_numeric) {
+        # vapply(rv, as.double, numeric(1))
+    # } else 
+        # if (length(rv) > 1) rv else rv[[1]]
+# }

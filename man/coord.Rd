@@ -74,6 +74,6 @@ coord(-51L, 30L, 27.95, "lon")
 }
 \seealso{
 Other coord: 
-\code{\link{as_degminsec}()}
+\code{\link{as_coord}()}
 }
 \concept{coord}
