@@ -90,6 +90,41 @@ format.coordpart <- function(x, ...) {
 }
 
 
+new_decdeg <- function(d) {
+	structure(
+		list(deg = coordpart(d, "degxdec")),
+		class = c("decdeg")
+	)
+}
+
+new_degmin <- function(d, m) {
+	structure(
+		list(
+             deg = coordpart(d, "degxint"),
+             min = coordpart(round(m, 4), "minxdec")
+        ),
+		class = c("degmin")
+    )
+}
+
+new_degminsec <- function(d, m, s) {
+	structure(
+		list(
+            deg = coordpart(d, "degxint"),
+            min = coordpart(m, "minxint"),
+            sec = coordpart(round(s, 2), "secxdec")
+        ),
+		class = c("degminsec")
+    )
+}
+
+new_coord <- function(object, latorlon = NA, negative = FALSE) {
+    class(object) <- c(class(object), "coord")
+    attr(object, "latorlon") <- latorlon
+    attr(object, "negative") <- negative
+    object
+}
+
 # ____________________
 #' @title Geographic or GPS Coordinate
 #'
@@ -212,9 +247,9 @@ coord <- function(
     }
 }
 
-new_coord <- function(x, fmt, latorlon = NA, negative = FALSE) {
-    structure(x, class = c(fmt, "coord"), latorlon = latorlon, negative = negative)
-}
+# # new_coord <- function(x, fmt, latorlon = NA, negative = FALSE) {
+    # structure(x, class = c(fmt, "coord"), latorlon = latorlon, negative = negative)
+# }
 
 validate_coord <- function(object) {
 
