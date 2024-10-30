@@ -4,89 +4,73 @@
 \alias{coord}
 \title{Geographic or GPS Coordinate}
 \usage{
-coord(
-  x,
-  .fmt = c("decdeg", "degmin", "degminsec"),
-  .latorlon = c(NA, "lat", "lon", "both")
-)
+coord(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon"))
 }
 \arguments{
-\item{x}{\code{numeric}, representing one or more coordinates.}
+\item{deg}{\code{numeric}, representing the number of degrees. Must be of type \code{integer} if \code{min} or
+\code{sec} are provided, otherwise type \code{double}; default \code{0}.}
 
-\item{.fmt}{\code{character} string indicating the format of \code{x}; must be one of
-\code{"decdeg"} (default), \code{"degmin"} or \code{"degminsec"}.}
+\item{min}{\code{numeric}, representing the number of minutes. If \code{sec} provided, must be of type
+\code{integer}, otherwise \code{double}; default \code{NULL}.}
+
+\item{sec}{\code{double}, representing the number of seconds; default \code{NULL}.}
 
 \item{.latorlon}{a \code{character} string, either \code{"lat"} or \code{"lon"} indicating whether the
-coordinate(s) represented are of latitude or longitude or \code{"both"} indicating a pair of
-of latitude and longitude coordinates; otherwise it must be \code{NA} (the default).}
+coordinate represented is of latitude or longitude, or \code{NA} (the default).}
 }
 \value{
-An object of class \code{"coord"} or if \code{length(x) > 1}, a list of such objects, each
-instantiating a coordinate. See \emph{Details}.
+An object of class \code{"coord"} instantiating a coordinate. See \emph{Details}.
 }
 \description{
 Geographic or GPS coordinate class
 }
 \details{
 \code{coord()} creates a robust representation of a geographic or GPS cordinate based on the value of
-\code{x} or, if \code{length(x) > 1}, a number of such coordinates instatiated as objects of class
-\code{"coord"}. Objects of \code{"coord"} class contain a \code{list} with one, two or three \code{numeric} values
-named \code{"deg"}, \code{"min"}, \code{"sec"}, depending on whether the cordinate in question is represented
-in decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer) degrees,
-(integer) minutes, and (decimal) seconds.
+\code{deg}, \code{min} and \code{sec} instatiated as an objects of class \code{"coord"}. Objects of \code{"coord"} class
+contain a \code{list} with one, two or three \code{numeric} values named \code{"deg"}, \code{"min"}, \code{"sec"}, depending
+on whether the cordinate in question is represented in decimal degrees, in (integer) degrees and
+(decimal) minutes, or else in (integer) degrees, (integer) minutes, and (decimal) seconds.
 
-The value provided in argument \code{x} should have a decimal point after the integer number
-of degrees in the case of decimal degrees, after the integer number of minutes in the case of
-degrees and minutes, and after the integer number of seconds in the case of degrees, minutes and
-seconds
+The value provided in argument \code{dec} should have a decimal point after the number of whole
+degrees in the case of decimal degrees. Likewise the value provided in argument \code{min} should have
+a decimal point, after the number of whole minutes in the case of degrees and minutes, and the
+value provided in argument \code{sec} after the number of whole seconds in the case of degrees,
+minutes and seconds. In all other cases, arguments \code{deg} and \code{min} must be of type \code{integer}.
 
 \code{"coord"} objects have \code{character} attribute \code{latorlon}, which may be \code{"lat"} for latitude,
 \code{"lon"} for longitude or \code{NA}, and a \code{logical} attribute \code{"negative"}, which when \code{TRUE}
 signifies a negative coordinate i.e., S or W rather than N or E.
-
-If \code{length(x) > 1}, a list of \code{"coord"} objects is returned, all of which will have the same
-\code{latorlon} attribute (i.e., either all \verb{'lat"} or all \code{"lon"}). The exception is the case in
-which argument \code{.latorlon} is \code{both} and \code{length(x) = 2}, when a list of two \code{"coord"} objects
-is returned, having \code{latorlon} attributes one each of \code{"lat"} and \code{"lon"}; the list itself is an
-object of class \code{"latnlon"}.
 
 The total value in degrees, minutes and seconds may not be greater than \verb{180˚}, while the
 minutes and seconds components (if present) must be less than  \verb{60˚}. If latitude is
 represented, (i.e., \code{latorlon} attribute is \code{"lat"}), its  maximum absolute value is \verb{90˚}.
 }
 \examples{
-## Decimal degrees (default)
+## Decimal degrees
+coord()
+
 coord(51.507765)
-coord(-0.127924)
-coord(51.507765,, "lat")
-coord(-0.127924,, "lon")
-coord(c(51.507765, -0.127924),, "both")
-c(51.507765, 49.546210, 48.107232, 38.889494, 0.000000, -37.111740, -53.104781) |>
-    coord(, "lat")
-c(-0.127924, 18.398562, -122.778671, -77.035242, 0.000000, -12.28863, 73.517283) |>
-    coord(, "lon")
+coord(-51.507765)
+coord(51.507765,,, "lat")
+coord(-51.507765,,, "lat")
+coord(51.507765,,, "lon")
+coord(-51.507765,,, "lon")
 
-## Degrees and minutes
-coord(5130.4659, "degmin")
-coord(-7.6754, "degmin")
-coord(5130.4659, "degmin", "lat")
-coord(-7.6754, "degmin", "lon")
-coord(c(5130.4659, -7.6754), "degmin", "both")
-c(5130.4659, 4932.7726, 4806.4339, 3853.3696, 0.0000, -3706.7044, -5306.2869) |>
-    coord("degmin", "lat")
-c(-7.6754, 1823.9137, -12246.7203, -7702.1145, 0.0000, -1217.3178, 7331.0370) |>
-    coord("degmin", "lon")
+## Degrees and (decimal) minutes
+coord(51L, 30.4659)
+coord(-51L, 30.4659)
+coord(51L, 30.4659,, "lat")
+coord(-51L, 30.4659,, "lat")
+coord(51L, 30.4659,, "lon")
+coord(-51L, 30.4659,, "lon")
 
-## Degrees, minutes and seconds
-coord(513027.95, "degminsec")
-coord(-740.53, "degminsec")
-coord(513027.95, "degminsec", "lat")
-coord(-740.53, "degminsec", "lon")
-coord(c(513027.95, -740.53), "degminsec", "both")
-c(513027.95, 493246.36, 480626.04, 385322.18, 0.00, -370642.26, -530617.21) |> 
-    coord("degminsec", "lat")
-c(-740.53, 182354.82, -1224643.22, -770206.87, 0.00, -121719.07, 733102.22) |> 
-    coord("degminsec", "lon")
+## Degrees, minutes and (decimal) seconds
+coord(51L, 30L, 27.95)
+coord(-51L, 30L, 27.95)
+coord(51L, 30L, 27.95, "lat")
+coord(-51L, 30L, 27.95, "lat")
+coord(51L, 30L, 27.95, "lon")
+coord(-51L, 30L, 27.95, "lon")
 }
 \seealso{
 Other coord: 

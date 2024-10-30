@@ -91,30 +91,30 @@ format.coordpart <- function(x, ...) {
 
 
 new_decdeg <- function(d) {
-	structure(
-		list(deg = coordpart(d, "degxdec")),
-		class = c("decdeg")
-	)
+    structure(
+        list(deg = coordpart(d, "degxdec")),
+        class = c("decdeg")
+    )
 }
 
 new_degmin <- function(d, m) {
-	structure(
-		list(
+    structure(
+        list(
              deg = coordpart(d, "degxint"),
              min = coordpart(round(m, 4), "minxdec")
         ),
-		class = c("degmin")
+        class = c("degmin")
     )
 }
 
 new_degminsec <- function(d, m, s) {
-	structure(
-		list(
+    structure(
+        list(
             deg = coordpart(d, "degxint"),
             min = coordpart(m, "minxint"),
             sec = coordpart(round(s, 2), "secxdec")
         ),
-		class = c("degminsec")
+        class = c("degminsec")
     )
 }
 
@@ -125,6 +125,132 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
     object
 }
 
+# # ____________________
+# #' @title Geographic or GPS Coordinate
+# #'
+# #' @description
+# #' Geographic or GPS coordinate class
+# #'
+# #' @details
+# #' `coord()` creates a robust representation of a geographic or GPS cordinate based on the value of
+# #' `x` or, if `length(x) > 1`, a number of such coordinates instatiated as objects of class
+# #' `"coord"`. Objects of `"coord"` class contain a `list` with one, two or three `numeric` values
+# #' named `"deg"`, `"min"`, `"sec"`, depending on whether the cordinate in question is represented
+# #' in decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer) degrees,
+# #' (integer) minutes, and (decimal) seconds.
+# #'
+# #' The value provided in argument `x` should have a decimal point after the integer number
+# #' of degrees in the case of decimal degrees, after the integer number of minutes in the case of
+# #' degrees and minutes, and after the integer number of seconds in the case of degrees, minutes and
+# #' seconds
+# #'
+# #' `"coord"` objects have `character` attribute `latorlon`, which may be `"lat"` for latitude,
+# #' `"lon"` for longitude or `NA`, and a `logical` attribute `"negative"`, which when `TRUE`
+# #' signifies a negative coordinate i.e., S or W rather than N or E.
+# #'
+# #' If `length(x) > 1`, a list of `"coord"` objects is returned, all of which will have the same
+# #' `latorlon` attribute (i.e., either all `'lat"` or all `"lon"`). The exception is the case in
+# #' which argument `.latorlon` is `both` and `length(x) = 2`, when a list of two `"coord"` objects
+# #' is returned, having `latorlon` attributes one each of `"lat"` and `"lon"`; the list itself is an
+# #' object of class `"latnlon"`.
+# #'
+# #' The total value in degrees, minutes and seconds may not be greater than `180˚`, while the
+# #' minutes and seconds components (if present) must be less than  `60˚`. If latitude is
+# #' represented, (i.e., `latorlon` attribute is `"lat"`), its  maximum absolute value is `90˚`.
+# #'
+# #' @family coord
+# #'
+# #' @param x `numeric`, representing one or more coordinates.
+# #'
+# #' @param .fmt `character` string indicating the format of `x`; must be one of
+# #'   `"decdeg"` (default), `"degmin"` or `"degminsec"`.
+# #'
+# #' @param .latorlon a `character` string, either `"lat"` or `"lon"` indicating whether the
+# #'   coordinate(s) represented are of latitude or longitude or `"both"` indicating a pair of
+# #'   of latitude and longitude coordinates; otherwise it must be `NA` (the default).
+# #'
+# #' @return An object of class `"coord"` or if `length(x) > 1`, a list of such objects, each
+# #'   instantiating a coordinate. See \emph{Details}.
+# #'
+# #' @export
+# #' @examples
+# #' ## Decimal degrees (default)
+# #' coord(51.507765)
+# #' coord(-0.127924)
+# #' coord(51.507765,, "lat")
+# #' coord(-0.127924,, "lon")
+# #' coord(c(51.507765, -0.127924),, "both")
+# #' c(51.507765, 49.546210, 48.107232, 38.889494, 0.000000, -37.111740, -53.104781) |>
+# #'     coord(, "lat")
+# #' c(-0.127924, 18.398562, -122.778671, -77.035242, 0.000000, -12.28863, 73.517283) |>
+# #'     coord(, "lon")
+# #'
+# #' ## Degrees and minutes
+# #' coord(5130.4659, "degmin")
+# #' coord(-7.6754, "degmin")
+# #' coord(5130.4659, "degmin", "lat")
+# #' coord(-7.6754, "degmin", "lon")
+# #' coord(c(5130.4659, -7.6754), "degmin", "both")
+# #' c(5130.4659, 4932.7726, 4806.4339, 3853.3696, 0.0000, -3706.7044, -5306.2869) |>
+# #'     coord("degmin", "lat")
+# #' c(-7.6754, 1823.9137, -12246.7203, -7702.1145, 0.0000, -1217.3178, 7331.0370) |>
+# #'     coord("degmin", "lon")
+# #'
+# #' ## Degrees, minutes and seconds
+# #' coord(513027.95, "degminsec")
+# #' coord(-740.53, "degminsec")
+# #' coord(513027.95, "degminsec", "lat")
+# #' coord(-740.53, "degminsec", "lon")
+# #' coord(c(513027.95, -740.53), "degminsec", "both")
+# #' c(513027.95, 493246.36, 480626.04, 385322.18, 0.00, -370642.26, -530617.21) |> 
+# #'     coord("degminsec", "lat")
+# #' c(-740.53, 182354.82, -1224643.22, -770206.87, 0.00, -121719.07, 733102.22) |> 
+# #'     coord("degminsec", "lon")
+
+# coord <- function(
+    # x,
+    # .fmt = c("decdeg", "degmin", "degminsec"),
+    # .latorlon = c(NA, "lat", "lon", "both")
+# ) {
+    # .fmt <- match.arg(.fmt)
+    # .latorlon <- match.arg(.latorlon)
+    # if (all(!is.na(.latorlon), .latorlon == "both", length(x) != 2))
+        # stop("`x` not of length 2 [`.latorlon` = \"both\"]", call. = FALSE)
+
+    # rv <- lapply(x, \(y) {
+        # negative <- y < 0
+        # y <- abs(y)
+        # switch(.fmt,
+            # decdeg = list(deg = coordpart(y, "degxdec")),
+            # degmin = list(
+                # deg = coordpart(as.integer(y %/% 1e2), "degxint"),
+                # min = coordpart(round(y %% 1e2, 4), "minxdec")
+            # ),
+            # degminsec = list(
+                # deg = coordpart(as.integer(y %/% 1e4), "degxint"),
+                # min = coordpart(as.integer((y %% 1e4) %/% 1e2), "minxint"),
+                # sec = coordpart(round((y %% 1e4) %% 1e2, 2), "secxdec")
+            # ),
+            # stop("Invalid `.fmt` value", call. = FALSE)
+        # ) |>
+        # new_coord(.fmt, .latorlon, negative)
+    # })
+
+    # if (all(!is.na(.latorlon), .latorlon == "both", length(x) == 2)) {
+        # rv[[1]] %@% "latorlon" <- "lat"
+        # rv[[2]] %@% "latorlon" <- "lon"
+        # lapply(rv, validate_coord) |>
+        # structure(class = "latnlon")
+    # } else {
+        # rv <- lapply(rv, validate_coord)
+        # if (length(rv) > 1) rv else rv[[1]]
+    # }
+# }
+
+# # new_coord <- function(x, fmt, latorlon = NA, negative = FALSE) {
+    # structure(x, class = c(fmt, "coord"), latorlon = latorlon, negative = negative)
+# }
+
 # ____________________
 #' @title Geographic or GPS Coordinate
 #'
@@ -133,26 +259,20 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #'
 #' @details
 #' `coord()` creates a robust representation of a geographic or GPS cordinate based on the value of
-#' `x` or, if `length(x) > 1`, a number of such coordinates instatiated as objects of class
-#' `"coord"`. Objects of `"coord"` class contain a `list` with one, two or three `numeric` values
-#' named `"deg"`, `"min"`, `"sec"`, depending on whether the cordinate in question is represented
-#' in decimal degrees, in (integer) degrees and (decimal) minutes, or else in (integer) degrees,
-#' (integer) minutes, and (decimal) seconds.
+#' `deg`, `min` and `sec` instatiated as an objects of class `"coord"`. Objects of `"coord"` class
+#' contain a `list` with one, two or three `numeric` values named `"deg"`, `"min"`, `"sec"`, depending
+#' on whether the cordinate in question is represented in decimal degrees, in (integer) degrees and
+#' (decimal) minutes, or else in (integer) degrees, (integer) minutes, and (decimal) seconds.
 #'
-#' The value provided in argument `x` should have a decimal point after the integer number
-#' of degrees in the case of decimal degrees, after the integer number of minutes in the case of
-#' degrees and minutes, and after the integer number of seconds in the case of degrees, minutes and
-#' seconds
+#' The value provided in argument `dec` should have a decimal point after the number of whole
+#' degrees in the case of decimal degrees. Likewise the value provided in argument `min` should have
+#' a decimal point, after the number of whole minutes in the case of degrees and minutes, and the
+#' value provided in argument `sec` after the number of whole seconds in the case of degrees,
+#' minutes and seconds. In all other cases, arguments `deg` and `min` must be of type `integer`.
 #'
 #' `"coord"` objects have `character` attribute `latorlon`, which may be `"lat"` for latitude,
 #' `"lon"` for longitude or `NA`, and a `logical` attribute `"negative"`, which when `TRUE`
 #' signifies a negative coordinate i.e., S or W rather than N or E.
-#'
-#' If `length(x) > 1`, a list of `"coord"` objects is returned, all of which will have the same
-#' `latorlon` attribute (i.e., either all `'lat"` or all `"lon"`). The exception is the case in
-#' which argument `.latorlon` is `both` and `length(x) = 2`, when a list of two `"coord"` objects
-#' is returned, having `latorlon` attributes one each of `"lat"` and `"lon"`; the list itself is an
-#' object of class `"latnlon"`.
 #'
 #' The total value in degrees, minutes and seconds may not be greater than `180˚`, while the
 #' minutes and seconds components (if present) must be less than  `60˚`. If latitude is
@@ -160,96 +280,73 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #'
 #' @family coord
 #'
-#' @param x `numeric`, representing one or more coordinates.
+#' @param deg `numeric`, representing the number of degrees. Must be of type `integer` if `min` or
+#'   `sec` are provided, otherwise type `double`; default `0`.
 #'
-#' @param .fmt `character` string indicating the format of `x`; must be one of
-#'   `"decdeg"` (default), `"degmin"` or `"degminsec"`.
+#' @param min `numeric`, representing the number of minutes. If `sec` provided, must be of type
+#'   `integer`, otherwise `double`; default `NULL`.
+#'
+#' @param sec `double`, representing the number of seconds; default `NULL`.
 #'
 #' @param .latorlon a `character` string, either `"lat"` or `"lon"` indicating whether the
-#'   coordinate(s) represented are of latitude or longitude or `"both"` indicating a pair of
-#'   of latitude and longitude coordinates; otherwise it must be `NA` (the default).
+#'   coordinate represented is of latitude or longitude, or `NA` (the default).
 #'
-#' @return An object of class `"coord"` or if `length(x) > 1`, a list of such objects, each
-#'   instantiating a coordinate. See \emph{Details}.
+#' @return An object of class `"coord"` instantiating a coordinate. See \emph{Details}.
 #'
 #' @export
 #' @examples
-#' ## Decimal degrees (default)
+#' ## Decimal degrees
+#' coord()
+#'
 #' coord(51.507765)
-#' coord(-0.127924)
-#' coord(51.507765,, "lat")
-#' coord(-0.127924,, "lon")
-#' coord(c(51.507765, -0.127924),, "both")
-#' c(51.507765, 49.546210, 48.107232, 38.889494, 0.000000, -37.111740, -53.104781) |>
-#'     coord(, "lat")
-#' c(-0.127924, 18.398562, -122.778671, -77.035242, 0.000000, -12.28863, 73.517283) |>
-#'     coord(, "lon")
+#' coord(-51.507765)
+#' coord(51.507765,,, "lat")
+#' coord(-51.507765,,, "lat")
+#' coord(51.507765,,, "lon")
+#' coord(-51.507765,,, "lon")
 #'
-#' ## Degrees and minutes
-#' coord(5130.4659, "degmin")
-#' coord(-7.6754, "degmin")
-#' coord(5130.4659, "degmin", "lat")
-#' coord(-7.6754, "degmin", "lon")
-#' coord(c(5130.4659, -7.6754), "degmin", "both")
-#' c(5130.4659, 4932.7726, 4806.4339, 3853.3696, 0.0000, -3706.7044, -5306.2869) |>
-#'     coord("degmin", "lat")
-#' c(-7.6754, 1823.9137, -12246.7203, -7702.1145, 0.0000, -1217.3178, 7331.0370) |>
-#'     coord("degmin", "lon")
+#' ## Degrees and (decimal) minutes
+#' coord(51L, 30.4659)
+#' coord(-51L, 30.4659)
+#' coord(51L, 30.4659,, "lat")
+#' coord(-51L, 30.4659,, "lat")
+#' coord(51L, 30.4659,, "lon")
+#' coord(-51L, 30.4659,, "lon")
 #'
-#' ## Degrees, minutes and seconds
-#' coord(513027.95, "degminsec")
-#' coord(-740.53, "degminsec")
-#' coord(513027.95, "degminsec", "lat")
-#' coord(-740.53, "degminsec", "lon")
-#' coord(c(513027.95, -740.53), "degminsec", "both")
-#' c(513027.95, 493246.36, 480626.04, 385322.18, 0.00, -370642.26, -530617.21) |> 
-#'     coord("degminsec", "lat")
-#' c(-740.53, 182354.82, -1224643.22, -770206.87, 0.00, -121719.07, 733102.22) |> 
-#'     coord("degminsec", "lon")
+#' ## Degrees, minutes and (decimal) seconds
+#' coord(51L, 30L, 27.95)
+#' coord(-51L, 30L, 27.95)
+#' coord(51L, 30L, 27.95, "lat")
+#' coord(-51L, 30L, 27.95, "lat")
+#' coord(51L, 30L, 27.95, "lon")
+#' coord(-51L, 30L, 27.95, "lon")
 
-coord <- function(
-    x,
-    .fmt = c("decdeg", "degmin", "degminsec"),
-    .latorlon = c(NA, "lat", "lon", "both")
-) {
-    .fmt <- match.arg(.fmt)
+coord <- function(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) {
     .latorlon <- match.arg(.latorlon)
-    if (all(!is.na(.latorlon), .latorlon == "both", length(x) != 2))
-        stop("`x` not of length 2 [`.latorlon` = \"both\"]", call. = FALSE)
 
-    rv <- lapply(x, \(y) {
-        negative <- y < 0
-        y <- abs(y)
-        switch(.fmt,
-            decdeg = list(deg = coordpart(y, "degxdec")),
-            degmin = list(
-                deg = coordpart(as.integer(y %/% 1e2), "degxint"),
-                min = coordpart(round(y %% 1e2, 4), "minxdec")
-            ),
-            degminsec = list(
-                deg = coordpart(as.integer(y %/% 1e4), "degxint"),
-                min = coordpart(as.integer((y %% 1e4) %/% 1e2), "minxint"),
-                sec = coordpart(round((y %% 1e4) %% 1e2, 2), "secxdec")
-            ),
-            stop("Invalid `.fmt` value", call. = FALSE)
-        ) |>
-        new_coord(.fmt, .latorlon, negative)
-    })
+    negative <- deg < 0
+    deg <- abs(deg)
+    if(any(min < 0, sec < 0))
+        stop("Minutes and seconds may not be negative", call. = FALSE)
 
-    if (all(!is.na(.latorlon), .latorlon == "both", length(x) == 2)) {
-        rv[[1]] %@% "latorlon" <- "lat"
-        rv[[2]] %@% "latorlon" <- "lon"
-        lapply(rv, validate_coord) |>
-        structure(class = "latnlon")
-    } else {
-        rv <- lapply(rv, validate_coord)
-        if (length(rv) > 1) rv else rv[[1]]
-    }
+    {
+        if (is.null(sec)) {
+            if(is.null(min)) {
+                new_decdeg(deg)
+            } else {
+                new_degmin(deg, min)
+            }
+        } else {
+            if(is.null(min)) {
+                stop("if \"min\" is NULL, \"sec\" must also be NULL", call. = FALSE)
+            } else {
+                new_degminsec(deg, min, sec)
+            }
+        }
+    } |>
+    new_coord(.latorlon, negative) |>
+    validate_coord()
 }
-
-# # new_coord <- function(x, fmt, latorlon = NA, negative = FALSE) {
-    # structure(x, class = c(fmt, "coord"), latorlon = latorlon, negative = negative)
-# }
 
 validate_coord <- function(object) {
 
