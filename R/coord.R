@@ -231,6 +231,15 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' cdm |> as_coord(.fmt = "degminsec")
 #' cdms |> as_coord(.fmt = "degminsec")
 #'
+#' ## Convert to numeric
+#' \dontshow{options("digits" = 8)}
+#' ## Decimal degrees
+#' cdd |> as.numeric()
+#' ## Degrees and minutes
+#' cdm |> as.numeric()
+#' ## Degrees, minutes and seconds
+#' cdms |> as.numeric()
+#' \dontshow{options("digits" = 7)}
 #' rm(cdd, cdm, cdms)
 
 
