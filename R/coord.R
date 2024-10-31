@@ -161,11 +161,13 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #'
 #' @param sec `double`, representing the number of seconds; default `NULL`.
 #'
-#' @param .fmt `character` string indicating the desired format; must be one of `"decdeg"`
-#'   (default), `"degmin"` or `"degminsec"`.
-#'
 #' @param .latorlon a `character` string, either `"lat"` or `"lon"` indicating whether the
 #'   coordinate represented is of latitude or longitude, or `NA` (the default).
+#' 
+#' @param object a `"coord"` object or a `numeric` vector to be converted to another format.
+#'
+#' @param .fmt `character` string indicating the desired format; must be one of `"decdeg"`
+#'   (default), `"degmin"` or `"degminsec"`.
 #'
 #' @return An object of class `"coord"` instantiating a coordinate. See \emph{Details}.
 #'
@@ -174,7 +176,7 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' ## Decimal degrees
 #' coord()
 #'
-#' coord(51.507765)
+#' (cdd <- coord(51.507765))
 #' coord(-51.507765)
 #' coord(51.507765,,, "lat")
 #' coord(-51.507765,,, "lat")
@@ -182,7 +184,7 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' coord(-51.507765,,, "lon")
 #'
 #' ## Degrees and (decimal) minutes
-#' coord(51L, 30.4659)
+#' (cdm <- coord(51L, 30.4659))
 #' coord(-51L, 30.4659)
 #' coord(51L, 30.4659,, "lat")
 #' coord(-51L, 30.4659,, "lat")
@@ -190,12 +192,32 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' coord(-51L, 30.4659,, "lon")
 #'
 #' ## Degrees, minutes and (decimal) seconds
-#' coord(51L, 30L, 27.95)
+#' (cdms <- coord(51L, 30L, 27.95))
 #' coord(-51L, 30L, 27.95)
 #' coord(51L, 30L, 27.95, "lat")
 #' coord(-51L, 30L, 27.95, "lat")
 #' coord(51L, 30L, 27.95, "lon")
 #' coord(-51L, 30L, 27.95, "lon")
+#'
+#' ## Convert formats
+#'
+#' ## To decimal degrees
+#' cdd |> as_coord(.fmt = "decdeg")
+#' cdm |> as_coord(.fmt = "decdeg")
+#' cdms |> as_coord(.fmt = "decdeg")
+#'
+#' ## To degrees and minutes
+#' cdd |> as_coord(.fmt = "degmin")
+#' cdm |> as_coord(.fmt = "degmin")
+#' cdms |> as_coord(.fmt = "degmin")
+#'
+#' ## To degrees, minutes and seconds
+#' cdd |> as_coord(.fmt = "degminsec")
+#' cdm |> as_coord(.fmt = "degminsec")
+#' cdms |> as_coord(.fmt = "degminsec")
+#'
+#' rm(cdd, cdm, cdms)
+
 
 coord <- function(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) {
     .latorlon <- match.arg(.latorlon)
@@ -263,19 +285,13 @@ coord <- function(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon
 #
 #' @rdname coord
 #' @export
-# #' @examples
-# #' ## `"coord"` objects in decimal degrees; in degrees and minutes;
-# #' ##   and in degrees, minutes, and seconds
-# #' (coord_dd <- coord(123.987654321))
-# #' (coord_dm <- coord(123L, 59.2592593))
-# #' (coord_dms <- coord(123L, 59L, 15.55))
 
 as_coord <- function(object, ...) {
 	UseMethod("as_coord")
 }
 
 # ========================================
-#  Convert Coord to Coord of another format
+#  Convert `"coord"` to `"coord"` of another format
 #  S3method as_coord.coord()
 #'
 #' @rdname coord
@@ -294,7 +310,7 @@ as_coord.coord <- function(object, ..., .fmt = c("decdeg", "degmin", "degminsec"
    	       "degminsec" = coord(
    	           as.integer(object$deg),
    	           as.integer(sum_minsec(object) %/% 1),
-   	           sum_minsec(object) %% 1,
+   	           sum_sec(object),
    	           .latorlon = object %@% latorlon),
             stop("Invalid `.fmt` value", call. = FALSE)
    	    )

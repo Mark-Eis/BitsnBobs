@@ -32,6 +32,8 @@ as_coord(object, ...)
 \item{.latorlon}{a \code{character} string, either \code{"lat"} or \code{"lon"} indicating whether the
 coordinate represented is of latitude or longitude, or \code{NA} (the default).}
 
+\item{object}{a \code{"coord"} object or a \code{numeric} vector to be converted to another format.}
+
 \item{.fmt}{\code{character} string indicating the desired format; must be one of \code{"decdeg"}
 (default), \code{"degmin"} or \code{"degminsec"}.}
 }
@@ -66,7 +68,7 @@ represented, (i.e., \code{latorlon} attribute is \code{"lat"}), its  maximum abs
 ## Decimal degrees
 coord()
 
-coord(51.507765)
+(cdd <- coord(51.507765))
 coord(-51.507765)
 coord(51.507765,,, "lat")
 coord(-51.507765,,, "lat")
@@ -74,7 +76,7 @@ coord(51.507765,,, "lon")
 coord(-51.507765,,, "lon")
 
 ## Degrees and (decimal) minutes
-coord(51L, 30.4659)
+(cdm <- coord(51L, 30.4659))
 coord(-51L, 30.4659)
 coord(51L, 30.4659,, "lat")
 coord(-51L, 30.4659,, "lat")
@@ -82,11 +84,30 @@ coord(51L, 30.4659,, "lon")
 coord(-51L, 30.4659,, "lon")
 
 ## Degrees, minutes and (decimal) seconds
-coord(51L, 30L, 27.95)
+(cdms <- coord(51L, 30L, 27.95))
 coord(-51L, 30L, 27.95)
 coord(51L, 30L, 27.95, "lat")
 coord(-51L, 30L, 27.95, "lat")
 coord(51L, 30L, 27.95, "lon")
 coord(-51L, 30L, 27.95, "lon")
+
+## Convert formats
+
+## To decimal degrees
+cdd |> as_coord(.fmt = "decdeg")
+cdm |> as_coord(.fmt = "decdeg")
+cdms |> as_coord(.fmt = "decdeg")
+
+## To degrees and minutes
+cdd |> as_coord(.fmt = "degmin")
+cdm |> as_coord(.fmt = "degmin")
+cdms |> as_coord(.fmt = "degmin")
+
+## To degrees, minutes and seconds
+cdd |> as_coord(.fmt = "degminsec")
+cdm |> as_coord(.fmt = "degminsec")
+cdms |> as_coord(.fmt = "degminsec")
+
+rm(cdd, cdm, cdms)
 }
 \concept{coord}
