@@ -5,7 +5,7 @@
 \alias{as_coord}
 \alias{as_coord.coord}
 \alias{as_coord.numeric}
-\title{Geographic or GPS Coordinate}
+\title{Geographic or GPS Coordinate Class}
 \usage{
 coord(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon"))
 
@@ -34,35 +34,48 @@ coordinate represented is of latitude or longitude, or \code{NA} (the default).}
 
 \item{object}{a \code{"coord"} object or a \code{numeric} vector to be converted to another format.}
 
+\item{...}{further arguments passed to or from other methods.}
+
 \item{.fmt}{\code{character} string indicating the desired format; must be one of \code{"decdeg"}
 (default), \code{"degmin"} or \code{"degminsec"}.}
 }
 \value{
-An object of class \code{"coord"} instantiating a coordinate. See \emph{Details}.
-}
-\description{
-Geographic or GPS coordinate class
-}
-\details{
-\code{coord()} creates a robust representation of a geographic or GPS cordinate based on the value of
-\code{deg}, \code{min} and \code{sec} instatiated as an objects of class \code{"coord"}. Objects of \code{"coord"} class
-contain a \code{list} with one, two or three \code{numeric} values named \code{"deg"}, \code{"min"}, \code{"sec"}, depending
-on whether the cordinate in question is represented in decimal degrees, in (integer) degrees and
+An object of class \code{"coord"} instantiating a coordinate. Objects of \code{"coord"} class contain a
+\code{list} with one, two or three \code{numeric} values named \code{"deg"}, \code{"min"}, \code{"sec"}, depending on
+whether the cordinate in question is represented in decimal degrees, in (integer) degrees and
 (decimal) minutes, or else in (integer) degrees, (integer) minutes, and (decimal) seconds.
-
-The value provided in argument \code{dec} should have a decimal point after the number of whole
-degrees in the case of decimal degrees. Likewise the value provided in argument \code{min} should have
-a decimal point, after the number of whole minutes in the case of degrees and minutes, and the
-value provided in argument \code{sec} after the number of whole seconds in the case of degrees,
-minutes and seconds. In all other cases, arguments \code{deg} and \code{min} must be of type \code{integer}.
 
 \code{"coord"} objects have \code{character} attribute \code{latorlon}, which may be \code{"lat"} for latitude,
 \code{"lon"} for longitude or \code{NA}, and a \code{logical} attribute \code{"negative"}, which when \code{TRUE}
-signifies a negative coordinate i.e., S or W rather than N or E.
+signifies a negative coordinate i.e., S or W, rather than N or E.
+}
+\description{
+\code{coord()} creates a robust representation of a geographic or GPS cordinate based on the value of
+\code{deg}, \code{min} and \code{sec}, instatiated as an object of class \code{"coord"}.
+
+\code{as_coord()} converts the format of geographic or GPS coordinates among decimal degrees, degrees
+and minutes, and degrees, minutes and seconds. It also creates \code{"coord"} objects directly from
+single numeric values in one of these three formats.
+}
+\details{
+The value provided in argument \code{deg} should have a decimal point after the number of whole
+degrees in the case of decimal degrees. Likewise, the value provided in argument \code{min} should
+have a decimal point after the number of whole minutes in the case of degrees and minutes, and
+argument \code{deg} should be of type \code{integer}. In the case of degrees, minutes and seconds,
+arguments \code{deg} and \code{min} must be of type \code{integer} and argument \code{sec} should have a decimal
+point after the number of whole seconds.
 
 The total value in degrees, minutes and seconds may not be greater than \verb{180˚}, while the
 minutes and seconds components (if present) must be less than  \verb{60˚}. If latitude is
-represented, (i.e., \code{latorlon} attribute is \code{"lat"}), its  maximum absolute value is \verb{90˚}.
+represented (i.e., \code{latorlon} attribute is \code{"lat"}), its  maximum absolute value is \verb{90˚}.
+
+\code{as_coord()} has S3 methods for both \code{"coord"} objects and \code{numeric} values. Numeric values
+should have a decimal point after the number of whole degrees in the case of decimal degrees,
+after the number of whole minutes in the case of degrees and minutes, and after the number of
+whole seconds in the case of degrees, minutes and seconds.
+
+There is also an S3 method for \code{\link[base:numeric]{as.numeric()}} for objects of class
+\code{"coord"}, returning numeric values as described above for \code{as_coord()}.
 }
 \examples{
 ## Decimal degrees
