@@ -2,9 +2,23 @@
 % Please edit documentation in R/coord.R
 \name{coord}
 \alias{coord}
+\alias{as_coord}
+\alias{as_coord.coord}
+\alias{as_coord.numeric}
 \title{Geographic or GPS Coordinate}
 \usage{
 coord(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon"))
+
+as_coord(object, ...)
+
+\method{as_coord}{coord}(object, ..., .fmt = c("decdeg", "degmin", "degminsec"))
+
+\method{as_coord}{numeric}(
+  object,
+  ...,
+  .fmt = c("decdeg", "degmin", "degminsec"),
+  .latorlon = c(NA, "lat", "lon")
+)
 }
 \arguments{
 \item{deg}{\code{numeric}, representing the number of degrees. Must be of type \code{integer} if \code{min} or
@@ -17,6 +31,9 @@ coord(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon"))
 
 \item{.latorlon}{a \code{character} string, either \code{"lat"} or \code{"lon"} indicating whether the
 coordinate represented is of latitude or longitude, or \code{NA} (the default).}
+
+\item{.fmt}{\code{character} string indicating the desired format; must be one of \code{"decdeg"}
+(default), \code{"degmin"} or \code{"degminsec"}.}
 }
 \value{
 An object of class \code{"coord"} instantiating a coordinate. See \emph{Details}.
@@ -71,9 +88,5 @@ coord(51L, 30L, 27.95, "lat")
 coord(-51L, 30L, 27.95, "lat")
 coord(51L, 30L, 27.95, "lon")
 coord(-51L, 30L, 27.95, "lon")
-}
-\seealso{
-Other coord: 
-\code{\link{as_coord}()}
 }
 \concept{coord}

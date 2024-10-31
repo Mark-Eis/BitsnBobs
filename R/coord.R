@@ -161,6 +161,9 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #'
 #' @param sec `double`, representing the number of seconds; default `NULL`.
 #'
+#' @param .fmt `character` string indicating the desired format; must be one of `"decdeg"`
+#'   (default), `"degmin"` or `"degminsec"`.
+#'
 #' @param .latorlon a `character` string, either `"lat"` or `"lon"` indicating whether the
 #'   coordinate represented is of latitude or longitude, or `NA` (the default).
 #'
@@ -221,44 +224,51 @@ coord <- function(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon
     validate_coord()
 }
 
+# # ========================================
+# #' @title
+# #' Convert Coordinate or Numeric to Another Coordinate Format
+# #'
+# #' @description
+# #XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+# #' Convert the format of geographic or GPS coordinates represented by `"coord"` objects or `numeric`
+# #' values among decimal degrees, degrees and minutes, and degrees, minutes and seconds.
+# #'
+# #' @details
+# #' Converts between coordinates represented in decimal degrees ("decdeg"), integer degrees and
+# #' decimal minutes ("degmin"), and integer degrees, integer minutes, and decimal seconds
+# #' ("degminsec"). Works with individual [`"coord"`][coord] objects returned using the
+# #' [`coord()`][coord] function, or with vectors of simple numeric values.
+# #' See [`"coord"`][coord] for further details.
+# #'
+# #' @family coord
+# #'
+# #' @param object a `"coord"` object or a `numeric` vector.
+# #'
+# #' @param ... further arguments passed to or from other methods.
+# #'
+# #' @param .fmt `character` string indicating the format of `object`; must be one of `"decdeg"`
+# #'   (default), `"degmin"` or `"degminsec"`.
+# #'
+# #' @param .as_numeric logical, signifying whether to return a `"coord"` object or a `numeric` value;
+# #'   default `FALSE`, the former.
+# #'
+# #' @return
+# #' A [`"coord"`][coord] object or `numeric` value in the desired format.
+# #'
+
+
 # ========================================
-#' @title
-#' Convert Coordinate or Numeric to Another Coordinate Format
-#'
-#' @description
-#XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-#' Convert the format of geographic or GPS coordinates represented by `"coord"` objects or `numeric`
-#' values among decimal degrees, degrees and minutes, and degrees, minutes and seconds.
-#'
-#' @details
-#' Converts between coordinates represented in decimal degrees ("decdeg"), integer degrees and
-#' decimal minutes ("degmin"), and integer degrees, integer minutes, and decimal seconds
-#' ("degminsec"). Works with individual [`"coord"`][coord] objects returned using the
-#' [`coord()`][coord] function, or with vectors of simple numeric values.
-#' See [`"coord"`][coord] for further details.
-#'
-#' @family coord
-#'
-#' @param object a `"coord"` object or a `numeric` vector.
-#'
-#' @param ... further arguments passed to or from other methods.
-#'
-#' @param .fmt `character` string indicating the format of `object`; must be one of `"decdeg"`
-#'   (default), `"degmin"` or `"degminsec"`.
-#'
-#' @param .as_numeric logical, signifying whether to return a `"coord"` object or a `numeric` value;
-#'   default `FALSE`, the former.
-#'
-#' @return
-#' A [`"coord"`][coord] object or `numeric` value in the desired format.
-#'
+#  Convert Coordinate or Numeric to Another Coordinate Format
+#  S3generic as_coord()
+#
+#' @rdname coord
 #' @export
-#' @examples
-#' ## `"coord"` objects in decimal degrees; in degrees and minutes;
-#' ##   and in degrees, minutes, and seconds
-#' (coord_dd <- coord(51.507765, "decdeg"))
-#' (coord_dm <- coord(5130.4659, "degmin"))
-#' (coord_dms <- coord(513027.95, "degminsec"))
+# #' @examples
+# #' ## `"coord"` objects in decimal degrees; in degrees and minutes;
+# #' ##   and in degrees, minutes, and seconds
+# #' (coord_dd <- coord(123.987654321))
+# #' (coord_dm <- coord(123L, 59.2592593))
+# #' (coord_dms <- coord(123L, 59L, 15.55))
 
 as_coord <- function(object, ...) {
 	UseMethod("as_coord")
@@ -268,7 +278,7 @@ as_coord <- function(object, ...) {
 #  Convert Coord to Coord of another format
 #  S3method as_coord.coord()
 #'
-#' @rdname as_coord
+#' @rdname coord
 #' @export
 
 as_coord.coord <- function(object, ..., .fmt = c("decdeg", "degmin", "degminsec")) {
@@ -296,15 +306,14 @@ as_coord.coord <- function(object, ..., .fmt = c("decdeg", "degmin", "degminsec"
 #  Convert Numeric to Coord
 #  S3method as_coord.numeric()
 #'
-#' @rdname as_coord
+#' @rdname coord
 #' @export
 
 as_coord.numeric <- function(
     object,
     ...,
     .fmt = c("decdeg", "degmin", "degminsec"), 
-    .latorlon = c(NA, "lat", "lon"),
-    .as_numeric = FALSE
+    .latorlon = c(NA, "lat", "lon")
 ) {
     check_dots_empty()
     .fmt <- match.arg(.fmt)
