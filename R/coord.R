@@ -526,7 +526,7 @@ sum_sec.degminsec <- function(object, ...) {
 
 as.double.degminsec <- function(x, ...) {
     check_dots_empty()
-    x$num <- with(x, (deg * 1e2 + min) * 1e2 + sec)
+    x$num <- as.numeric(with(x, (deg * 1e2 + min) * 1e2 + sec))
     NextMethod()
 }
 
@@ -534,7 +534,7 @@ as.double.degminsec <- function(x, ...) {
 
 as.double.degmin <- function(x, ...) {
     check_dots_empty()
-    x$num <- with(x, deg * 1e2 + min)
+    x$num <- as.numeric(with(x, deg * 1e2 + min))
     NextMethod()
 }
 
@@ -542,7 +542,7 @@ as.double.degmin <- function(x, ...) {
 
 as.double.decdeg <- function(x, ...) {
     check_dots_empty()
-    x$num <- with(x, deg)
+    x$num <- as.numeric(with(x, deg))
     NextMethod()
 }
 
@@ -552,8 +552,6 @@ as.double.coord <- function(x, ...) {
     check_dots_empty()
     
     x$num |>
-    as.numeric() |>
-    unlist() |>
     swapsign(x %@% "negative")
 }
 
