@@ -184,20 +184,20 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' coord(-51.507765,,, "lon")
 #'
 #' ## Degrees and (decimal) minutes
-#' (cdm <- coord(51L, 30.4659))
+#' coord(51L, 30.4659)
 #' coord(-51L, 30.4659)
-#' coord(51L, 30.4659,, "lat")
+#' (cdm <- coord(51L, 30.4659,, "lat"))
 #' coord(-51L, 30.4659,, "lat")
 #' coord(51L, 30.4659,, "lon")
 #' coord(-51L, 30.4659,, "lon")
 #'
 #' ## Degrees, minutes and (decimal) seconds
-#' (cdms <- coord(51L, 30L, 27.95))
+#' coord(51L, 30L, 27.95)
 #' coord(-51L, 30L, 27.95)
 #' coord(51L, 30L, 27.95, "lat")
 #' coord(-51L, 30L, 27.95, "lat")
 #' coord(51L, 30L, 27.95, "lon")
-#' coord(-51L, 30L, 27.95, "lon")
+#' (cdms <- coord(-51L, 30L, 27.95, "lon"))
 #'
 #' ## Convert formats
 #'
@@ -297,6 +297,27 @@ as_coord <- function(object, ...) {
 #' @rdname coord
 #' @export
 
+# as_coord.coord <- function(object, ..., .fmt = c("decdeg", "degmin", "degminsec")) {
+    # check_dots_empty()
+    # .fmt <- match.arg(.fmt)
+	
+    # if (inherits(object, .fmt))
+        # object
+   	# else {
+   	    # switch(.fmt,
+   	       # "decdeg" = coord(sum_degminsec(object), .latorlon = object %@% latorlon),
+   	       # "degmin" = coord(as.integer(object$deg), sum_minsec(object), .latorlon = object %@% latorlon),
+   	       # "degminsec" = coord(
+   	           # as.integer(object$deg),
+   	           # as.integer(sum_minsec(object) %/% 1),
+   	           # sum_sec(object),
+   	           # .latorlon = object %@% latorlon),
+            # stop("Invalid `.fmt` value", call. = FALSE)
+   	    # )
+   	# }
+   	
+# }
+
 as_coord.coord <- function(object, ..., .fmt = c("decdeg", "degmin", "degminsec")) {
     check_dots_empty()
     .fmt <- match.arg(.fmt)
@@ -304,16 +325,18 @@ as_coord.coord <- function(object, ..., .fmt = c("decdeg", "degmin", "degminsec"
     if (inherits(object, .fmt))
         object
    	else {
-   	    switch(.fmt,
-   	       "decdeg" = coord(sum_degminsec(object), .latorlon = object %@% latorlon),
-   	       "degmin" = coord(as.integer(object$deg), sum_minsec(object), .latorlon = object %@% latorlon),
+   	    robj <- switch(.fmt,
+   	       "decdeg" = coord(sum_degminsec(object)),
+   	       "degmin" = coord(as.integer(object$deg), sum_minsec(object)),
    	       "degminsec" = coord(
    	           as.integer(object$deg),
    	           as.integer(sum_minsec(object) %/% 1),
-   	           sum_sec(object),
-   	           .latorlon = object %@% latorlon),
+   	           sum_sec(object)),
             stop("Invalid `.fmt` value", call. = FALSE)
    	    )
+        attr(robj, "latorlon") <- object %@% "latorlon"
+        attr(robj, "negative") <- object %@% "negative"
+        robj
    	}
    	
 }

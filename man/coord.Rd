@@ -76,20 +76,20 @@ coord(51.507765,,, "lon")
 coord(-51.507765,,, "lon")
 
 ## Degrees and (decimal) minutes
-(cdm <- coord(51L, 30.4659))
+coord(51L, 30.4659)
 coord(-51L, 30.4659)
-coord(51L, 30.4659,, "lat")
+(cdm <- coord(51L, 30.4659,, "lat"))
 coord(-51L, 30.4659,, "lat")
 coord(51L, 30.4659,, "lon")
 coord(-51L, 30.4659,, "lon")
 
 ## Degrees, minutes and (decimal) seconds
-(cdms <- coord(51L, 30L, 27.95))
+coord(51L, 30L, 27.95)
 coord(-51L, 30L, 27.95)
 coord(51L, 30L, 27.95, "lat")
 coord(-51L, 30L, 27.95, "lat")
 coord(51L, 30L, 27.95, "lon")
-coord(-51L, 30L, 27.95, "lon")
+(cdms <- coord(-51L, 30L, 27.95, "lon"))
 
 ## Convert formats
 
