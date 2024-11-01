@@ -53,21 +53,22 @@ signifies a negative coordinate i.e., S or W, rather than N or E.
 \code{coord()} creates a robust representation of a geographic or GPS cordinate based on the value of
 \code{deg}, \code{min} and \code{sec}, instatiated as an object of class \code{"coord"}.
 
-\code{as_coord()} converts the format of geographic or GPS coordinates among decimal degrees, degrees
-and minutes, and degrees, minutes and seconds. It also creates \code{"coord"} objects directly from
-single numeric values in one of these three formats.
+\code{as_coord()} converts the format of geographic or GPS coordinates between (i) decimal degrees,
+(ii) degrees and minutes, and (iii) degrees, minutes and seconds. It also creates \code{"coord"}
+objects directly from single numeric values in one of these three formats.
 }
 \details{
 The value provided in argument \code{deg} should have a decimal point after the number of whole
 degrees in the case of decimal degrees. Likewise, the value provided in argument \code{min} should
 have a decimal point after the number of whole minutes in the case of degrees and minutes, and
-argument \code{deg} should be of type \code{integer}. In the case of degrees, minutes and seconds,
+argument \code{deg} should be of type \code{integer}. In the case of degrees, minutes and seconds, both
 arguments \code{deg} and \code{min} must be of type \code{integer} and argument \code{sec} should have a decimal
 point after the number of whole seconds.
 
 The total value in degrees, minutes and seconds may not be greater than \verb{180˚}, while the
 minutes and seconds components (if present) must be less than  \verb{60˚}. If latitude is
 represented (i.e., \code{latorlon} attribute is \code{"lat"}), its  maximum absolute value is \verb{90˚}.
+Errors will be reported if these limits are not observed.
 
 \code{as_coord()} has S3 methods for both \code{"coord"} objects and \code{numeric} values. Numeric values
 should have a decimal point after the number of whole degrees in the case of decimal degrees,
