@@ -241,7 +241,20 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' cdms |> as.numeric()
 #' \dontshow{options("digits" = 7)}
 #' rm(cdd, cdm, cdms)
-
+#'
+#' ## Numeric to "coord" object
+#' as_coord(51.507765, .fmt = "decdeg")
+#' as_coord(-51.507765, .fmt = "decdeg")
+#' as_coord(51.507765, .fmt = "decdeg", .latorlon = "lon")
+#'
+#' as_coord(5130.4659, .fmt = "degmin")
+#' as_coord(-5130.4659, .fmt = "degmin")
+#' as_coord(-5130.4659, .fmt = "degmin", .latorlon = "lon")
+#'
+#' as_coord(513027.95, .fmt = "degminsec")
+#' as_coord(-513027.95, .fmt = "degminsec")
+#' as_coord(513027.95, .fmt = "degminsec", .latorlon = "lon")
+#'
 
 coord <- function(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) {
     .latorlon <- match.arg(.latorlon)
@@ -328,9 +341,21 @@ as_coord.numeric <- function(
     .fmt <- match.arg(.fmt)
     .latorlon <- match.arg(.latorlon)	
 
-	# makes coord from a numeric
-	# .fmt show what's wanted
-    object
+    negative <- object < 0
+    object <- abs(object)
+    
+    switch(.fmt,
+       "decdeg" = new_decdeg(object),
+       "degmin" = new_degmin(as.integer(object %/% 1e2), object %% 1e2),
+       "degminsec" = new_degminsec(
+           as.integer(object %/% 1e4),
+           as.integer(object %% 1e4 %/% 1e2),
+           object %% 1e4 %% 1e2
+           ),
+        stop("Invalid `.fmt` value", call. = FALSE)
+    ) |>
+    new_coord(.latorlon, negative) |>
+    validate_coord()
 }
 
 

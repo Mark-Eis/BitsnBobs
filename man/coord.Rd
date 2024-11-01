@@ -131,5 +131,19 @@ cdm |> as.numeric()
 cdms |> as.numeric()
 \dontshow{options("digits" = 7)}
 rm(cdd, cdm, cdms)
+
+## Numeric to "coord" object
+as_coord(51.507765, .fmt = "decdeg")
+as_coord(-51.507765, .fmt = "decdeg")
+as_coord(51.507765, .fmt = "decdeg", .latorlon = "lon")
+
+as_coord(5130.4659, .fmt = "degmin")
+as_coord(-5130.4659, .fmt = "degmin")
+as_coord(-5130.4659, .fmt = "degmin", .latorlon = "lon")
+
+as_coord(513027.95, .fmt = "degminsec")
+as_coord(-513027.95, .fmt = "degminsec")
+as_coord(513027.95, .fmt = "degminsec", .latorlon = "lon")
+
 }
 \concept{coord}
