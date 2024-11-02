@@ -593,3 +593,113 @@ as.double.coord <- function(x, ...) {
         )[latorlon, as.integer(negative) + 1] |>
         unname()
 }
+
+
+# ========================================
+#' @title
+#' Waypoint
+#'
+#' @description
+#' A robust representation of a geographic or GPS waypoint comprising latitude and langitude values
+#' implemented as [`"coord"`][coord] objects.
+#'
+#' @details
+#' Waypoints may be defined using (i) decimal degrees, (ii) degrees and minutes, or (iii) degrees,
+#' minutes and seconds.  
+#' ...
+#' ...
+#'
+#'
+#' @family coord
+#'
+#' @param ... two `numeric` values or two `"coord"` objects.
+#'
+#' @inheritParams coord
+#'
+#' @return
+#' An object of `class` `"waypoint"` comprising a named list of two `"coord"` objects representing
+#'   the latitude and longitude values of a waypoint.
+#'
+#' @export
+#' @examples
+#' ## Decimal degrees
+#' waypoint(coord(51.50776), coord(-0.127924))
+#' waypoint(as_coord(51.50776), as_coord(-0.127924))
+#' waypoint(51.50776, -0.127924)
+#'
+#' ## Degrees amd minutes
+#' waypoint(coord(51L, 30.4659), coord(-0L, 07.6754))
+#' waypoint(as_coord(5130.4659, .fmt = "degmin"), as_coord(-007.6754, .fmt = "degmin"))
+#' waypoint(5130.4659, -007.6754, .fmt = "degmin")
+#'
+#' ## Degrees, minutes and seconds
+#' waypoint(coord(51L, 30L, 27.95), coord(-0L, 07L, 40.53))
+#' waypoint(as_coord(5130.4659, .fmt = "degminsec"), as_coord(-00740.53, .fmt = "degminsec"))
+#' waypoint(5130.4659, -00740.53, .fmt = "degminsec")
+
+waypoint <- function(..., .fmt = c("decdeg", "degmin", "degminsec")) {
+
+    if (!identical(class(..1), class(..2)))
+        stop(
+            "`...` must be of the same class.",
+            call. = FALSE
+        )
+
+    if (!identical(...length(), 2L))
+        stop(
+            "`...` must be of length 2.",
+            call. = FALSE
+        )
+
+	if (inherits(..1, "coord")) {
+			rv <- list(lat = ..1, lon = ..2)
+			attr(rv$lat, "latorlon") <- "lat"
+			attr(rv$lon, "latorlon") <- "lon"
+	} else {
+		if (inherits(..1, "numeric"))
+			rv <- list(
+				lat = as_coord(..1, .fmt = .fmt, .latorlon = "lat"),
+				lon = as_coord(..2, .fmt = .fmt, .latorlon = "lon")
+			)
+		else
+			stop("Invalid class for creating waypoint", call. = FALSE)
+	}
+
+	new_waypoint(rv) |>
+	validate_waypoint()
+}
+
+# ========================================
+# Not exported
+
+new_waypoint <- function(object) {
+	structure(object, class = "waypoint")
+}
+
+# ========================================
+# Not exported
+
+validate_waypoint <- function(object) {
+
+    if (!inherits(object, "waypoint"))
+        stop(
+            "`object` must be of class `\"waypoint\"`",
+            call. = FALSE
+        )
+
+    if (!identical(object$lat %@% "latorlon", "lat"))
+        stop(
+            "For object$lat, attribute `\"latorlon\"`  must be `\"lat\"`",
+            call. = FALSE
+        )    
+
+    if (!identical(object$lon %@% "latorlon", "lon"))
+        stop(
+            "For object$lon, attribute `\"latorlon\"`  must be `\"lon\"`",
+            call. = FALSE
+        )    
+
+	lapply(object, validate_coord)
+	
+	object
+}
