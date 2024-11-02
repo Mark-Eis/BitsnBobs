@@ -147,4 +147,8 @@ as_coord(-513027.95, .fmt = "degminsec")
 as_coord(513027.95, .fmt = "degminsec", .latorlon = "lon")
 
 }
+\seealso{
+Other coord: 
+\code{\link{waypoint}()}
+}
 \concept{coord}

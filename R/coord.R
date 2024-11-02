@@ -260,8 +260,15 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 coord <- function(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) {
     .latorlon <- match.arg(.latorlon)
 
-    negative <- deg < 0
+    # negative <- deg < 0
+    # deg <- abs(deg)
+    # if(any(min < 0, sec < 0))
+        # stop("Minutes and seconds may not be negative", call. = FALSE)
+
+    negative <- any(deg < 0, min < 0, sec < 0)
     deg <- abs(deg)
+    min <- abs(min)
+    sec <- abs(sec)
     if(any(min < 0, sec < 0))
         stop("Minutes and seconds may not be negative", call. = FALSE)
 
@@ -432,9 +439,9 @@ print.coord <- function(x, ...) {
 }
 
 # _______________________________________
-# S3 format() method for `"latnlon"` class
+# S3 format() method for `"waypoint"` class
 #' @exportS3Method base::format
-format.latnlon <- function(x, ...) {
+format.waypoint <- function(x, ...) {
     check_dots_empty()
     format(x[[1]])
     cat("  ")
@@ -442,10 +449,10 @@ format.latnlon <- function(x, ...) {
 }
 
 # _______________________________________
-# S3 print() method for `"latnlon"` class
+# S3 print() method for `"waypoint"` class
 #' @export
 
-print.latnlon <- function(x, ...) {
+print.waypoint <- function(x, ...) {
     check_dots_empty()
     format(x)
     invisible(x)
@@ -639,6 +646,7 @@ as.double.coord <- function(x, ...) {
 
 waypoint <- function(..., .fmt = c("decdeg", "degmin", "degminsec")) {
 
+	check_dots_unnamed()
     if (!identical(class(..1), class(..2)))
         stop(
             "`...` must be of the same class.",

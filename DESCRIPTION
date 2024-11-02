@@ -20,9 +20,9 @@ Description: Does this and that using functions: as_decdeg(), as_degmin(),
     retriever(), revmat(), rm_objects(), s3_in_namespace(), s3debug(),
     s3mag7(), sample_size(), skew(), skew.test(), skewness(),
     skewness.test(), split_to_cols(), split_to_rows(), starsig(),
-    sum_lgl(), swapsign(), triodos_fname(), wizard(); infix operators:
-    op-min-max; and datasets: heights, litter_sizes, starwars2 and
-    starwars3.
+    sum_lgl(), swapsign(), triodos_fname(), waypoint(), wizard(); infix
+    operators: op-min-max; and datasets: heights, litter_sizes, starwars2
+    and starwars3.
 License: MIT + file LICENSE
 URL: https://mark-eis.github.io/BitsnBobs/
 Depends: 

@@ -46,6 +46,7 @@
 #' @importFrom rlang as_label
 #' @importFrom rlang as_name
 #' @importFrom rlang check_dots_empty
+#' @importFrom rlang check_dots_unnamed
 #' @importFrom rlang check_dots_used
 #' @importFrom rlang data_syms
 #' @importFrom rlang enexprs
