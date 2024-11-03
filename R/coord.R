@@ -669,8 +669,8 @@ as.double.coord <- function(x, ...) {
 #'
 #' ## Decimal degrees
 #' (wp_dd <- waypoint(coord(51.507765), coord(-0.127924)))
-#' waypoint(as_coord(51.50776), as_coord(-0.127924))
-#' waypoint(51.50776, -0.127924)
+#' waypoint(as_coord(51.507765), as_coord(-0.127924))
+#' waypoint(51.507765, -0.127924)
 #'
 #' ## Degrees amd minutes
 #' (wp_dm <- waypoint(coord(51L, 30.4659), coord(, -07.6754)))
@@ -679,8 +679,8 @@ as.double.coord <- function(x, ...) {
 #'
 #' ## Degrees, minutes and seconds
 #' (wp_dms <- waypoint(coord(51L, 30L, 27.95), coord(, -07L, 40.53)))
-#' waypoint(as_coord(5130.4659, .fmt = "degminsec"), as_coord(-00740.53, .fmt = "degminsec"))
-#' waypoint(5130.4659, -00740.53, .fmt = "degminsec")
+#' waypoint(as_coord(513027.95, .fmt = "degminsec"), as_coord(-00740.53, .fmt = "degminsec"))
+#' waypoint(513027.95, -00740.53, .fmt = "degminsec")
 #'
 #' ## Convert between "waypoint" object formats
 #'
