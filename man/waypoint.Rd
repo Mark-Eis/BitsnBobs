@@ -22,25 +22,42 @@ implemented as \code{\link[=coord]{"coord"}} objects.
 }
 \details{
 Waypoints may be defined using (i) decimal degrees, (ii) degrees and minutes, or (iii) degrees,
-minutes and seconds.
-...
-...
+minutes and seconds. They may easily be converted between formats using \code{\link[=as_coord]{as_coord()}}.
 }
 \examples{
 ## Decimal degrees
-waypoint(coord(51.50776), coord(-0.127924))
+(wp_dd <- waypoint(coord(51.507765), coord(-0.127924)))
 waypoint(as_coord(51.50776), as_coord(-0.127924))
 waypoint(51.50776, -0.127924)
 
 ## Degrees amd minutes
-waypoint(coord(51L, 30.4659), coord(0L, -07.6754))
+(wp_dm <- waypoint(coord(51L, 30.4659), coord(, -07.6754)))
 waypoint(as_coord(5130.4659, .fmt = "degmin"), as_coord(-007.6754, .fmt = "degmin"))
 waypoint(5130.4659, -007.6754, .fmt = "degmin")
 
 ## Degrees, minutes and seconds
-waypoint(coord(51L, 30L, 27.95), coord(0L, -07L, 40.53))
+(wp_dms <- waypoint(coord(51L, 30L, 27.95), coord(, -07L, 40.53)))
 waypoint(as_coord(5130.4659, .fmt = "degminsec"), as_coord(-00740.53, .fmt = "degminsec"))
 waypoint(5130.4659, -00740.53, .fmt = "degminsec")
+
+## Convert formats
+
+## To decimal degrees
+wp_dd |> as_coord(.fmt = "decdeg")
+wp_dm |> as_coord(.fmt = "decdeg")
+wp_dms |> as_coord(.fmt = "decdeg")
+
+## To degrees and minutes
+wp_dd |> as_coord(.fmt = "degmin")
+wp_dm |> as_coord(.fmt = "degmin")
+wp_dms |> as_coord(.fmt = "degmin")
+
+## To degrees, minutes and seconds
+wp_dd |> as_coord(.fmt = "degminsec")
+wp_dm |> as_coord(.fmt = "degminsec")
+wp_dms |> as_coord(.fmt = "degminsec")
+
+rm(wp_dd, wp_dm, wp_dms)
 }
 \seealso{
 Other coord: 

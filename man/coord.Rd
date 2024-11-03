@@ -77,10 +77,10 @@ minutes and seconds components (if present) must be less than  \verb{60˚}. If l
 represented (i.e., \code{latorlon} attribute is \code{"lat"}), its  maximum absolute value is \verb{90˚}.
 Errors will be reported if these limits are not observed.
 
-\code{as_coord()} has S3 methods for both \code{"coord"} objects and \code{numeric} values. Numeric values
-should have a decimal point after the number of whole degrees in the case of decimal degrees,
-after the number of whole minutes in the case of degrees and minutes, and after the number of
-whole seconds in the case of degrees, minutes and seconds.
+\code{as_coord()} has S3 methods for both \code{"coord"} and \code{\link[=waypoint]{"waypoint"}} objects and \code{numeric}
+values. Numeric values should have a decimal point after the number of whole degrees in the case
+of decimal degrees, after the number of whole minutes in the case of degrees and minutes, and
+after the number of whole seconds in the case of degrees, minutes and seconds.
 
 There is also an S3 method for \code{\link[base:numeric]{as.numeric()}} for objects of class
 \code{"coord"}, returning numeric values as described above for \code{as_coord()}.
