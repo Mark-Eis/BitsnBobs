@@ -143,6 +143,10 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' arguments `deg` and `min` must be of type `integer` and argument `sec` should have a decimal
 #' point after the number of whole seconds.
 #'
+#' Negative coordinates i.e., S or W, rather than N or E, may be specified by negative values of
+#' `deg`, `min`, or `sec`; only one, the first non-zero value, of the three may be negative or an
+#' error will result.
+#'
 #' The total value in degrees, minutes and seconds may not be greater than `180˚`, while the
 #' minutes and seconds components (if present) must be less than  `60˚`. If latitude is
 #' represented (i.e., `latorlon` attribute is `"lat"`), its  maximum absolute value is `90˚`.

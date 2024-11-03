@@ -65,6 +65,10 @@ argument \code{deg} should be of type \code{integer}. In the case of degrees, mi
 arguments \code{deg} and \code{min} must be of type \code{integer} and argument \code{sec} should have a decimal
 point after the number of whole seconds.
 
+Negative coordinates i.e., S or W, rather than N or E, may be specified by negative values of
+\code{deg}, \code{min}, or \code{sec}; only one, the first non-zero value, of the three may be negative or an
+error will result.
+
 The total value in degrees, minutes and seconds may not be greater than \verb{180˚}, while the
 minutes and seconds components (if present) must be less than  \verb{60˚}. If latitude is
 represented (i.e., \code{latorlon} attribute is \code{"lat"}), its  maximum absolute value is \verb{90˚}.
