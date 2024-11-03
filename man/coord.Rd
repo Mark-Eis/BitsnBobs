@@ -5,6 +5,7 @@
 \alias{as_coord}
 \alias{as_coord.coord}
 \alias{as_coord.numeric}
+\alias{as_coord.waypoint}
 \title{Geographic or GPS Coordinate Class}
 \usage{
 coord(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon"))
@@ -19,6 +20,8 @@ as_coord(object, ...)
   .fmt = c("decdeg", "degmin", "degminsec"),
   .latorlon = c(NA, "lat", "lon")
 )
+
+\method{as_coord}{waypoint}(object, ..., .fmt = c("decdeg", "degmin", "degminsec"))
 }
 \arguments{
 \item{deg}{\code{numeric}, representing the number of degrees. Must be of type \code{integer} if \code{min} or

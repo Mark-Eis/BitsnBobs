@@ -382,8 +382,9 @@ as_coord.numeric <- function(
 # ========================================
 #  Convert Numeric to Coordinate Format
 #  S3method as_coord.waypoint()
-#
-#' @exportS3Method BitsnBobs::as_coord
+#'
+#' @rdname coord
+#' @export
 
 as_coord.waypoint <- function(
     object,
