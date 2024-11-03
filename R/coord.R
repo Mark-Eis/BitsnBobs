@@ -159,7 +159,7 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' @family coord
 #'
 #' @param deg `numeric`, representing the number of degrees. Must be of type `integer` if `min` or
-#'   `sec` are provided, otherwise type `double`; default `0`.
+#'   `sec` are provided, otherwise type `double`; default `0L`.
 #'
 #' @param min `numeric`, representing the number of minutes. If `sec` provided, must be of type
 #'   `integer`, otherwise `double`; default `NULL`.
@@ -257,31 +257,29 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' as_coord(513027.95, .fmt = "degminsec", .latorlon = "lon")
 #'
 
-coord <- function(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) {
+coord <- function(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) {
     .latorlon <- match.arg(.latorlon)
 
-    negative <- FALSE
-    if (deg < 0) {
-    		negative <- TRUE
+    if (deg != 0) {
+    		negative <- deg < 0
+        deg <- abs(deg)
     		if (any(all(!is.null(min), min < 0), all(!is.null(sec), sec < 0)))
-    			stop("if \"deg\" is < 0, neither \"min\" nor \"sec\" may be negative", call. = FALSE)
+    			stop("if \"deg\" != 0, neither \"min\" nor \"sec\" may be negative", call. = FALSE)
     } else {
-    		if (deg == 0) {
-    			if (all(!is.null(min), min < 0)) {
-		    		negative <- TRUE
-		    		if (sec < 0)
-		    			stop("if \"min\" is < 0, \"sec\" may not be negative", call. = FALSE)
-    			} else {
-	    			if (all(!is.null(sec), sec < 0)) {
-			    		negative <- TRUE    				
-	    			}
-	    		}
-		}
-    }
-
-    deg <- abs(deg)
-    if (!is.null(min)) min <- abs(min)
-    if (!is.null(sec)) sec <- abs(sec)
+   		if (all(!is.null(min), min != 0)) {
+	    		negative <- min < 0
+	    		min <- abs(min)
+    		if (all(!is.null(sec), sec < 0))
+    			stop("if \"min\" != 0, \"sec\" may not be negative", call. = FALSE)
+		} else {
+			if (all(!is.null(sec), sec != 0)) {
+		        negative <- sec < 0
+		        sec <- abs(sec)  				
+			} else {
+	    			negative <- FALSE
+			}
+    		}
+  	}
 
     {
         if (is.null(sec)) {

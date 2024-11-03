@@ -7,7 +7,7 @@
 \alias{as_coord.numeric}
 \title{Geographic or GPS Coordinate Class}
 \usage{
-coord(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon"))
+coord(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon"))
 
 as_coord(object, ...)
 
@@ -22,7 +22,7 @@ as_coord(object, ...)
 }
 \arguments{
 \item{deg}{\code{numeric}, representing the number of degrees. Must be of type \code{integer} if \code{min} or
-\code{sec} are provided, otherwise type \code{double}; default \code{0}.}
+\code{sec} are provided, otherwise type \code{double}; default \code{0L}.}
 
 \item{min}{\code{numeric}, representing the number of minutes. If \code{sec} provided, must be of type
 \code{integer}, otherwise \code{double}; default \code{NULL}.}
