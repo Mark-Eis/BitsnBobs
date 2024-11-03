@@ -25,6 +25,8 @@ Waypoints may be defined using (i) decimal degrees, (ii) degrees and minutes, or
 minutes and seconds. They may easily be converted between formats using \code{\link[=as_coord]{as_coord()}}.
 }
 \examples{
+## Create "waypoint" objects
+
 ## Decimal degrees
 (wp_dd <- waypoint(coord(51.507765), coord(-0.127924)))
 waypoint(as_coord(51.50776), as_coord(-0.127924))
@@ -40,7 +42,7 @@ waypoint(5130.4659, -007.6754, .fmt = "degmin")
 waypoint(as_coord(5130.4659, .fmt = "degminsec"), as_coord(-00740.53, .fmt = "degminsec"))
 waypoint(5130.4659, -00740.53, .fmt = "degminsec")
 
-## Convert formats
+## Convert between "waypoint" object formats
 
 ## To decimal degrees
 wp_dd |> as_coord(.fmt = "decdeg")

@@ -193,9 +193,9 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #'
 #' @export
 #' @examples
-#' ## Decimal degrees
-#' coord()
+#' ## Create "coord" objects
 #'
+#' ## Decimal degrees (the default format)
 #' (cdd <- coord(51.507765))
 #' coord(-51.507765)
 #' coord(51.507765,,, "lat")
@@ -219,7 +219,7 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' coord(51L, 30L, 27.95, "lon")
 #' (cdms <- coord(-51L, 30L, 27.95, "lon"))
 #'
-#' ## Convert formats
+#' ## Convert between "coord" object formats
 #'
 #' ## To decimal degrees
 #' cdd |> as_coord(.fmt = "decdeg")
@@ -236,30 +236,39 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #' cdm |> as_coord(.fmt = "degminsec")
 #' cdms |> as_coord(.fmt = "degminsec")
 #'
-#' ## Convert to numeric
 #' \dontshow{options("digits" = 8)}
+#'
+#' ## Convert "coord" to numeric
+#'
 #' ## Decimal degrees
 #' cdd |> as.numeric()
+#'
 #' ## Degrees and minutes
 #' cdm |> as.numeric()
+#'
 #' ## Degrees, minutes and seconds
 #' cdms |> as.numeric()
-#' \dontshow{options("digits" = 7)}
-#' rm(cdd, cdm, cdms)
 #'
-#' ## Numeric to "coord" object
+#' \dontshow{options("digits" = 7)}
+#'
+#' ## Convert numeric to "coord" object
+#'
+#' ## Decimal degrees
 #' as_coord(51.507765, .fmt = "decdeg")
 #' as_coord(-51.507765, .fmt = "decdeg")
 #' as_coord(51.507765, .fmt = "decdeg", .latorlon = "lon")
 #'
+#' ## Degrees and minutes
 #' as_coord(5130.4659, .fmt = "degmin")
 #' as_coord(-5130.4659, .fmt = "degmin")
 #' as_coord(-5130.4659, .fmt = "degmin", .latorlon = "lon")
 #'
+#' ## Degrees, minutes and seconds
 #' as_coord(513027.95, .fmt = "degminsec")
 #' as_coord(-513027.95, .fmt = "degminsec")
 #' as_coord(513027.95, .fmt = "degminsec", .latorlon = "lon")
 #'
+#' rm(cdd, cdm, cdms)
 
 coord <- function(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) {
     .latorlon <- match.arg(.latorlon)
@@ -656,6 +665,8 @@ as.double.coord <- function(x, ...) {
 #'
 #' @export
 #' @examples
+#' ## Create "waypoint" objects
+#'
 #' ## Decimal degrees
 #' (wp_dd <- waypoint(coord(51.507765), coord(-0.127924)))
 #' waypoint(as_coord(51.50776), as_coord(-0.127924))
@@ -671,14 +682,14 @@ as.double.coord <- function(x, ...) {
 #' waypoint(as_coord(5130.4659, .fmt = "degminsec"), as_coord(-00740.53, .fmt = "degminsec"))
 #' waypoint(5130.4659, -00740.53, .fmt = "degminsec")
 #'
-#' ## Convert formats
+#' ## Convert between "waypoint" object formats
 #'
 #' ## To decimal degrees
 #' wp_dd |> as_coord(.fmt = "decdeg")
 #' wp_dm |> as_coord(.fmt = "decdeg")
 #' wp_dms |> as_coord(.fmt = "decdeg")
 #'
-#'## To degrees and minutes
+#' ## To degrees and minutes
 #' wp_dd |> as_coord(.fmt = "degmin")
 #' wp_dm |> as_coord(.fmt = "degmin")
 #' wp_dms |> as_coord(.fmt = "degmin")

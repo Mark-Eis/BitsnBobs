@@ -86,9 +86,9 @@ There is also an S3 method for \code{\link[base:numeric]{as.numeric()}} for obje
 \code{"coord"}, returning numeric values as described above for \code{as_coord()}.
 }
 \examples{
-## Decimal degrees
-coord()
+## Create "coord" objects
 
+## Decimal degrees (the default format)
 (cdd <- coord(51.507765))
 coord(-51.507765)
 coord(51.507765,,, "lat")
@@ -112,7 +112,7 @@ coord(-51L, 30L, 27.95, "lat")
 coord(51L, 30L, 27.95, "lon")
 (cdms <- coord(-51L, 30L, 27.95, "lon"))
 
-## Convert formats
+## Convert between "coord" object formats
 
 ## To decimal degrees
 cdd |> as_coord(.fmt = "decdeg")
@@ -129,30 +129,39 @@ cdd |> as_coord(.fmt = "degminsec")
 cdm |> as_coord(.fmt = "degminsec")
 cdms |> as_coord(.fmt = "degminsec")
 
-## Convert to numeric
 \dontshow{options("digits" = 8)}
+
+## Convert "coord" to numeric
+
 ## Decimal degrees
 cdd |> as.numeric()
+
 ## Degrees and minutes
 cdm |> as.numeric()
+
 ## Degrees, minutes and seconds
 cdms |> as.numeric()
-\dontshow{options("digits" = 7)}
-rm(cdd, cdm, cdms)
 
-## Numeric to "coord" object
+\dontshow{options("digits" = 7)}
+
+## Convert numeric to "coord" object
+
+## Decimal degrees
 as_coord(51.507765, .fmt = "decdeg")
 as_coord(-51.507765, .fmt = "decdeg")
 as_coord(51.507765, .fmt = "decdeg", .latorlon = "lon")
 
+## Degrees and minutes
 as_coord(5130.4659, .fmt = "degmin")
 as_coord(-5130.4659, .fmt = "degmin")
 as_coord(-5130.4659, .fmt = "degmin", .latorlon = "lon")
 
+## Degrees, minutes and seconds
 as_coord(513027.95, .fmt = "degminsec")
 as_coord(-513027.95, .fmt = "degminsec")
 as_coord(513027.95, .fmt = "degminsec", .latorlon = "lon")
 
+rm(cdd, cdm, cdms)
 }
 \seealso{
 Other coord: 
