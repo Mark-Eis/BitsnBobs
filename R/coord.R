@@ -260,17 +260,28 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 coord <- function(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) {
     .latorlon <- match.arg(.latorlon)
 
-    # negative <- deg < 0
-    # deg <- abs(deg)
-    # if(any(min < 0, sec < 0))
-        # stop("Minutes and seconds may not be negative", call. = FALSE)
+    negative <- FALSE
+    if (deg < 0) {
+    		negative <- TRUE
+    		if (any(all(!is.null(min), min < 0), all(!is.null(sec), sec < 0)))
+    			stop("if \"deg\" is < 0, neither \"min\" nor \"sec\" may be negative", call. = FALSE)
+    } else {
+    		if (deg == 0) {
+    			if (all(!is.null(min), min < 0)) {
+		    		negative <- TRUE
+		    		if (sec < 0)
+		    			stop("if \"min\" is < 0, \"sec\" may not be negative", call. = FALSE)
+    			} else {
+	    			if (all(!is.null(sec), sec < 0)) {
+			    		negative <- TRUE    				
+	    			}
+	    		}
+		}
+    }
 
-    negative <- any(deg < 0, min < 0, sec < 0)
     deg <- abs(deg)
-    min <- abs(min)
-    sec <- abs(sec)
-    if(any(min < 0, sec < 0))
-        stop("Minutes and seconds may not be negative", call. = FALSE)
+    if (!is.null(min)) min <- abs(min)
+    if (!is.null(sec)) sec <- abs(sec)
 
     {
         if (is.null(sec)) {
@@ -299,7 +310,7 @@ coord <- function(deg = 0, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon
 #' @export
 
 as_coord <- function(object, ...) {
-	UseMethod("as_coord")
+    UseMethod("as_coord")
 }
 
 
@@ -313,23 +324,23 @@ as_coord <- function(object, ...) {
 as_coord.coord <- function(object, ..., .fmt = c("decdeg", "degmin", "degminsec")) {
     check_dots_empty()
     .fmt <- match.arg(.fmt)
-	
+    
     if (inherits(object, .fmt))
         object
-   	else {
-   	    robj <- switch(.fmt,
-   	       "decdeg" = coord(sum_degminsec(object)),
-   	       "degmin" = coord(as.integer(object$deg), sum_minsec(object)),
-   	       "degminsec" = coord(
-   	           as.integer(object$deg),
-   	           as.integer(sum_minsec(object) %/% 1),
-   	           sum_sec(object)),
+       else {
+           robj <- switch(.fmt,
+              "decdeg" = coord(sum_degminsec(object)),
+              "degmin" = coord(as.integer(object$deg), sum_minsec(object)),
+              "degminsec" = coord(
+                  as.integer(object$deg),
+                  as.integer(sum_minsec(object) %/% 1),
+                  sum_sec(object)),
             stop("Invalid `.fmt` value", call. = FALSE)
-   	    )
+           )
         attr(robj, "latorlon") <- object %@% "latorlon"
         attr(robj, "negative") <- object %@% "negative"
         robj
-   	}
+       }
 }
 
 # ========================================
@@ -347,7 +358,7 @@ as_coord.numeric <- function(
 ) {
     check_dots_empty()
     .fmt <- match.arg(.fmt)
-    .latorlon <- match.arg(.latorlon)	
+    .latorlon <- match.arg(.latorlon)    
 
     negative <- object < 0
     object <- abs(object)
@@ -635,18 +646,18 @@ as.double.coord <- function(x, ...) {
 #' waypoint(51.50776, -0.127924)
 #'
 #' ## Degrees amd minutes
-#' waypoint(coord(51L, 30.4659), coord(-0L, 07.6754))
+#' waypoint(coord(51L, 30.4659), coord(0L, -07.6754))
 #' waypoint(as_coord(5130.4659, .fmt = "degmin"), as_coord(-007.6754, .fmt = "degmin"))
 #' waypoint(5130.4659, -007.6754, .fmt = "degmin")
 #'
 #' ## Degrees, minutes and seconds
-#' waypoint(coord(51L, 30L, 27.95), coord(-0L, 07L, 40.53))
+#' waypoint(coord(51L, 30L, 27.95), coord(0L, -07L, 40.53))
 #' waypoint(as_coord(5130.4659, .fmt = "degminsec"), as_coord(-00740.53, .fmt = "degminsec"))
 #' waypoint(5130.4659, -00740.53, .fmt = "degminsec")
 
 waypoint <- function(..., .fmt = c("decdeg", "degmin", "degminsec")) {
 
-	check_dots_unnamed()
+    check_dots_unnamed()
     if (!identical(class(..1), class(..2)))
         stop(
             "`...` must be of the same class.",
@@ -659,29 +670,29 @@ waypoint <- function(..., .fmt = c("decdeg", "degmin", "degminsec")) {
             call. = FALSE
         )
 
-	if (inherits(..1, "coord")) {
-			rv <- list(lat = ..1, lon = ..2)
-			attr(rv$lat, "latorlon") <- "lat"
-			attr(rv$lon, "latorlon") <- "lon"
-	} else {
-		if (inherits(..1, "numeric"))
-			rv <- list(
-				lat = as_coord(..1, .fmt = .fmt, .latorlon = "lat"),
-				lon = as_coord(..2, .fmt = .fmt, .latorlon = "lon")
-			)
-		else
-			stop("Invalid class for creating waypoint", call. = FALSE)
-	}
+    if (inherits(..1, "coord")) {
+        rv <- list(lat = ..1, lon = ..2)
+        attr(rv$lat, "latorlon") <- "lat"
+        attr(rv$lon, "latorlon") <- "lon"
+    } else {
+        if (inherits(..1, "numeric"))
+            rv <- list(
+                lat = as_coord(..1, .fmt = .fmt, .latorlon = "lat"),
+                lon = as_coord(..2, .fmt = .fmt, .latorlon = "lon")
+            )
+        else
+            stop("Invalid class for creating waypoint", call. = FALSE)
+    }
 
-	new_waypoint(rv) |>
-	validate_waypoint()
+    new_waypoint(rv) |>
+    validate_waypoint()
 }
 
 # ========================================
 # Not exported
 
 new_waypoint <- function(object) {
-	structure(object, class = "waypoint")
+    structure(object, class = "waypoint")
 }
 
 # ========================================
@@ -707,7 +718,7 @@ validate_waypoint <- function(object) {
             call. = FALSE
         )    
 
-	lapply(object, validate_coord)
-	
-	object
+    lapply(object, validate_coord)
+    
+    object
 }
