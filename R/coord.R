@@ -265,25 +265,25 @@ coord <- function(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lo
     .latorlon <- match.arg(.latorlon)
 
     if (deg != 0) {
-    		negative <- deg < 0
-        deg <- abs(deg)
-    		if (any(all(!is.null(min), min < 0), all(!is.null(sec), sec < 0)))
-    			stop("if \"deg\" != 0, neither \"min\" nor \"sec\" may be negative", call. = FALSE)
+         negative <- deg < 0
+         deg <- abs(deg)
+         if (any(all(!is.null(min), min < 0), all(!is.null(sec), sec < 0)))
+               stop("if \"deg\" != 0, neither \"min\" nor \"sec\" may be negative", call. = FALSE)
     } else {
-   		if (all(!is.null(min), min != 0)) {
-	    		negative <- min < 0
-	    		min <- abs(min)
-    		if (all(!is.null(sec), sec < 0))
-    			stop("if \"min\" != 0, \"sec\" may not be negative", call. = FALSE)
-		} else {
-			if (all(!is.null(sec), sec != 0)) {
-		        negative <- sec < 0
-		        sec <- abs(sec)  				
-			} else {
-	    			negative <- FALSE
-			}
-    		}
-  	}
+        if (all(!is.null(min), min != 0)) {
+            negative <- min < 0
+            min <- abs(min)
+            if (all(!is.null(sec), sec < 0))
+                stop("if \"min\" != 0, \"sec\" may not be negative", call. = FALSE)
+        } else {
+            if (all(!is.null(sec), sec != 0)) {
+                 negative <- sec < 0
+                 sec <- abs(sec)                  
+            } else {
+                negative <- FALSE
+            }
+        }
+    }
 
     {
         if (is.null(sec)) {
@@ -379,6 +379,21 @@ as_coord.numeric <- function(
     validate_coord()
 }
 
+# ========================================
+#  Convert Numeric to Coordinate Format
+#  S3method as_coord.waypoint()
+#
+#' @exportS3Method BitsnBobs::as_coord
+
+as_coord.waypoint <- function(
+    object,
+    ...,
+    .fmt = c("decdeg", "degmin", "degminsec")
+) {
+    lapply(object, as_coord, .fmt = .fmt) |>
+    new_waypoint() |>
+    validate_waypoint()
+}
 
 validate_coord <- function(object) {
 
