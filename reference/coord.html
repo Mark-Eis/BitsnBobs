@@ -153,44 +153,44 @@ after the number of whole seconds in the case of degrees, minutes and seconds.</
 <span class="r-in"><span><span class="co">## Decimal degrees (the default format)</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">cdd</span> <span class="op">&lt;-</span> <span class="fu">coord</span><span class="op">(</span><span class="fl">51.507765</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   51.507765°</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">51.507765</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -51.507765°</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">0.127924</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -0.127924°</span>
 <span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">51.507765</span>,,, <span class="st">"lat"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   51.507765° lat</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">51.507765</span>,,, <span class="st">"lat"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -51.507765° lat</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">51.507765</span>,,, <span class="st">"lon"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   51.507765° lon</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">51.507765</span>,,, <span class="st">"lon"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -51.507765° lon</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">0.127924</span>,,, <span class="st">"lon"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -0.127924° lon</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">53.104781</span>,,, <span class="st">"lat"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  -53.104781° lat</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">73.517283</span>,,, <span class="st">"lon"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   73.517283° lon</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Degrees and (decimal) minutes</span></span></span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">51L</span>, <span class="fl">30.4659</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu">coord</span><span class="op">(</span><span class="fl">51L</span>, <span class="fl">30.4659</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4659' (N/E)</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">51L</span>, <span class="fl">30.4659</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4659' (W/S)</span>
-<span class="r-in"><span><span class="op">(</span><span class="va">cdm</span> <span class="op">&lt;-</span> <span class="fu">coord</span><span class="op">(</span><span class="fl">51L</span>, <span class="fl">30.4659</span>,, <span class="st">"lat"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">0L</span>, <span class="op">-</span><span class="fl">7.6754</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0°07.6754' (W/S)</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">51L</span>, <span class="fl">30.4659</span>,, <span class="st">"lat"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4659' N</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">51L</span>, <span class="fl">30.4659</span>,, <span class="st">"lat"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4659' S</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">51L</span>, <span class="fl">30.4659</span>,, <span class="st">"lon"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4659' E</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">51L</span>, <span class="fl">30.4659</span>,, <span class="st">"lon"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4659' W</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">0L</span>, <span class="op">-</span><span class="fl">7.6754</span>,, <span class="st">"lon"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0°07.6754' W</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">53L</span>, <span class="fl">6.2869</span>,, <span class="st">"lat"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  53°06.2869' S</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">73L</span>, <span class="fl">31.0370</span>,, <span class="st">"lon"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  73°31.0370' E</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Degrees, minutes and (decimal) seconds</span></span></span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">51L</span>, <span class="fl">30L</span>, <span class="fl">27.95</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">(</span><span class="va">cdms</span> <span class="op">&lt;-</span> <span class="fu">coord</span><span class="op">(</span><span class="fl">51L</span>, <span class="fl">30L</span>, <span class="fl">27.95</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" (N/E)</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">51L</span>, <span class="fl">30L</span>, <span class="fl">27.95</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" (W/S)</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">0L</span>, <span class="op">-</span><span class="fl">7L</span>, <span class="fl">40.53</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0°07'40.53" (W/S)</span>
 <span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">51L</span>, <span class="fl">30L</span>, <span class="fl">27.95</span>, <span class="st">"lat"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" N</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">51L</span>, <span class="fl">30L</span>, <span class="fl">27.95</span>, <span class="st">"lat"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" S</span>
-<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">51L</span>, <span class="fl">30L</span>, <span class="fl">27.95</span>, <span class="st">"lon"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" E</span>
-<span class="r-in"><span><span class="op">(</span><span class="va">cdms</span> <span class="op">&lt;-</span> <span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">51L</span>, <span class="fl">30L</span>, <span class="fl">27.95</span>, <span class="st">"lon"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" W</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">0L</span>, <span class="op">-</span><span class="fl">7L</span>, <span class="fl">40.53</span>, <span class="st">"lon"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0°07'40.53" W</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="op">-</span><span class="fl">53L</span>, <span class="fl">06L</span>, <span class="fl">17.21</span>, <span class="st">"lat"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  53°06'17.21" S</span>
+<span class="r-in"><span><span class="fu">coord</span><span class="op">(</span><span class="fl">73L</span>, <span class="fl">31L</span>, <span class="fl">02.22</span>, <span class="st">"lon"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  73°31'02.22" E</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Convert between "coord" object formats</span></span></span>
 <span class="r-in"><span></span></span>
@@ -198,25 +198,25 @@ after the number of whole seconds in the case of degrees, minutes and seconds.</
 <span class="r-in"><span><span class="va">cdd</span> <span class="op">|&gt;</span> <span class="fu">as_coord</span><span class="op">(</span>.fmt <span class="op">=</span> <span class="st">"decdeg"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   51.507765°</span>
 <span class="r-in"><span><span class="va">cdm</span> <span class="op">|&gt;</span> <span class="fu">as_coord</span><span class="op">(</span>.fmt <span class="op">=</span> <span class="st">"decdeg"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   51.507765° lat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   51.507765°</span>
 <span class="r-in"><span><span class="va">cdms</span> <span class="op">|&gt;</span> <span class="fu">as_coord</span><span class="op">(</span>.fmt <span class="op">=</span> <span class="st">"decdeg"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  -51.507764° lon</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   51.507764°</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## To degrees and minutes</span></span></span>
 <span class="r-in"><span><span class="va">cdd</span> <span class="op">|&gt;</span> <span class="fu">as_coord</span><span class="op">(</span>.fmt <span class="op">=</span> <span class="st">"degmin"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4659' (N/E)</span>
 <span class="r-in"><span><span class="va">cdm</span> <span class="op">|&gt;</span> <span class="fu">as_coord</span><span class="op">(</span>.fmt <span class="op">=</span> <span class="st">"degmin"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4659' N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4659' (N/E)</span>
 <span class="r-in"><span><span class="va">cdms</span> <span class="op">|&gt;</span> <span class="fu">as_coord</span><span class="op">(</span>.fmt <span class="op">=</span> <span class="st">"degmin"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4658' W</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30.4658' (N/E)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## To degrees, minutes and seconds</span></span></span>
 <span class="r-in"><span><span class="va">cdd</span> <span class="op">|&gt;</span> <span class="fu">as_coord</span><span class="op">(</span>.fmt <span class="op">=</span> <span class="st">"degminsec"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" (N/E)</span>
 <span class="r-in"><span><span class="va">cdm</span> <span class="op">|&gt;</span> <span class="fu">as_coord</span><span class="op">(</span>.fmt <span class="op">=</span> <span class="st">"degminsec"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" N</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" (N/E)</span>
 <span class="r-in"><span><span class="va">cdms</span> <span class="op">|&gt;</span> <span class="fu">as_coord</span><span class="op">(</span>.fmt <span class="op">=</span> <span class="st">"degminsec"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" W</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  51°30'27.95" (N/E)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Convert "coord" to numeric</span></span></span>
@@ -231,7 +231,7 @@ after the number of whole seconds in the case of degrees, minutes and seconds.</
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Degrees, minutes and seconds</span></span></span>
 <span class="r-in"><span><span class="va">cdms</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -513027.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 513027.95</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Convert numeric to "coord" object</span></span></span>
