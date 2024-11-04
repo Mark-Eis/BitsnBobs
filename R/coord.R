@@ -293,18 +293,19 @@ coord <- function(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lo
     } else
         negative <- FALSE
 
-    {
+    new_coord(
         if (is.null(sec)) {
-            if(is.null(min))
+            if (is.null(min)) 
                 new_decdeg(deg)
-            else
-                new_degmin(deg, min)
-        } else if(is.null(min)) {
-            stop("if \"min\" is NULL, \"sec\" must also be NULL", call. = FALSE)
-        } else
-            new_degminsec(deg, min, sec)
-    } |>
-    new_coord(.latorlon, negative) |>
+            else new_degmin(deg, min)
+        }
+        else if (is.null(min)) {
+            stop("if \"min\" is NULL, \"sec\" must also be NULL", 
+                call. = FALSE)
+        }
+        else new_degminsec(deg, min, sec),
+       .latorlon, negative
+    ) |>
     validate_coord()
 }
 
