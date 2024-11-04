@@ -90,27 +90,27 @@ There is also an S3 method for \code{\link[base:numeric]{as.numeric()}} for obje
 
 ## Decimal degrees (the default format)
 (cdd <- coord(51.507765))
-coord(-51.507765)
+coord(-0.127924)
 coord(51.507765,,, "lat")
-coord(-51.507765,,, "lat")
-coord(51.507765,,, "lon")
-coord(-51.507765,,, "lon")
+coord(-0.127924,,, "lon")
+coord(-53.104781,,, "lat")
+coord(73.517283,,, "lon")
 
 ## Degrees and (decimal) minutes
-coord(51L, 30.4659)
-coord(-51L, 30.4659)
-(cdm <- coord(51L, 30.4659,, "lat"))
-coord(-51L, 30.4659,, "lat")
-coord(51L, 30.4659,, "lon")
-coord(-51L, 30.4659,, "lon")
+(cdm <- coord(51L, 30.4659))
+coord(0L, -7.6754)
+coord(51L, 30.4659,, "lat")
+coord(0L, -7.6754,, "lon")
+coord(-53L, 6.2869,, "lat")
+coord(73L, 31.0370,, "lon")
 
 ## Degrees, minutes and (decimal) seconds
-coord(51L, 30L, 27.95)
-coord(-51L, 30L, 27.95)
+(cdms <- coord(51L, 30L, 27.95))
+coord(0L, -7L, 40.53)
 coord(51L, 30L, 27.95, "lat")
-coord(-51L, 30L, 27.95, "lat")
-coord(51L, 30L, 27.95, "lon")
-(cdms <- coord(-51L, 30L, 27.95, "lon"))
+coord(0L, -7L, 40.53, "lon")
+coord(-53L, 06L, 17.21, "lat")
+coord(73L, 31L, 02.22, "lon")
 
 ## Convert between "coord" object formats
 
