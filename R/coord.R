@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler Oct 2024
+# Mark Eisler Nov 2024
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -81,6 +81,7 @@ the$crdprtfmt <- data.frame(
 
 #' @exportS3Method base::format
 format.coordpart <- function(x, ...) {
+    check_dots_empty()
     fmtlst <- as.list(c(x = x, the$crdprtfmt[vapply(the$crdprtfmt$name, inherits, logical(1), x = x), 2:6]))
     cat(
         do.call(formatC, fmtlst[-6]),
@@ -278,36 +279,27 @@ coord <- function(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lo
          deg <- abs(deg)
          if (any(all(!is.null(min), min < 0), all(!is.null(sec), sec < 0)))
                stop("if \"deg\" != 0, neither \"min\" nor \"sec\" may be negative", call. = FALSE)
-    } else {
-        if (all(!is.null(min), min != 0)) {
-            negative <- min < 0
-            min <- abs(min)
-            if (all(!is.null(sec), sec < 0))
-                stop("if \"min\" != 0, \"sec\" may not be negative", call. = FALSE)
-        } else {
-            if (all(!is.null(sec), sec != 0)) {
-                 negative <- sec < 0
-                 sec <- abs(sec)                  
-            } else {
-                negative <- FALSE
-            }
-        }
-    }
+    } else if (all(!is.null(min), min != 0)) {
+        negative <- min < 0
+        min <- abs(min)
+        if (all(!is.null(sec), sec < 0))
+            stop("if \"min\" != 0, \"sec\" may not be negative", call. = FALSE)
+    } else if (all(!is.null(sec), sec != 0)) {
+        negative <- sec < 0
+        sec <- abs(sec)                  
+    } else
+        negative <- FALSE
 
     {
         if (is.null(sec)) {
-            if(is.null(min)) {
+            if(is.null(min))
                 new_decdeg(deg)
-            } else {
+            else
                 new_degmin(deg, min)
-            }
-        } else {
-            if(is.null(min)) {
-                stop("if \"min\" is NULL, \"sec\" must also be NULL", call. = FALSE)
-            } else {
-                new_degminsec(deg, min, sec)
-            }
-        }
+        } else if(is.null(min)) {
+            stop("if \"min\" is NULL, \"sec\" must also be NULL", call. = FALSE)
+        } else
+            new_degminsec(deg, min, sec)
     } |>
     new_coord(.latorlon, negative) |>
     validate_coord()
@@ -702,8 +694,9 @@ as.double.coord <- function(x, ...) {
 #' rm(wp_dd, wp_dm, wp_dms)
 
 waypoint <- function(..., .fmt = c("decdeg", "degmin", "degminsec")) {
-
     check_dots_unnamed()
+    .fmt <- match.arg(.fmt)
+
     if (!identical(class(..1), class(..2)))
         stop(
             "`...` must be of the same class.",
@@ -720,15 +713,13 @@ waypoint <- function(..., .fmt = c("decdeg", "degmin", "degminsec")) {
         rv <- list(lat = ..1, lon = ..2)
         attr(rv$lat, "latorlon") <- "lat"
         attr(rv$lon, "latorlon") <- "lon"
-    } else {
-        if (inherits(..1, "numeric"))
-            rv <- list(
-                lat = as_coord(..1, .fmt = .fmt, .latorlon = "lat"),
-                lon = as_coord(..2, .fmt = .fmt, .latorlon = "lon")
-            )
-        else
-            stop("Invalid class for creating waypoint", call. = FALSE)
-    }
+    } else if (inherits(..1, "numeric")) {
+        rv <- list(
+            lat = as_coord(..1, .fmt = .fmt, .latorlon = "lat"),
+            lon = as_coord(..2, .fmt = .fmt, .latorlon = "lon")
+        )
+    } else
+        stop("Invalid class for creating waypoint", call. = FALSE)
 
     new_waypoint(rv) |>
     validate_waypoint()
