@@ -88,7 +88,7 @@ There is also an S3 method for \code{\link[base:numeric]{as.numeric()}} for obje
 \examples{
 ## Create "coord" objects
 
-## Decimal degrees (the default format)
+## Decimal degrees
 (cdd <- coord(51.507765))
 coord(-0.127924)
 coord(51.507765,,, "lat")
@@ -148,18 +148,21 @@ cdms |> as.numeric()
 
 ## Decimal degrees
 as_coord(51.507765, .fmt = "decdeg")
-as_coord(-51.507765, .fmt = "decdeg")
-as_coord(51.507765, .fmt = "decdeg", .latorlon = "lon")
+as_coord(-0.127924, .fmt = "decdeg")
+as_coord(-53.104781, .fmt = "decdeg", .latorlon = "lat")
+as_coord(73.517283, .fmt = "decdeg", .latorlon = "lon")
 
 ## Degrees and minutes
 as_coord(5130.4659, .fmt = "degmin")
-as_coord(-5130.4659, .fmt = "degmin")
-as_coord(-5130.4659, .fmt = "degmin", .latorlon = "lon")
+as_coord(-07.6754, .fmt = "degmin")
+as_coord(-5130.4659, .fmt = "degmin", .latorlon = "lat")
+as_coord(7331.0370, .fmt = "degmin", .latorlon = "lon")
 
 ## Degrees, minutes and seconds
 as_coord(513027.95, .fmt = "degminsec")
-as_coord(-513027.95, .fmt = "degminsec")
-as_coord(513027.95, .fmt = "degminsec", .latorlon = "lon")
+as_coord(-0740.53, .fmt = "degminsec")
+as_coord(-530617.21, .fmt = "degminsec", .latorlon = "lat")
+as_coord(733102.22, .fmt = "degminsec", .latorlon = "lon")
 
 rm(cdd, cdm, cdms)
 }
