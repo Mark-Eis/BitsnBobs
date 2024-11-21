@@ -300,8 +300,7 @@ coord <- function(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lo
             else new_degmin(deg, min)
         }
         else if (is.null(min)) {
-            stop("if \"min\" is NULL, \"sec\" must also be NULL", 
-                call. = FALSE)
+            stop("\"min\" may not be NULL if \"sec\" is not NULL",  call. = FALSE)
         }
         else new_degminsec(deg, min, sec),
        .latorlon, negative
