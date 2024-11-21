@@ -56,11 +56,11 @@ starwars |> wizard(homeworld)
 starwars |> wizard(homeworld, ", ")
 
 ## Find strings containing the pattern "Darth" in the starwars "name" column
-starwars |> detective(name, .pattern = "Darth")
+starwars |> detective("Darth", name)
 ## Modify strings containing the pattern "Darth" but not "Vader" in the "name" column
-starwars |> detective(name, .pattern = "Darth", .exclude = "Vader") <- "Darth The First"
+starwars |> detective("Darth", name, .exclude = "Vader") <- "Darth The First"
 ## Find strings containing the pattern "Darth" in the revised data in descending order
-starwars |> detective(name, .pattern = "Darth", .arrange_by = desc(name))
+starwars |> detective("Darth", name, .arrange_by = desc(name))
 
 ## Create a "retrieval" function for the starwars data frame using "name" as index
 retrieve_starwars <- retriever(starwars, name)
