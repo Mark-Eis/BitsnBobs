@@ -295,18 +295,18 @@ coord <- function(deg, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) 
         negative <- FALSE
 
     new_coord(
-        if (is.null(sec)) {
-            if (is.null(min)) 
-                new_decdeg(deg %||% 0)
-            else new_degmin(deg, min)
-        }
-        else if (is.null(min)) {
-            stop("\"min\" may not be NULL if \"sec\" is not NULL",  call. = FALSE)
-        } else if (is.null(deg)) {
-            stop("\"deg\" may not be NULL if \"min\" is not NULL", call. = FALSE)
-        }
-        else new_degminsec(deg, min, sec),
-       .latorlon, negative
+        switch(as.integer(2^(2:0) %*% as.integer(c(!is.null(deg), !is.null(min), !is.null(sec))) + 1),
+            new_decdeg(0),
+            stop("\"deg\" and \"min\" may not be NULL if \"sec\" is not NULL",  call. = FALSE),
+            stop("\"deg\" may not be NULL if \"min\" is not NULL", call. = FALSE),
+            stop("\"deg\" may not be NULL if \"min\" and \"sec\" are not NULL",  call. = FALSE),
+            new_decdeg(deg),
+            stop("\"min\" may not be NULL if \"sec\" is not NULL",  call. = FALSE),
+            new_degmin(deg, min),
+            new_degminsec(deg, min, sec)
+        ), 
+        .latorlon,
+        negative
     ) |>
     validate_coord()
 }
@@ -671,12 +671,12 @@ as.double.coord <- function(x, ...) {
 #' waypoint(51.507765, -0.127924)
 #'
 #' ## Degrees amd minutes
-#' (wp_dm <- waypoint(coord(51L, 30.4659), coord(, -07.6754)))
+#' (wp_dm <- waypoint(coord(51L, 30.4659), coord(0L, -07.6754)))
 #' waypoint(as_coord(5130.4659, .fmt = "degmin"), as_coord(-007.6754, .fmt = "degmin"))
 #' waypoint(5130.4659, -007.6754, .fmt = "degmin")
 #'
 #' ## Degrees, minutes and seconds
-#' (wp_dms <- waypoint(coord(51L, 30L, 27.95), coord(, -07L, 40.53)))
+#' (wp_dms <- waypoint(coord(51L, 30L, 27.95), coord(0L, -07L, 40.53)))
 #' waypoint(as_coord(513027.95, .fmt = "degminsec"), as_coord(-00740.53, .fmt = "degminsec"))
 #' waypoint(513027.95, -00740.53, .fmt = "degminsec")
 #'
