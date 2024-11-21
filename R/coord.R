@@ -274,10 +274,11 @@ new_coord <- function(object, latorlon = NA, negative = FALSE) {
 #'
 #' rm(cdd, cdm, cdms)
 
-coord <- function(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) {
+coord <- function(deg, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon")) {
     .latorlon <- match.arg(.latorlon)
+    if (missing(deg)) deg <- NULL
 
-    if (deg != 0) {
+    if (deg %||% 0 != 0) {
          negative <- deg < 0
          deg <- abs(deg)
          if (any(all(!is.null(min), min < 0), all(!is.null(sec), sec < 0)))
@@ -296,7 +297,7 @@ coord <- function(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lo
     new_coord(
         if (is.null(sec)) {
             if (is.null(min)) 
-                new_decdeg(deg)
+                new_decdeg(deg %||% 0)
             else new_degmin(deg, min)
         }
         else if (is.null(min)) {

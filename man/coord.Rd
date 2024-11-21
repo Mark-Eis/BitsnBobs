@@ -8,7 +8,7 @@
 \alias{as_coord.waypoint}
 \title{Geographic or GPS Coordinate Class}
 \usage{
-coord(deg = 0L, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon"))
+coord(deg, min = NULL, sec = NULL, .latorlon = c(NA, "lat", "lon"))
 
 as_coord(object, ...)
 
