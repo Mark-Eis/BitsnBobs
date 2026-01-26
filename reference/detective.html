@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.7.00012</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.8.00000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,9 +63,7 @@ matching behaviour.</p>
 <code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">fixed()</a></code>. This is fast, but approximate. Generally,
 for matching human text, you'll want <code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">coll()</a></code> which
 respects character matching rules for the specified locale.</p>
-<p>Match character, word, line and sentence boundaries with
-<code><a href="https://stringr.tidyverse.org/reference/modifiers.html" class="external-link">boundary()</a></code>. An empty pattern, "", is equivalent to
-<code>boundary("character")</code>.</p></dd>
+<p>You can not match boundaries, including <code>""</code>, with this function.</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
@@ -111,8 +109,8 @@ including use of <code><a href="https://dplyr.tidyverse.org/reference/across.htm
     <div class="dont-index"><p><code><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc()</a></code>,
 <code><a href="https://rdrr.io/r/utils/glob2rx.html" class="external-link">glob2rx()</a></code>, <code><a href="https://dplyr.tidyverse.org/reference/pick.html" class="external-link">pick()</a></code> and <code><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect()</a></code>.</p>
 <p>Other detective:
-<code><a href="retriever.html">retriever</a>()</code>,
-<code><a href="wizard.html">wizard</a>()</code></p></div>
+<code><a href="retriever.html">retriever()</a></code>,
+<code><a href="wizard.html">wizard()</a></code></p></div>
     </div>
 
     <div class="section level2">
@@ -332,7 +330,7 @@ including use of <code><a href="https://dplyr.tidyverse.org/reference/across.htm
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
