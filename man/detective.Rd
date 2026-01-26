@@ -23,9 +23,7 @@ Match a fixed string (i.e. by comparing only bytes), using
 for matching human text, you'll want \code{\link[stringr:coll]{coll()}} which
 respects character matching rules for the specified locale.
 
-Match character, word, line and sentence boundaries with
-\code{\link[stringr:boundary]{boundary()}}. An empty pattern, "", is equivalent to
-\code{boundary("character")}.}
+You can not match boundaries, including \code{""}, with this function.}
 
 \item{\dots}{<\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> \code{character} or \code{factor} columns to search and
 return.}

@@ -1,7 +1,7 @@
 Package: BitsnBobs
 Title: For General Bits and Bobs of Code
-Version: 0.0.7.00012
-Date: 2024-11-21
+Version: 0.0.8.00000
+Date: 2026-01-26
 Authors@R: 
     person("Mark", "Eisler", , "Mark.Eisler@bristol.ac.uk", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0001-6843-3345"))
@@ -33,7 +33,7 @@ Imports:
     ggplot2,
     methods,
     purrr,
-    rlang (>= 0.4.11),
+    rlang,
     stats,
     stringr,
     tibble,
@@ -49,5 +49,5 @@ Suggests:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
-VersonName: Aguas Calientes
+RoxygenNote: 7.3.3
+VersonName: El fuego de tu amor

@@ -45,7 +45,7 @@ below to see their documentation.
 \describe{
   \item{dplyr}{\code{\link[dplyr]{across}}, \code{\link[dplyr]{arrange}}, \code{\link[dplyr]{bind_rows}}, \code{\link[dplyr]{desc}}}
 
-  \item{ggplot2}{\code{\link[ggplot2:element]{element_text}}, \code{\link[ggplot2]{theme_get}}, \code{\link[ggplot2:theme_get]{theme_set}}, \code{\link[ggplot2:theme_get]{theme_update}}}
+  \item{ggplot2}{\code{\link[ggplot2:element]{element_text}}, \code{\link[ggplot2:get_theme]{theme_get}}, \code{\link[ggplot2:get_theme]{theme_set}}, \code{\link[ggplot2:get_theme]{theme_update}}}
 
   \item{purrr}{\code{\link[purrr:map]{map_chr}}, \code{\link[purrr:map]{map_dbl}}, \code{\link[purrr:map]{map_int}}, \code{\link[purrr:map2]{map2_chr}}}
 
