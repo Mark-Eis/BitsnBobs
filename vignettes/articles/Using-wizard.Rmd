@@ -1,5 +1,10 @@
 ---
-title: "Using wizard"
+title: "Using the wizard function"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the wizard function}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}
@@ -9,12 +14,129 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, echo = FALSE}
 library(BitsnBobs)
+library(rlang)
 ```
 
-##### Someday this might be real R markdown…
+Copyright (c) 2026 Mark Eisler
 
-For now, you can simply copy the gist of it below, paste into R and run.
+## 1. Introduction
+The `wizard()` function extracts and sorts unique values of a selected column from a data frame, and optionally pastes into a character string.
 
-<script src="https://gist.github.com/Mark-Eis/39766bed60f1c6835cbfd357ffdd61d0.js"></script>
+For our examples, we will use the `mtcars` data.
+
+## 2. Using a symbol argument
+`wizard(data, col, .collapse = NULL)` uses a symbol for its `<data-masking>` argument `col`.
+
+```{r}
+mtcars |> wizard(cyl)
+```
+This shows sorted unique values of the `cyl` column of `mtcars`.
+
+If there is a potentially confounding variable of the same name in the global environment,
+
+```{r}
+(cyl <- c(100:110))
+```
+...nevertheless, `<data-masking>` ensures that the `col` argument of `wizard()` correctly refers to the `cyl` column of the `mtcars` data.
+
+```{r}
+mtcars |> wizard(cyl)
+```
+But say there’s a similar variable `Cyl` in the global environment,
+
+```{r}
+Cyl <- "Bad Luck!"
+```
+...and we confuse `cyl` with `Cyl`, we obtain an unexpected and puzzling result: -
+
+```{r}
+mtcars |> wizard(Cyl)
+```
+## 3. Using the `.data` pronoun
+Using the `.data` pronoun^[[**rlang** .data and .env pronouns](https://rlang.r-lib.org/reference/dot-data.html)] from the **rlang** package
+circumvents this problem by throwing a meaningful error message: -
+```{r}
+mtcars |> wizard(.data$cyl)
+
+try(mtcars |> wizard(.data$Cyl))
+```
+## 4. Symbolise and inject
+The col argument might be saved as a character variable, for example: -
+
+```{r}
+(col_var <- "cyl")
+```
+...which needs converting to a symbol and injecting^[[**rlang** symbolise and inject](https://rlang.r-lib.org/reference/topic-metaprogramming.html#symbolise-and-inject)] using the injection operator `!!` from the **rlang** package: -
+
+```{r}
+mtcars |> wizard(!!sym(col_var))
+```
+Again, if we confuse `cyl` with `Cyl`, we obtain an unexpected and confusing result: -
+
+```{r}
+(col_var <- "Cyl")
+
+mtcars |> wizard(!!sym(col_var))
+```
+
+Using `data_sym()` from **rlang** circumvents this problem by prefacing the symbol with the data pronoun: -
+
+```{r}
+data_sym(col_var)
+
+try(mtcars |> wizard(!!data_sym(col_var)))
+```
+
+## 5. Examples using `lapply()`
+(We could also use `purrr::map()`, but it has no particular advantage here so **base** `lapply()` is preferable.)
+
+```{r}
+mtcars |> lapply(wizard, data = mtcars)
+```
+
+Here we use `setNames()` to obtain an eponymously named character vector of the first four `mtcar` names: -
+
+```{r}
+(carnames <- setNames(nm = names(mtcars))[1:4])
+```
+
+...and use it in three equivalent versions where `lapply()` uses the `.data pronoun` ,`data_sym()` or `data_syms()` in an anonymous function: -
+
+```{r}
+carnames |> lapply(\(x) wizard(mtcars, .data[[x]]))
+
+carnames |> lapply(\(x) wizard(mtcars, !!data_sym(x)))
+
+carnames |> data_syms() |> lapply(\(x) wizard(mtcars, !!x))
+```
+
+If one of the names is incorrect: -
+```{r}
+carnames["cyl"] <- "Cyl"
+carnames
+```
+
+...these all provide meaningful error messages as previously shown: -
+
+```{r}
+try(carnames |> lapply(\(x) wizard(mtcars, .data[[x]])))
+
+try(carnames |> lapply(\(x) wizard(mtcars, !!data_sym(x))))
+
+try(carnames |> data_syms() |> lapply(\(x) wizard(mtcars, !!x)))
+```
+
+Without the `.data` pronoun, the error might be easily overlooked: -
+
+```{r}
+carnames |> lapply(\(x) wizard(mtcars, !!sym(x)))
+
+carnames |> syms() |> lapply(\(x) wizard(mtcars, !!x))
+```
+
+## 6. References
+1. [**rlang** .data and .env pronouns](https://rlang.r-lib.org/reference/dot-data.html)
+2. [**rlang** symbolise and inject](https://rlang.r-lib.org/reference/topic-metaprogramming.html#symbolise-and-inject)
+
