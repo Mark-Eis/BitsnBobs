@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Using wizard • BitsnBobs</title>
+<title>Using the wizard function • BitsnBobs</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Using wizard">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Using the wizard function">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -20,7 +20,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.8.00000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.8.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,7 +33,7 @@
 <li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/Using-wizard.html">Using wizard</a></li>
+<li><a class="dropdown-item" href="../articles/Using-wizard.html">Using the wizard function</a></li>
   </ul>
 </li>
       </ul>
@@ -54,7 +54,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
-      <h1>Using wizard</h1>
+      <h1>Using the wizard function</h1>
             
       
 
@@ -63,16 +63,267 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://mark-eis.github.io/BitsnBobs/">BitsnBobs</a></span><span class="op">)</span></span></code></pre></div>
-<div class="section level5">
-<h5 id="someday-this-might-be-real-r-markdown">Someday this might be real R markdown…<a class="anchor" aria-label="anchor" href="#someday-this-might-be-real-r-markdown"></a>
-</h5>
-<p>For now, you can simply copy the gist of it below, paste into R and
-run.</p>
-<script src="https://gist.github.com/Mark-Eis/39766bed60f1c6835cbfd357ffdd61d0.js"></script>
+<p>Copyright (c) 2026 Mark Eisler</p>
+<div class="section level2">
+<h2 id="introduction">1. Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+</h2>
+<p>The <code><a href="../reference/wizard.html">wizard()</a></code> function extracts and sorts unique values
+of a selected column from a data frame, and optionally pastes into a
+character string.</p>
+<p>For our examples, we will use the <code>mtcars</code> data.</p>
 </div>
-  </main>
+<div class="section level2">
+<h2 id="using-a-symbol-argument">2. Using a symbol argument<a class="anchor" aria-label="anchor" href="#using-a-symbol-argument"></a>
+</h2>
+<p><code>wizard(data, col, .collapse = NULL)</code> uses a symbol for
+its <code>&lt;data-masking&gt;</code> argument <code>col</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 4 6 8</span></span></code></pre></div>
+<p>This shows sorted unique values of the <code>cyl</code> column of
+<code>mtcars</code>.</p>
+<p>If there is a potentially confounding variable of the same name in
+the global environment,</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">cyl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span><span class="op">:</span><span class="fl">110</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt;  [1] 100 101 102 103 104 105 106 107 108 109 110</span></span></code></pre></div>
+<p>…nevertheless, <code>&lt;data-masking&gt;</code> ensures that the
+<code>col</code> argument of <code><a href="../reference/wizard.html">wizard()</a></code> correctly refers to
+the <code>cyl</code> column of the <code>mtcars</code> data.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 4 6 8</span></span></code></pre></div>
+<p>But say there’s a similar variable <code>Cyl</code> in the global
+environment,</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">Cyl</span> <span class="op">&lt;-</span> <span class="st">"Bad Luck!"</span></span></code></pre></div>
+<p>…and we confuse <code>cyl</code> with <code>Cyl</code>, we obtain an
+unexpected and puzzling result: -</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">Cyl</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Bad Luck!"</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="using-the--data-pronoun">3. Using the <code>.data</code> pronoun<a class="anchor" aria-label="anchor" href="#using-the--data-pronoun"></a>
+</h2>
+<p>Using the <code>.data</code> pronoun<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="https://rlang.r-lib.org/reference/dot-data.html" class="external-link"&gt;&lt;strong&gt;rlang&lt;/strong&gt;
+.data and .env pronouns&lt;/a&gt;&lt;/p&gt;'><sup>1</sup></a> from the
+<strong>rlang</strong> package circumvents this problem by throwing a
+meaningful error message: -</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">cyl</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 4 6 8</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">Cyl</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in .data$Cyl : Column `Cyl` not found in `.data`.</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="symbolise-and-inject">4. Symbolise and inject<a class="anchor" aria-label="anchor" href="#symbolise-and-inject"></a>
+</h2>
+<p>The col argument might be saved as a character variable, for example:
+-</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">col_var</span> <span class="op">&lt;-</span> <span class="st">"cyl"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "cyl"</span></span></code></pre></div>
+<p>…which needs converting to a symbol and injecting<a class="footnote-ref" tabindex="0" data-bs-toggle="popover" data-bs-content='&lt;p&gt;&lt;a href="https://rlang.r-lib.org/reference/topic-metaprogramming.html#symbolise-and-inject" class="external-link"&gt;&lt;strong&gt;rlang&lt;/strong&gt;
+symbolise and inject&lt;/a&gt;&lt;/p&gt;'><sup>2</sup></a> using the injection
+operator <code>!!</code> from the <strong>rlang</strong> package: -</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="fu">sym</span><span class="op">(</span><span class="va">col_var</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 4 6 8</span></span></code></pre></div>
+<p>Again, if we confuse <code>cyl</code> with <code>Cyl</code>, we
+obtain an unexpected and confusing result: -</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">col_var</span> <span class="op">&lt;-</span> <span class="st">"Cyl"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Cyl"</span></span>
+<span></span>
+<span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="fu">sym</span><span class="op">(</span><span class="va">col_var</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Bad Luck!"</span></span></code></pre></div>
+<p>Using <code>data_sym()</code> from <strong>rlang</strong> circumvents
+this problem by prefacing the symbol with the data pronoun: -</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">data_sym</span><span class="op">(</span><span class="va">col_var</span><span class="op">)</span></span>
+<span><span class="co">#&gt; .data$Cyl</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="op">!</span><span class="op">!</span><span class="fu">data_sym</span><span class="op">(</span><span class="va">col_var</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in .data$Cyl : Column `Cyl` not found in `.data`.</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="examples-using-lapply">5. Examples using <code>lapply()</code><a class="anchor" aria-label="anchor" href="#examples-using-lapply"></a>
+</h2>
+<p>(We could also use <code><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">purrr::map()</a></code>, but it has no
+particular advantage here so <strong>base</strong> <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>
+is preferable.)</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mtcars</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">wizard</span>, data <span class="op">=</span> <span class="va">mtcars</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $mpg</span></span>
+<span><span class="co">#&gt;  [1] 10.4 13.3 14.3 14.7 15.0 15.2 15.5 15.8 16.4 17.3 17.8 18.1 18.7 19.2 19.7</span></span>
+<span><span class="co">#&gt; [16] 21.0 21.4 21.5 22.8 24.4 26.0 27.3 30.4 32.4 33.9</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $cyl</span></span>
+<span><span class="co">#&gt; [1] 4 6 8</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $disp</span></span>
+<span><span class="co">#&gt;  [1]  71.1  75.7  78.7  79.0  95.1 108.0 120.1 120.3 121.0 140.8 145.0 146.7</span></span>
+<span><span class="co">#&gt; [13] 160.0 167.6 225.0 258.0 275.8 301.0 304.0 318.0 350.0 351.0 360.0 400.0</span></span>
+<span><span class="co">#&gt; [25] 440.0 460.0 472.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $hp</span></span>
+<span><span class="co">#&gt;  [1]  52  62  65  66  91  93  95  97 105 109 110 113 123 150 175 180 205 215 230</span></span>
+<span><span class="co">#&gt; [20] 245 264 335</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $drat</span></span>
+<span><span class="co">#&gt;  [1] 2.76 2.93 3.00 3.07 3.08 3.15 3.21 3.23 3.54 3.62 3.69 3.70 3.73 3.77 3.85</span></span>
+<span><span class="co">#&gt; [16] 3.90 3.92 4.08 4.11 4.22 4.43 4.93</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $wt</span></span>
+<span><span class="co">#&gt;  [1] 1.513 1.615 1.835 1.935 2.140 2.200 2.320 2.465 2.620 2.770 2.780 2.875</span></span>
+<span><span class="co">#&gt; [13] 3.150 3.170 3.190 3.215 3.435 3.440 3.460 3.520 3.570 3.730 3.780 3.840</span></span>
+<span><span class="co">#&gt; [25] 3.845 4.070 5.250 5.345 5.424</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $qsec</span></span>
+<span><span class="co">#&gt;  [1] 14.50 14.60 15.41 15.50 15.84 16.46 16.70 16.87 16.90 17.02 17.05 17.30</span></span>
+<span><span class="co">#&gt; [13] 17.40 17.42 17.60 17.82 17.98 18.00 18.30 18.52 18.60 18.61 18.90 19.44</span></span>
+<span><span class="co">#&gt; [25] 19.47 19.90 20.00 20.01 20.22 22.90</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $vs</span></span>
+<span><span class="co">#&gt; [1] 0 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $am</span></span>
+<span><span class="co">#&gt; [1] 0 1</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $gear</span></span>
+<span><span class="co">#&gt; [1] 3 4 5</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $carb</span></span>
+<span><span class="co">#&gt; [1] 1 2 3 4 6 8</span></span></code></pre></div>
+<p>Here we use <code><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames()</a></code> to obtain an eponymously named
+character vector of the first four <code>mtcar</code> names: -</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="op">(</span><span class="va">carnames</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/setNames.html" class="external-link">setNames</a></span><span class="op">(</span>nm <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;    mpg    cyl   disp     hp </span></span>
+<span><span class="co">#&gt;  "mpg"  "cyl" "disp"   "hp"</span></span></code></pre></div>
+<p>…and use it in three equivalent versions where <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>
+uses the <code>.data pronoun</code> ,<code>data_sym()</code> or
+<code>data_syms()</code> in an anonymous function: -</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">carnames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">.data</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $mpg</span></span>
+<span><span class="co">#&gt;  [1] 10.4 13.3 14.3 14.7 15.0 15.2 15.5 15.8 16.4 17.3 17.8 18.1 18.7 19.2 19.7</span></span>
+<span><span class="co">#&gt; [16] 21.0 21.4 21.5 22.8 24.4 26.0 27.3 30.4 32.4 33.9</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $cyl</span></span>
+<span><span class="co">#&gt; [1] 4 6 8</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $disp</span></span>
+<span><span class="co">#&gt;  [1]  71.1  75.7  78.7  79.0  95.1 108.0 120.1 120.3 121.0 140.8 145.0 146.7</span></span>
+<span><span class="co">#&gt; [13] 160.0 167.6 225.0 258.0 275.8 301.0 304.0 318.0 350.0 351.0 360.0 400.0</span></span>
+<span><span class="co">#&gt; [25] 440.0 460.0 472.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $hp</span></span>
+<span><span class="co">#&gt;  [1]  52  62  65  66  91  93  95  97 105 109 110 113 123 150 175 180 205 215 230</span></span>
+<span><span class="co">#&gt; [20] 245 264 335</span></span>
+<span></span>
+<span><span class="va">carnames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">!</span><span class="op">!</span><span class="fu">data_sym</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $mpg</span></span>
+<span><span class="co">#&gt;  [1] 10.4 13.3 14.3 14.7 15.0 15.2 15.5 15.8 16.4 17.3 17.8 18.1 18.7 19.2 19.7</span></span>
+<span><span class="co">#&gt; [16] 21.0 21.4 21.5 22.8 24.4 26.0 27.3 30.4 32.4 33.9</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $cyl</span></span>
+<span><span class="co">#&gt; [1] 4 6 8</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $disp</span></span>
+<span><span class="co">#&gt;  [1]  71.1  75.7  78.7  79.0  95.1 108.0 120.1 120.3 121.0 140.8 145.0 146.7</span></span>
+<span><span class="co">#&gt; [13] 160.0 167.6 225.0 258.0 275.8 301.0 304.0 318.0 350.0 351.0 360.0 400.0</span></span>
+<span><span class="co">#&gt; [25] 440.0 460.0 472.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $hp</span></span>
+<span><span class="co">#&gt;  [1]  52  62  65  66  91  93  95  97 105 109 110 113 123 150 175 180 205 215 230</span></span>
+<span><span class="co">#&gt; [20] 245 264 335</span></span>
+<span></span>
+<span><span class="va">carnames</span> <span class="op">|&gt;</span> <span class="fu">data_syms</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">!</span><span class="op">!</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $mpg</span></span>
+<span><span class="co">#&gt;  [1] 10.4 13.3 14.3 14.7 15.0 15.2 15.5 15.8 16.4 17.3 17.8 18.1 18.7 19.2 19.7</span></span>
+<span><span class="co">#&gt; [16] 21.0 21.4 21.5 22.8 24.4 26.0 27.3 30.4 32.4 33.9</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $cyl</span></span>
+<span><span class="co">#&gt; [1] 4 6 8</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $disp</span></span>
+<span><span class="co">#&gt;  [1]  71.1  75.7  78.7  79.0  95.1 108.0 120.1 120.3 121.0 140.8 145.0 146.7</span></span>
+<span><span class="co">#&gt; [13] 160.0 167.6 225.0 258.0 275.8 301.0 304.0 318.0 350.0 351.0 360.0 400.0</span></span>
+<span><span class="co">#&gt; [25] 440.0 460.0 472.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $hp</span></span>
+<span><span class="co">#&gt;  [1]  52  62  65  66  91  93  95  97 105 109 110 113 123 150 175 180 205 215 230</span></span>
+<span><span class="co">#&gt; [20] 245 264 335</span></span></code></pre></div>
+<p>If one of the names is incorrect: -</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">carnames</span><span class="op">[</span><span class="st">"cyl"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">"Cyl"</span></span>
+<span><span class="va">carnames</span></span>
+<span><span class="co">#&gt;    mpg    cyl   disp     hp </span></span>
+<span><span class="co">#&gt;  "mpg"  "Cyl" "disp"   "hp"</span></span></code></pre></div>
+<p>…these all provide meaningful error messages as previously shown:
+-</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">carnames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="va">.data</span><span class="op">[[</span><span class="va">x</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in .data[["Cyl"]] : Column `Cyl` not found in `.data`.</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">carnames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">!</span><span class="op">!</span><span class="fu">data_sym</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in .data$Cyl : Column `Cyl` not found in `.data`.</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span><span class="va">carnames</span> <span class="op">|&gt;</span> <span class="fu">data_syms</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">!</span><span class="op">!</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Error in .data$Cyl : Column `Cyl` not found in `.data`.</span></span></code></pre></div>
+<p>Without the <code>.data</code> pronoun, the error might be easily
+overlooked: -</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">carnames</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">!</span><span class="op">!</span><span class="fu">sym</span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $mpg</span></span>
+<span><span class="co">#&gt;  [1] 10.4 13.3 14.3 14.7 15.0 15.2 15.5 15.8 16.4 17.3 17.8 18.1 18.7 19.2 19.7</span></span>
+<span><span class="co">#&gt; [16] 21.0 21.4 21.5 22.8 24.4 26.0 27.3 30.4 32.4 33.9</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $cyl</span></span>
+<span><span class="co">#&gt; [1] "Bad Luck!"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $disp</span></span>
+<span><span class="co">#&gt;  [1]  71.1  75.7  78.7  79.0  95.1 108.0 120.1 120.3 121.0 140.8 145.0 146.7</span></span>
+<span><span class="co">#&gt; [13] 160.0 167.6 225.0 258.0 275.8 301.0 304.0 318.0 350.0 351.0 360.0 400.0</span></span>
+<span><span class="co">#&gt; [25] 440.0 460.0 472.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $hp</span></span>
+<span><span class="co">#&gt;  [1]  52  62  65  66  91  93  95  97 105 109 110 113 123 150 175 180 205 215 230</span></span>
+<span><span class="co">#&gt; [20] 245 264 335</span></span>
+<span></span>
+<span><span class="va">carnames</span> <span class="op">|&gt;</span> <span class="fu">syms</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="../reference/wizard.html">wizard</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="op">!</span><span class="op">!</span><span class="va">x</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; $mpg</span></span>
+<span><span class="co">#&gt;  [1] 10.4 13.3 14.3 14.7 15.0 15.2 15.5 15.8 16.4 17.3 17.8 18.1 18.7 19.2 19.7</span></span>
+<span><span class="co">#&gt; [16] 21.0 21.4 21.5 22.8 24.4 26.0 27.3 30.4 32.4 33.9</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $cyl</span></span>
+<span><span class="co">#&gt; [1] "Bad Luck!"</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $disp</span></span>
+<span><span class="co">#&gt;  [1]  71.1  75.7  78.7  79.0  95.1 108.0 120.1 120.3 121.0 140.8 145.0 146.7</span></span>
+<span><span class="co">#&gt; [13] 160.0 167.6 225.0 258.0 275.8 301.0 304.0 318.0 350.0 351.0 360.0 400.0</span></span>
+<span><span class="co">#&gt; [25] 440.0 460.0 472.0</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; $hp</span></span>
+<span><span class="co">#&gt;  [1]  52  62  65  66  91  93  95  97 105 109 110 113 123 150 175 180 205 215 230</span></span>
+<span><span class="co">#&gt; [20] 245 264 335</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="references">6. References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h2>
+<ol style="list-style-type: decimal">
+<li><a href="https://rlang.r-lib.org/reference/dot-data.html" class="external-link"><strong>rlang</strong>
+.data and .env pronouns</a></li>
+<li><a href="https://rlang.r-lib.org/reference/topic-metaprogramming.html#symbolise-and-inject" class="external-link"><strong>rlang</strong>
+symbolise and inject</a></li>
+</ol>
+</div>
+
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

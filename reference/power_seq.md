@@ -91,7 +91,7 @@ as.list(pseq[[2]])
 #> [[2]]
 #> <quosure>
 #> expr: ^a + b
-#> env:  0x55945edbaee0
+#> env:  0x55db2b9c49b8
 #> 
 #> [[3]]
 #> seq_len(~3)

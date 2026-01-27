@@ -8,12 +8,12 @@
 ## Citation
 
 Eisler M (2026). *BitsnBobs: For General Bits and Bobs of Code*. R
-package version 0.0.8.00000, <https://mark-eis.github.io/BitsnBobs/>.
+package version 0.0.8.2, <https://mark-eis.github.io/BitsnBobs/>.
 
     @Manual{,
       title = {BitsnBobs: For General Bits and Bobs of Code},
       author = {Mark Eisler},
       year = {2026},
-      note = {R package version 0.0.8.00000},
+      note = {R package version 0.0.8.2},
       url = {https://mark-eis.github.io/BitsnBobs/},
     }
