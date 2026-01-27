@@ -80,7 +80,7 @@ mtcars |> wizard(Cyl)
 
 \section{Using the \code{.data} pronoun}
 
-Using the \code{.data} pronoun\textsuperscript{1} from the \strong{rlang} package
+Using the \code{.data} pronoun\footnote{\href{https://rlang.r-lib.org/reference/dot-data.html}{\strong{rlang} \code{.data} and \code{.env} pronouns}} from the \strong{rlang} package
 circumvents this problem by throwing a meaningful error message: -
 
 <<>>=
@@ -96,7 +96,7 @@ The \code{col} argument might be saved as a character variable, for example: -
 (col_var <- "cyl")
 @
 
-...which needs converting to a symbol and injecting\textsuperscript{1} using
+...which needs converting to a symbol and injecting\footnote{\href{https://rlang.r-lib.org/reference/topic-metaprogramming.html\#symbolise-and-inject}{\strong{rlang} symbolise and inject}} using
 the injection operator \code{!!} from the \strong{rlang} package: -
 
 <<b>>=
@@ -108,6 +108,11 @@ and confusing result: -
 
 <<>>=
 (col_var <- "Cyl")
+@
+
+\newpage
+
+<<>>=
 <<b>>
 @
 
