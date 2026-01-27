@@ -58,7 +58,7 @@ global environment,
 @
 
 ...nevertheless, \code{<data-masking>} ensures that the \code{col}
-argument of \code{wizard} correctly refers to the \code{cyl} column of the
+argument of \code{wizard()} correctly refers to the \code{cyl} column of the
 \code{mtcars} data.
 
 <<>>=
@@ -111,8 +111,8 @@ and confusing result: -
 <<b>>
 @
 
-Using \code{data\_sym()} from \strong{rlang} prevents this problem by prefacing
-the symbol with the data pronoun: -
+Using \code{data\_sym()} from \strong{rlang} circumvents this problem by
+prefacing the symbol with the data pronoun: -
 
 <<>>=
 data_sym(col_var)
@@ -160,7 +160,7 @@ try(carnames |> lapply(\(x) wizard(mtcars, !!data_sym(x))))
 try(carnames |> data_syms() |> lapply(\(x) wizard(mtcars, !!x)))
 @
 
-Without the \code{.data} pronoun, the error might be overlooked: -
+Without the \code{.data} pronoun, the error might be easily overlooked: -
 
 <<>>=
 carnames |> lapply(\(x) wizard(mtcars, !!sym(x)))
