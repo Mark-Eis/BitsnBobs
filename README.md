@@ -11,13 +11,6 @@
 
 You can install the development version of BitsnBobs from [GitHub](https://github.com/) with:
 
-[
-``` r
-# install.packages("devtools")
-devtools::install_github("Mark-Eis/BitsnBobs")
-```
-]: #
-
 ``` r
 # install.packages("pak")
 pak::pkg_install("Mark-Eis/BitsnBobs")
