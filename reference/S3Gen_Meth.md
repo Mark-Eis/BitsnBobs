@@ -501,12 +501,17 @@ s3_in_namespace(utils) |> head(40)
 #>  as.person     default                as.person.default            
 #>  as.personList default                as.personList.default        
 #>  as.personList person                 as.personList.person         
+#>  bitstring     default                bitstring.default            
+#>  bitstring     raw                    bitstring.raw                
+#>  bitstring     integer                bitstring.integer            
+#>  bitstring     numeric                bitstring.numeric            
 #>  close         txtProgressBar         close.txtProgressBar         
 #>  edit          data.frame             edit.data.frame              
 #>  edit          default                edit.default                 
 #>  edit          matrix                 edit.matrix                  
 #>  edit          vignette               edit.vignette                
 #>  format        MethodsFunction        format.MethodsFunction       
+#>  format        bitstring              format.bitstring             
 #>  format        aspell                 format.aspell                
 #>  format        aspell_inspect_context format.aspell_inspect_context
 #>  format        news_db                format.news_db               
@@ -522,15 +527,10 @@ s3_in_namespace(utils) |> head(40)
 #>  print         aspell                 print.aspell                 
 #>  print         aspell_inspect_context print.aspell_inspect_context 
 #>  print         Bibtex                 print.Bibtex                 
+#>  print         bitstring              print.bitstring              
 #>  print         changedFiles           print.changedFiles           
 #>  print         fileSnapshot           print.fileSnapshot           
 #>  print         findLineNumResult      print.findLineNumResult      
-#>  print         getAnywhere            print.getAnywhere            
-#>  print         help_files_with_topic  print.help_files_with_topic  
-#>  print         hsearch                print.hsearch                
-#>  print         hsearch_db             print.hsearch_db             
-#>  print         Latex                  print.Latex                  
-#>  print         ls_str                 print.ls_str                 
 s3_in_namespace(utils, .arrange_by = across(Class:Generic)) |> head(40)
 #> ________________________________
 #> S3 Methods in Namespace utils: -
@@ -566,6 +566,7 @@ s3_in_namespace(utils, .arrange_by = across(Class:Generic)) |> head(40)
 #>  unique        person      unique.person        
 #>  as.person     default     as.person.default    
 #>  as.personList default     as.personList.default
+#>  bitstring     default     bitstring.default    
 #>  edit          default     edit.default         
 #>  head          default     head.default         
 #>  prompt        default     prompt.default       
@@ -575,5 +576,4 @@ s3_in_namespace(utils, .arrange_by = across(Class:Generic)) |> head(40)
 #>  tail          default     tail.default         
 #>  type.convert  default     type.convert.default 
 #>  unstack       default     unstack.default      
-#>  .DollarNames  default     .DollarNames.default 
 ```

@@ -17,6 +17,7 @@ For our examples, we will use the `mtcars` data.
 `<data-masking>` argument `col`.
 
 ``` r
+
 mtcars |> wizard(cyl)
 #> [1] 4 6 8
 ```
@@ -27,6 +28,7 @@ If there is a potentially confounding variable of the same name in the
 global environment,
 
 ``` r
+
 (cyl <- c(100:110))
 #>  [1] 100 101 102 103 104 105 106 107 108 109 110
 ```
@@ -36,6 +38,7 @@ global environment,
 correctly refers to the `cyl` column of the `mtcars` data.
 
 ``` r
+
 mtcars |> wizard(cyl)
 #> [1] 4 6 8
 ```
@@ -43,6 +46,7 @@ mtcars |> wizard(cyl)
 But say there’s a similar variable `Cyl` in the global environment,
 
 ``` r
+
 Cyl <- "Bad Luck!"
 ```
 
@@ -50,16 +54,18 @@ Cyl <- "Bad Luck!"
 result: -
 
 ``` r
+
 mtcars |> wizard(Cyl)
 #> [1] "Bad Luck!"
 ```
 
 ## 3. Using the `.data` pronoun
 
-Using the `.data` pronoun[¹](#fn1) from the **rlang** package
-circumvents this problem by throwing a meaningful error message: -
+Using the `.data` pronoun[^1] from the **rlang** package circumvents
+this problem by throwing a meaningful error message: -
 
 ``` r
+
 mtcars |> wizard(.data$cyl)
 #> [1] 4 6 8
 
@@ -72,14 +78,16 @@ try(mtcars |> wizard(.data$Cyl))
 The col argument might be saved as a character variable, for example: -
 
 ``` r
+
 (col_var <- "cyl")
 #> [1] "cyl"
 ```
 
-…which needs converting to a symbol and injecting[²](#fn2) using the
+…which needs converting to a symbol and injecting[^2] using the
 injection operator `!!` from the **rlang** package: -
 
 ``` r
+
 mtcars |> wizard(!!sym(col_var))
 #> [1] 4 6 8
 ```
@@ -88,6 +96,7 @@ Again, if we confuse `cyl` with `Cyl`, we obtain an unexpected and
 confusing result: -
 
 ``` r
+
 (col_var <- "Cyl")
 #> [1] "Cyl"
 
@@ -99,6 +108,7 @@ Using `data_sym()` from **rlang** circumvents this problem by prefacing
 the symbol with the data pronoun: -
 
 ``` r
+
 data_sym(col_var)
 #> .data$Cyl
 
@@ -114,6 +124,7 @@ has no particular advantage here so **base**
 [`lapply()`](https://rdrr.io/r/base/lapply.html) is preferable.)
 
 ``` r
+
 mtcars |> lapply(wizard, data = mtcars)
 #> $mpg
 #>  [1] 10.4 13.3 14.3 14.7 15.0 15.2 15.5 15.8 16.4 17.3 17.8 18.1 18.7 19.2 19.7
@@ -163,6 +174,7 @@ obtain an eponymously named character vector of the first four `mtcar`
 names: -
 
 ``` r
+
 (carnames <- setNames(nm = names(mtcars))[1:4])
 #>    mpg    cyl   disp     hp 
 #>  "mpg"  "cyl" "disp"   "hp"
@@ -174,6 +186,7 @@ names: -
 -
 
 ``` r
+
 carnames |> lapply(\(x) wizard(mtcars, .data[[x]]))
 #> $mpg
 #>  [1] 10.4 13.3 14.3 14.7 15.0 15.2 15.5 15.8 16.4 17.3 17.8 18.1 18.7 19.2 19.7
@@ -229,6 +242,7 @@ carnames |> data_syms() |> lapply(\(x) wizard(mtcars, !!x))
 If one of the names is incorrect: -
 
 ``` r
+
 carnames["cyl"] <- "Cyl"
 carnames
 #>    mpg    cyl   disp     hp 
@@ -238,6 +252,7 @@ carnames
 …these all provide meaningful error messages as previously shown: -
 
 ``` r
+
 try(carnames |> lapply(\(x) wizard(mtcars, .data[[x]])))
 #> Error in .data[["Cyl"]] : Column `Cyl` not found in `.data`.
 
@@ -251,6 +266,7 @@ try(carnames |> data_syms() |> lapply(\(x) wizard(mtcars, !!x)))
 Without the `.data` pronoun, the error might be easily overlooked: -
 
 ``` r
+
 carnames |> lapply(\(x) wizard(mtcars, !!sym(x)))
 #> $mpg
 #>  [1] 10.4 13.3 14.3 14.7 15.0 15.2 15.5 15.8 16.4 17.3 17.8 18.1 18.7 19.2 19.7
@@ -293,10 +309,8 @@ carnames |> syms() |> lapply(\(x) wizard(mtcars, !!x))
 2.  [**rlang** symbolise and
     inject](https://rlang.r-lib.org/reference/topic-metaprogramming.html#symbolise-and-inject)
 
-------------------------------------------------------------------------
-
-1.  [**rlang** .data and .env
+[^1]: [**rlang** .data and .env
     pronouns](https://rlang.r-lib.org/reference/dot-data.html)
 
-2.  [**rlang** symbolise and
+[^2]: [**rlang** symbolise and
     inject](https://rlang.r-lib.org/reference/topic-metaprogramming.html#symbolise-and-inject)

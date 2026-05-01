@@ -75,6 +75,7 @@ Other detective:
 ## Examples
 
 ``` r
+
 starwars |> wizard(homeworld)
 #>  [1] "Alderaan"       "Aleen Minor"    "Bespin"         "Bestine IV"    
 #>  [5] "Cato Neimoidia" "Cerea"          "Champala"       "Chandrila"     

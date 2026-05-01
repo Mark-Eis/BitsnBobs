@@ -92,6 +92,7 @@ Other methods:
 ## Examples
 
 ``` r
+
 methods(summary)
 #>  [1] summary.Date                        summary.POSIXct                    
 #>  [3] summary.POSIXlt                     summary.aov                        
@@ -99,23 +100,23 @@ methods(summary)
 #>  [7] summary.check_packages_in_dir*      summary.connection                 
 #>  [9] summary.data.frame                  summary.default                    
 #> [11] summary.difftime                    summary.ecdf*                      
-#> [13] summary.factor                      summary.ggplot2::ggplot*           
-#> [15] summary.glm                         summary.infl*                      
-#> [17] summary.lm                          summary.loess*                     
-#> [19] summary.loglm*                      summary.manova                     
-#> [21] summary.matrix                      summary.mlm*                       
-#> [23] summary.negbin*                     summary.nls*                       
-#> [25] summary.packageStatus*              summary.polr*                      
-#> [27] summary.ppr*                        summary.prcomp*                    
-#> [29] summary.princomp*                   summary.proc_time                  
-#> [31] summary.rlang:::list_of_conditions* summary.rlang_error*               
-#> [33] summary.rlang_message*              summary.rlang_trace*               
-#> [35] summary.rlang_warning*              summary.rlm*                       
-#> [37] summary.srcfile                     summary.srcref                     
-#> [39] summary.stepfun                     summary.stl*                       
-#> [41] summary.table                       summary.tukeysmooth*               
-#> [43] summary.vctrs_sclr*                 summary.vctrs_vctr*                
-#> [45] summary.warnings                   
+#> [13] summary.factor                      summary.free1way*                  
+#> [15] summary.ggplot2::ggplot*            summary.glm                        
+#> [17] summary.infl*                       summary.lm                         
+#> [19] summary.loess*                      summary.loglm*                     
+#> [21] summary.manova                      summary.matrix                     
+#> [23] summary.mlm*                        summary.negbin*                    
+#> [25] summary.nls*                        summary.packageStatus*             
+#> [27] summary.polr*                       summary.ppr*                       
+#> [29] summary.prcomp*                     summary.princomp*                  
+#> [31] summary.proc_time                   summary.rlang:::list_of_conditions*
+#> [33] summary.rlang_error*                summary.rlang_message*             
+#> [35] summary.rlang_trace*                summary.rlang_warning*             
+#> [37] summary.rlm*                        summary.srcfile                    
+#> [39] summary.srcref                      summary.stepfun                    
+#> [41] summary.stl*                        summary.table                      
+#> [43] summary.tukeysmooth*                summary.vctrs_sclr*                
+#> [45] summary.vctrs_vctr*                 summary.warnings                   
 #> see '?methods' for accessing help and source code
 method_info(summary)
 #> _____________
@@ -135,6 +136,7 @@ method_info(summary)
 #>  summary.difftime                    TRUE   base                           
 #>  summary.ecdf                       FALSE   registered S3method for summary
 #>  summary.factor                      TRUE   base                           
+#>  summary.free1way                   FALSE   registered S3method for summary
 #>  summary.ggplot2::ggplot            FALSE   registered S3method for summary
 #>  summary.glm                         TRUE   stats                          
 #>  summary.infl                       FALSE   registered S3method for summary
@@ -168,6 +170,7 @@ method_info(summary)
 #>  summary.vctrs_vctr                 FALSE   registered S3method for summary
 #>  summary.warnings                    TRUE   base                           
 #>  Generic isS4 
+#>  summary FALSE
 #>  summary FALSE
 #>  summary FALSE
 #>  summary FALSE
@@ -231,6 +234,7 @@ methods(summary) |> print_all()
 #>  summary.difftime                    TRUE   base                           
 #>  summary.ecdf                       FALSE   registered S3method for summary
 #>  summary.factor                      TRUE   base                           
+#>  summary.free1way                   FALSE   registered S3method for summary
 #>  summary.ggplot2::ggplot            FALSE   registered S3method for summary
 #>  summary.glm                         TRUE   stats                          
 #>  summary.infl                       FALSE   registered S3method for summary
@@ -309,14 +313,15 @@ methods(summary) |> print_all()
 #>  summary FALSE
 #>  summary FALSE
 #>  summary FALSE
+#>  summary FALSE
 
 methods(class = "glm")
 #>  [1] add1           anova          coerce         confint        cooks.distance
-#>  [6] deviance       drop1          effects        extractAIC     family        
-#> [11] formula        influence      initialize     logLik         model.frame   
-#> [16] nobs           predict        print          profile        residuals     
-#> [21] rstandard      rstudent       show           sigma          slotsFromS3   
-#> [26] summary        vcov           weights       
+#>  [6] deviance       dfbetas        dffits         drop1          effects       
+#> [11] extractAIC     family         formula        influence      initialize    
+#> [16] logLik         model.frame    nobs           predict        print         
+#> [21] profile        residuals      rstandard      rstudent       show          
+#> [26] sigma          slotsFromS3    summary        vcov           weights       
 #> see '?methods' for accessing help and source code
 method_info(class = "glm")
 #> _____________
@@ -329,6 +334,8 @@ method_info(class = "glm")
 #>  confint.glm                 FALSE   registered S3method confint        FALSE
 #>  cooks.distance.glm          FALSE   registered S3method cooks.distance FALSE
 #>  deviance.glm                FALSE   registered S3method deviance       FALSE
+#>  dfbetas.glm                 FALSE   registered S3method dfbetas        FALSE
+#>  dffits.glm                  FALSE   registered S3method dffits         FALSE
 #>  drop1.glm                   FALSE   registered S3method drop1          FALSE
 #>  effects.glm                 FALSE   registered S3method effects        FALSE
 #>  extractAIC.glm              FALSE   registered S3method extractAIC     FALSE
@@ -361,6 +368,8 @@ method_info(class = "glm", .arrange_by = across(c(isS4, Method)))
 #>  confint.glm                 FALSE   registered S3method confint        FALSE
 #>  cooks.distance.glm          FALSE   registered S3method cooks.distance FALSE
 #>  deviance.glm                FALSE   registered S3method deviance       FALSE
+#>  dfbetas.glm                 FALSE   registered S3method dfbetas        FALSE
+#>  dffits.glm                  FALSE   registered S3method dffits         FALSE
 #>  drop1.glm                   FALSE   registered S3method drop1          FALSE
 #>  effects.glm                 FALSE   registered S3method effects        FALSE
 #>  extractAIC.glm              FALSE   registered S3method extractAIC     FALSE
@@ -395,6 +404,8 @@ methods(class = "glm") |> print_all()
 #>  confint.glm                 FALSE   registered S3method confint        FALSE
 #>  cooks.distance.glm          FALSE   registered S3method cooks.distance FALSE
 #>  deviance.glm                FALSE   registered S3method deviance       FALSE
+#>  dfbetas.glm                 FALSE   registered S3method dfbetas        FALSE
+#>  dffits.glm                  FALSE   registered S3method dffits         FALSE
 #>  drop1.glm                   FALSE   registered S3method drop1          FALSE
 #>  effects.glm                 FALSE   registered S3method effects        FALSE
 #>  extractAIC.glm              FALSE   registered S3method extractAIC     FALSE
@@ -427,6 +438,8 @@ methods(class = "glm") |> print_all(.arrange_by = across(c(isS4, Method)))
 #>  confint.glm                 FALSE   registered S3method confint        FALSE
 #>  cooks.distance.glm          FALSE   registered S3method cooks.distance FALSE
 #>  deviance.glm                FALSE   registered S3method deviance       FALSE
+#>  dfbetas.glm                 FALSE   registered S3method dfbetas        FALSE
+#>  dffits.glm                  FALSE   registered S3method dffits         FALSE
 #>  drop1.glm                   FALSE   registered S3method drop1          FALSE
 #>  effects.glm                 FALSE   registered S3method effects        FALSE
 #>  extractAIC.glm              FALSE   registered S3method extractAIC     FALSE

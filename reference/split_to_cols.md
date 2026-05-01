@@ -93,6 +93,7 @@ and [`str_trim`](https://stringr.tidyverse.org/reference/str_trim.html).
 ## Examples
 
 ``` r
+
 starwars3
 #> # A tibble: 10 × 2
 #>    name                  skin_color         

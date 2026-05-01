@@ -99,6 +99,7 @@ Other Rostido:
 ## Examples
 
 ``` r
+
 if (FALSE) { # \dontrun{
    dnldpath <- "~/Rostido Bank/Downloads"
 

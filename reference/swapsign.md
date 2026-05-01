@@ -26,6 +26,7 @@ A numeric vector, length of `x`.
 ## Examples
 
 ``` r
+
 swapsign(1:10, rep(c(FALSE, TRUE), 5))
 #>  [1]   1  -2   3  -4   5  -6   7  -8   9 -10
 ```

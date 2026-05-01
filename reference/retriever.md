@@ -109,6 +109,7 @@ Other detective:
 ## Examples
 
 ``` r
+
 ## Create "retrieval" function with labile_data TRUE
 retrieve_starwars <- retriever(starwars, name)
 
@@ -116,7 +117,7 @@ retrieve_starwars <- retriever(starwars, name)
 environment(retrieve_starwars)$data
 #> <quosure>
 #> expr: ^starwars
-#> env:  0x55db2a023088
+#> env:  0x559d69651c80
 
 ## Retrieve selected columns for a row specified using the index
 retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)

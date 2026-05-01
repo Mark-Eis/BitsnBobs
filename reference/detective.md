@@ -110,6 +110,7 @@ Other detective:
 ## Examples
 
 ``` r
+
 ## Find strings containing a specified pattern in a data frame
 starwars |> detective("Sky", name)
 #> # A tibble: 3 × 2

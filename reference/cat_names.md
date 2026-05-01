@@ -70,6 +70,7 @@ otherwise using `.delimiter`, if provided.
 ## Examples
 
 ``` r
+
 starwars2 ## Has name column of original starwars split into Firstname and Surname
 #> # A tibble: 63 × 12
 #>    Firstname Surname     height  mass hair_color skin_color eye_color birth_year

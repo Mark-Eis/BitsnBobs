@@ -198,7 +198,7 @@ phi_coef.test(twobytwo, conf.level = 1 - pval)
 #> data:  twobytwo
 #> z = -1.919, n = 25, p-value = 0.05499
 #> alternative hypothesis: true phi is not equal to 0
-#> 94.50144 percent confidence interval:
+#> 94.5 percent confidence interval:
 #>  -7.179487e-01 -1.110223e-16
 #> sample estimates:
 #>        phi 
@@ -213,7 +213,7 @@ phi_coef.test(twobytwo, alternative = "less", conf.level = 1 - pval/2)
 #> data:  twobytwo
 #> z = -1.919, n = 25, p-value = 0.02749
 #> alternative hypothesis: true phi is less than 0
-#> 97.25072 percent confidence interval:
+#> 97.3 percent confidence interval:
 #>  -1.000000e+00 -1.110223e-16
 #> sample estimates:
 #>        phi 
@@ -226,7 +226,7 @@ phi_coef.test(twobytwo, alternative = "greater", conf.level = 1 - pval/2)
 #> data:  twobytwo
 #> z = -1.919, n = 25, p-value = 0.9725
 #> alternative hypothesis: true phi is greater than 0
-#> 97.25072 percent confidence interval:
+#> 97.3 percent confidence interval:
 #>  -0.7179487  1.0000000
 #> sample estimates:
 #>        phi 

@@ -9,7 +9,7 @@ s3_in_namespace() tabulates S3 methods in a loaded namespace.'></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">BitsnBobs</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.8.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.8.3</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -525,12 +525,17 @@ as follows: -</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  as.person     default                as.person.default            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  as.personList default                as.personList.default        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  as.personList person                 as.personList.person         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  bitstring     default                bitstring.default            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  bitstring     raw                    bitstring.raw                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  bitstring     integer                bitstring.integer            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  bitstring     numeric                bitstring.numeric            </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  close         txtProgressBar         close.txtProgressBar         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  edit          data.frame             edit.data.frame              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  edit          default                edit.default                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  edit          matrix                 edit.matrix                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  edit          vignette               edit.vignette                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  format        MethodsFunction        format.MethodsFunction       </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  format        bitstring              format.bitstring             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  format        aspell                 format.aspell                </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  format        aspell_inspect_context format.aspell_inspect_context</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  format        news_db                format.news_db               </span>
@@ -546,15 +551,10 @@ as follows: -</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  print         aspell                 print.aspell                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  print         aspell_inspect_context print.aspell_inspect_context </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  print         Bibtex                 print.Bibtex                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  print         bitstring              print.bitstring              </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  print         changedFiles           print.changedFiles           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  print         fileSnapshot           print.fileSnapshot           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  print         findLineNumResult      print.findLineNumResult      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  print         getAnywhere            print.getAnywhere            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  print         help_files_with_topic  print.help_files_with_topic  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  print         hsearch                print.hsearch                </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  print         hsearch_db             print.hsearch_db             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  print         Latex                  print.Latex                  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  print         ls_str                 print.ls_str                 </span>
 <span class="r-in"><span><span class="fu">s3_in_namespace</span><span class="op">(</span><span class="va">utils</span>, .arrange_by <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="va">Class</span><span class="op">:</span><span class="va">Generic</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">40</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> S3 Methods in Namespace utils: -</span>
@@ -590,6 +590,7 @@ as follows: -</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  unique        person      unique.person        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  as.person     default     as.person.default    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  as.personList default     as.personList.default</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  bitstring     default     bitstring.default    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  edit          default     edit.default         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  head          default     head.default         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  prompt        default     prompt.default       </span>
@@ -599,7 +600,6 @@ as follows: -</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  tail          default     tail.default         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  type.convert  default     type.convert.default </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  unstack       default     unstack.default      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  .DollarNames  default     .DollarNames.default </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
