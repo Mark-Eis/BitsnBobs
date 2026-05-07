@@ -117,7 +117,7 @@ retrieve_starwars <- retriever(starwars, name)
 environment(retrieve_starwars)$data
 #> <quosure>
 #> expr: ^starwars
-#> env:  0x559d69651c80
+#> env:  0x5637c6a87ea0
 
 ## Retrieve selected columns for a row specified using the index
 retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)

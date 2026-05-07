@@ -40,11 +40,11 @@ Other powerseq:
 ``` r
 formul_pwrseq(y ~ x, 5)
 #> y ~ x + I(x^2L) + I(x^3L) + I(x^4L) + I(x^5L)
-#> <environment: 0x559d6cb1f1e8>
+#> <environment: 0x5637c8b0be80>
 formul_pwrseq(y ~ log(x), 5)
 #> y ~ log(x) + I(log(x)^2L) + I(log(x)^3L) + I(log(x)^4L) + I(log(x)^5L)
-#> <environment: 0x559d6cb1f1e8>
+#> <environment: 0x5637c8b0be80>
 formul_pwrseq(y ~ A, 3, B, C, D)
 #> y ~ A + I(A^2L) + I(A^3L) + B + C + D
-#> <environment: 0x559d6cb1f1e8>
+#> <environment: 0x5637c8b0be80>
 ```
