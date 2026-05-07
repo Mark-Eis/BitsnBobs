@@ -4,4 +4,5 @@ template:
   bootswatch: quartz
   bslib:
     pkgdown-nav-height: 100px
+  math-rendering: mathjax
 
