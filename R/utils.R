@@ -1,5 +1,5 @@
 # BitsnBobs R Package
-# Mark Eisler May 2024
+# Mark Eisler May 2026
 # For general bits and bobs of code
 #
 # Requires R version 4.2.0 (2022-04-22) -- "Vigorous Calisthenics" or later
@@ -27,7 +27,8 @@
 #'
 #' @param value any valid R object, including a function
 #'
-#' @return NULL
+#' @return
+#' Returns argument `value` invisibly (via `invisible(value)`). 
 #'
 #' @keywords utilities
 #'
@@ -41,6 +42,7 @@
 const <- function(name, value){
   assign(deparse(substitute(name)), value, envir = parent.frame())
   lockBinding(substitute(name), env = parent.frame())
+  invisible(value)
 }
 
 # ========================================
