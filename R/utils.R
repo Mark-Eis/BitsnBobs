@@ -34,8 +34,8 @@
 #'
 #' @export
 #' @examples
-#' const(bar, "irish")
-#' bar
+#' (const(bar, "irish"))
+#' 
 #' try(bar <- "bavarian")
 #'
 
