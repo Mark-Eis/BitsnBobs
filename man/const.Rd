@@ -11,6 +11,9 @@ const(name, value)
 
 \item{value}{any valid R object, including a function}
 }
+\value{
+Returns argument \code{value} invisibly (via \code{invisible(value)}).
+}
 \description{
 A constant is an object the value of which cannot be altered once assigned.
 }
@@ -18,8 +21,8 @@ A constant is an object the value of which cannot be altered once assigned.
 See reference.
 }
 \examples{
-const(bar, "irish")
-bar
+(const(bar, "irish"))
+
 try(bar <- "bavarian")
 
 }
