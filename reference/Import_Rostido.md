@@ -118,17 +118,17 @@ Other Rostido:
    dnldpath <- "~/Rostido Bank/Downloads"
 
    rostido_fname(Sys.Date())
-#> [1] "Download20260507.csv"
+#> [1] "Download20260516.csv"
 #> attr(,"date")
-#> [1] "2026-05-07"
+#> [1] "2026-05-16"
 
    ## __________________________
    ## Current account 55545372
 
    rostido_fname(Sys.Date(), file.path(dnldpath, 55545372))
-#> [1] "Download20260507.csv"
+#> [1] "Download20260516.csv"
 #> attr(,"date")
-#> [1] "2026-05-07"
+#> [1] "2026-05-16"
 #> attr(,"filepath")
 #> [1] "~/Rostido Bank/Downloads/55545372"
 
@@ -142,9 +142,9 @@ if (FALSE) { # \dontrun{
    ## Savings account 55596784
 
    rostido_fname(Sys.Date(), file.path(dnldpath, 55596784))
-#> [1] "Download20260507.csv"
+#> [1] "Download20260516.csv"
 #> attr(,"date")
-#> [1] "2026-05-07"
+#> [1] "2026-05-16"
 #> attr(,"filepath")
 #> [1] "~/Rostido Bank/Downloads/55596784"
 

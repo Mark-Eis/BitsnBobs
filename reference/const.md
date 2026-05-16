@@ -19,6 +19,10 @@ const(name, value)
 
   any valid R object, including a function
 
+## Value
+
+Returns argument `value` invisibly (via `invisible(value)`).
+
 ## Details
 
 See reference.
@@ -41,9 +45,9 @@ Other utils:
 ## Examples
 
 ``` r
-const(bar, "irish")
-bar
+(const(bar, "irish"))
 #> [1] "irish"
+
 try(bar <- "bavarian")
 #> Error in try(bar <- "bavarian") : 
 #>   cannot change value of locked binding for 'bar'
