@@ -197,8 +197,8 @@ revmat <- function(x, type = c("byrow", "bycolumn", "byboth")) {
 #' optionally terminates the strings with full stops.
 #'
 #' @details
-#' Uses [`str_detect`][stringr:: str_detect] from package \pkg{\link[stringr]{stringr}} to detect the regular
-#' expressions `'[:punct:]'` and `'[:space:]'`, and [`str_sub`][stringr:: str_sub] to modify the string.
+#' Uses [`str_detect`][stringr::str_detect] from package \pkg{\link[stringr]{stringr}} to detect the regular
+#' expressions `'[:punct:]'` and `'[:space:]'`, and [`str_sub`][stringr::str_sub] to modify the string.
 #'
 #' For `endstop_data()`, character columns in `.data` are selected using \code{\dots} with the
 #' <[`tidy-select`][dplyr::dplyr_tidy_select]> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
@@ -206,7 +206,7 @@ revmat <- function(x, type = c("byrow", "bycolumn", "byboth")) {
 #' all character columns in \var{.data} will be modified  by `endstop()`.
 #'
 #' @family utils
-#' @seealso  [`str_detect()`][stringr:: str_detect], [`str_sub()`][stringr:: str_sub]
+#' @seealso  [`str_detect()`][stringr::str_detect], [`str_sub()`][stringr::str_sub]
 #'
 #' @param string a character vector of length one.
 #'
