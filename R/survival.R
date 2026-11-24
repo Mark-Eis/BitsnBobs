@@ -18,10 +18,10 @@
 #'
 #' @references
 #' \href{https://cran.r-project.org/web/packages/coxme/vignettes/coxme.pdf}{
-#'   Terry Therneau, 2024: Mixed Eects Cox Models}.
+#'   Terry Therneau, 2024: Mixed Effects Cox Models}.
 #'
 #' @family survival
-#' @seealso [`coxph()`][survival::coxph], [`coxme()`][coxme::coxme], [`logLik.coxme()`][].
+#' @seealso [`coxph()`][survival::coxph], [`coxme()`][coxme::coxme], [`logLik.coxme()`][coxme::logLik.coxme].
 #'
 #' @param object	 any object from which a likelihood ratio test statistic, or a contribution to a 
 #'   likelihood ratio test statistic, can be extracted.
@@ -32,7 +32,7 @@
 #'   "penalized" or "integrated".
 #'
 #' @return
-#' Returns argument `value` invisibly (via `invisible(value)`). 
+#' Returns the likelihood ratio statistic as a `double`. 
 #'
 #' @keywords models regression survival
 #'

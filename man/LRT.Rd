@@ -22,7 +22,7 @@ likelihood ratio test statistic, can be extracted.}
 "penalized" or "integrated".}
 }
 \value{
-Returns argument \code{value} invisibly (via \code{invisible(value)}).
+Returns the likelihood ratio statistic as a \code{double}.
 }
 \description{
 \code{LRT()} is a generic function for the likelihood ratio test statistic from a given object.
@@ -38,10 +38,10 @@ Currently implemented for \code{"coxph"} and \code{"coxme"} objects.
 }
 \references{
 \href{https://cran.r-project.org/web/packages/coxme/vignettes/coxme.pdf}{
-Terry Therneau, 2024: Mixed Eects Cox Models}.
+Terry Therneau, 2024: Mixed Effects Cox Models}.
 }
 \seealso{
-\code{\link[survival:coxph]{coxph()}}, \code{\link[coxme:coxme]{coxme()}}, [\code{logLik.coxme()}][].
+\code{\link[survival:coxph]{coxph()}}, \code{\link[coxme:coxme]{coxme()}}, \code{\link[coxme:logLik.coxme]{logLik.coxme()}}.
 }
 \concept{survival}
 \keyword{models}
