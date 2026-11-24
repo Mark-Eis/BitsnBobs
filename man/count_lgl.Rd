@@ -59,8 +59,8 @@ rm(car_names, carname_counts)
 \seealso{
 \code{\link[dplyr:summarise]{summarise}}.
 
-Other logical-cols: 
-\code{\link{kwd_cols}()},
-\code{\link{list_lgl}()}
+Other logical-cols:
+\code{\link[=kwd_cols]{kwd_cols()}},
+\code{\link[=list_lgl]{list_lgl()}}
 }
 \concept{logical-cols}

@@ -62,7 +62,7 @@ wp_dms |> as_coord(.fmt = "degminsec")
 rm(wp_dd, wp_dm, wp_dms)
 }
 \seealso{
-Other coord: 
-\code{\link{coord}()}
+Other coord:
+\code{\link[=coord]{coord()}}
 }
 \concept{coord}

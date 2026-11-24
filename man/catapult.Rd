@@ -19,7 +19,7 @@ when \code{FALSE}, the corresponding print method \code{print.catapult()} will i
 inherited \code{object}; if \code{TRUE}, \code{print.catapult()} will return to the calling function after printing \code{lead}.}
 
 \item{\dots}{additional named arguments to be forwarded to print methods of classes inherited from \code{object}, for
-example as required for formatting and printing a \code{\link[base:print.dataframe]{data frame}}.}
+example as required for formatting and printing a \code{\link[base:print.data.frame]{data frame}}.}
 
 \item{x}{an object used to select a method.}
 }
@@ -50,9 +50,9 @@ rm(cpt)
 \seealso{
 \code{\link[base:cat]{cat()}}, \code{\link[base:print]{print()}}.
 
-Other print: 
-\code{\link{lf}()},
-\code{\link{print_all}()}
+Other print:
+\code{\link[=lf]{lf()}},
+\code{\link[=print_all]{print_all()}}
 }
 \concept{print}
 \keyword{print}

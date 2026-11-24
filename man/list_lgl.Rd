@@ -59,8 +59,8 @@ rm(kwd, car_names)
 \code{\link[dplyr:bind_rows]{bind_rows}},  \code{\link[dplyr:select]{select}}, \code{\link[base:split]{split}},
 <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}>, \code{\link[tibble:tibble-package]{tibble}}.
 
-Other logical-cols: 
-\code{\link{count_lgl}()},
-\code{\link{kwd_cols}()}
+Other logical-cols:
+\code{\link[=count_lgl]{count_lgl()}},
+\code{\link[=kwd_cols]{kwd_cols()}}
 }
 \concept{logical-cols}

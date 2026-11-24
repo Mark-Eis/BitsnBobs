@@ -111,7 +111,7 @@ rm(expr_ls, foo, log, pseq, pseq2, res_ls)
 \seealso{
 \code{\link{call}}, \code{\link[rlang]{eval_tidy}} and \code{\link[rlang]{quosure}}.
 
-Other powerseq: 
-\code{\link{formul_pwrseq}()}
+Other powerseq:
+\code{\link[=formul_pwrseq]{formul_pwrseq()}}
 }
 \concept{powerseq}

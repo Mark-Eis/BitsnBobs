@@ -96,9 +96,9 @@ but not the original data.
 \seealso{
 \code{\link[stats]{cor}}, \code{\link[stats]{cor.test}}, \code{\link[stats]{t.test}}
 
-Other correl_coef: 
-\code{\link{phi_coef}()},
-\code{\link{phi_coef.test}()}
+Other correl_coef:
+\code{\link[=phi_coef]{phi_coef()}},
+\code{\link[=phi_coef.test]{phi_coef.test()}}
 }
 \concept{correl_coef}
 \keyword{htest}

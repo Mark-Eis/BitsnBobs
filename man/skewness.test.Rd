@@ -136,12 +136,12 @@ kurtosis. \emph{Behavior Research Methods} \strong{43}(1): 8-17.
 \href{https://doi.org/10.3758/s13428-010-0044-x}{\doi{10.3758/s13428-010-0044-x}}
 }
 \seealso{
-\code{\link[stats:Distributions]{distributions}}, \code{\link[stats:TDist]{TDist}}, \code{\link[stats:t.test]{t.test}}
+\code{\link[stats:distributions]{distributions}}, \code{\link[stats:pt]{TDist}}, \code{\link[stats:t.test]{t.test}}
 
-Other skewness: 
-\code{\link{kurtosis}()},
-\code{\link{kurtosis.test}()},
-\code{\link{skewness}()}
+Other skewness:
+\code{\link[=kurtosis]{kurtosis()}},
+\code{\link[=kurtosis.test]{kurtosis.test()}},
+\code{\link[=skewness]{skewness()}}
 }
 \concept{skewness}
 \keyword{htest}

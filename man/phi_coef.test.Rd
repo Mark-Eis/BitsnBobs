@@ -104,9 +104,9 @@ Measures of Association for 2 × 2 Tables.)
 \seealso{
 \code{\link[base]{matrix}}, \code{\link[stats]{mcnemar.test}}
 
-Other correl_coef: 
-\code{\link{cor_coef.test}()},
-\code{\link{phi_coef}()}
+Other correl_coef:
+\code{\link[=cor_coef.test]{cor_coef.test()}},
+\code{\link[=phi_coef]{phi_coef()}}
 }
 \concept{correl_coef}
 \keyword{htest}

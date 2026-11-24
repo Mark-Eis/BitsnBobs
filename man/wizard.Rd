@@ -62,8 +62,8 @@ data_wizard(starwars, ", ")
 \seealso{
 \code{\link[base:paste]{paste}}, \code{\link[base:sort]{sort}}, \code{\link[base:unique]{unique}}.
 
-Other detective: 
-\code{\link{detective}()},
-\code{\link{retriever}()}
+Other detective:
+\code{\link[=detective]{detective()}},
+\code{\link[=retriever]{retriever()}}
 }
 \concept{detective}

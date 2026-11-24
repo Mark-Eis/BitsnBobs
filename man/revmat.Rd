@@ -35,10 +35,10 @@ including any dimnames if present.
 \seealso{
 \code{\link[base]{matrix}}, \code{\link[base]{t}}
 
-Other utils: 
-\code{\link{const}()},
-\code{\link{endstop}()},
-\code{\link{marker}()},
+Other utils:
+\code{\link[=const]{const()}},
+\code{\link[=endstop]{endstop()}},
+\code{\link[=marker]{marker()}},
 \code{\link{op-min-max}}
 }
 \concept{utils}

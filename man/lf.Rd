@@ -47,9 +47,9 @@ rm(obj)
 \seealso{
 \code{\link[base]{cat}}.
 
-Other print: 
-\code{\link{catapult}()},
-\code{\link{print_all}()}
+Other print:
+\code{\link[=catapult]{catapult()}},
+\code{\link[=print_all]{print_all()}}
 }
 \concept{print}
 \keyword{print}

@@ -89,9 +89,9 @@ By default, if no \code{.include} argument is specified, the \code{print()} S3 m
 }
 }
 \seealso{
-\code{\link[base:as.Date]{as.Date()}}, \code{\link[base:print]{print()}}, \code{\link[base:cbind]{rbind()}}.
+\code{\link[base:as.Date]{as.Date()}}, \code{\link[base:print]{print()}}, \code{\link[base:rbind]{rbind()}}.
 
-Other Rostido: 
+Other Rostido:
 \code{\link{Import_Rostido}}
 }
 \concept{Rostido}

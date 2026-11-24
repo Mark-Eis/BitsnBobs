@@ -51,8 +51,8 @@ Yule, G.U. (1912). On the Methods of Measuring Association Between Two Attribute
 \seealso{
 \code{\link[base]{matrix}}, \code{\link[stats]{mcnemar.test}}
 
-Other correl_coef: 
-\code{\link{cor_coef.test}()},
-\code{\link{phi_coef.test}()}
+Other correl_coef:
+\code{\link[=cor_coef.test]{cor_coef.test()}},
+\code{\link[=phi_coef.test]{phi_coef.test()}}
 }
 \concept{correl_coef}

@@ -102,8 +102,8 @@ rm(retrieve_starwars, retrieve_original_starwars, `replace_at_name<-`, starwars)
 \seealso{
 \code{\link[base:data.frame]{data frame}}
 
-Other detective: 
-\code{\link{detective}()},
-\code{\link{wizard}()}
+Other detective:
+\code{\link[=detective]{detective()}},
+\code{\link[=wizard]{wizard()}}
 }
 \concept{detective}

@@ -61,13 +61,13 @@ extension \code{".csv"} e.g., \code{"Download20240401.csv"}
 
 \code{most_recent_fname()} searches the current folder or a folder specified using \code{filepath} for a filename
 incorporating a date specified by the \code{.date} argument, typically the current date obtained using the default
-\code{\link[base:Sys.time]{Sys.Date()}}. The filename incorporates the date as specified by \code{fun}, typically the default
+\code{\link[base:Sys.Date]{Sys.Date()}}. The filename incorporates the date as specified by \code{fun}, typically the default
 \code{rostido_fname()} as above. If no such file exists, filenames incorporating earlier dates are searched for
 successively until either a corresponding file is found or the search is discontinued upon reaching the date
 specified in the \code{earliest} argument.
 
 \code{read_rostido_csv()} reads a transactions CSV file as downloaded from the Rostido website using
-\code{\link[utils:read.table]{read.csv()}} and returns the contents as a data frame. The file to be read is specified in the
+\code{\link[utils:read.csv]{read.csv()}} and returns the contents as a data frame. The file to be read is specified in the
 \code{filename} argument and is located in the folder specified in that argument's \code{"filepath"} attribute if it has one,
 otherwise in the current working directory.
 }
@@ -100,9 +100,9 @@ otherwise in the current working directory.
 }
 }
 \seealso{
-\code{\link[base:as.Date]{as.Date()}}, \code{\link[utils:read.table]{read.csv()}}, \code{\link[base:Sys.time]{Sys.Date()}}.
+\code{\link[base:as.Date]{as.Date()}}, \code{\link[utils:read.csv]{read.csv()}}, \code{\link[base:Sys.Date]{Sys.Date()}}.
 
-Other Rostido: 
+Other Rostido:
 \code{\link{Manage_Rostido}}
 }
 \concept{Rostido}

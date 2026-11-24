@@ -36,8 +36,8 @@ rpois(100, 3) |> opt_bc(c(-3, 5)) ## Redefining interval avoids warning
 \seealso{
 \code{\link{skewness}}
 
-Other boxcox: 
-\code{\link{boxcox3}()}
+Other boxcox:
+\code{\link[=boxcox3]{boxcox3()}}
 }
 \concept{boxcox}
 \keyword{models}

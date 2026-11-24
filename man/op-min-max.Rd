@@ -21,8 +21,8 @@ if one of the inputs had zero length.
 Vectorised infix functions implementing \code{pmin()} and \code{pmax()}.
 }
 \details{
-The vectorised infix functions \verb{\%:<\%} and \verb{\%>:\%} may be useful in implementing \code{\link[base:Extremes]{pmin()}} and,
-\code{\link[base:Extremes]{pmax()}} and was inspired by the null coalescing operator \code{\link[base:Control]{\%||\%}}.
+The vectorised infix functions \verb{\%:<\%} and \verb{\%>:\%} may be useful in implementing \code{\link[base:pmin]{pmin()}} and,
+\code{\link[base:pmax]{pmax()}} and was inspired by the null coalescing operator \code{\link[base:Control]{\%||\%}}.
 }
 \note{
 \sQuote{Numeric} arguments are vectors of type integer and numeric,
@@ -42,13 +42,13 @@ c(1:9, NA) \%>:\% c(NA, 9:1)
 
 }
 \seealso{
-\code{\link[rlang:op-null-default]{\%||\%}}, \code{\link[base:Extremes]{pmin()}} and \code{\link[base:Extremes]{pmax()}}.
+\code{\link[rlang:op-null-default]{\%||\%}}, \code{\link[base:pmin]{pmin()}} and \code{\link[base:pmax]{pmax()}}.
 
-Other utils: 
-\code{\link{const}()},
-\code{\link{endstop}()},
-\code{\link{marker}()},
-\code{\link{revmat}()}
+Other utils:
+\code{\link[=const]{const()}},
+\code{\link[=endstop]{endstop()}},
+\code{\link[=marker]{marker()}},
+\code{\link[=revmat]{revmat()}}
 }
 \concept{utils}
 \keyword{arith}

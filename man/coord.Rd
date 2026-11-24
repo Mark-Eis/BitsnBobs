@@ -82,7 +82,7 @@ values. Numeric values should have a decimal point after the number of whole deg
 of decimal degrees, after the number of whole minutes in the case of degrees and minutes, and
 after the number of whole seconds in the case of degrees, minutes and seconds.
 
-There is also an S3 method for \code{\link[base:numeric]{as.numeric()}} for objects of class
+There is also an S3 method for \code{\link[base:as.numeric]{as.numeric()}} for objects of class
 \code{"coord"}, returning numeric values as described above for \code{as_coord()}.
 }
 \examples{
@@ -167,7 +167,7 @@ as_coord(733102.22, .fmt = "degminsec", .latorlon = "lon")
 rm(cdd, cdm, cdms)
 }
 \seealso{
-Other coord: 
-\code{\link{waypoint}()}
+Other coord:
+\code{\link[=waypoint]{waypoint()}}
 }
 \concept{coord}

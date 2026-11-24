@@ -126,8 +126,8 @@ identical(
 \code{\link[dplyr:across]{across()}}, \code{\link[dplyr:arrange]{arrange()}}, \code{\link[dplyr:desc]{desc()}},
 \code{\link[utils:glob2rx]{glob2rx()}}, \code{\link[dplyr:pick]{pick()}} and \code{\link[stringr:str_detect]{str_detect()}}.
 
-Other detective: 
-\code{\link{retriever}()},
-\code{\link{wizard}()}
+Other detective:
+\code{\link[=retriever]{retriever()}},
+\code{\link[=wizard]{wizard()}}
 }
 \concept{detective}

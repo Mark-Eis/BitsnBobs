@@ -52,8 +52,8 @@ j2eff_rate(19.20444, 12, 4000)
 \seealso{
 \code{\link[FinancialMath:amort.period]{amort.period()}}, \code{\link[FinancialMath:amort.table]{amort.table()}}
 
-Other amort: 
-\code{\link{eff_rate}()},
-\code{\link{get_amortval}()}
+Other amort:
+\code{\link[=eff_rate]{eff_rate()}},
+\code{\link[=get_amortval]{get_amortval()}}
 }
 \concept{amort}

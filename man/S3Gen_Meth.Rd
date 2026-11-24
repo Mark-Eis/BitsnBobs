@@ -28,7 +28,7 @@ as follows: -
 \item{Generic}{\code{character}, the generic function name.}
 
 \item{Namespace}{\code{character}, the namespace environment of the generic or \code{"primitive"} in the case of
-\code{\link[base:Primitive]{primitive}} (internally implemented) generics.}
+\code{\link[base:primitive]{primitive}} (internally implemented) generics.}
 
 \item{Class}{\code{character}, the \code{class} for the method.}
 
@@ -41,11 +41,11 @@ as follows: -
 }
 \details{
 \code{known_s3generics()} returns a \code{data.frame} of "known" \code{\link[base:InternalMethods]{S3 generic functions}}, based on two
-\verb{character vectors} in the \pkg{\link[base]{base}} package \code{\link[base:ns-load]{namespace}}, namely
-\code{\link[base:ns-internal]{.knownS3Generics}} and \code{\link[base:InternalMethods]{.S3PrimitiveGenerics}}.
+\verb{character vectors} in the \pkg{\link[base]{base}} package \code{\link[base:loadNamespace]{namespace}}, namely
+\code{\link[base:asNamespace]{.knownS3Generics}} and \code{\link[base:.S3PrimitiveGenerics]{.S3PrimitiveGenerics}}.
 
 \code{s3_in_namespace()} returns a \code{data.frame} of \code{\link[base:UseMethod]{S3 methods}} in a loaded
-\code{\link[base:ns-load]{namespace}}.
+\code{\link[base:loadNamespace]{namespace}}.
 }
 \examples{
 known_s3generics()
@@ -62,13 +62,13 @@ s3_in_namespace(utils, .arrange_by = across(Class:Generic)) |> head(40)
 R Internals: \href{https://cran.r-project.org/doc/manuals/r-devel/R-ints.html#Namespaces}{\code{1.2.2 Namespaces}}.
 }
 \seealso{
-\code{\link[base:ns-internal]{.knownS3Generics}}, \code{\link[base:InternalMethods]{.S3PrimitiveGenerics}}
-\code{\link[base:class]{class}}, \code{\link[utils:getS3method]{getS3method}}, \code{\link[base:ns-load]{loadNamespace}},
+\code{\link[base:asNamespace]{.knownS3Generics}}, \code{\link[base:.S3PrimitiveGenerics]{.S3PrimitiveGenerics}}
+\code{\link[base:class]{class}}, \code{\link[utils:getS3method]{getS3method}}, \code{\link[base:loadNamespace]{loadNamespace}},
 \code{\link[utils:methods]{methods}} and \code{\link[base:UseMethod]{UseMethod}}.
 
-Other methods: 
+Other methods:
 \code{\link{S3_Method_Debug}},
-\code{\link{method_info}()}
+\code{\link[=method_info]{method_info()}}
 }
 \concept{methods}
 \keyword{internal}

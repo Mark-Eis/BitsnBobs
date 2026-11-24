@@ -45,8 +45,8 @@ Kerry, S.M. & Bland, J.M., 1998. The intracluster correlation coefficient in clu
 \strong{316}: 1455-1460. \href{https://doi.org/10.1136/bmj.316.7142.1455}{\doi{10.1136/bmj.316.7142.1455}}.
 }
 \seealso{
-Other sample-size: 
-\code{\link{sample_size}()}
+Other sample-size:
+\code{\link[=sample_size]{sample_size()}}
 }
 \concept{sample-size}
 \keyword{cluster}

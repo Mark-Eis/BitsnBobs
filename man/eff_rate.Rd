@@ -85,8 +85,8 @@ www.investopedia.com/terms/c/continuouscompounding}
 \seealso{
 \code{\link[FinancialMath:amort.period]{amort.period()}}, \code{\link[FinancialMath:amort.table]{amort.table()}}
 
-Other amort: 
-\code{\link{get_amortval}()},
-\code{\link{j}()}
+Other amort:
+\code{\link[=get_amortval]{get_amortval()}},
+\code{\link[=j]{j()}}
 }
 \concept{amort}

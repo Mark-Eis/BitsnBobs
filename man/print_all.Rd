@@ -115,9 +115,9 @@ rm(df, tib)
 \code{\link[base:print]{print()}}, \code{\link[=print_lf]{print_lf()}}, \code{\link[=method_info]{method_info()}},
 \code{\link[utils:methods]{methods()}}, \code{\link[tibble:tibble-package]{tibble}}.
 
-Other print: 
-\code{\link{catapult}()},
-\code{\link{lf}()}
+Other print:
+\code{\link[=catapult]{catapult()}},
+\code{\link[=lf]{lf()}}
 }
 \concept{print}
 \keyword{print}

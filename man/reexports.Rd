@@ -43,18 +43,18 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{dplyr}{\code{\link[dplyr]{across}}, \code{\link[dplyr]{arrange}}, \code{\link[dplyr]{bind_rows}}, \code{\link[dplyr]{desc}}}
+  \item{dplyr}{\code{\link[dplyr:across]{across()}}, \code{\link[dplyr:arrange]{arrange()}}, \code{\link[dplyr:bind_rows]{bind_rows()}}, \code{\link[dplyr:desc]{desc()}}}
 
-  \item{ggplot2}{\code{\link[ggplot2:element]{element_text}}, \code{\link[ggplot2:get_theme]{theme_get}}, \code{\link[ggplot2:get_theme]{theme_set}}, \code{\link[ggplot2:get_theme]{theme_update}}}
+  \item{ggplot2}{\code{\link[ggplot2:element_text]{element_text()}}, \code{\link[ggplot2:theme_get]{theme_get()}}, \code{\link[ggplot2:theme_set]{theme_set()}}, \code{\link[ggplot2:theme_update]{theme_update()}}}
 
-  \item{purrr}{\code{\link[purrr:map]{map_chr}}, \code{\link[purrr:map]{map_dbl}}, \code{\link[purrr:map]{map_int}}, \code{\link[purrr:map2]{map2_chr}}}
+  \item{purrr}{\code{\link[purrr:map_chr]{map_chr()}}, \code{\link[purrr:map_dbl]{map_dbl()}}, \code{\link[purrr:map_int]{map_int()}}, \code{\link[purrr:map2_chr]{map2_chr()}}}
 
-  \item{rlang}{\code{\link[rlang:op-get-attr]{\%@\%}}, \code{\link[rlang]{eval_tidy}}, \code{\link[rlang:defusing-advanced]{exprs}}, \code{\link[rlang]{set_names}}}
+  \item{rlang}{\code{\link[rlang:\%@\%]{\%@\%}}, \code{\link[rlang:eval_tidy]{eval_tidy()}}, \code{\link[rlang:exprs]{exprs()}}, \code{\link[rlang:set_names]{set_names()}}}
 
-  \item{stringr}{\code{\link[stringr:modifiers]{boundary}}, \code{\link[stringr:modifiers]{coll}}, \code{\link[stringr:modifiers]{fixed}}, \code{\link[stringr:modifiers]{regex}}}
+  \item{stringr}{\code{\link[stringr:boundary]{boundary()}}, \code{\link[stringr:coll]{coll()}}, \code{\link[stringr:fixed]{fixed()}}, \code{\link[stringr:regex]{regex()}}}
 
-  \item{tibble}{\code{\link[tibble]{tibble}}}
+  \item{tibble}{\code{\link[tibble:tibble]{tibble()}}}
 
-  \item{tidyselect}{\code{\link[tidyselect]{all_of}}, \code{\link[tidyselect:all_of]{any_of}}, \code{\link[tidyselect:starts_with]{contains}}, \code{\link[tidyselect:starts_with]{ends_with}}, \code{\link[tidyselect]{everything}}, \code{\link[tidyselect:everything]{last_col}}, \code{\link[tidyselect:starts_with]{matches}}, \code{\link[tidyselect:starts_with]{num_range}}, \code{\link[tidyselect]{starts_with}}, \code{\link[tidyselect]{where}}}
+  \item{tidyselect}{\code{\link[tidyselect:all_of]{all_of()}}, \code{\link[tidyselect:any_of]{any_of()}}, \code{\link[tidyselect:contains]{contains()}}, \code{\link[tidyselect:ends_with]{ends_with()}}, \code{\link[tidyselect:everything]{everything()}}, \code{\link[tidyselect:last_col]{last_col()}}, \code{\link[tidyselect:matches]{matches()}}, \code{\link[tidyselect:num_range]{num_range()}}, \code{\link[tidyselect:starts_with]{starts_with()}}, \code{\link[tidyselect:where]{where()}}}
 }}
 

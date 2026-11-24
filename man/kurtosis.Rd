@@ -68,12 +68,12 @@ Joanes, D.N., and Gill, C.A. (1998). Comparing measures of sample kurtosis and k
 \href{https://doi.org/10.1111/1467-9884.00122}{\doi{10.1111/1467-9884.00122}}
 }
 \seealso{
-\code{\link[stats:Distributions]{distributions}}
+\code{\link[stats:distributions]{distributions}}
 
-Other skewness: 
-\code{\link{kurtosis.test}()},
-\code{\link{skewness}()},
-\code{\link{skewness.test}()}
+Other skewness:
+\code{\link[=kurtosis.test]{kurtosis.test()}},
+\code{\link[=skewness]{skewness()}},
+\code{\link[=skewness.test]{skewness.test()}}
 }
 \concept{skewness}
 \keyword{univar}

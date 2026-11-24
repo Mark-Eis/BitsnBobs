@@ -39,8 +39,8 @@ prob_from_odds(s)
 rm(s) 
 }
 \seealso{
-Other odds-logit: 
-\code{\link{logit}()}
+Other odds-logit:
+\code{\link[=logit]{logit()}}
 }
 \concept{odds-logit}
 \keyword{math}

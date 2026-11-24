@@ -48,13 +48,13 @@ f4(1) |> f5() |> f6()
 rm_objects(f, 1:6)
 }
 \seealso{
-\code{\link[base:sys.parent]{sys.call()}}
+\code{\link[base:sys.call]{sys.call()}}
 
-Other utils: 
-\code{\link{const}()},
-\code{\link{endstop}()},
+Other utils:
+\code{\link[=const]{const()}},
+\code{\link[=endstop]{endstop()}},
 \code{\link{op-min-max}},
-\code{\link{revmat}()}
+\code{\link[=revmat]{revmat()}}
 }
 \concept{utils}
 \keyword{internal}

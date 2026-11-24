@@ -62,7 +62,7 @@ methods(class = "glm") |> print_all(.arrange_by = across(c(isS4, Method)))
 \code{\link[base:class]{class}}, \code{\link[utils:getS3method]{getS3method}}, \code{\link[utils:methods]{methods()}},
 \code{\link[=print_all]{print_all.MethodsFunction()}} and \code{\link[base:UseMethod]{UseMethod}}
 
-Other methods: 
+Other methods:
 \code{\link{S3Gen_Meth}},
 \code{\link{S3_Method_Debug}}
 }

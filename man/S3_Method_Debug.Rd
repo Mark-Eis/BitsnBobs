@@ -19,7 +19,7 @@ browse(fn, ...)
     \samp{.} are omitted.}
 
 \item{env}{an \code{environment} to use in listing the available objects, equivalent to the \code{name} argument of
-\code{\link[base:ls]{ls()}}; default \code{\link[base:sys.parent]{parent.frame()}} i.e., the \code{environment} in which the function
+\code{\link[base:ls]{ls()}}; default \code{\link[base:parent.frame]{parent.frame()}} i.e., the \code{environment} in which the function
 was called.}
 
 \item{\dots}{additional arguments passed to \code{ls()} or \code{fn()}.}
@@ -31,7 +31,7 @@ A \code{\link[base:character]{character vector}} for \code{ls_all()}; for \code{
 containing the following elements: -
 
 \item{\code{.Class}}{.Class is a  \code{\link[base:character]{character vector}} of \code{\link[base:class]{classes}} used to find the next
-\code{\link[utils:methods]{method}}. \code{\link[base:UseMethod]{NextMethod()}} adds an attribute \code{"previous"} to .Class giving
+\code{\link[utils:methods]{method}}. \code{\link[base:NextMethod]{NextMethod()}} adds an attribute \code{"previous"} to .Class giving
 the .Class last used for dispatch, and shifts .Class along to that used for dispatch.}
 
 \item{\code{.Generic}}{A length-one \code{\link[base:character]{character vector}} naming the generic function for the current
@@ -114,12 +114,12 @@ rm(twobytwo)
 }
 \seealso{
 \code{\link[base:browser]{browser()}}, \code{\link[base:class]{class}}, \code{\link[base:debug]{debug}},
-\code{\link[base:environment]{environment}}, \code{\link[utils:methods]{methods()}}, \code{\link[base:sys.parent]{parent.frame()}} and
+\code{\link[base:environment]{environment}}, \code{\link[utils:methods]{methods()}}, \code{\link[base:parent.frame]{parent.frame()}} and
 \code{\link[base:UseMethod]{UseMethod}}
 
-Other methods: 
+Other methods:
 \code{\link{S3Gen_Meth}},
-\code{\link{method_info}()}
+\code{\link[=method_info]{method_info()}}
 }
 \concept{methods}
 \keyword{internal}

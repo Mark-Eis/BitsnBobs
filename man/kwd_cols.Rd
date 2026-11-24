@@ -56,8 +56,8 @@ rm(car_names, kwd)
 \seealso{
 \code{\link[=detective]{detective()}}, \code{\link[stringr:str_detect]{str_detect}}.
 
-Other logical-cols: 
-\code{\link{count_lgl}()},
-\code{\link{list_lgl}()}
+Other logical-cols:
+\code{\link[=count_lgl]{count_lgl()}},
+\code{\link[=list_lgl]{list_lgl()}}
 }
 \concept{logical-cols}

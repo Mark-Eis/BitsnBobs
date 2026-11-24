@@ -31,13 +31,13 @@ try(bar <- "bavarian")
 Siqi Zhang, 2019: Make a Constant in R with Active Binding}.
 }
 \seealso{
-\code{\link[base:bindenv]{lockBinding()}}
+\code{\link[base:lockBinding]{lockBinding()}}
 
-Other utils: 
-\code{\link{endstop}()},
-\code{\link{marker}()},
+Other utils:
+\code{\link[=endstop]{endstop()}},
+\code{\link[=marker]{marker()}},
 \code{\link{op-min-max}},
-\code{\link{revmat}()}
+\code{\link[=revmat]{revmat()}}
 }
 \concept{utils}
 \keyword{utilities}

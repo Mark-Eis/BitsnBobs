@@ -28,7 +28,7 @@ formul_pwrseq(y ~ A, 3, B, C, D)
 \seealso{
 \code{\link[stats]{formula}}.
 
-Other powerseq: 
-\code{\link{power_seq}()}
+Other powerseq:
+\code{\link[=power_seq]{power_seq()}}
 }
 \concept{powerseq}

@@ -63,8 +63,8 @@ Thrusfield, M., Christley, R. In \emph{Veterinary Epidemiology} 4th Edn. John Wi
 \href{https://doi.org/10.1002/9781118280249}{\doi{10.1002/9781118280249}}.
 }
 \seealso{
-Other sample-size: 
-\code{\link{design_effect}()}
+Other sample-size:
+\code{\link[=design_effect]{design_effect()}}
 }
 \concept{sample-size}
 \keyword{survey}

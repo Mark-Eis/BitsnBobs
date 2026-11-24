@@ -76,8 +76,8 @@ Wickham, Hadley (2019) \emph{Advanced R 2nd edition}. CRC Press.
 \href{https://adv-r.hadley.nz/index.html}{adv-r.hadley.nz}
 }
 \seealso{
-Other boxcox: 
-\code{\link{opt_bc}()}
+Other boxcox:
+\code{\link[=opt_bc]{opt_bc()}}
 }
 \concept{boxcox}
 \keyword{models}
