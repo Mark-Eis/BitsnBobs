@@ -1,0 +1,74 @@
+# BitsnBobs R Package
+# Mark Eisler May 2026
+# For general bits and bobs of code
+#
+# Requires R version 4.3.0 (2023-04-21) -- "Already Tomorrow" or later
+#
+# survival.R
+
+
+# ========================================
+#' Likelihood ratio test statistic
+#'
+#' @description
+#' `LRT()` is a generic function for the likelihood ratio test statistic from a given object. 
+#'
+#' @details
+#' Currently implemented for `"coxph"` and `"coxme"` objects.
+#'
+#' @references
+#' \href{https://cran.r-project.org/web/packages/coxme/vignettes/coxme.pdf}{
+#'   Terry Therneau, 2024: Mixed Eects Cox Models}.
+#'
+#' @family survival
+#' @seealso [`coxph()`][survival::coxph], [`coxme()`][coxme::coxme], [`logLik.coxme()`][].
+#'
+#' @param object	 any object from which a likelihood ratio test statistic, or a contribution to a 
+#'   likelihood ratio test statistic, can be extracted.
+#'
+#' @param \dots further arguments passed to or from other methods.
+#'
+#' @param type character, which of the two types of partial likelihood to extract, either
+#'   "penalized" or "integrated".
+#'
+#' @return
+#' Returns argument `value` invisibly (via `invisible(value)`). 
+#'
+#' @keywords models regression survival
+#'
+#' @export
+#' @examples
+#' # Ex1
+#' 
+#' # Ex2
+#'
+
+LRT <- function(object, ...)
+    UseMethod("LRT")
+
+# ========================================
+#  Method for class "coxph"
+#  S3method LRT.coxph()
+#'
+#' @rdname LRT
+#' @export
+
+LRT.coxph <- function(object, ...)
+    with(object, 2 * diff(loglik[1:2]))
+
+# ========================================
+#  Method for class "coxme"
+#  S3method LRT.coxme()
+#'
+#' @rdname LRT
+#' @export
+
+LRT.coxme <- function(object, ..., type = c("integrated", "penalized"))
+{
+    type <- match.arg(type)
+    idx <- switch(type,
+        Integrated = 1:2,
+        Penalized = c(1, 3)
+    )
+    with(object, 2 * diff((loglik + c(0, 0, penalty))[idx]))
+}
