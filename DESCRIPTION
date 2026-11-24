@@ -34,6 +34,7 @@ Imports:
     methods,
     purrr,
     rlang,
+    roxygen2,
     stats,
     stringr,
     tibble,
@@ -45,10 +46,9 @@ Suggests:
     lobstr,
     MASS,
     rmarkdown,
-    roxygen2,
-    survival
+   survival
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 VersonName: Pájaro Campana
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.1

@@ -31,8 +31,8 @@ string with a full stop.
 optionally terminates the strings with full stops.
 }
 \details{
-Uses \code{\link[stringr: str_detect]{str_detect}} from package \pkg{\link[stringr]{stringr}} to detect the regular
-expressions \code{'[:punct:]'} and \code{'[:space:]'}, and \code{\link[stringr: str_sub]{str_sub}} to modify the string.
+Uses \code{\link[stringr:str_detect]{str_detect}} from package \pkg{\link[stringr]{stringr}} to detect the regular
+expressions \code{'[:punct:]'} and \code{'[:space:]'}, and \code{\link[stringr:str_sub]{str_sub}} to modify the string.
 
 For \code{endstop_data()}, character columns in \code{.data} are selected using \code{\dots} with the
 <\code{\link[dplyr:dplyr_tidy_select]{tidy-select}}> syntax of package \pkg{\link[dplyr]{dplyr}}, including use of
@@ -59,7 +59,7 @@ starwars3 |> endstop_data()
 rm(s)
 }
 \seealso{
-\code{\link[stringr: str_detect]{str_detect()}}, \code{\link[stringr: str_sub]{str_sub()}}
+\code{\link[stringr:str_detect]{str_detect()}}, \code{\link[stringr:str_sub]{str_sub()}}
 
 Other utils:
 \code{\link[=const]{const()}},
