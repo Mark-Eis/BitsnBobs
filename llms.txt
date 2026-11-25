@@ -149,6 +149,8 @@ retrieve_starwars("Luke Skywalker", ends_with("color"), homeworld)
   [`most_recent_fname()`](https://mark-eis.github.io/BitsnBobs/reference/Import_Rostido.md)
   [`read_rostido_csv()`](https://mark-eis.github.io/BitsnBobs/reference/Import_Rostido.md)
   : Import Rostido Bank Account Transaction Data
+- [`LRT()`](https://mark-eis.github.io/BitsnBobs/reference/LRT.md) :
+  Likelihood ratio test statistic
 - [`as_rostido()`](https://mark-eis.github.io/BitsnBobs/reference/Manage_Rostido.md)
   [`rbind(`*`<rostido>`*`)`](https://mark-eis.github.io/BitsnBobs/reference/Manage_Rostido.md)
   [`print(`*`<rostido>`*`)`](https://mark-eis.github.io/BitsnBobs/reference/Manage_Rostido.md)

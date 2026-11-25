@@ -7,7 +7,7 @@ design_effect(), detective(), detective()\<-, eff_rate(), endstop(),
 endstop_data(), facet_histo(), fct_to_num(), formul_pwrseq(),
 get_amortint(), get_amortval(), iterate(), j(), j2eff_rate(),
 known_s3generics(), kurt(), kurt.test(), kurtosis(), kurtosis.test(),
-kwd_cols(), kwd_cols()\<-, lf(), lgl_cols(), list_lgl(), logit(),
+kwd_cols(), kwd_cols()\<-, lf(), lgl_cols(), list_lgl(), logit(), LRT(),
 ls_all(), marker(), method_info(), most_recent_fname(), nom_rate(),
 opt_bc(), phi_coef(), phi_coef.test(), power_seq(), print_all(),
 print_lf(), prob_from_logit(), read_triodos_csv(), recursive(),
@@ -28,3 +28,8 @@ Useful links:
 
 **Maintainer**: Mark Eisler <Mark.Eisler@bristol.ac.uk>
 ([ORCID](https://orcid.org/0000-0001-6843-3345)) \[copyright holder\]
+
+Authors:
+
+- Mark Eisler <Mark.Eisler@bristol.ac.uk>
+  ([ORCID](https://orcid.org/0000-0001-6843-3345)) \[copyright holder\]

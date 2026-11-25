@@ -94,43 +94,60 @@ Other methods:
 ``` r
 
 methods(summary)
-#>  [1] summary.Date                        summary.POSIXct                    
-#>  [3] summary.POSIXlt                     summary.aov                        
-#>  [5] summary.aovlist*                    summary.aspell*                    
-#>  [7] summary.check_packages_in_dir*      summary.connection                 
-#>  [9] summary.data.frame                  summary.default                    
-#> [11] summary.difftime                    summary.ecdf*                      
-#> [13] summary.factor                      summary.free1way*                  
-#> [15] summary.ggplot2::ggplot*            summary.glm                        
-#> [17] summary.infl*                       summary.lm                         
-#> [19] summary.loess*                      summary.loglm*                     
-#> [21] summary.manova                      summary.matrix                     
-#> [23] summary.mlm*                        summary.negbin*                    
-#> [25] summary.nls*                        summary.packageStatus*             
-#> [27] summary.polr*                       summary.ppr*                       
-#> [29] summary.prcomp*                     summary.princomp*                  
-#> [31] summary.proc_time                   summary.rlang:::list_of_conditions*
-#> [33] summary.rlang_error*                summary.rlang_message*             
-#> [35] summary.rlang_trace*                summary.rlang_warning*             
-#> [37] summary.rlm*                        summary.srcfile                    
-#> [39] summary.srcref                      summary.stepfun                    
-#> [41] summary.stl*                        summary.table                      
-#> [43] summary.tukeysmooth*                summary.vctrs_sclr*                
-#> [45] summary.vctrs_vctr*                 summary.warnings                   
+#>  [1] summary,ANY-method                  summary,diagonalMatrix-method      
+#>  [3] summary,sparseMatrix-method         summary.Date                       
+#>  [5] summary.MPLfree1way*                summary.POSIXct                    
+#>  [7] summary.POSIXlt                     summary.aareg*                     
+#>  [9] summary.aov                         summary.aovlist*                   
+#> [11] summary.aspell*                     summary.cch*                       
+#> [13] summary.check_packages_in_dir*      summary.connection                 
+#> [15] summary.coxph*                      summary.coxph.penal*               
+#> [17] summary.data.frame                  summary.default                    
+#> [19] summary.difftime                    summary.ecdf*                      
+#> [21] summary.factor                      summary.free1way*                  
+#> [23] summary.ggplot2::ggplot*            summary.glm                        
+#> [25] summary.infl*                       summary.lm                         
+#> [27] summary.loess*                      summary.loglm*                     
+#> [29] summary.manova                      summary.matrix                     
+#> [31] summary.mlm*                        summary.negbin*                    
+#> [33] summary.nls*                        summary.packageStatus*             
+#> [35] summary.polr*                       summary.ppr*                       
+#> [37] summary.prcomp*                     summary.princomp*                  
+#> [39] summary.proc_time                   summary.pyears*                    
+#> [41] summary.ratetable*                  summary.rlang:::list_of_conditions*
+#> [43] summary.rlang_error*                summary.rlang_message*             
+#> [45] summary.rlang_trace*                summary.rlang_warning*             
+#> [47] summary.rlm*                        summary.shingle*                   
+#> [49] summary.srcfile                     summary.srcref                     
+#> [51] summary.stepfun                     summary.stl*                       
+#> [53] summary.survexp*                    summary.survfit*                   
+#> [55] summary.survfitms*                  summary.survreg*                   
+#> [57] summary.table                       summary.tmerge*                    
+#> [59] summary.trellis*                    summary.tukeysmooth*               
+#> [61] summary.vctrs_sclr*                 summary.vctrs_vctr*                
+#> [63] summary.warnings                   
 #> see '?methods' for accessing help and source code
 method_info(summary)
 #> _____________
 #> S3 Methods: -
 #> 
 #>  Method                             Visible From                           
+#>  summary,ANY-method                  TRUE   base                           
+#>  summary,diagonalMatrix-method       TRUE   Matrix                         
+#>  summary,sparseMatrix-method         TRUE   Matrix                         
 #>  summary.Date                        TRUE   base                           
+#>  summary.MPLfree1way                FALSE   registered S3method for summary
 #>  summary.POSIXct                     TRUE   base                           
 #>  summary.POSIXlt                     TRUE   base                           
+#>  summary.aareg                      FALSE   registered S3method for summary
 #>  summary.aov                         TRUE   stats                          
 #>  summary.aovlist                    FALSE   registered S3method for summary
 #>  summary.aspell                     FALSE   registered S3method for summary
+#>  summary.cch                        FALSE   registered S3method for summary
 #>  summary.check_packages_in_dir      FALSE   registered S3method for summary
 #>  summary.connection                  TRUE   base                           
+#>  summary.coxph                      FALSE   registered S3method for summary
+#>  summary.coxph.penal                FALSE   registered S3method for summary
 #>  summary.data.frame                  TRUE   base                           
 #>  summary.default                     TRUE   base                           
 #>  summary.difftime                    TRUE   base                           
@@ -154,22 +171,48 @@ method_info(summary)
 #>  summary.prcomp                     FALSE   registered S3method for summary
 #>  summary.princomp                   FALSE   registered S3method for summary
 #>  summary.proc_time                   TRUE   base                           
+#>  summary.pyears                     FALSE   registered S3method for summary
+#>  summary.ratetable                  FALSE   registered S3method for summary
 #>  summary.rlang:::list_of_conditions FALSE   registered S3method for summary
 #>  summary.rlang_error                FALSE   registered S3method for summary
 #>  summary.rlang_message              FALSE   registered S3method for summary
 #>  summary.rlang_trace                FALSE   registered S3method for summary
 #>  summary.rlang_warning              FALSE   registered S3method for summary
 #>  summary.rlm                        FALSE   registered S3method for summary
+#>  summary.shingle                    FALSE   registered S3method for summary
 #>  summary.srcfile                     TRUE   base                           
 #>  summary.srcref                      TRUE   base                           
 #>  summary.stepfun                     TRUE   stats                          
 #>  summary.stl                        FALSE   registered S3method for summary
+#>  summary.survexp                    FALSE   registered S3method for summary
+#>  summary.survfit                    FALSE   registered S3method for summary
+#>  summary.survfitms                  FALSE   registered S3method for summary
+#>  summary.survreg                    FALSE   registered S3method for summary
 #>  summary.table                       TRUE   base                           
+#>  summary.tmerge                     FALSE   registered S3method for summary
+#>  summary.trellis                    FALSE   registered S3method for summary
 #>  summary.tukeysmooth                FALSE   registered S3method for summary
 #>  summary.vctrs_sclr                 FALSE   registered S3method for summary
 #>  summary.vctrs_vctr                 FALSE   registered S3method for summary
 #>  summary.warnings                    TRUE   base                           
 #>  Generic isS4 
+#>  summary  TRUE
+#>  summary  TRUE
+#>  summary  TRUE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
 #>  summary FALSE
 #>  summary FALSE
 #>  summary FALSE
@@ -221,14 +264,22 @@ methods(summary) |> print_all()
 #> S3 Methods: -
 #> 
 #>  Method                             Visible From                           
+#>  summary,ANY-method                  TRUE   base                           
+#>  summary,diagonalMatrix-method       TRUE   Matrix                         
+#>  summary,sparseMatrix-method         TRUE   Matrix                         
 #>  summary.Date                        TRUE   base                           
+#>  summary.MPLfree1way                FALSE   registered S3method for summary
 #>  summary.POSIXct                     TRUE   base                           
 #>  summary.POSIXlt                     TRUE   base                           
+#>  summary.aareg                      FALSE   registered S3method for summary
 #>  summary.aov                         TRUE   stats                          
 #>  summary.aovlist                    FALSE   registered S3method for summary
 #>  summary.aspell                     FALSE   registered S3method for summary
+#>  summary.cch                        FALSE   registered S3method for summary
 #>  summary.check_packages_in_dir      FALSE   registered S3method for summary
 #>  summary.connection                  TRUE   base                           
+#>  summary.coxph                      FALSE   registered S3method for summary
+#>  summary.coxph.penal                FALSE   registered S3method for summary
 #>  summary.data.frame                  TRUE   base                           
 #>  summary.default                     TRUE   base                           
 #>  summary.difftime                    TRUE   base                           
@@ -252,22 +303,48 @@ methods(summary) |> print_all()
 #>  summary.prcomp                     FALSE   registered S3method for summary
 #>  summary.princomp                   FALSE   registered S3method for summary
 #>  summary.proc_time                   TRUE   base                           
+#>  summary.pyears                     FALSE   registered S3method for summary
+#>  summary.ratetable                  FALSE   registered S3method for summary
 #>  summary.rlang:::list_of_conditions FALSE   registered S3method for summary
 #>  summary.rlang_error                FALSE   registered S3method for summary
 #>  summary.rlang_message              FALSE   registered S3method for summary
 #>  summary.rlang_trace                FALSE   registered S3method for summary
 #>  summary.rlang_warning              FALSE   registered S3method for summary
 #>  summary.rlm                        FALSE   registered S3method for summary
+#>  summary.shingle                    FALSE   registered S3method for summary
 #>  summary.srcfile                     TRUE   base                           
 #>  summary.srcref                      TRUE   base                           
 #>  summary.stepfun                     TRUE   stats                          
 #>  summary.stl                        FALSE   registered S3method for summary
+#>  summary.survexp                    FALSE   registered S3method for summary
+#>  summary.survfit                    FALSE   registered S3method for summary
+#>  summary.survfitms                  FALSE   registered S3method for summary
+#>  summary.survreg                    FALSE   registered S3method for summary
 #>  summary.table                       TRUE   base                           
+#>  summary.tmerge                     FALSE   registered S3method for summary
+#>  summary.trellis                    FALSE   registered S3method for summary
 #>  summary.tukeysmooth                FALSE   registered S3method for summary
 #>  summary.vctrs_sclr                 FALSE   registered S3method for summary
 #>  summary.vctrs_vctr                 FALSE   registered S3method for summary
 #>  summary.warnings                    TRUE   base                           
 #>  Generic isS4 
+#>  summary  TRUE
+#>  summary  TRUE
+#>  summary  TRUE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
+#>  summary FALSE
 #>  summary FALSE
 #>  summary FALSE
 #>  summary FALSE

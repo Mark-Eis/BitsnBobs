@@ -44,7 +44,8 @@ attributes `c("info_df", "catapult", "data.frame")` and columns
 - Namespace:
 
   `character`, the namespace environment of the generic or `"primitive"`
-  in the case of `primitive` (internally implemented) generics.
+  in the case of [`primitive`](https://rdrr.io/r/base/Primitive.html)
+  (internally implemented) generics.
 
 - Class:
 
@@ -59,13 +60,14 @@ attributes `c("info_df", "catapult", "data.frame")` and columns
 `known_s3generics()` returns a `data.frame` of "known"
 [`S3 generic functions`](https://rdrr.io/r/base/InternalMethods.html),
 based on two `character vectors` in the
-[base](https://rdrr.io/r/base/base-package.html) package `namespace`,
-namely `.knownS3Generics` and
+[base](https://rdrr.io/r/base/base-package.html) package
+[`namespace`](https://rdrr.io/r/base/ns-load.html), namely
+[`.knownS3Generics`](https://rdrr.io/r/base/ns-internal.html) and
 [`.S3PrimitiveGenerics`](https://rdrr.io/r/base/InternalMethods.html).
 
 `s3_in_namespace()` returns a `data.frame` of
 [`S3 methods`](https://rdrr.io/r/base/UseMethod.html) in a loaded
-`namespace`.
+[`namespace`](https://rdrr.io/r/base/ns-load.html).
 
 ## References
 
@@ -74,11 +76,12 @@ R Internals:
 
 ## See also
 
-`.knownS3Generics`,
+[`.knownS3Generics`](https://rdrr.io/r/base/ns-internal.html),
 [`.S3PrimitiveGenerics`](https://rdrr.io/r/base/InternalMethods.html)
 [`class`](https://rdrr.io/r/base/class.html),
 [`getS3method`](https://rdrr.io/r/utils/getS3method.html),
-`loadNamespace`, [`methods`](https://rdrr.io/r/utils/methods.html) and
+[`loadNamespace`](https://rdrr.io/r/base/ns-load.html),
+[`methods`](https://rdrr.io/r/utils/methods.html) and
 [`UseMethod`](https://rdrr.io/r/base/UseMethod.html).
 
 Other methods:
@@ -287,6 +290,8 @@ s3_in_namespace(BitsnBobs)
 #>  sum_sec       decdeg         
 #>  sum_sec       degmin         
 #>  sum_sec       degminsec      
+#>  LRT           coxme          
+#>  LRT           coxph          
 #>  as_coord      coord          
 #>  as_coord      numeric        
 #>  as_coord      waypoint       
@@ -338,6 +343,8 @@ s3_in_namespace(BitsnBobs)
 #>  sum_sec.decdeg                                                                                                      
 #>  sum_sec.degmin                                                                                                      
 #>  sum_sec.degminsec                                                                                                   
+#>  LRT.coxme                                                                                                           
+#>  LRT.coxph                                                                                                           
 #>  as_coord.coord                                                                                                      
 #>  as_coord.numeric                                                                                                    
 #>  as_coord.waypoint                                                                                                   
@@ -414,6 +421,8 @@ s3_in_namespace(BitsnBobs, .arrange_by = across(Class:Generic))
 #>  sum_sec       degminsec      
 #>  sum_sec       degminsec      
 #>  as.double     degminsec      
+#>  LRT           coxme          
+#>  LRT           coxph          
 #>  as_coord      coord          
 #>  as.double     coord          
 #>  format        coord          
@@ -465,6 +474,8 @@ s3_in_namespace(BitsnBobs, .arrange_by = across(Class:Generic))
 #>  function (object, ...) , {,     check_dots_empty(),     as.numeric(with(object, sec)), }                            
 #>  function (object, ...) , {,     check_dots_empty(),     as.numeric(with(object, sec)), }                            
 #>  as.double.degminsec                                                                                                 
+#>  LRT.coxme                                                                                                           
+#>  LRT.coxph                                                                                                           
 #>  as_coord.coord                                                                                                      
 #>  as.double.coord                                                                                                     
 #>  format.coord                                                                                                        

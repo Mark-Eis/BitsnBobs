@@ -34,7 +34,8 @@ print(x, ...)
 
   additional named arguments to be forwarded to print methods of classes
   inherited from `object`, for example as required for formatting and
-  printing a `data frame`.
+  printing a
+  [`data frame`](https://rdrr.io/r/base/print.dataframe.html).
 
 - x:
 
