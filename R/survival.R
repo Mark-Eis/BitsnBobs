@@ -38,10 +38,19 @@
 #'
 #' @export
 #' @examples
-#' # Ex1
+#' if (requireNamespace("coxme", quietly = TRUE)) {
+#'     efit1 <- survival::coxph(survival::Surv(y, uncens) ~ trt, coxme::eortc)
+#'     efit2 <- coxme::coxme(survival::Surv(y, uncens) ~ trt + (1|center), coxme::eortc)
+#'     
+#'     summary(efit1)
+#'     efit2
 #' 
-#' # Ex2
-#'
+#'     cat(LRT(efit1), LRT(efit2), LRT(efit2, type = "penalized"), sep = "\n")
+#' } else {
+#'     message("R packages coxme and survival must both be installed to run example.")
+#' }
+#' 
+
 
 LRT <- function(object, ...)
     UseMethod("LRT")
