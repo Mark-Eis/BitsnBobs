@@ -67,8 +67,8 @@ LRT.coxme <- function(object, ..., type = c("integrated", "penalized"))
 {
     type <- match.arg(type)
     idx <- switch(type,
-        Integrated = 1:2,
-        Penalized = c(1, 3)
+        integrated = 1:2,
+        penalized = c(1, 3)
     )
     with(object, 2 * diff((loglik + c(0, 0, penalty))[idx]))
 }
