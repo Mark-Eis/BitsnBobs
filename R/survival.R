@@ -46,7 +46,7 @@
 #'     cat("LRT(efit1):", LRT(efit1), "\n\n")
 #' 
 #'     efit2 |> print_lf()
-#'     c(LRT(efit2), LRT(efit2, type = "penalized"))
+#'     list(LRT(efit2), LRT(efit2, type = "penalized"))
 #' } else {
 #'     message("R packages coxme and survival must both be installed to run example.")
 #' }
