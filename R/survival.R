@@ -38,14 +38,15 @@
 #'
 #' @export
 #' @examples
-#' if (requireNamespace("coxme", quietly = TRUE)) {
-#'     efit1 <- survival::coxph(survival::Surv(y, uncens) ~ trt, coxme::eortc)
-#'     efit2 <- coxme::coxme(survival::Surv(y, uncens) ~ trt + (1|center), coxme::eortc)
+#' if (require("coxme", quietly = TRUE)) {
+#'     efit1 <- coxph(Surv(y, uncens) ~ trt, eortc)
+#'     efit2 <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
 #'     
-#'     summary(efit1)
-#'     efit2
+#'     summary(efit1) |> print_lf()
+#'     cat("LRT(efit1):", LRT(efit1), "\n\n")
 #' 
-#'     cat(LRT(efit1), LRT(efit2), LRT(efit2, type = "penalized"), sep = "\n")
+#'     efit2 |> print_lf()
+#'     c(LRT(efit2), LRT(efit2, type = "penalized"))
 #' } else {
 #'     message("R packages coxme and survival must both be installed to run example.")
 #' }

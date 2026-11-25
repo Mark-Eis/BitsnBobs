@@ -31,9 +31,18 @@ Returns the likelihood ratio statistic as a \code{double}.
 Currently implemented for \code{"coxph"} and \code{"coxme"} objects.
 }
 \examples{
-# Ex1
+if (require("coxme", quietly = TRUE)) {
+    efit1 <- coxph(Surv(y, uncens) ~ trt, eortc)
+    efit2 <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
+    
+    summary(efit1) |> print_lf()
+    cat("LRT(efit1):", LRT(efit1), "\n\n")
 
-# Ex2
+    efit2 |> print_lf()
+    c(LRT(efit2), LRT(efit2, type = "penalized"))
+} else {
+    message("R packages coxme and survival must both be installed to run example.")
+}
 
 }
 \references{
