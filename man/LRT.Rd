@@ -31,6 +31,7 @@ Returns the likelihood ratio statistic as a \code{double}.
 Currently implemented for \code{"coxph"} and \code{"coxme"} objects.
 }
 \examples{
+## Using eortc data from package coxme, which must be installed to run example.
 if (require("coxme", quietly = TRUE)) {
     efit1 <- coxph(Surv(y, uncens) ~ trt, eortc)
     efit2 <- coxme(Surv(y, uncens) ~ trt + (1|center), eortc)
